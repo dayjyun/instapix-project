@@ -8,8 +8,7 @@ class Follow(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    follower_id = db.Column(
-        db.Integer, db.ForeignKey('users.id'), nullable=False)
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.Datetime, default=datetime.now())
     updated_at = db.Column(db.Datetime, default=datetime.now())
 
