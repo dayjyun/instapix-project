@@ -19,8 +19,10 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
-    # following = db.relationship('User', primaryjoin=(follows.c.follower_id == id), back_populates='follows')
-    # followers = db.relationship('Follow', primaryjoin=(follows.c.user_id == id), back_populates='follows')
+    follows = db.relationship("Follow", back_populates="users")
+    comments = db.relationship("Comment", back_populates="users")
+    likes = db.relationship("Like", back_populates="users")
+
 
     @property
     def password(self):

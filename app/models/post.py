@@ -11,4 +11,5 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
-    users = db.relationship('User', back_populates='posts')
+    comments = db.relationship('Comment', back_populates='posts')
+    likes = db.relationship("Like", back_populates='posts')
