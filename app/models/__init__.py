@@ -1,5 +1,5 @@
 from .db import db
-from .user import Userß
+from .user import User
 from .follow import Follow
 from .comment import Comment
 from .hashtag import Hashtag, post_hashtag
