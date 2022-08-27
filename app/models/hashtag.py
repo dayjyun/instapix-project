@@ -1,6 +1,12 @@
 from .db import db
 from datetime import datetime
 
+post_hashtag = db.Table(
+    "post_hashtags",
+    db.metadata,
+    db.Column('hashtag_id', db.ForeignKey('hashtags.id'), primary_key = True),
+    db.Column('post_id', db.ForeignKey('posts.id'), primary_key = True)
+)
 
 class Hashtag(db.Model):
     __tablename__ = 'hashtags'
@@ -9,11 +15,3 @@ class Hashtag(db.Model):
     hashtag_value = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
-
-
-post_hashtag = db.Table(
-    "post_hashtags",
-    db.metadata,
-    db.Column('hashtag_id', db.ForeignKey('hashtags.id'), primary_key = True),
-    db.Column('post_id', db.ForeignKey('posts.id'), primary_key = True)
-)
