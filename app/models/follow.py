@@ -12,5 +12,5 @@ class Follow(db.Model):
     created_at = db.Column(db.DateTime, default=DateTime.now())
     updated_at = db.Column(db.DateTime, default=DateTime.now())
 
-    users = db.relationship('User', back_populates='follows')
-    follower = db.relationship('User', back_populates='follows')
+    # users = db.relationship('User', back_populates='follows')
+    # follower = db.relationship('User', back_populates='follows')
