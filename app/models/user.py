@@ -15,8 +15,8 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String)
     profile_image = db.Column(db.String)
     session_token = db.Column(db.String)
-    created_at = db.Column(db.String)
-    updated_at = db.Column(db.String)
+    created_at = db.Column(db.Datetime, default=datetime.now())
+    updated_at = db.Column(db.Datetime, default=datetime.now())
 
     @property
     def password(self):
