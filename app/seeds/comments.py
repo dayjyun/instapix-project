@@ -17,6 +17,7 @@ def seed_comments():
     db.session.add(comment2)
     db.session.add(comment3)
     db.session.add(comment4)
+    db.session.add(comment5)
     db.session.commit()
 
 

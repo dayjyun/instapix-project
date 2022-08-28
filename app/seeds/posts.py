@@ -4,11 +4,11 @@ from app.models.post import db, Post
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
     post1 = Post(
-        user_id=1, caption='my first instapix post!', post_url='photos_url')
+        user_id=1, caption='my first instapix post! #tbh', post_url='photos_url')
     post2 = Post(
-        user_id=2, caption='went to the local cafe for a coffee. Yum!', post_url='photos_url')
+        user_id=2, caption='went to the local cafe for a coffee. Yum! #omg', post_url='photos_url')
     post3 = Post(
-        user_id=3, caption='my dog sleeping--how cute is he?', post_url='photos_url')
+        user_id=3, caption='my dog sleeping--how cute is he? #instapix', post_url='photos_url')
     post4 = Post(
         user_id=4, caption='happy hour with the family!', post_url='photos_url')
     db.session.add(post1)

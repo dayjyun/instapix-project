@@ -15,3 +15,5 @@ class Hashtag(db.Model):
     hashtag_value = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
+
+    # posts = db.relationship('Post', secondary=post_hashtag, back_populates='hashtags')
