@@ -3,6 +3,7 @@ from flask import Blueprint, session
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.models import User
+from app.models.follow import Follow
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
@@ -12,7 +13,14 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @login_required
 def get_posts():
     c_user = User.query.get(current_user.get_id())
-    pass
+    follows = Follow.query.filter(Follow.follows_id)
+    # user_id_in_follows = Follow.query.filter(Follow.user_id)
+    # follows_id == c_user.id?
+    #
+    return {"follows": [follow.to_dict() for follow in follows]}
+    # return {"follows": follows, "user_id": user_id_in_follows}
+    # return {"current_user": c_user.id}
+    # pass
 
 @post_routes.route('/<post_id>')
 @login_required
