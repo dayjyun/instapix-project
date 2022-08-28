@@ -13,5 +13,6 @@ class Post(db.Model):
 
     comments = db.relationship('Comment', back_populates='posts')
     likes = db.relationship("Like", back_populates='posts')
+    # users = db.relationship('User', back_populates='posts')
 
     # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')

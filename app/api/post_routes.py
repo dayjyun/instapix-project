@@ -4,6 +4,8 @@ from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.models import User
 from app.models.follow import Follow
+from app.models.post import Post
+from app.seeds import follows
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
@@ -13,14 +15,12 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @login_required
 def get_posts():
     c_user = User.query.get(current_user.get_id())
-    follows = Follow.query.filter(Follow.follows_id)
-    # user_id_in_follows = Follow.query.filter(Follow.user_id)
-    # follows_id == c_user.id?
-    #
-    return {"follows": [follow.to_dict() for follow in follows]}
-    # return {"follows": follows, "user_id": user_id_in_follows}
-    # return {"current_user": c_user.id}
-    # pass
+    follows = Follow.query.filter(c_user.id == Follow.follows_id)
+    follows = [follow.to_dict() for follow in follows]
+    # follows_posts = Post.query.get(Post.id == follows.user_id).all()
+
+    # return {"person we follow": follows_posts}
+
 
 @post_routes.route('/<post_id>')
 @login_required
@@ -51,3 +51,9 @@ def create_post():
 def delete_post(post_id):
     c_user = User.query.get(current_user.get_id())
     pass
+
+
+
+# FOLLOWS
+# Get all followers of a users
+# follows = Follow.query.filter(c_user.id == Follow.follows_id)
