@@ -21,9 +21,13 @@ def me():
 def get_posts():
     c_user = User.query.get(current_user.get_id())
     follows = Follow.query.filter(c_user.id == Follow.follows_id)
-    follows = [follow.to_dict() for follow in follows]
-    # follows_posts = Post.query.get(Post.id == follows.user_id).all()
+    follows = [follow.to_dict() for follow in follows][0]
+    # follows_posts = Post.query.filter(Post.user_id == follows["user_id"])
+    post = Post.query.filter(Post.user_id == c_user['id'])
+    post_id = [p.to_dict() for p in post]
+    return {"POST": post_id}
 
+    # return {"Follows": follows['user_id']}
     # return {"person we follow": follows_posts}
 
 

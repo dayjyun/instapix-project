@@ -18,6 +18,6 @@ class Follow(db.Model):
     def to_dict(self):
             return {
                 # 'id': self.id,
-                # 'follows_id': self.follows_id,
+                'follows_id': self.follows_id,
                 'user_id': self.user_id,
             }
