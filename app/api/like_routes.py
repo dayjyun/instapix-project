@@ -9,7 +9,7 @@ like_routes = Blueprint('likes', __name__)
 
 @like_routes.route('/posts/<post_id>/likes')
 @login_required
-def likes_by_post(post_id):
+def get_likes_by_post(post_id):
     likes = Like.query.filter(Like.post_id == post_id)
     return {'likes': [like.to_dict() for like in likes]}
 
