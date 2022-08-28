@@ -23,7 +23,6 @@ class User(db.Model, UserMixin):
     comments = db.relationship("Comment", back_populates="users")
     likes = db.relationship("Like", back_populates="users")
 
-
     @property
     def password(self):
         return self.hashed_password
@@ -41,3 +40,5 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+
