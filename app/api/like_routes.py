@@ -1,4 +1,3 @@
-from cmath import log
 from flask import Blueprint
 from app.models import db, Like, User, Post
 from flask_login import login_required, current_user
