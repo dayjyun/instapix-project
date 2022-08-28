@@ -1,5 +1,6 @@
 from flask import Blueprint
-from flask_login import login_required
+from flask_login import login_required, current_user
+from app.models import User
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
@@ -8,3 +9,5 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @post_routes.route('/')
 @login_required
 def get_posts():
+    # c_user = User.query.get(current_user.id)
+    return current_user.to_dict()
