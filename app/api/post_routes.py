@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Blueprint, session
+from flask import Blueprint, session, jsonify
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.models import User
@@ -9,6 +9,15 @@ from app.seeds import follows
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
+@post_routes.route('/me')
+@login_required
+def me():
+    c_user = User.query.get(current_user.get_id())
+    # c_user =
+    # return [data.jsonify() for data in c_user]
+    return c_user.to_dict()
+    # return {"My user_id is": c_user.id, "username": c_user.username}
+    # return "Hello world!!!"
 
 # # Get posts from users that current user follows(Takes user to feed)
 @post_routes.route('/')
