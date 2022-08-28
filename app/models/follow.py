@@ -9,11 +9,9 @@ class Follow(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    follows_id = db.Column(db.Integer, nullable=True)
-    followed_by_id = db.Column(db.Integer,  nullable=True)
+    follows_id = db.Column(db.Integer, nullable=False)
 
     created_at = db.Column(db.DateTime, default=datetime.today())
-    updated_at = db.Column(db.DateTime, default=datetime.today())
 
     users = db.relationship('User', back_populates='follows')
     # follows = db.relationship('User', back_populates='follows')

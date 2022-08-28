@@ -1,18 +1,20 @@
-from app.models import db, Follow
+from app.models.follow import db, Follow
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_follows():
     follow1 = Follow(
-        user_id=1, follows_id=2, followed_by_id= None)
+        user_id=1, follows_id=2 )
     follow2 = Follow(
-        user_id=1, follows_id=None, followed_by_id=3)
+        user_id=2, follows_id=1)
     follow3 = Follow(
-        user_id=1, follows_id=4, followed_by_id=4)
-
+        user_id=1, follows_id=4)
+    follow4 = Follow(
+        user_id=3, follows_id=4)
     db.session.add(follow1)
     db.session.add(follow2)
     db.session.add(follow3)
+    db.session.add(follow4)
     db.session.commit()
 
 
