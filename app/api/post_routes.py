@@ -9,5 +9,5 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @post_routes.route('/')
 # @login_required
 def get_posts():
-    c_user = User.query.get(User.follows)
-    return c_user
+    # c_user = User.query.get(current_user.id)
+    return 'get_posts'
