@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Blueprint, jsonify, redirect, url_for, render_template
+from flask import Blueprint, jsonify, redirect, url_for, render_template, request
 from flask_login import login_required, current_user
 from app.models import User, Comment
 from ..models.db import db
@@ -32,18 +32,19 @@ def get_comment(comment_id):
 def edit_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
     form = CommentForm()
-    # print(comment)
-    if form.validate_on_submit():
-        print('DATA =========================>', form.body.data)
-        comment.body = form.body.data
-        print(comment.body)
-        comment.updated_at = datetime.now()
+    if request.method == 'PUT':
+        if form.validate_on_submit():
+            print('DATA =========================>', form.body.data)
+            comment.body = form.body.data
+            # print(comment.body)
+            comment.updated_at = datetime.now()
 
-        db.session.add(comment)
-        db.session.commit()
+            db.session.add(comment)
+            db.session.commit()
 
-        return redirect(f'/api/comments/{comment.id}')
-    return render_template('comment_form.html', comment=comment, form=form)
+            return redirect(f'/api/comments/{comment.id}')
+    else:
+        return render_template('comment_form.html', comment=comment, form=form)
 
 
 
