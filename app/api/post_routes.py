@@ -56,6 +56,7 @@ def create_post():
             caption = data['caption'],
             post_url = data['post_url'],
         )
+        # new_post = Post()
         # form.populate_obj(new_post)
         db.session.add(new_post)
         db.session.commit()
