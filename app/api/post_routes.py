@@ -19,7 +19,7 @@ def get_all_posts():
     '''
     Returns a list with the most recent posts showing first
     '''
-    all_posts_query = Post.query.order_by(Post.created_at)
+    all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
 
