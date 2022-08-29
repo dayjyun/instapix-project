@@ -15,7 +15,10 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @post_routes.route('/all')
 @login_required
 def get_all_posts():
-    all_posts_query = Post.query.all()
+    '''
+    Returns a list with the most recent posts showing first
+    '''
+    all_posts_query = Post.query.order_by(Post.created_at).all()
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
 
@@ -24,6 +27,7 @@ def get_all_posts():
 @post_routes.route('/')
 # @login_required
 def get_posts():
+    following_users = Follow.query.
     pass
 
 

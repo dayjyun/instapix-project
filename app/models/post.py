@@ -24,5 +24,5 @@ class Post(db.Model):
                 "caption": self.caption,
                 "post_url": self.post_url,
                 "created_at": self.created_at,
-                "updated_at": self.updated_at,
+                # "updated_at": self.updated_at,
             }
