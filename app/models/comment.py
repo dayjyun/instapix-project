@@ -21,5 +21,6 @@ class Comment(db.Model):
             "user_id": self.user_id,
             "body": self.body,
             "createdAt": self.created_at,
-            "updatedAt": self.updated_at
+            "updatedAt": self.updated_at,
+            "users": self.users.to_dict()
         }

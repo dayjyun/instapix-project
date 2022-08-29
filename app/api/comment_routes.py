@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, redirect, url_for, render_template, reques
 from flask_login import login_required, current_user
 from app.models import User, Comment
 from ..models.db import db
-from ..forms.comment_form import CommentForm
+from ..forms.comment_forms import CreateCommentForm, EditCommentForm
 from datetime import date, datetime
 
 comment_routes = Blueprint('comments', __name__)
@@ -26,29 +26,40 @@ def get_comment(comment_id):
     else:
         return {'nope': 'nah'}
 
-#edit a comment using comment id
-@comment_routes.route('/<int:comment_id>/edit', methods = ['GET', 'PUT'])
+
+@comment_routes.route('/create', methods=['GET', 'POST'])
+@login_required
+def create_comment():
+    form = CreateCommentForm()
+    if form.validate_on_submit():
+        data = form.data
+        comment = Comment(user_id=data['user_id'],
+                          post_id=data['post_id'],
+                          body=data['body'])
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return render_template('create_comment_form.html', form=form)
+
+
+@comment_routes.route('/<int:comment_id>/edit', methods = ['GET', 'PUT', 'POST'])
 @login_required
 def edit_comment(comment_id):
-    comment = Comment.query.get_or_404(comment_id)
-    form = CommentForm()
-    if request.method == 'PUT':
+    form = EditCommentForm()
+
+    if not request.method == 'GET':
+        comment = Comment.query.get(comment_id)
         if form.validate_on_submit():
-            print('DATA =========================>', form.body.data)
-            comment.body = form.body.data
-            # print(comment.body)
+            data = form.data
+            comment.body = data['body']
             comment.updated_at = datetime.now()
+            # print(comment.body)
 
             db.session.add(comment)
             db.session.commit()
 
-            return redirect(f'/api/comments/{comment.id}')
-    else:
-        return render_template('comment_form.html', comment=comment, form=form)
-
-
-
-
+            return comment.to_dict()
+    return render_template('edit_comment_form.html', form=form)
 
 # @user.route('/')
 # # @login_required
