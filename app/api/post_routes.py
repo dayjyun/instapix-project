@@ -11,6 +11,8 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
 # Get posts from users that current user follows(Takes user to feed)
 
+#** get all posts on database **#
+
 
 @post_routes.route('/all-posts')
 @login_required
@@ -30,9 +32,9 @@ def get_posts():
 @post_routes.route('/<post_id>')
 @login_required
 def post_details(post_id):
-    all_posts_query = Post.query.all()
-    all_posts = [post.to_dict() for post in all_posts_query]
-    pass
+    all_posts = Post.query.filter(Post.id == post_id)
+    post = [post.to_dict() for post in all_posts]
+    return {"posts": post}
 
 
 @post_routes.route('/<post_id>/edit')
