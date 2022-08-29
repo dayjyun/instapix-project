@@ -19,6 +19,9 @@ def seed_posts():
         user_id=3, caption='my dog sleeping--he\'s really lazy? #instapix', post_url='photos_url')
     post8 = Post(
         user_id=4, caption='Another one', post_url='photos_url')
+    kev_post1 = Post(
+        user_id=5, caption='First post here', post_url='photo_url')
+
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
@@ -27,6 +30,7 @@ def seed_posts():
     db.session.add(post6)
     db.session.add(post7)
     db.session.add(post8)
+    db.session.add(kev_post1)
     db.session.commit()
 
 
