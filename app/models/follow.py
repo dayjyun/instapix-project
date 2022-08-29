@@ -7,9 +7,9 @@ class Follow(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    following_me = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    follows_id = db.Column(db.Integer, nullable=False)
+    who_i_follow = db.Column(db.Integer, nullable=False)
 
     created_at = db.Column(db.DateTime, default=datetime.today())
 
@@ -18,6 +18,6 @@ class Follow(db.Model):
     def to_dict(self):
             return {
                 # 'id': self.id,
-                # 'follows_id': self.follows_id,
-                'user_id': self.user_id,
+                # 'who_i_follow': self.who_i_follow,
+                'following_me': self.following_me,
             }
