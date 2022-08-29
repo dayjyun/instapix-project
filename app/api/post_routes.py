@@ -9,25 +9,11 @@ from app.seeds import follows
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
-@post_routes.route('/me')
-@login_required
-def me():
-    c_user = User.query.get(current_user.get_id())
-    return c_user.to_dict()
-
 # Get posts from users that current user follows(Takes user to feed)
 @post_routes.route('/')
 @login_required
 def get_posts():
-    c_user = User.query.get(current_user.get_id())
-    follows = Follow.query.filter(c_user.id == Follow.follows_id)
-    # follows = Follow.query.filter(c_user.id == Follow.following_me)
-    follows = [follow.to_dict() for follow in follows]
-    post = Post.query.filter(Post.user_id == c_user.id)
-    post = [p.to_dict() for p in post]
-    return {"POST": post}
-    # return {"follows": follows}
-
+    pass
 
 @post_routes.route('/<post_id>')
 @login_required
