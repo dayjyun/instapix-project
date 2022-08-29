@@ -14,7 +14,8 @@ class Follow(db.Model):
 
     def users_i_follow(self):
         return {
-            "following_id": self.follows_id
+            "following_id": self.follows_id,
+            "username": self.users.username
         }
 
     def following_me(self):
