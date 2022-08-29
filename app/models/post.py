@@ -16,3 +16,13 @@ class Post(db.Model):
     # users = db.relationship('User', back_populates='posts')
 
     # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')
+
+    def to_dict(self):
+            return {
+                'id': self.id,
+                "user_id": self.user_id,
+                "caption": self.caption,
+                "post_url": self.post_url,
+                "created_at": self.created_at,
+                "updated_at": self.updated_at,
+            }
