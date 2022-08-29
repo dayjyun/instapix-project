@@ -37,7 +37,6 @@ def get_followers():
     c_user = User.query.get(current_user.get_id())
     follows = Follow.query.filter(Follow.follows_id == c_user.id)
     follows = [follow.users_i_follow() for follow in follows]
-
     return {"Following": follows}
 
 # Get users following me

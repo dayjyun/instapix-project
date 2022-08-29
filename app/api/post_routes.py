@@ -54,8 +54,6 @@ def post_details(post_id):
 #     pass
 
 #** Edit a post **#
-
-
 # @post_routes.route('/<post_id>', methods=["PUT"])
 # @login_required
 # def update_post_edit_form():
