@@ -9,11 +9,15 @@ class Follow(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     follows_id = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.today())
+
     users = db.relationship('User', back_populates='follows')
 
-    def to_dict(self):
-            return {
-                # 'id': self.id,
-                # 'who_i_follow': self.who_i_follow,
-                # 'following_me': self.following_me,
-            }
+    def users_i_follow(self):
+        return {
+            "following_id": self.follows_id
+        }
+
+    def following_me(self):
+        return {
+            "follower_id": self.user_id
+        }
