@@ -6,17 +6,16 @@ from flask_login import login_required, current_user
 like_routes = Blueprint('likes', __name__)
 
 
-@like_routes.route('/posts/<post_id>/likes')
+@like_routes.route('/posts/<int:post_id>/likes')
 @login_required
 def get_likes_by_post(post_id):
     likes = Like.query.filter(Like.post_id == post_id)
     return {'likes': [like.to_dict() for like in likes]}
 
 
-@like_routes.route('/posts/<post_id>/likes', methods=['POST'])
+@like_routes.route('/posts/<int:post_id>/likes', methods=['POST'])
 @login_required
 def like_a_post(post_id):
-    # curr_user = User.query.get(current_user.get_id())
     curr_user = current_user.get_id()
     new_like = Like(user_id=curr_user,
                     post_id=post_id
@@ -26,7 +25,7 @@ def like_a_post(post_id):
     return new_like.to_dict()
 
 
-@like_routes.route('/posts/<post_id>', methods=['DELETE'])
+@like_routes.route('/posts/<int:post_id>', methods=['DELETE'])
 @login_required
 def delete_a_like(post_id):
     curr_user = current_user.get_id()
