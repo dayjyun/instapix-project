@@ -3,10 +3,11 @@ from flask import Blueprint, session, jsonify, render_template, redirect
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.forms.create_post import CreatePostForm
-from app.models import User
+from app.models import User, db
 from app.models.follow import Follow
 from app.models.post import Post
 from app.seeds import follows
+# from ..models.db import db
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
@@ -18,7 +19,7 @@ def get_all_posts():
     '''
     Returns a list with the most recent posts showing first
     '''
-    all_posts_query = Post.query.order_by(Post.created_at).all()
+    all_posts_query = Post.query.order_by(Post.created_at)
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
 
@@ -27,7 +28,7 @@ def get_all_posts():
 @post_routes.route('/')
 # @login_required
 def get_posts():
-    following_users = Follow.query.
+    # following_users = Follow.query.
     pass
 
 
@@ -49,8 +50,16 @@ def post_details(post_id):
 def create_post():
     form = CreatePostForm()
     if form.validate_on_submit():
-        # how to add to db and show on /posts/all?
-        return redirect('/api/posts/all')
+        data = form.data
+        new_post = Post(
+            user_id = current_user.id,
+            caption = data['caption'],
+            post_url = data['post_url'],
+        )
+        # form.populate_obj(new_post)
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect('/api/posts/all') # change to get all posts from user feed route
     return render_template('create_post.html', form=form)
 
 # removed ** Get the edit form for a post **
