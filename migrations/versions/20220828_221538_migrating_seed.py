@@ -1,8 +1,8 @@
-"""more-seed-data
+"""migrating seed
 
-Revision ID: e7d71a009771
+Revision ID: d34a9b3e2760
 Revises: 
-Create Date: 2022-08-28 17:46:29.293701
+Create Date: 2022-08-28 22:15:38.729317
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e7d71a009771'
+revision = 'd34a9b3e2760'
 down_revision = None
 branch_labels = None
 depends_on = None
