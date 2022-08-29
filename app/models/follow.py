@@ -16,3 +16,10 @@ class Follow(db.Model):
     users = db.relationship('User', back_populates='follows')
     # follows = db.relationship('User', back_populates='follows')
     # followed_by = db.relationship('User', back_populates='follows')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id
+        }
