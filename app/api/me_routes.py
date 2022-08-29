@@ -35,7 +35,7 @@ def my_posts():
 @login_required
 def get_followers():
     c_user = User.query.get(current_user.get_id())
-    follows = Follow.query.filter(c_user.id == Follow.user_id)
+    follows = Follow.query.filter(Follow.follows_id == c_user.id)
     follows = [follow.users_i_follow() for follow in follows]
 
     return {"Following": follows}
