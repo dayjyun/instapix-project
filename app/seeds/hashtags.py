@@ -12,13 +12,32 @@ def seed_hashtags():
     hashtag4 = Hashtag(
         hashtag_value='#instapix')
     hashtag5 = Hashtag(
+        hashtag_value='#tbt')
+    hashtag6 = Hashtag(
+        hashtag_value='#wcw')
+    hashtag7 = Hashtag(
+        hashtag_value='#mcm')
+    hashtag8 = Hashtag(
         hashtag_value='#coolbeans')
+    hashtag9 = Hashtag(
+        hashtag_value='#fyp')
+    hashtag10 = Hashtag(
+        hashtag_value='#hey')
+    hashtag11 = Hashtag(
+        hashtag_value='#bye')
 
     db.session.add(hashtag1)
     db.session.add(hashtag2)
     db.session.add(hashtag3)
     db.session.add(hashtag4)
     db.session.add(hashtag5)
+    db.session.add(hashtag6)
+    db.session.add(hashtag7)
+    db.session.add(hashtag8)
+    db.session.add(hashtag9)
+    db.session.add(hashtag10)
+    db.session.add(hashtag11)
+
     db.session.commit()
 
 
