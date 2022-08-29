@@ -7,9 +7,9 @@ class Follow(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    following_me = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    who_i_follow = db.Column(db.Integer, nullable=False)
+    follows_id = db.Column(db.Integer, nullable=False)
 
     created_at = db.Column(db.DateTime, default=datetime.today())
 
@@ -19,5 +19,5 @@ class Follow(db.Model):
             return {
                 # 'id': self.id,
                 # 'who_i_follow': self.who_i_follow,
-                'following_me': self.following_me,
+                # 'following_me': self.following_me,
             }

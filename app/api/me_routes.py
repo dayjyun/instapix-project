@@ -17,5 +17,5 @@ def get_me():
 @login_required
 def get_followers():
     c_user = User.query.get(current_user.get_id())
-    follows = Follow.query.filter(c_user.id == Follow.who_i_follow)
+    follows = Follow.query.filter(c_user.id == Follow.follows_id)
     return {"Follows": follows}

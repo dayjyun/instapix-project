@@ -20,7 +20,7 @@ def me():
 @login_required
 def get_posts():
     c_user = User.query.get(current_user.get_id())
-    follows = Follow.query.filter(c_user.id == Follow.who_i_follow)
+    follows = Follow.query.filter(c_user.id == Follow.follows_id)
     # follows = Follow.query.filter(c_user.id == Follow.following_me)
     follows = [follow.to_dict() for follow in follows]
     post = Post.query.filter(Post.user_id == c_user.id)
