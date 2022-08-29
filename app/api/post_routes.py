@@ -7,7 +7,6 @@ from app.models import User, db
 from app.models.follow import Follow
 from app.models.post import Post
 from app.seeds import follows
-# from ..models.db import db
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
@@ -22,14 +21,15 @@ def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
+    # return render template 'all_posts.html' all_posts=all_posts
 
 
 #** Get all posts from the user feed **#
 @post_routes.route('/')
 # @login_required
 def get_posts():
-    # following_users = Follow.query.
     pass
+    # return render template 'following_feed.html'
 
 
 #** Get post by post id **#
@@ -40,6 +40,7 @@ def post_details(post_id):
     post = [post.to_dict() for post in all_posts]
     if post:
         return {"posts": post}
+        # return render template 'post.html' post=post
     else:
         return {"message": "Post not found"}
 
@@ -60,7 +61,8 @@ def create_post():
         # form.populate_obj(new_post)
         db.session.add(new_post)
         db.session.commit()
-        return redirect('/api/posts/all') # change to get all posts from user feed route
+        return redirect('/api/posts/all')
+        # return render template 'following_feed.html'
     return render_template('create_post.html', form=form)
 
 # removed ** Get the edit form for a post **
@@ -72,9 +74,10 @@ def create_post():
 #     c_user = User.query.get(current_user.get_id())
 #     pass
 
+
 #** Delete a post **#
-# @post_routes.route('/<post_id>', methods=['DELETE'])
+@post_routes.route('/delete/<post_id>', methods=['DELETE'])
 # @login_required
-# def delete_post(post_id):
+def delete_post(post_id):
 #     c_user = User.query.get(current_user.get_id())
-#     pass
+    pass
