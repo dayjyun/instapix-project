@@ -21,10 +21,10 @@ def get_all_posts():
 
 
 #** Get all posts from the user feed **#
-# @post_routes.route('/')
+@post_routes.route('/')
 # @login_required
-# def get_posts():
-#     pass
+def get_posts():
+    pass
 
 
 #** Get post by post id **#
@@ -45,7 +45,8 @@ def post_details(post_id):
 def create_post():
     form = CreatePostForm()
     if form.validate_on_submit():
-        return redirect('/')
+        # how to add to db and show on /posts/all?
+        return redirect('/api/posts/all')
     return render_template('create_post.html', form=form)
 
 # removed ** Get the edit form for a post **
@@ -56,11 +57,10 @@ def create_post():
 # def update_post_edit_form():
 #     c_user = User.query.get(current_user.get_id())
 #     pass
+
 #** Delete a post **#
 # @post_routes.route('/<post_id>', methods=['DELETE'])
 # @login_required
 # def delete_post(post_id):
 #     c_user = User.query.get(current_user.get_id())
 #     pass
-
-# return redirect('/api/users')
