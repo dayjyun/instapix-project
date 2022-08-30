@@ -13,9 +13,6 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @post_routes.route('/all')
 @login_required
 def get_all_posts():
-    '''
-    Returns a list with the most recent posts showing first
-    '''
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
@@ -23,11 +20,12 @@ def get_all_posts():
 
 
 #** Get all posts from the following feed **#
-# @post_routes.route()
-# def get_posts():
-#     c_user = User.query.get(current_user.get_id())
-
-#     pass
+@post_routes.route('/following')
+def get_posts():
+    c_user = User.query.get(current_user.get_id())
+    user_following = Follow.query.filter(Post.user_id == c_user.id).order_by(Post.created_at.desc())
+    user_following = [posts.users_i_follow() for posts in user_following]
+    return {"feed": user_following}
     # return render template 'following_feed.html'
 
 #** Get all posts from specific user **#

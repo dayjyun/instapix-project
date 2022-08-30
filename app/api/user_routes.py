@@ -5,7 +5,7 @@ from app.models import User, Follow
 user_routes = Blueprint('users', __name__)
 
 # Get all users in the database
-@user_routes.route('/all')
+@user_routes.route('/')
 # @login_required
 def users():
     users = User.query.all()
@@ -19,7 +19,7 @@ def user(user_id):
     return user.to_dict()
 
 # Get current user (me)
-@user_routes.route('/')
+@user_routes.route('/me')
 @login_required
 def get_me():
     c_user = User.query.get(current_user.get_id())
