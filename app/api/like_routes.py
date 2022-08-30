@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 like_routes = Blueprint('likes', __name__)
 
 
+# GET LIKEs BY POST ID
 @like_routes.route('/posts/<int:post_id>/likes')
 @login_required
 def get_likes_by_post(post_id):
@@ -17,6 +18,7 @@ def get_likes_by_post(post_id):
         return jsonify({'message': 'There are no likes', 'status_code': 404})
 
 
+# LIKE A POST
 @like_routes.route('/posts/<int:post_id>/likes', methods=['POST'])
 @login_required
 def like_a_post(post_id):
@@ -36,7 +38,7 @@ def like_a_post(post_id):
 
 
 # UNLIKE A POST BY POST ID
-@like_routes.route('/posts/<int:post_id>', methods=['DELETE'])
+@like_routes.route('/posts/<int:post_id>/likes', methods=['DELETE'])
 @login_required
 def delete_a_like(post_id):
     post = Post.query.get(post_id)
