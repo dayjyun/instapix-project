@@ -11,9 +11,8 @@ def body_exists(form, field):
 class CreateCommentForm(FlaskForm):
     user_id = IntegerField('user id', validators=[DataRequired()])
     post_id = IntegerField('post id', validators=[DataRequired()])
-    body = StringField('Body', validators=[DataRequired(), body_exists])
+    body = StringField('Body', validators=[body_exists])
     submit = SubmitField('Submit')
-
 
 class EditCommentForm(FlaskForm):
     body = StringField('Body', validators=[DataRequired(), body_exists])

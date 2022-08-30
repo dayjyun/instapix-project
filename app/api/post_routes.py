@@ -1,9 +1,10 @@
 from crypt import methods
-from flask import Blueprint, session, jsonify, render_template, redirect
+from flask import Blueprint, session, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.forms.create_post import CreatePostForm
-from app.models import db, User, Follow, Post
+from app.forms.comment_forms import CreateCommentForm, EditCommentForm
+from app.models import db, User, Follow, Post, Comment
 from app.seeds import follows
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -66,6 +67,41 @@ def create_post():
         return redirect('/api/posts')
         # return render template 'following_feed.html'
     return render_template('create_post.html', form=form)
+
+# --------------------------- COMMENT ROUTES ------------------------------->
+
+#get all comments on a specific post, using post_id
+@post_routes.route('/<int:post_id>/comments')
+@login_required
+def get_post_comments(post_id):
+    # added post query for 404 return
+    post = Post.query.get(post_id)
+    if post:
+        comments = Comment.query.filter(Comment.post_id == post_id)
+        if comments:
+            return jsonify(Comments=[comment.to_dict() for comment in comments])
+    return jsonify(message="Post couldn't be found", statusCode=404)
+
+
+#create a comment providing user_id, post_id, and body
+@post_routes.route('/<int:post_id>/comments', methods=['POST'])
+@login_required
+def create_comment(post_id):
+    form = CreateCommentForm()
+
+    if request.method != 'GET':
+        if form.validate_on_submit():
+            print('FORM VALID ================>')
+            data = form.data
+            comment = Comment(user_id=current_user.id,
+                              post_id=post_id,
+                              body=data['body'])
+
+            db.session.add(comment)
+            db.session.commit()
+            print('COMMENT CREATED ================>')
+            return comment.to_dict()
+    return render_template('create_comment_form.html', form=form)
 
 
 # removed ** Get the edit form for a post **

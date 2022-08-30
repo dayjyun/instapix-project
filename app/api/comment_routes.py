@@ -2,8 +2,7 @@ from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
 from datetime import datetime
 
-from ..models.db import db
-from app.models import Comment
+from app.models import db, Comment
 from ..forms.comment_forms import CreateCommentForm, EditCommentForm
 
 
