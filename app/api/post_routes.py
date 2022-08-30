@@ -4,8 +4,9 @@ from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.api.follow_routes import get_follows_for_user, get_users_follows
 from app.forms.create_post import CreatePostForm
-from app.models import db, User, Follow, Post, Like, Comment
+from app.models import db, User, Follow, Post, Like, Comment, follow
 from app.seeds import follows
+
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
