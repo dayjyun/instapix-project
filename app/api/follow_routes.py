@@ -6,7 +6,7 @@ follow_routes = Blueprint('follows', __name__)
 
 
 # Get all accounts that follow the user
-@follow_routes.route('/users/<user_id>/followers')
+@follow_routes.route('/users/<int:user_id>/followers')
 @login_required
 def get_follows_for_user(user_id):
     user = User.query.get(user_id)
@@ -27,7 +27,7 @@ def get_follows_for_user(user_id):
 
 
 # Get all accounts that the user follows
-@follow_routes.route('/users/<user_id>/follows')
+@follow_routes.route('/users/<int:user_id>/follows')
 @login_required
 def get_users_follows(user_id):
     user = User.query.get(user_id)
@@ -48,7 +48,7 @@ def get_users_follows(user_id):
 
 
 #Follow a user (post)
-@follow_routes.route('/users/<user_id>/post', methods=['GET','POST'])
+@follow_routes.route('/users/<int:user_id>/post', methods=['POST'])
 @login_required
 def follow_user(user_id):
     user_id= int(user_id)
@@ -74,7 +74,7 @@ def follow_user(user_id):
 
 
 #Unfollow a user (delete)
-@follow_routes.route('/users/<user_id>/delete', methods=['GET','DELETE'])
+@follow_routes.route('/users/<int:user_id>/delete', methods=['DELETE'])
 @login_required
 def unfollow_user(user_id):
     user_id= int(user_id)
