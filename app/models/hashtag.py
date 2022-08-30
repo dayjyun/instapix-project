@@ -3,7 +3,7 @@ from datetime import datetime
 
 post_hashtag = db.Table(
     "post_hashtags",
-    db.metadata,
+    db.Model.metadata,
     db.Column('hashtag_id', db.ForeignKey('hashtags.id'), primary_key = True),
     db.Column('post_id', db.ForeignKey('posts.id'), primary_key = True)
 )

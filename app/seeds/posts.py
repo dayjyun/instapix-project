@@ -11,10 +11,26 @@ def seed_posts():
         user_id=3, caption='my dog sleeping--how cute is he? #instapix', post_url='photos_url')
     post4 = Post(
         user_id=4, caption='happy hour with the family!', post_url='photos_url')
+    post5 = Post(
+        user_id=1, caption='my second instapix post! #tbh', post_url='photos_url')
+    post6 = Post(
+        user_id=2, caption='went to the local cafe for a coffee, again! Yum! #omg', post_url='photos_url')
+    post7 = Post(
+        user_id=3, caption='my dog sleeping--he\'s really lazy? #instapix', post_url='photos_url')
+    post8 = Post(
+        user_id=4, caption='Another one', post_url='photos_url')
+    kev_post1 = Post(
+        user_id=5, caption='First post here', post_url='photo_url')
+
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
     db.session.add(post4)
+    db.session.add(post5)
+    db.session.add(post6)
+    db.session.add(post7)
+    db.session.add(post8)
+    db.session.add(kev_post1)
     db.session.commit()
 
 

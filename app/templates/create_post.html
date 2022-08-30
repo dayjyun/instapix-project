@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InstaPix</title>
+  </head>
+  <body>
+    <h1>Create A Post</h1>
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      <p>{{ form.caption(placeholder="Write a caption...") }}</p>
+      <p>{{ form.post_url(placeholder='Image URL') }}</p>
+      <p>{{ form.submit }}</p>
+    </form>
+  </body>
+</html>
