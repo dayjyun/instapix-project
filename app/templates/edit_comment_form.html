@@ -1,0 +1,8 @@
+<form method="POST" action="">
+  {{ form.hidden_tag() }} {{ form.csrf_token }}
+  <div>
+    <h1>Edit Comment</h1>
+  </div>
+  <div>{{ form.body.label }} {{form.body}}</div>
+  <div>{{ form.submit }}</div>
+</form>
