@@ -76,10 +76,12 @@ def create_post():
 def get_post_comments(post_id):
     # added post query for 404 return
     post = Post.query.get(post_id)
+
     if post:
         comments = Comment.query.filter(Comment.post_id == post_id)
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
+
     return jsonify(message="Post couldn't be found", statusCode=404)
 
 
@@ -89,19 +91,22 @@ def get_post_comments(post_id):
 def create_comment(post_id):
     form = CreateCommentForm()
 
-    if request.method != 'GET':
-        if form.validate_on_submit():
-            print('FORM VALID ================>')
-            data = form.data
-            comment = Comment(user_id=current_user.id,
-                              post_id=post_id,
-                              body=data['body'])
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    print('DATA=================>', form.data)
+    print('CURRENTUSER=================>', current_user.id)
 
-            db.session.add(comment)
-            db.session.commit()
-            print('COMMENT CREATED ================>')
-            return comment.to_dict()
-    return render_template('create_comment_form.html', form=form)
+    if form.validate_on_submit():
+        data = form.data
+
+        comment = Comment(user_id=current_user.id,
+                          post_id=post_id,
+                          body=data['body'])
+
+        db.session.add(comment)
+        db.session.commit()
+        print(comment)
+        return comment.to_dict()
+    # return render_template('create_comment_form.html', form=form)
 
 
 # removed ** Get the edit form for a post **
