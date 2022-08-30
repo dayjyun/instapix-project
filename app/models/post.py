@@ -1,5 +1,5 @@
-from app.api.comment_routes import get_comment
-from app.api.like_routes import get_likes_by_post
+# from app.api.comment_routes import get_comment
+# from app.api.like_routes import get_likes_by_post
 from .db import db
 from datetime import datetime
 
