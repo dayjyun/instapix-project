@@ -111,7 +111,7 @@ def delete_post(post_id):
         if post.user_id == current_user.id:
             db.session.delete(post)
             db.session.commit()
-            return redirect('/api/posts')
+            return redirect('/api/posts/explorer')
         else:
             return {"message": "You cannot delete this post"}
     else:
