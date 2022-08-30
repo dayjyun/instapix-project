@@ -23,24 +23,22 @@ def get_all_posts():
 
 
 #** Get all posts from the following feed **#
-@post_routes.route()
-def get_posts():
-    c_user = User.query.get(current_user.get_id())
+# @post_routes.route()
+# def get_posts():
+#     c_user = User.query.get(current_user.get_id())
 
-    pass
+#     pass
     # return render template 'following_feed.html'
 
 #** Get all posts from specific user **#
 @post_routes.route('/users/<user_id>')
 # @login_required
 def get_users_posts(user_id):
-    user_posts = Post.query.filter(Post.user_id == user_id)
-    if user_posts:
-        posts = [post.to_dict() for post in user_posts]
-        return {"posts": posts}
-        # return render template 'following_feed.html'
-    else:
-        return {"message": "User not found"}
+    user_posts = Post.query.filter(Post.user_id == user_id).order_by(Post.created_at.desc())
+    posts = [post.to_dict() for post in user_posts]
+    return {"posts": posts}
+    # return render template 'following_feed.html'
+    # What if user is not found?
 
 
 #** Get post by post id **#
