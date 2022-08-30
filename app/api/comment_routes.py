@@ -76,5 +76,4 @@ def delete_comment(comment_id):
 #   method: 'DELETE'
 # })
 #   .then(res => res.json())
-#   .then(console.log(res))
 #   .then(console.log)
