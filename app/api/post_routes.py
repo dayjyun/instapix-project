@@ -18,45 +18,21 @@ def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
-    #  TODO return random order of all posts
-    # return render template 'all_posts.html' all_posts=all_posts
+    # TODO return only post_url?
+    # TODO return random order of all posts
 
 
 #** Get all posts from the following feed **#
-# Get all Posts
-# @post_routes.route('/')
-# def get_posts():
-#     """May need to change method for posts.users_i_follow()"""
-#     c_user = User.query.get(current_user.get_id())
-#     user_following = Follow.query.filter(Follow.user_id == c_user.id)
-#     user_following = Post.query.filter(
-#         Post.id == Follow.user_id).order_by(Post.created_at.desc())
-#     user_following = [posts.to_dict() for posts in user_following]
-
-    # find the people we follow
-    # find and return their posts
-
-    # likes = Like.query.filter(Like.post_id == Post.id)
-    # likes = [like.to_dict() for like in likes]
-
-    # return {"feed": user_following, "likes": likes.count(likes)}
-    # TODO should return post info not user info
-    # return render template 'following_feed.html'
-
-
-# Get all posts from users I follow
 @post_routes.route('/')
 @login_required
 def get_posts():
     following = get_follows_for_user(current_user.get_id())['Followers']
 
     return {"following": following}
+    # TODO Return only id, username, profile_image, [post details], [likes], [comments]
 
 
 #** Get post by post id **#
-# Get details of a Post form an id
-
-
 @post_routes.route('/<int:post_id>')
 @login_required
 def post_details(post_id):
@@ -64,15 +40,14 @@ def post_details(post_id):
     post = [post.to_dict() for post in all_posts]
     if post:
         return {"posts": post}
-        # return render template 'post.html' post=post
+        # TODO return [likes], [comments]
     else:
         return {"message": "Post not found"}
 
 
 #** Create a post **#
-# Create a Post
 @post_routes.route('/form', methods=["GET", "POST"])
-# @login_required
+@login_required
 def create_post():
     form = CreatePostForm()
     if form.validate_on_submit():
@@ -84,8 +59,7 @@ def create_post():
         )
         db.session.add(new_post)
         db.session.commit()
-        return redirect('/api/posts')
-        # return render template 'following_feed.html'
+        return new_post.to_dict()
     return render_template('create_post.html', form=form)
 
 
@@ -101,12 +75,10 @@ def edit_post(post_id):
         post.post_url = data['post_url']
         db.session.commit()
         return redirect('/api/posts')
-        # return render template 'following_feed.html'
     return render_template('edit_post.html', form=form)
 
 
 #** Delete a post **#
-# Delete a Post
 @post_routes.route('/delete/<int:post_id>', methods=['DELETE'])
 @login_required
 def delete_post(post_id):

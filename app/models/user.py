@@ -35,6 +35,9 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def user_posts(self):
+        return Post.query.filter_by(user_id=self.id).all()
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -45,7 +48,7 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_image': self.profile_image,
             'posts': [post.to_dict() for post in self.user_posts()]
+            # num of posts
+            # num of followers
+            # num of following
         }
-
-    def user_posts(self):
-        return Post.query.filter_by(user_id=self.id).all()
