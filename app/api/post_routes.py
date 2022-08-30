@@ -25,10 +25,12 @@ def get_all_posts():
 
 
 #** Get all posts from the user feed **#
-@post_routes.route('/')
+@post_routes.route('/users/<user_id>')
 # @login_required
-def get_posts():
-    pass
+def get_posts(user_id):
+    user_posts = Post.query.filter(Post.user_id == user_id)
+    posts = [post.to_dict() for post in user_posts]
+    return {"posts": posts}
     # return render template 'following_feed.html'
 
 
