@@ -39,3 +39,5 @@ def my_posts():
 #     follows = Follow.query.filter(c_user.id == Follow.user_id)
 #     follows = [follow.following_me() for follow in follows]
 #     return {"Followers": follows}
+
+# updates
