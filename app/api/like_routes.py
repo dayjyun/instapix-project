@@ -16,7 +16,7 @@ def get_likes_by_post(post_id):
 @like_routes.route('/posts/<int:post_id>/likes', methods=['POST'])
 @login_required
 def like_a_post(post_id):
-    curr_user = current_user.get_id()
+    curr_user = current_user.id
     new_like = Like(user_id=curr_user,
                     post_id=post_id
                     )
