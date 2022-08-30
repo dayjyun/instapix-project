@@ -14,20 +14,18 @@ class Post(db.Model):
     comments = db.relationship('Comment', back_populates='posts')
     likes = db.relationship("Like", back_populates='posts')
 
-
     # users = db.relationship('User', back_populates='posts')
     post_hashtags = db.relationship(
         "Post_Hashtag", back_populates="post", cascade="all, delete-orphan", lazy="joined")
 
-
     # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')
 
     def to_dict(self):
-            return {
-                'id': self.id,
-                "user_id": self.user_id,
-                "caption": self.caption,
-                "post_url": self.post_url,
-                "created_at": self.created_at,
-                # "updated_at": self.updated_at,
-            }
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            # "updated_at": self.updated_at,
+        }

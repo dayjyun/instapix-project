@@ -27,7 +27,8 @@ def get_posts():
     """May need to change method for posts.users_i_follow()"""
     c_user = User.query.get(current_user.get_id())
     user_following = Follow.query.filter(Follow.user_id == c_user.id)
-    user_following = Post.query.filter(Post.id == Follow.user_id).order_by(Post.created_at.desc())
+    user_following = Post.query.filter(
+        Post.id == Follow.user_id).order_by(Post.created_at.desc())
     user_following = [posts.to_dict() for posts in user_following]
 
     # find the people we follow
@@ -64,16 +65,15 @@ def create_post():
     if form.validate_on_submit():
         data = form.data
         new_post = Post(
-            user_id = current_user.id,
-            caption = data['caption'],
-            post_url = data['post_url'],
+            user_id=current_user.id,
+            caption=data['caption'],
+            post_url=data['post_url'],
         )
         db.session.add(new_post)
         db.session.commit()
         return redirect('/api/posts')
         # return render template 'following_feed.html'
     return render_template('create_post.html', form=form)
-
 
 
 #** Edit a post **#
@@ -102,3 +102,17 @@ def create_post():
     # if post:
 
     # return {"posts": post}
+
+@post_routes.route('/delete/<int:post_id>', methods=['DELETE'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get(post_id)
+    if post:
+        if post.user_id == current_user.id:
+            db.session.delete(post)
+            db.session.commit()
+            return redirect('/api/posts')
+        else:
+            return {"message": "You cannot delete this post"}
+    else:
+        return {"message": "Post not found"}
