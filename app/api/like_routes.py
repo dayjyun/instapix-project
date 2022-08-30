@@ -39,6 +39,6 @@ def delete_a_like(post_id):
                                  Like.post_id == post_id)
         like.delete()
         db.session.commit()
-        return {"message": "Successfully deleted", "status_code": '200'}
+        return {"message": "Successfully deleted", "status_code": "200"}
     else:
-        return {"message": "Post couldn't be found", "status_code": '404'}
+        return {"message": "Post couldn't be found", "status_code": "404"}
