@@ -92,8 +92,12 @@ def create_comment(post_id):
     form = CreateCommentForm()
 
     form["csrf_token"].data = request.cookies["csrf_token"]
-    print('DATA=================>', form.data)
-    print('CURRENTUSER=================>', current_user.id)
+
+    post = Post.query.get(post_id)
+
+    #check if post exists
+    if not post:
+        return jsonify(message="Post couldn't be found", statusCode=404)
 
     if form.validate_on_submit():
         data = form.data
