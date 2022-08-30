@@ -2,6 +2,7 @@ from crypt import methods
 from flask import Blueprint, session, jsonify, render_template, redirect
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
+from app.api.follow_routes import get_follows_for_user, get_users_follows
 from app.forms.create_post import CreatePostForm
 from app.models import db, User, Follow, Post, Like, Comment
 from app.seeds import follows
@@ -22,28 +23,39 @@ def get_all_posts():
 
 #** Get all posts from the following feed **#
 # Get all Posts
-@post_routes.route('/')
-def get_posts():
-    """May need to change method for posts.users_i_follow()"""
-    c_user = User.query.get(current_user.get_id())
-    user_following = Follow.query.filter(Follow.user_id == c_user.id)
-    user_following = Post.query.filter(
-        Post.id == Follow.user_id).order_by(Post.created_at.desc())
-    user_following = [posts.to_dict() for posts in user_following]
+# @post_routes.route('/')
+# def get_posts():
+#     """May need to change method for posts.users_i_follow()"""
+#     c_user = User.query.get(current_user.get_id())
+#     user_following = Follow.query.filter(Follow.user_id == c_user.id)
+#     user_following = Post.query.filter(
+#         Post.id == Follow.user_id).order_by(Post.created_at.desc())
+#     user_following = [posts.to_dict() for posts in user_following]
 
     # find the people we follow
     # find and return their posts
 
-    likes = Like.query.filter(Like.post_id == Post.id)
-    likes = [like.to_dict() for like in likes]
+    # likes = Like.query.filter(Like.post_id == Post.id)
+    # likes = [like.to_dict() for like in likes]
 
-    return {"feed": user_following, "likes": likes.count(likes)}
+    # return {"feed": user_following, "likes": likes.count(likes)}
     # TODO should return post info not user info
     # return render template 'following_feed.html'
 
 
+# Get all posts from users I follow
+@post_routes.route('/')
+@login_required
+def get_posts():
+    following = get_follows_for_user(current_user.get_id())['Followers']
+
+    return {"following": following}
+
+
 #** Get post by post id **#
 # Get details of a Post form an id
+
+
 @post_routes.route('/<int:post_id>')
 @login_required
 def post_details(post_id):

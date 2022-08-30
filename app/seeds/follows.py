@@ -4,7 +4,7 @@ from app.models.follow import db, Follow
 # Adds a demo user, you can add other users here if you want
 def seed_follows():
     follow1 = Follow(
-        user_id=1, follows_id=1)
+        user_id=1, follows_id=4)
     follow2 = Follow(
         user_id=2, follows_id=2)
     follow3 = Follow(

@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from .post import Post
 
 
 class User(db.Model, UserMixin):
@@ -43,6 +44,8 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
+            'posts': [post.to_dict() for post in self.user_posts()]
         }
 
-
+    def user_posts(self):
+        return Post.query.filter_by(user_id=self.id).all()
