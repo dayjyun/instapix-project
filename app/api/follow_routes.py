@@ -70,3 +70,29 @@ def follow_user(user_id):
             "message": "User couldn't be found",
             "statusCode": 404
                 }
+
+
+#Unfollow a user (delete)
+@follow_routes.route('/users/<user_id>/delete', methods=['DELETE'])
+@login_required
+def unfollow_user(user_id):
+    user = User.query.get(user_id)
+    #get all the user's page we're on , follows
+    all_my_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
+
+    if user:
+        for follow in all_my_follows:
+            if follow.follows_id == int(user_id):
+                my_follow = Follow.query.get(follow.id)
+                db.session.delete(my_follow)
+                db.session.commit()
+
+        # updated_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
+        return
+        # return {Follow: [follow.to_dict() for follow in updated_follows]}
+
+    else:
+        return {
+            "message": "User couldn't be found",
+            "statusCode": 404
+                }
