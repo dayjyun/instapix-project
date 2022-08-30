@@ -6,7 +6,7 @@ from flask_login import login_required, current_user
 like_routes = Blueprint('likes', __name__)
 
 
-# GET LIKEs BY POST ID
+# GET LIKES BY POST ID
 @like_routes.route('/posts/<int:post_id>/likes')
 @login_required
 def get_likes_by_post(post_id):
@@ -23,8 +23,8 @@ def get_likes_by_post(post_id):
 @login_required
 def like_a_post(post_id):
     curr_user = current_user.id
-    exists = Like.query.filter(
-        'user_id' == curr_user, post_id == post_id)
+    exists = Like.query.filter(Like.user_id == current_user.id,
+                               Like.post_id == int(post_id))
     exists = [like.to_dict() for like in exists]
     if exists:
         return jsonify({'message': 'like already exists'})
@@ -32,6 +32,7 @@ def like_a_post(post_id):
         new_like = Like(user_id=curr_user,
                         post_id=post_id
                         )
+        print(exists)
         db.session.add(new_like)
         db.session.commit()
         return new_like.to_dict()
