@@ -11,7 +11,7 @@ comment_routes = Blueprint('comments', __name__)
 
 #get a comment using comment id
 @comment_routes.route('/<int:comment_id>')
-@login_required
+# @login_required
 def get_comment(comment_id):
     comment = Comment.query.get(comment_id)
     if comment:
