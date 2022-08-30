@@ -18,6 +18,7 @@ def users():
 def user(user_id):
     user = User.query.get(user_id)
     return user.to_dict()
+    # TODO include posts of given user at user_id
 
 
 # Get the Current User (me)

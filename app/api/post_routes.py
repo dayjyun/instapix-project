@@ -16,6 +16,7 @@ def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
+    #  TODO return random order of all posts
     # return render template 'all_posts.html' all_posts=all_posts
 
 
@@ -59,16 +60,12 @@ def create_post():
             caption = data['caption'],
             post_url = data['post_url'],
         )
-        # new_post = Post()
-        # form.populate_obj(new_post)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/api/posts')
         # return render template 'following_feed.html'
     return render_template('create_post.html', form=form)
 
-
-# removed ** Get the edit form for a post **
 
 
 #** Edit a post **#
