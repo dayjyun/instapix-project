@@ -3,6 +3,7 @@ from flask import Blueprint, session, jsonify, render_template, redirect
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.api.follow_routes import get_follows_for_user, get_users_follows
+from app.api.like_routes import get_likes_by_post
 from app.forms.create_post import CreatePostForm
 from app.models import db, User, Follow, Post, Like, Comment, follow
 from app.seeds import follows
@@ -38,8 +39,9 @@ def get_posts():
 def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
     post = [post.to_dict() for post in all_posts]
+    likes = get_likes_by_post(post_id)
     if post:
-        return {"posts": post}
+        return {"posts": post, "likes": (len(likes) + 1)}
         # TODO return [likes], [comments]
     else:
         return {"message": "Post not found"}
