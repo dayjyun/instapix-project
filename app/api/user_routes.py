@@ -25,7 +25,7 @@ def get_me():
     c_user = User.query.get(current_user.get_id())
     return c_user.to_dict()
 
-# Get a user's following list !!!
+# Get a user's following list
 # @user_routes.route('/following')
 # @login_required
 # def get_followers():
