@@ -10,18 +10,17 @@ follow_routes = Blueprint('follows', __name__)
 @login_required
 def get_follows_for_user(user_id):
     user = User.query.get(user_id)
-
-    follows = Follow.query\
-        .filter(Follow.follows_id == user_id)
+    follows = Follow.query.filter(Follow.follows_id == user_id)
 
     follows_list = []
     for follow in follows:
         user_info = User.query.filter(User.id == follow.user_id).first()
-        combined_data=(follow.to_dict(), user_info.to_dict())
+        user= {'follower_info': user_info.to_dict()}
+        combined_data=(follow.to_dict(), user)
         follows_list.append(combined_data)
 
     if user:
-        return {'Followers': [user for user in follows_list]}
+        return {'My Followers': [user for user in follows_list]}
     else:
         return jsonify(message='User could not be found.', status_code=404)
 
@@ -37,11 +36,12 @@ def get_users_follows(user_id):
     follows_list = []
     for follow in follows:
         user_info = User.query.filter(User.id == follow.follows_id).first()
-        combined_data=(follow.to_dict(), user_info.to_dict())
+        user= {'my_follower_info': user_info.to_dict()}
+        combined_data=(follow.to_dict(), user)
         follows_list.append(combined_data)
 
     if user:
-        return {'Followers': [user for user in follows_list]}
+        return {'I Follow': [user for user in follows_list]}
     else:
         return jsonify(message='User could not be found.', status_code=404)
 
