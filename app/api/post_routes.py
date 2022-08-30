@@ -20,6 +20,7 @@ def get_all_posts():
 
 
 #** Get all posts from the following feed **#
+# Get all Posts
 @post_routes.route('/')
 def get_posts():
     """May need to change method for posts.users_i_follow()"""
@@ -43,6 +44,7 @@ def get_users_posts(user_id):
 
 
 #** Get post by post id **#
+# Get details of a Post form an id
 @post_routes.route('/<int:post_id>')
 @login_required
 def post_details(post_id):
@@ -56,6 +58,7 @@ def post_details(post_id):
 
 
 #** Create a post **#
+# Create a Post
 @post_routes.route('/form', methods=["GET", "POST"])
 # @login_required
 def create_post():
@@ -80,6 +83,7 @@ def create_post():
 
 
 #** Edit a post **#
+# Edit a Post
 # @post_routes.route('/<post_id>', methods=["PUT"])
 # @login_required
 # def update_post_edit_form():
@@ -88,6 +92,7 @@ def create_post():
 
 
 #** Delete a post **#
+# Delete a Post
 # @post_routes.route('/delete/<post_id>', methods=['DELETE'])
 # @login_required
 # def delete_post(post_id):

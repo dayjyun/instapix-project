@@ -20,7 +20,7 @@ def user(user_id):
     return user.to_dict()
 
 
-# Get current user (me)
+# Get the Current User (me)
 @user_routes.route('/me')
 @login_required
 def get_me():
