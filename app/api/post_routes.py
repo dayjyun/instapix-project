@@ -77,31 +77,22 @@ def create_post():
 
 
 #** Edit a post **#
-# Edit a Post
-# @post_routes.route('/<post_id>', methods=["PUT"])
-# @login_required
-# def update_post_edit_form():
-#     c_user = User.query.get(current_user.get_id())
-#     pass
-
+@post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
+@login_required
+def edit_post(post_id):
+    form = CreatePostForm()
+    if form.validate_on_submit():
+        data = form.data
+        post = Post.query.get(post_id)
+        post.caption = data['caption']
+        post.post_url = data['post_url']
+        db.session.commit()
+        return redirect('/api/posts')
+        # return render template 'following_feed.html'
+    return render_template('edit_post.html', form=form)
 
 #** Delete a post **#
-# Delete a Post
-# @post_routes.route('/delete/<post_id>', methods=['DELETE'])
-# @login_required
-# def delete_post(post_id):
-    # get all posts
-    # get post by ID
-    # verify it's your post
-    # if post exists, delete
-    # if not your post, error
-    # post not found
-    # c_user = User.query.get(current_user.get_id())
-    # all_posts = Post.query.filter(Post.id == c_user.id)
-    # post = [post.to_dict() for post in all_posts]
-    # if post:
 
-    # return {"posts": post}
 
 @post_routes.route('/delete/<int:post_id>', methods=['DELETE'])
 @login_required
