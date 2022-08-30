@@ -26,12 +26,17 @@ def get_all_posts():
 def get_posts():
     """May need to change method for posts.users_i_follow()"""
     c_user = User.query.get(current_user.get_id())
-    user_following = Follow.query.filter(Post.user_id == c_user.id).order_by(Post.created_at.desc())
-    user_following = [posts.users_i_follow() for posts in user_following]
+    user_following = Follow.query.filter(Follow.user_id == c_user.id)
+    user_following = Post.query.filter(Post.id == Follow.user_id).order_by(Post.created_at.desc())
+    user_following = [posts.to_dict() for posts in user_following]
+
+    # find the people we follow
+    # find and return their posts
 
     likes = Like.query.filter(Like.post_id == Post.id)
     likes = [like.to_dict() for like in likes]
-    return {"feed": user_following, "likes": likes}
+
+    return {"feed": user_following, "likes": likes.count(likes)}
     # TODO should return post info not user info
     # return render template 'following_feed.html'
 
