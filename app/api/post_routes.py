@@ -28,6 +28,7 @@ def get_posts():
     user_following = Follow.query.filter(Post.user_id == c_user.id).order_by(Post.created_at.desc())
     user_following = [posts.users_i_follow() for posts in user_following]
     return {"feed": user_following}
+    # TODO should return post info not user info
     # return render template 'following_feed.html'
 
 
@@ -62,7 +63,7 @@ def create_post():
         # form.populate_obj(new_post)
         db.session.add(new_post)
         db.session.commit()
-        return redirect('/api/posts/all')
+        return redirect('/api/posts')
         # return render template 'following_feed.html'
     return render_template('create_post.html', form=form)
 

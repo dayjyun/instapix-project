@@ -29,7 +29,6 @@ def get_me():
 
 
 # # Get current user's posts
-# ! also in post_routes.py *
 @user_routes.route('/<int:user_id>/posts')
 def get_user_posts(user_id):
     user_posts = Post.query.filter(Post.user_id == user_id).order_by(Post.created_at.desc())
