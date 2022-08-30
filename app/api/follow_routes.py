@@ -54,16 +54,35 @@ def get_users_follows(user_id):
 
 
 #Follow a user (post)
-@follow_routes.route('/users/<user_id>', methods=['POST'])
+@follow_routes.route('/users/<user_id>/post', methods=['GET','POST'])
 @login_required
 def follow_user(user_id):
     user = User.query.get(user_id)
+    is_already_following = Follow.query.filter(Follow.user_id == current_user.id).all()
+
+    print('----')
+    print(is_already_following)
+    print('----')
+
+    for follow in is_already_following:
+        if follow.follows_id == user_id:
+            return {
+            "message": "You are already following this user.",
+            "statusCode": 400
+            }
 
     if user:
         new_follow = Follow(
             user_id = current_user.id,
             follows_id = user_id
         )
+        db.session.add(new_follow)
+        db.session.commit()
+
+        return {
+            "message": "Successfully followed",
+            "statusCode": 200
+            }
 
     else:
         return {
@@ -77,7 +96,7 @@ def follow_user(user_id):
 @login_required
 def unfollow_user(user_id):
     user = User.query.get(user_id)
-    #get all the user's page we're on , follows
+    #get all follows for the user whose page we're on
     all_my_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
 
     if user:
@@ -88,7 +107,10 @@ def unfollow_user(user_id):
                 db.session.commit()
 
         # updated_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
-        return
+        return {
+            "message": "Successfully unfollowed",
+            "statusCode": 200
+            }
         # return {Follow: [follow.to_dict() for follow in updated_follows]}
 
     else:
@@ -96,3 +118,10 @@ def unfollow_user(user_id):
             "message": "User couldn't be found",
             "statusCode": 404
                 }
+
+# for follow in is_already_following:
+#         if follow.follows_id == user_id:
+#             return {
+#             "message": "You cannot unfollow someone you do not follow.",
+#             "statusCode": 400
+#             }
