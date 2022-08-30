@@ -3,9 +3,7 @@ from flask import Blueprint, session, jsonify, render_template, redirect
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.forms.create_post import CreatePostForm
-from app.models import User, db
-from app.models.follow import Follow
-from app.models.post import Post
+from app.models import db, User, Follow, Post
 from app.seeds import follows
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -27,6 +25,8 @@ def get_all_posts():
 #** Get all posts from the following feed **#
 @post_routes.route()
 def get_posts():
+    c_user = User.query.get(current_user.get_id())
+
     pass
     # return render template 'following_feed.html'
 
@@ -76,7 +76,9 @@ def create_post():
         # return render template 'following_feed.html'
     return render_template('create_post.html', form=form)
 
+
 # removed ** Get the edit form for a post **
+
 
 #** Edit a post **#
 # @post_routes.route('/<post_id>', methods=["PUT"])
