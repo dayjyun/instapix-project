@@ -24,14 +24,23 @@ def get_all_posts():
     # return render template 'all_posts.html' all_posts=all_posts
 
 
-#** Get all posts from the user feed **#
+#** Get all posts from the following feed **#
+@post_routes.route()
+def get_posts():
+    pass
+    # return render template 'following_feed.html'
+
+#** Get all posts from specific user **#
 @post_routes.route('/users/<user_id>')
 # @login_required
-def get_posts(user_id):
+def get_users_posts(user_id):
     user_posts = Post.query.filter(Post.user_id == user_id)
-    posts = [post.to_dict() for post in user_posts]
-    return {"posts": posts}
-    # return render template 'following_feed.html'
+    if user_posts:
+        posts = [post.to_dict() for post in user_posts]
+        return {"posts": posts}
+        # return render template 'following_feed.html'
+    else:
+        return {"message": "User not found"}
 
 
 #** Get post by post id **#
@@ -78,18 +87,18 @@ def create_post():
 
 
 #** Delete a post **#
-@post_routes.route('/delete/<post_id>', methods=['DELETE'])
+# @post_routes.route('/delete/<post_id>', methods=['DELETE'])
 # @login_required
-def delete_post(post_id):
+# def delete_post(post_id):
     # get all posts
     # get post by ID
     # verify it's your post
     # if post exists, delete
     # if not your post, error
     # post not found
-    c_user = User.query.get(current_user.get_id())
-    all_posts = Post.query.filter(Post.id == c_user.id)
-    post = [post.to_dict() for post in all_posts]
+    # c_user = User.query.get(current_user.get_id())
+    # all_posts = Post.query.filter(Post.id == c_user.id)
+    # post = [post.to_dict() for post in all_posts]
     # if post:
 
-    return {"posts": post}
+    # return {"posts": post}
