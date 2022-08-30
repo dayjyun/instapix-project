@@ -91,9 +91,9 @@ def edit_post(post_id):
         # return render template 'following_feed.html'
     return render_template('edit_post.html', form=form)
 
+
 #** Delete a post **#
-
-
+# Delete a Post
 @post_routes.route('/delete/<int:post_id>', methods=['DELETE'])
 @login_required
 def delete_post(post_id):
