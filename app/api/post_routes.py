@@ -3,7 +3,7 @@ from flask import Blueprint, session, jsonify, render_template, redirect
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
 from app.forms.create_post import CreatePostForm
-from app.models import db, User, Follow, Post
+from app.models import db, User, Follow, Post, Like, Comment
 from app.seeds import follows
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -28,7 +28,10 @@ def get_posts():
     c_user = User.query.get(current_user.get_id())
     user_following = Follow.query.filter(Post.user_id == c_user.id).order_by(Post.created_at.desc())
     user_following = [posts.users_i_follow() for posts in user_following]
-    return {"feed": user_following}
+
+    likes = Like.query.filter(Like.post_id == Post.id)
+    likes = [like.to_dict() for like in likes]
+    return {"feed": user_following, "likes": likes}
     # TODO should return post info not user info
     # return render template 'following_feed.html'
 
