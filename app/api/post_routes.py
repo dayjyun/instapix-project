@@ -10,7 +10,7 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
 
 #** get all posts on database **#
-@post_routes.route('/all')
+@post_routes.route('/explorer')
 @login_required
 def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
@@ -20,15 +20,18 @@ def get_all_posts():
 
 
 #** Get all posts from the following feed **#
-@post_routes.route('/following')
+@post_routes.route('/')
 def get_posts():
+    """May need to change method for posts.users_i_follow()"""
     c_user = User.query.get(current_user.get_id())
     user_following = Follow.query.filter(Post.user_id == c_user.id).order_by(Post.created_at.desc())
     user_following = [posts.users_i_follow() for posts in user_following]
     return {"feed": user_following}
     # return render template 'following_feed.html'
 
+
 #** Get all posts from specific user **#
+# ! also in user_routes.py *
 @post_routes.route('/users/<user_id>')
 # @login_required
 def get_users_posts(user_id):
@@ -36,7 +39,7 @@ def get_users_posts(user_id):
     posts = [post.to_dict() for post in user_posts]
     return {"posts": posts}
     # return render template 'following_feed.html'
-    # What if user is not found?
+    # TODO What if user is not found?
 
 
 #** Get post by post id **#
