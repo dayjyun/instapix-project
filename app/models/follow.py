@@ -22,3 +22,17 @@ class Follow(db.Model):
         return {
             "follower_id": self.user_id
         }
+
+    # follows = db.relationship('User', back_populates='follows')
+    # followed_by = db.relationship('User', back_populates='follows')
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id
+        }
+
+
+# users_table = db.session.query(Follow, User).join(User).all()

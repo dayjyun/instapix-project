@@ -13,6 +13,7 @@ from .api.me_routes import me_routes
 from .api.hashtag_routes import hashtag_routes
 from .api.comment_routes import comment_routes
 from .api.like_routes import like_routes
+from .api.follow_routes import follow_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -40,6 +41,7 @@ app.register_blueprint(me_routes, url_prefix='/api/me')
 app.register_blueprint(hashtag_routes, url_prefix='/api')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(like_routes, url_prefix='/api')
+app.register_blueprint(follow_routes, url_prefix='/api/follows')
 db.init_app(app)
 Migrate(app, db)
 
