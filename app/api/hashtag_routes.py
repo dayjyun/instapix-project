@@ -17,7 +17,7 @@ def get_all_hash():
 
 # GET HASHTAGS FOR A POST
 @hashtag_routes.route('/posts/<int:post_id>/hashtags')
-@login_required
+# @login_required
 def tags_for_post(post_id):
     hashtags = Hashtag.query.join('post_hashtags').filter(
         Post_Hashtag.post_id == post_id).all()
@@ -27,7 +27,7 @@ def tags_for_post(post_id):
 
 # CREATE A HASHTAG FOR A POST
 @hashtag_routes.route('/posts/<int:post_id>/hashtags/new', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def new_hashtag(post_id):
     form = HashtagForm()
     if form.validate_on_submit():
@@ -45,4 +45,4 @@ def new_hashtag(post_id):
 
 
 # DELETE A HASHTAG
-## deleting a post should delete the associated hashtags
+# deleting a post should delete the associated hashtags

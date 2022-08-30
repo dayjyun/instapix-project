@@ -41,3 +41,5 @@ class Hashtag(db.Model):
     def __repr__(self):
         return f"<id:{self.id} hashtag_value:{self.hashtag_value}>"
     # posts = db.relationship('Post', secondary=post_hashtag, back_populates='hashtags')
+
+# <object 01x3981543151>
