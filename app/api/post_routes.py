@@ -31,18 +31,6 @@ def get_posts():
     # return render template 'following_feed.html'
 
 
-#** Get all posts from specific user **#
-# ! also in user_routes.py *
-@post_routes.route('/users/<user_id>')
-# @login_required
-def get_users_posts(user_id):
-    user_posts = Post.query.filter(Post.user_id == user_id).order_by(Post.created_at.desc())
-    posts = [post.to_dict() for post in user_posts]
-    return {"posts": posts}
-    # return render template 'following_feed.html'
-    # TODO What if user is not found?
-
-
 #** Get post by post id **#
 # Get details of a Post form an id
 @post_routes.route('/<int:post_id>')
