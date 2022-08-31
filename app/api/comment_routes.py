@@ -22,6 +22,7 @@ def get_comment(comment_id):
 @comment_routes.route('/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment(comment_id):
+    print('GOT HERE==========================>', list(request.form.lists()))
     form = EditCommentForm()
 
     # without this line, will cause SyntaxError -- not valid JSON

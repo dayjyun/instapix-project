@@ -31,7 +31,7 @@ export const loadPostComments = (postId) => async (dispatch) => {
 export const editComment = (comment, commentId) => async (dispatch) => {
     const {body} = comment;
 
-    const res = await fetch(`/comments/${commentId}`, {
+    const res = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +57,13 @@ export default function reducer(state = initialState, action) {
             initialState[comment.id] = comment;
         });
         return initialState;
+     case UPDATE_COMMENT:
+        // return {
+        //     ...state,
+        //     [action.data.comment.id]: action.data.comment
+        // }
+        console.log(action);
       default:
         return state;
     }
-  }
+}

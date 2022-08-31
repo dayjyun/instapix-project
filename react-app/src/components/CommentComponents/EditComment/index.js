@@ -7,7 +7,7 @@ import * as commentActions from '../../../store/comments';
 const EditComment = () => {
     const {commentId} = useParams()
     const comment = useSelector((state) => state.comments[commentId]);
-    const [body, setBody] = useState(comment.body);
+    const [body, setBody] = useState('');
 
 
     const history = useHistory();
@@ -20,15 +20,14 @@ const EditComment = () => {
             body
         }, commentId))
             .then(() => {
-                setShowModal(false);
                 history.push(`/posts/${comment.post_id}/comments`)
                 // history.push(`/albums/${albumId}`);
             })
             .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    console.log(data.errors);
-                }
+                // const data = await res.json();
+                // if (data && data.errors) {
+                //     console.log(data.errors);
+                // }
             });
 
     };
@@ -47,7 +46,7 @@ const EditComment = () => {
                         <input type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
                     </div>
                     <div >
-                       <button>Submit</button>
+                       <button type="submit">Submit</button>
                     </div>
                 </form>
             </div>
