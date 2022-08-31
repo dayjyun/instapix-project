@@ -45,6 +45,12 @@ class User(db.Model, UserMixin):
     def following_posts(self):
         return Post.query.join(Follow, Follow.follows_id == self.id).all()
 
+    def get_follows_for_user(self):
+        return Follow.query.filter_by(user_id=self.id).all()
+
+    def get_users_follows(self):
+        return Follow.query.filter_by(follows_id=self.id).all()
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -54,16 +60,10 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
-            'posts': [post.to_dict() for post in self.user_posts()],  # **
-
-            # num of posts
-            # num_posts: count posts
-
-            # num of followers
-            # 'followers': len(get_follows_for_user(self.id))  + 1
-
-            # num of following
-            # "following": len(get_users_follows(self.id)) + 1
+            'posts': [post.to_dict() for post in self.user_posts()],
+            'num_followers': len(self.get_users_follows()),
+            'num_following': len(self.get_follows_for_user()),
+            'num_posts': len(self.user_posts()),
         }
 
     def all_users_to_dict(self):

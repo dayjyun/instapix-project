@@ -6,7 +6,7 @@ def seed_follows():
     follow1 = Follow(
         user_id=1, follows_id=4)
     follow2 = Follow(
-        user_id=2, follows_id=2)
+        user_id=2, follows_id=4)
     follow3 = Follow(
         user_id=3, follows_id=4)
     follow4 = Follow(
@@ -14,17 +14,17 @@ def seed_follows():
     follow5 = Follow(
         user_id=1, follows_id=3)
     follow6 = Follow(
-        user_id=2, follows_id=2)
+        user_id=2, follows_id=3)
     follow7 = Follow(
         user_id=3, follows_id=1)
-    follow8 = Follow(
-        user_id=4, follows_id=4)
+    # follow8 = Follow(
+    #     user_id=4, follows_id=2)
     follow9 = Follow(
         user_id=1, follows_id=2)
     follow10 = Follow(
         user_id=2, follows_id=1)
     follow11 = Follow(
-        user_id=3, follows_id=3)
+        user_id=3, follows_id=2)
     follow12 = Follow(
         user_id=4, follows_id=2)
     db.session.add(follow1)
@@ -34,7 +34,7 @@ def seed_follows():
     db.session.add(follow5)
     db.session.add(follow6)
     db.session.add(follow7)
-    db.session.add(follow8)
+    # db.session.add(follow8)
     db.session.add(follow9)
     db.session.add(follow10)
     db.session.add(follow11)
