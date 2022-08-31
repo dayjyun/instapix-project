@@ -5,7 +5,7 @@ import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 
 const EditComment = () => {
-    const {commentId} = useParams()
+    const { commentId } = useParams()
     const comment = useSelector((state) => state.comments[commentId]);
     const [body, setBody] = useState('');
 
@@ -19,18 +19,18 @@ const EditComment = () => {
         dispatch(commentActions.editComment({
             body
         }, commentId))
-            .then(() => {
-                history.push(`/posts/${comment.post_id}/comments`)
-                // history.push(`/albums/${albumId}`);
-            })
-            .catch(async (res) => {
-                // const data = await res.json();
-                // if (data && data.errors) {
-                //     console.log(data.errors);
-                // }
-            });
-
+            // .then(() => {
+            //     history.push(`/posts/${comment.post_id}/comments`)
+            //     // history.push(`/albums/${albumId}`);
+            // })
+            // .catch(async (res) => {
+            //     // const data = await res.json();
+            //     // if (data && data.errors) {
+            //     //     console.log(data.errors);
+            //     // }
+            // });
     };
+
     return (
         <>
             <h2 >Edit Your Comment</h2>
@@ -46,7 +46,7 @@ const EditComment = () => {
                         <input type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
                     </div>
                     <div >
-                       <button type="submit">Submit</button>
+                        <button>Submit</button>
                     </div>
                 </form>
             </div>

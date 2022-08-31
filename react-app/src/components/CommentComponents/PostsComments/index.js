@@ -5,7 +5,7 @@ import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 
 const PostsComments = () => {
-    const {postId} = useParams()
+    const { postId } = useParams()
     const post = useSelector((state) => (state.posts[postId]));
     const comments = useSelector((state) => Object.values(state.comments))
     const dispatch = useDispatch();
@@ -14,9 +14,9 @@ const PostsComments = () => {
         dispatch(postActions.loadAllPosts())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(commentActions.loadPostComments(postId))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(commentActions.loadPostComments(postId))
+    // }, [dispatch])
 
     return (
         <div>

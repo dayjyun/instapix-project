@@ -29,20 +29,27 @@ export const loadPostComments = (postId) => async (dispatch) => {
 }
 
 export const editComment = (comment, commentId) => async (dispatch) => {
-    const {body} = comment;
+    const { body } = comment;
+
+
 
     const res = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: body
+        body: JSON.stringify({
+            body,
+        })
     });
 
     if (res.ok) {
         const data = await res.json()
         dispatch(updateComment(data))
+        return res
     }
+
+
 }
 
 
@@ -63,7 +70,7 @@ export default function reducer(state = initialState, action) {
         //     [action.data.comment.id]: action.data.comment
         // }
         console.log(action);
-      default:
+    default:
         return state;
     }
 }
