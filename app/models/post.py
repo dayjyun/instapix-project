@@ -37,5 +37,17 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
+        }
+
+    # Returns number of comments on a post
+    def to_dict_num_comments(self):
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            'likes': self.num_likes(),
             "comments": self.num_comments(),
         }

@@ -18,9 +18,8 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 @login_required
 def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
-    all_posts = [post.to_dict() for post in all_posts_query]
-    return {"posts": all_posts}
-    # TODO return only post_url, num_likes, num_comments?
+    all_posts = [post.to_dict_num_comments() for post in all_posts_query]
+    return {'Posts': all_posts}
     # TODO return random order of all posts
 
 
@@ -67,7 +66,9 @@ def create_post():
 
 # --------------------------- COMMENT ROUTES ------------------------------->
 
-#get all comments on a specific post, using post_id
+# get all comments on a specific post, using post_id
+
+
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
@@ -82,7 +83,7 @@ def get_post_comments(post_id):
     return jsonify(message="Post couldn't be found", statusCode=404)
 
 
-#create a comment providing user_id, post_id, and body
+# create a comment providing user_id, post_id, and body
 @post_routes.route('/<int:post_id>/comments', methods=['POST'])
 @login_required
 def create_comment(post_id):
@@ -92,7 +93,7 @@ def create_comment(post_id):
 
     post = Post.query.get(post_id)
 
-    #check if post exists
+    # check if post exists
     if not post:
         return jsonify(message="Post couldn't be found", statusCode=404)
 
