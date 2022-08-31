@@ -66,6 +66,7 @@ class User(db.Model, UserMixin):
             'num_posts': len(self.user_posts()),
         }
 
+    # user_routes
     def all_users_to_dict(self):
         return {
             'id': self.id,
@@ -77,6 +78,7 @@ class User(db.Model, UserMixin):
             'profile_image': self.profile_image,
         }
 
+    # user_routes
     def posts_to_dict(self):
         return {
             'posts': [post.to_dict() for post in self.user_posts()],

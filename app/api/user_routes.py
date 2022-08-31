@@ -25,14 +25,6 @@ def user(user_id):
         return {"Not Found": "User not found"}, 404
 
 
-#** Get the Current User (me)
-@user_routes.route('/me')
-@login_required
-def get_me():
-    c_user = User.query.get(current_user.get_id())
-    return c_user.to_dict()
-
-
 #** Get all posts from a specific user **#
 @user_routes.route('/<int:user_id>/posts')
 @login_required
@@ -42,3 +34,11 @@ def get_user(user_id):
         return user.posts_to_dict()
     else:
         return {"Not Found": "User not found"}, 404
+
+
+#** Get the Current User (me)
+@user_routes.route('/me')
+@login_required
+def get_me():
+    c_user = User.query.get(current_user.get_id())
+    return c_user.to_dict()
