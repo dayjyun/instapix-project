@@ -10,7 +10,7 @@ const Following = () => {
     userId = parseInt(userId)
 
     const user = useSelector(state => state.session.user)
-    const follows = useSelector(state => state.following)
+    const follows = Object.values(useSelector(state => state.following))
 
     useEffect(() => {
         dispatch(getFollowingBackend(user?.id))
@@ -21,17 +21,11 @@ const Following = () => {
         <>
             <h1>Following</h1>
 
-            <div className='test'>
-                {follows && follows?.map((follow, index) => {
-                    return (
-                        <p>{follow}</p>
-                    )
-                }}
-            </div>
-        </>
 
+
+
+        </>
     )
 }
 
-
-export default Following
+export default Following;
