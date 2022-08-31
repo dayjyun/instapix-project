@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
+from app.api.follow_routes import get_follows_for_user
 from app.models import User, Post
 
 user_routes = Blueprint('users', __name__)
@@ -17,7 +18,9 @@ def users():
 # @login_required
 def user(user_id):
     user = User.query.get(user_id)
+    followers = get_follows_for_user(user_id)
     return user.to_dict()
+    # TODO include posts of given user at user_id
 
 
 # Get the Current User (me)
