@@ -27,7 +27,8 @@ const Following = () => {
                 follows.map((follow, index) => {
                     return (
                         <div className='test' key={index}>
-                            {follow}
+                            <p>{follow.Follower_Info[0].username}</p>
+                            <p>{follow.Follower_Info[0].first_name}</p>
                         </div>
                     )
                 }))}

@@ -33,7 +33,7 @@ const followReducer = (state = initialState, action) => {
             action.payload.My_Followers.forEach(follow => {
                 getFollowingState[follow.id] = follow
             })
-            console.log(getFollowingState)
+
             return getFollowingState;
 
         default:
