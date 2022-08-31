@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from .post import Post
+from .follow import Follow
 # from app.api.follow_routes import *
 
 
@@ -38,6 +39,9 @@ class User(db.Model, UserMixin):
 
     def user_posts(self):
         return Post.query.filter_by(user_id=self.id).all()
+
+    def following_posts(self):
+        return Post.query.join(Follow, Follow.follows_id == self.id).all()
 
     def to_dict(self):
         return {
