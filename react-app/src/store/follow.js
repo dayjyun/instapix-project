@@ -5,10 +5,10 @@ const GET_FOLLOWING = 'users/following'
 
 
 //ACTIONS
-export const getFollowing = (userId) => {
+export const getFollowing = (follows) => {
     return {
         type: GET_FOLLOWING,
-        payload: userId
+        payload: follows
     }
 }
 
@@ -17,7 +17,7 @@ export const getFollowing = (userId) => {
 //THUNKS
 
 //get all user's following
-export const getFollowingBackend = (userId) => {
+export const getFollowingBackend = async (userId) => {
     const response = await fetch(`/api/follows/{userId}/followers`);
     const parsedRes = await response.json();
     dispatchEvent(getFollowing(parsedRes))
@@ -32,6 +32,12 @@ const initialState = {}
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_FOLLOWING:
-            const
+            const getFollowingState = {}
+            action.payload.follow.forEach(follow => {
+                getFollowingState[follow.id] = follow
+            })
+            return getFollowingState
     }
 }
+
+export default followReducer;

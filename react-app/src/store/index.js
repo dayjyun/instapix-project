@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import followReducer from './follow';
 
 const rootReducer = combineReducers({
   session,
+  follow: followReducer
 });
 
 
