@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as postActions from '../../../store/posts'
@@ -7,8 +7,8 @@ import CreateComment from "../CreateComment";
 
 const PostsComments = () => {
     const { postId } = useParams()
-    const post = useSelector((state) => (state.posts[postId]));
     const comments = useSelector((state) => Object.values(state.comments))
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,9 +16,15 @@ const PostsComments = () => {
         dispatch(commentActions.loadPostComments(postId))
     }, [dispatch])
 
+    let commentTitle;
+
+    if (!comments.length) {
+        commentTitle = `No Comments For Post ${postId}`
+    }
+
     return (
         <div>
-            <h2>ALL COMMENTS FOR POST {postId}</h2>
+            <h2>{commentTitle || `Comments For Post ${postId}`}</h2>
             <div>
                 {comments?.map((comment) => (
                     <li key={comment?.id}>
@@ -40,7 +46,5 @@ const PostsComments = () => {
         </div>
     )
 }
-
-
 
 export default PostsComments

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 
 const EditComment = () => {
@@ -19,16 +18,8 @@ const EditComment = () => {
         dispatch(commentActions.editComment({
             body
         }, commentId))
-            .then(() => {
-                history.push(`/posts/${comment.post_id}/comments`)
-                // history.push(`/albums/${albumId}`);
-            })
-            // .catch(async (res) => {
-            //     // const data = await res.json();
-            //     // if (data && data.errors) {
-            //     //     console.log(data.errors);
-            //     // }
-            // });
+
+        history.push(`/comments/${commentId}`)
     };
 
     return (
@@ -43,7 +34,7 @@ const EditComment = () => {
                     </ul> */}
                     <div className='input-container'>
                         <label htmlFor='title'>Body</label>
-                        <input type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
+                        <input type='text' name='body' value={comment?.body} onChange={(e) => setBody(e.target.value)} />
                     </div>
                     <div >
                         <button>Submit</button>

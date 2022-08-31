@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
+import CommentDetails from './components/CommentComponents/CommentDetails';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,9 @@ function App() {
           <PostsComments />
         </Route>
         <Route path='/comments/:commentId' exact={true}>
+          <CommentDetails />
+        </Route>
+        <Route path='/comments/:commentId/edit' exact={true}>
           <EditComment />
         </Route>
       </Switch>
