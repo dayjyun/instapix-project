@@ -17,6 +17,13 @@ const updateComment = (data) => {
     }
 }
 
+const addComment = (comment) => {
+    return {
+        type: CREATE_COMMENT,
+        comment
+    }
+}
+
 
 
 export const loadPostComments = (postId) => async (dispatch) => {
@@ -31,15 +38,13 @@ export const loadPostComments = (postId) => async (dispatch) => {
 export const editComment = (comment, commentId) => async (dispatch) => {
     const { body } = comment;
 
-
-
     const res = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            body,
+            body
         })
     });
 
@@ -48,9 +53,28 @@ export const editComment = (comment, commentId) => async (dispatch) => {
         dispatch(updateComment(data))
         return res
     }
+};
 
+export const createComment = (comment, postId) => async (dispatch) => {
+    const { body } = comment;
 
+    const res = await fetch(`/api/posts/${postId}/comments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            body
+        })
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addComment(data))
+        return res
+    }
 }
+
 
 
 let initialState = {}
@@ -69,7 +93,11 @@ export default function reducer(state = initialState, action) {
             ...state,
             [action.data.comment.id]: action.data.comment
         }
-        // console.log(action);
+    case CREATE_COMMENT:
+        return {
+            ...state,
+            [action.comment.id]: action.comment
+        }
     default:
         return state;
     }
