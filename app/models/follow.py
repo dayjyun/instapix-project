@@ -35,14 +35,14 @@ class Follow(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'follows_id': self.follows_id,
-            'Follower Info': [user.follow_info() for user in self.all_followers()]
+            'Follower_Info': [user.follow_info() for user in self.all_followers()]
         }
     def to_dict_follows(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'follows_id': self.follows_id,
-            'Follower Info': [user.follow_info() for user in self.all_follows()]
+            'Follower_Info': [user.follow_info() for user in self.all_follows()]
         }
 
 # users_table = db.session.query(Follow, User).join(User).all()

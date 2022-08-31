@@ -20,7 +20,7 @@ def get_follows_for_user(user_id):
     #     follows_list.append(combined_data)
 
     if user:
-        return {'My Followers': [follow.to_dict_followers() for follow in follows]}
+        return {'My_Followers': [follow.to_dict_followers() for follow in follows]}
     else:
         return jsonify(message='User could not be found.', status_code=404)
 
@@ -34,7 +34,7 @@ def get_users_follows(user_id):
     follows = Follow.query.filter(Follow.user_id == user_id).all()
 
     if user:
-        return {'I Follow': [follow.to_dict_follows() for follow in follows]}
+        return {'I_Follow': [follow.to_dict_follows() for follow in follows]}
 
     else:
         return jsonify(message='User could not be found.', status_code=404)

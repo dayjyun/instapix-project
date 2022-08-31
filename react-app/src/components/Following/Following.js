@@ -5,30 +5,33 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const Following = () => {
-    // const dispatch = useDispatch()
-    // let userId = useParams()
-    // userId = parseInt(userId)
+    const dispatch = useDispatch()
+    let userId = useParams()
+    userId = parseInt(userId)
 
-    // const user = useSelector(state => state.session.user)
-    // const follows = Object.values(useSelector(state => state.following))
+    const user = useSelector(state => state.session.user)
+    const follows = Object.values(useSelector(state => state.follow))
 
+    console.log(follows)
+    console.log(user)
 
-    // useEffect(() => {
-    //     dispatch(getFollowingBackend(user?.id))
-    // }, [dispatch, user])
+    useEffect(() => {
+        dispatch(getFollowingBackend(user?.id))
+    }, [dispatch, user])
 
 
     return (
-        // <>
-        <h1>Following</h1>
-        // {/* {follows.map((follow, index) => {
-        //         return (
-        //             <div className='test'>
-        //                 {follow}
-        //             </div>
-        //         )
-        //     })} */}
-        // </>
+        <>
+            <h1>Following</h1>
+            {follows && (
+                follows.map((follow, index) => {
+                    return (
+                        <div className='test' key={index}>
+                            {follow}
+                        </div>
+                    )
+                }))}
+        </>
     )
 }
 
