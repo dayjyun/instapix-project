@@ -6,8 +6,8 @@ import hashtagReducer from './hashtags'
 
 const rootReducer = combineReducers({
   session,
-  likesReducer,
-  hashtagReducer
+  likes: likesReducer,
+  hashtags: hashtagReducer
 });
 
 

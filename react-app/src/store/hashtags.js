@@ -22,7 +22,7 @@ export const fetchAllHashtags = () => async dispatch => {
 
     if (res.ok) {
         const parsedRes = await res.json()
-        await dispatch(getAllHashtags(parsedRes))
+        await dispatch(getAllHashtags(parsedRes.Hashtags))
         return res
     }
 }
@@ -31,7 +31,7 @@ export const fetchSingleHashtag = (postId) => async dispatch => {
     const res = await fetch(`/api/posts/${postId}/hashtags`)
 
     if (res.ok) {
-        parsedRes = await res.json()
+        const parsedRes = await res.json()
         await dispatch(hashtagForPost(parsedRes))
         return res;
     }
@@ -49,18 +49,18 @@ export const newHashtag = (hashtag, postId) => async dispatch => {
     })
 
     if (res.ok) {
-        parsedRes = await res.json()
+        const parsedRes = await res.json()
         await dispatch(createHashtag(parsedRes))
         return res;
     }
 }
 
-initialState = { hashtags: null }
-const hashtagReducer = (state = initialState, action) => {
+
+const hashtagReducer = (state = {}, action) => {
     switch (action.type) {
         case ALL_HASHTAGS:
             const allHashtagsState = { ...state }
-            action.payload.Hashtags?.forEach(hashtag => {
+            action.payload.forEach(hashtag => {
                 allHashtagsState[hashtag.id] = hashtag
             })
             return allHashtagsState
