@@ -37,10 +37,8 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    # **
     def user_posts(self):
         return Post.query.filter_by(user_id=self.id).all()
-    # **
 
     def following_posts(self):
         return Post.query.join(Follow, Follow.follows_id == self.id).all()
@@ -89,5 +87,5 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "profile_image": self.profile_image,
-
+            "posts": self.following_posts()
         }

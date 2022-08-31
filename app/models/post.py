@@ -64,7 +64,5 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            "comments": {comments.id: comments.comment_content() for comments in self.comments}
+            "comments": [comments.comment_content() for comments in self.comments]
         }
-
-    #
