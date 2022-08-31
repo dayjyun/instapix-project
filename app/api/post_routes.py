@@ -4,7 +4,6 @@ from app.forms.create_edit_post import CreatePostForm, EditPostForm
 from app.forms.comment_forms import CreateCommentForm
 from app.models import db, Follow, Post, Comment
 from datetime import datetime
-from .auth_routes import validation_errors_to_error_messages
 
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -27,7 +26,7 @@ def get_posts():
     following = Follow.query.filter(Follow.follows_id == current_user.id).all()
 
     following_info = [follow.to_dict_following() for follow in following]
-    return {"following": following_info}
+    return {"following": following_info, "post": "post_info"}
     # TODO Return only id, username, profile_image, [post details], [likes], [comments] *
 
 
@@ -63,8 +62,6 @@ def create_post():
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 # get all comments on a specific post, using post_id
-
-
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
@@ -106,6 +103,7 @@ def create_comment(post_id):
         return comment.to_dict()
     # return render_template('create_comment_form.html', form=form)
 
+# --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])

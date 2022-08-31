@@ -5,9 +5,8 @@ from app.models import User, Post
 
 user_routes = Blueprint('users', __name__)
 
-# Get all users in the database
 
-
+#** Get all users in the database
 @user_routes.route('/')
 @login_required
 def users():
@@ -15,7 +14,7 @@ def users():
     return {'users': [user.all_users_to_dict() for user in users]}
 
 
-# Get user by user_id
+#** Get user by user_id
 @user_routes.route('/<int:user_id>')
 @login_required
 def user(user_id):
@@ -26,16 +25,15 @@ def user(user_id):
         return {"Not Found": "User not found"}, 404
 
 
-# Get the Current User (me)
+#** Get the Current User (me)
 @user_routes.route('/me')
 @login_required
 def get_me():
     c_user = User.query.get(current_user.get_id())
     return c_user.to_dict()
 
+
 #** Get all posts from a specific user **#
-
-
 @user_routes.route('/<int:user_id>/posts')
 @login_required
 def get_user(user_id):
