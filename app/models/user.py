@@ -65,3 +65,14 @@ class User(db.Model, UserMixin):
             # num of following
             # "following": len(get_users_follows(self.id)) + 1
         }
+
+    def all_users_to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'bio': self.bio,
+            'profile_image': self.profile_image,
+        }

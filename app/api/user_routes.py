@@ -10,7 +10,7 @@ user_routes = Blueprint('users', __name__)
 # @login_required
 def users():
     users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
+    return {'users': [user.all_users_to_dict() for user in users]}
 
 
 # Get user by user_id
@@ -19,7 +19,7 @@ def users():
 def user(user_id):
     user = User.query.get(user_id)
     return user.to_dict()
-    # TODO include posts of given user at user_id
+    # TODO include num_posts, num_followers, num_following of given user at user_id
 
 
 # Get the Current User (me)
@@ -38,6 +38,7 @@ def get_user_posts(user_id):
     return {"posts": posts}
     # return render template 'following_feed.html'
     # TODO What if user is not found?
+    # return {"Not Found": "User not found"}, 404
 
 
 # Get a user's following list
