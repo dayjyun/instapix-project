@@ -10,12 +10,38 @@ const loadAllPostsComment = (data) => {
     }
 }
 
+const updateComment = (data) => {
+    return {
+        type: UPDATE_COMMENT,
+        data
+    }
+}
+
+
+
 export const loadPostComments = (postId) => async (dispatch) => {
     const res = await fetch(`/api/posts/${postId}/comments`);
 
     if (res.ok) {
         const comments = await res.json();
         dispatch(loadAllPostsComment(comments))
+    }
+}
+
+export const editComment = (comment, commentId) => async (dispatch) => {
+    const {body} = comment;
+
+    const res = await fetch(`/comments/${commentId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body
+    });
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(updateComment(data))
     }
 }
 

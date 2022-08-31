@@ -20,10 +20,20 @@ const PostsComments = () => {
 
     return (
         <div>
-            <h2>ALL POSTS</h2>
+            <h2>ALL COMMENTS FOR POST {postId}</h2>
             <div>
                 {comments?.map((comment) => (
-                    <li key={comment?.id}>comment ID - {comment.id} BODY - {comment.body}</li>
+                    <li key={comment?.id}>
+                        <div>
+                            User ID: {comment.user_id}
+                        </div>
+                        <div>
+                            Comment ID: {comment.id}
+                        </div>
+                        <div>
+                            Body: {comment.body}
+                        </div>
+                    </li>
                 ))}
             </div>
         </div>

@@ -47,6 +47,9 @@ function App() {
         <Route path='/posts/:postId/comments' exact={true}>
           <PostsComments />
         </Route>
+        <Route path='/comments/:commentId' exact={true}>
+          <PostsComments />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
