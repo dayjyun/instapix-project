@@ -22,11 +22,11 @@ class Post(db.Model):
 
     # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')
 
-    def num_comments():
-        pass
+    def num_comments(self):
+        return len(self.comments)
 
-    def num_likes():
-        pass
+    def num_likes(self):
+        return len(self.likes)
 
     def to_dict(self):
         return {
@@ -36,6 +36,6 @@ class Post(db.Model):
             "post_url": self.post_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            # "likes": len(get_likes_by_post(self.id)) + 1
-            # "comments": get_comment(self.id)
+            'likes': self.num_likes(),
+            "comments": self.num_comments(),
         }
