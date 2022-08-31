@@ -34,7 +34,7 @@ const EditComment = () => {
                     </ul> */}
                     <div className='input-container'>
                         <label htmlFor='title'>Body</label>
-                        <input type='text' name='body' value={comment?.body} onChange={(e) => setBody(e.target.value)} />
+                        <input type='text' name='body' value={body} placeholder={comment.body} onChange={(e) => setBody(e.target.value)} />
                     </div>
                     <div >
                         <button>Submit</button>
