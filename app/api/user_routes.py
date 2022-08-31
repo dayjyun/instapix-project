@@ -36,7 +36,9 @@ def get_me():
 @user_routes.route('/<int:user_id>/posts')
 @login_required
 def my_posts(user_id):
-    # c_user = User.query.get(current_user.get_id())
-    posts = Post.query.filter(Post.user_id == user_id)
-    post = [p.to_dict() for p in posts]
-    return {"Post": post}
+    c_user = User.query.get(current_user.get_id())
+    if c_user:
+        posts = Post.query.filter(Post.user_id == user_id)
+        post = [p.to_dict() for p in posts]
+        return {"Post": post}
+    return {"Not found": "User not found"}, 404
