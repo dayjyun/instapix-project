@@ -1,6 +1,6 @@
 from .db import db
 from datetime import datetime
-
+from app.models import User
 
 class Follow(db.Model):
     __tablename__ = 'follows'
@@ -14,6 +14,14 @@ class Follow(db.Model):
 
     # follows = db.relationship('User', back_populates='follows')
     # followed_by = db.relationship('User', back_populates='follows')
+    def all_followers(self):
+        return User.query.filter(User.id==self.user_id).all()
+
+    def all_follows(self):
+        return User.query.filter(User.id==self.follows_id).all()
+
+    # def all_followers(self):
+    # return User.query.filter(User.id == self.id).all()
 
     def to_dict(self):
         return {
@@ -22,5 +30,19 @@ class Follow(db.Model):
             'follows_id': self.follows_id
         }
 
+    def to_dict_followers(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id,
+            'Follower Info': [user.follow_info() for user in self.all_followers()]
+        }
+    def to_dict_follows(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id,
+            'Follower Info': [user.follow_info() for user in self.all_follows()]
+        }
 
 # users_table = db.session.query(Follow, User).join(User).all()

@@ -25,8 +25,13 @@ export const getFollowingBackend = (userId) => {
 
 
 //INITIAL STATE
-
-
+const initialState = {}
 
 
 ///REDUCERS
+const followReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_FOLLOWING:
+            const
+    }
+}
