@@ -9,13 +9,14 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import PostsComments from './components/CommentComponents/PostsComments';
+import EditComment from './components/CommentComponents/EditComment';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -36,7 +37,7 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
@@ -49,6 +50,7 @@ function App() {
         </Route>
         <Route path='/comments/:commentId' exact={true}>
           <PostsComments />
+          <EditComment />
         </Route>
       </Switch>
     </BrowserRouter>

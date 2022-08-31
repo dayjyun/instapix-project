@@ -29,20 +29,26 @@ export const loadPostComments = (postId) => async (dispatch) => {
 }
 
 export const editComment = (comment, commentId) => async (dispatch) => {
-    const {body} = comment;
+    const { body } = comment;
 
-    const res = await fetch(`/comments/${commentId}`, {
+
+    const res = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: body
+        body: JSON.stringify({
+            body,
+        })
     });
 
     if (res.ok) {
         const data = await res.json()
         dispatch(updateComment(data))
+        return res
     }
+
+
 }
 
 
@@ -50,14 +56,14 @@ let initialState = {}
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-      case LOAD_POST_COMMENTS:
-        initialState = {...state};
-                // console.log('THIS=================>', action)
-        action.data.Comments.forEach((comment) => {
-            initialState[comment.id] = comment;
-        });
-        return initialState;
-      default:
-        return state;
+        case LOAD_POST_COMMENTS:
+            initialState = { ...state };
+            // console.log('THIS=================>', action)
+            action.data.Comments.forEach((comment) => {
+                initialState[comment.id] = comment;
+            });
+            return initialState;
+        default:
+            return state;
     }
-  }
+}
