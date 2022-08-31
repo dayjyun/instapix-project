@@ -5,10 +5,9 @@
   </head>
   <body>
     <h1>Edit Post {{ post_id }}</h1>
-    <!-- <h1>{{post_caption}}</h1> -->
+    <h2>Current caption: {{post_caption}}</h2>
     <form action="" method="post">
       {{ form.hidden_tag() }}
-      <p>{{ form.caption.label }}</p>
       <p>{{ form.caption(placeholder="Edit your caption...") }}</p>
       <!-- TODO placeholder should be h1 value -->
       <p>{{ form.submit }}</p>

@@ -9,7 +9,7 @@ user_routes = Blueprint('users', __name__)
 
 
 @user_routes.route('/')
-# @login_required
+@login_required
 def users():
     users = User.query.all()
     return {'users': [user.all_users_to_dict() for user in users]}
@@ -17,7 +17,7 @@ def users():
 
 # Get user by user_id
 @user_routes.route('/<int:user_id>')
-# @login_required
+@login_required
 def user(user_id):
     user = User.query.get(user_id)
     if user:

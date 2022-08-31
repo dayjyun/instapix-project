@@ -57,7 +57,7 @@ def create_post():
         )
         db.session.add(new_post)
         db.session.commit()
-        return new_post.to_dict()
+        return new_post.to_dict(), 201
     return render_template('create_post.html', form=form)
 
 # --------------------------- COMMENT ROUTES ------------------------------->
@@ -113,9 +113,9 @@ def create_comment(post_id):
 def edit_post(post_id):
     form = EditPostForm()
     post = Post.query.get(post_id)
-    # post_caption = post.caption
     if post:
         if post.user_id == current_user.id:
+            post_caption = post.caption
             if form.validate_on_submit():
                 data = form.data
                 post.caption = data['caption']
@@ -123,9 +123,9 @@ def edit_post(post_id):
                 db.session.add(post)
                 db.session.commit()
                 return post.to_dict()
-            return render_template('edit_post.html', form=form, post_id=post_id)
+            return render_template('edit_post.html', form=form, post_id=post_id, post_caption=post_caption)
         else:
-            return {"Unauthorized": "You cannot edit this post"}, 401
+            return {"Forbidden": "You cannot edit this post"}, 403
     else:
         return {"Not found": "Post not found"}, 404
 
@@ -141,6 +141,6 @@ def delete_post(post_id):
             db.session.commit()
             return redirect('/api/posts/explorer')
         else:
-            return {"Unauthorized": "You cannot delete this post"}, 401
+            return {"Forbidden": "You cannot delete this post"}, 403
     else:
         return {"Not found": "Post not found"}, 404
