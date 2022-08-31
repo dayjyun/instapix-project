@@ -17,6 +17,44 @@ export const createHashtag = hashtag => ({
     payload: hashtag
 })
 
+export const fetchAllHashtags = () => async dispatch => {
+    const res = await fetch('/api/hashtags')
+
+    if (res.ok) {
+        const parsedRes = await res.json()
+        await dispatch(getAllHashtags(parsedRes))
+        return res
+    }
+}
+
+export const fetchSingleHashtag = (postId) => async dispatch => {
+    const res = await fetch(`/api/posts/${postId}/hashtags`)
+
+    if (res.ok) {
+        parsedRes = await res.json()
+        await dispatch(hashtagForPost(parsedRes))
+        return res;
+    }
+}
+
+export const newHashtag = (hashtag, postId) => async dispatch => {
+    const res = await fetch(`/posts/${postId}/hashtags/new`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            hashtag_value: hashtag
+        })
+    })
+
+    if (res.ok) {
+        parsedRes = await res.json()
+        await dispatch(createHashtag(parsedRes))
+        return res;
+    }
+}
+
 initialState = { hashtags: null }
 const hashtagReducer = (state = initialState, action) => {
     switch (action.type) {
