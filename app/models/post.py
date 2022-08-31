@@ -54,7 +54,7 @@ class Post(db.Model):
             "comments": self.num_comments(),
         }
 
-    # returns the contents of a post, the number of likes and comment detailsfi
+    # returns the contents of a post, the number of likes and comment details
     def post_details(self):
         return {
             'id': self.id,
