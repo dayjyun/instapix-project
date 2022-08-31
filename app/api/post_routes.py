@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.forms.create_edit_post import CreatePostForm, EditPostForm
 from app.forms.comment_forms import CreateCommentForm, EditCommentForm
 from app.models import db, User, Follow, Post, Like, Comment
+from datetime import datetime
 
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -110,22 +111,17 @@ def create_comment(post_id):
 def edit_post(post_id):
     form = EditPostForm()
     post = Post.query.get(post_id)
-    post_caption = post.caption
+    # post_caption = post.caption
     if post:
         if post.user_id == current_user.id:
             if form.validate_on_submit():
                 data = form.data
-                post_info = Post(
-                    user_id=current_user.id,
-                    caption=data['caption'],
-                    # post_url=Post.post_url,
-                    # return new updated_at time
-                )
-                db.session.add(post_info)
+                post.caption = data['caption']
+                post.updated_at = datetime.now()
+                db.session.add(post)
                 db.session.commit()
-                return post_info.to_dict()
-                # TODO not rendering post update
-            return render_template('edit_post.html', form=form, post_id=post_id, post_caption=post_caption)
+                return post.to_dict()
+            return render_template('edit_post.html', form=form, post_id=post_id)
         else:
             return {"message": "You cannot edit this post"}
     else:

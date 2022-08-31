@@ -8,5 +8,5 @@ class CreatePostForm(FlaskForm):
     submit = SubmitField()
 
 class EditPostForm(FlaskForm):
-    caption = StringField()
+    caption = StringField("Caption")
     submit = SubmitField()
