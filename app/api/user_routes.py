@@ -6,6 +6,8 @@ from app.models import User, Post
 user_routes = Blueprint('users', __name__)
 
 # Get all users in the database
+
+
 @user_routes.route('/')
 # @login_required
 def users():
@@ -32,13 +34,14 @@ def get_me():
     c_user = User.query.get(current_user.get_id())
     return c_user.to_dict()
 
-#** Get all posts from the current user **#
+#** Get all posts from a specific user **#
+
+
 @user_routes.route('/<int:user_id>/posts')
 @login_required
-def my_posts(user_id):
-    c_user = User.query.get(current_user.get_id())
-    if c_user:
-        posts = Post.query.filter(Post.user_id == user_id)
-        post = [p.to_dict() for p in posts]
-        return {"Post": post}
-    return {"Not found": "User not found"}, 404
+def get_user(user_id):
+    user = User.query.get(user_id)
+    if user:
+        return user.to_dict()
+    else:
+        return {"Not Found": "User not found"}, 404
