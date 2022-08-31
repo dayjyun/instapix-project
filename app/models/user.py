@@ -40,6 +40,7 @@ class User(db.Model, UserMixin):
     def user_posts(self):
         return Post.query.filter_by(user_id=self.id).all()
 
+    # ! Used?
     def following_posts(self):
         return Post.query.join(Follow, Follow.follows_id == self.id).all()
 
@@ -82,10 +83,10 @@ class User(db.Model, UserMixin):
             'posts': [post.to_dict() for post in self.user_posts()],
         }
 
-    def feed_to_dict(self):
-        return {
-            "id": self.id,
-            "username": self.username,
-            "profile_image": self.profile_image,
-            "posts": self.following_posts()
-        }
+    # def feed_to_dict(self):
+    #     return {
+    #         "id": self.id,
+    #         "username": self.username,
+    #         "profile_image": self.profile_image,
+    #         "posts": self.following_posts()
+    #     }

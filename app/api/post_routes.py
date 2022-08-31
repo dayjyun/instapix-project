@@ -25,9 +25,8 @@ def get_all_posts():
 def get_posts():
     following = Follow.query.filter(Follow.follows_id == current_user.id).all()
     users_following = [follow.to_dict_following() for follow in following]
-    posts = Post.query.filter(Post.id == current_user.id)
     return {"following": users_following, "posts": "post details"}
-    # TODO Return only [post details], [likes], [comments] *
+    # TODO Return only [user info(done)], [post_details (post.py model)] *
 
 
 #** Get post by post id **#
