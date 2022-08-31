@@ -19,6 +19,7 @@ def get_likes_by_post(post_id):
 
 
 # LIKE A POST
+# add if exists
 @like_routes.route('/posts/<int:post_id>/likes', methods=['POST'])
 @login_required
 def like_a_post(post_id):
