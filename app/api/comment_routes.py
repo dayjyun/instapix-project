@@ -24,7 +24,13 @@ def get_comment(comment_id):
 @comment_routes.route('/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment(comment_id):
+
     body = request.json
+
+    form = EditCommentForm()
+    data = request.json
+    print('THIS>>>>>>>>>>>>>>>>>>>>>>>', data)
+
     # print(body)
     # form = EditCommentForm()
 
@@ -42,7 +48,7 @@ def edit_comment(comment_id):
         return jsonify(message='Not authorized', statusCode=401)
 
     # # edit comment
-    comment.body = body
+    comment.body = data['body']
     comment.updated_at = datetime.now()
     # db.session.add(comment)
     db.session.commit()

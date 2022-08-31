@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
+import CreateComment from "../CreateComment";
 
 const PostsComments = () => {
     const { postId } = useParams()
@@ -12,11 +13,8 @@ const PostsComments = () => {
 
     useEffect(() => {
         dispatch(postActions.loadAllPosts())
+        dispatch(commentActions.loadPostComments(postId))
     }, [dispatch])
-
-    // useEffect(() => {
-    //     dispatch(commentActions.loadPostComments(postId))
-    // }, [dispatch])
 
     return (
         <div>
@@ -35,6 +33,9 @@ const PostsComments = () => {
                         </div>
                     </li>
                 ))}
+            </div>
+            <div>
+                <CreateComment />
             </div>
         </div>
     )

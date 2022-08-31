@@ -4,9 +4,9 @@ import { useParams, useHistory } from "react-router-dom";
 import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 
-const EditComment = () => {
-    const { commentId } = useParams()
-    const comment = useSelector((state) => state.comments[commentId]);
+const CreateComment = () => {
+    const { postId } = useParams()
+    // const comment = useSelector((state) => state.comments[commentId]);
     const [body, setBody] = useState('');
 
 
@@ -16,11 +16,11 @@ const EditComment = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(commentActions.editComment({
+        dispatch(commentActions.createComment({
             body
-        }, commentId))
+        }, postId))
             .then(() => {
-                history.push(`/posts/${comment.post_id}/comments`)
+                history.push(`/posts/${postId}/comments`)
                 // history.push(`/albums/${albumId}`);
             })
             // .catch(async (res) => {
@@ -33,7 +33,7 @@ const EditComment = () => {
 
     return (
         <>
-            <h2 >Edit Your Comment</h2>
+            <h2 >Create A Comment</h2>
             <div>
                 <form onSubmit={handleSubmit}>
                     {/* <ul>
@@ -56,4 +56,4 @@ const EditComment = () => {
 
 
 
-export default EditComment;
+export default CreateComment;

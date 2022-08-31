@@ -49,7 +49,6 @@ function App() {
           <PostsComments />
         </Route>
         <Route path='/comments/:commentId' exact={true}>
-          <PostsComments />
           <EditComment />
         </Route>
       </Switch>
