@@ -1,9 +1,10 @@
 from flask import Blueprint, session, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.forms.create_edit_post import CreatePostForm, EditPostForm
-from app.forms.comment_forms import CreateCommentForm, EditCommentForm
-from app.models import db, User, Follow, Post, Like, Comment
+from app.forms.comment_forms import CreateCommentForm
+from app.models import db, Follow, Post, Comment
 from datetime import datetime
+from .auth_routes import validation_errors_to_error_messages
 
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -39,8 +40,7 @@ def post_details(post_id):
     if post:
         return {"posts": post}
     else:
-        return {"message": "Post not found"}
-        # TODO properly return error
+        return {"Not Found": "Post not found"}, 404
 
 
 #** Create a post **#
@@ -74,7 +74,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return jsonify(message="Post couldn't be found", statusCode=404)
+    return {"Not Found": "Post not found"}, 404
 
 
 # create a comment providing user_id, post_id, and body
@@ -89,7 +89,7 @@ def create_comment(post_id):
 
     # check if post exists
     if not post:
-        return jsonify(message="Post couldn't be found", statusCode=404)
+        return {"Not Found": "Post not found"}, 404
 
     if form.validate_on_submit():
         data = form.data
@@ -123,9 +123,9 @@ def edit_post(post_id):
                 return post.to_dict()
             return render_template('edit_post.html', form=form, post_id=post_id)
         else:
-            return {"message": "You cannot edit this post"}
+            return {"Unauthorized": "You cannot edit this post"}, 401
     else:
-        return {"message": "Post not found"}
+        return {"Not found": "Post not found"}, 404
 
 
 #** Delete a post **#
@@ -139,6 +139,6 @@ def delete_post(post_id):
             db.session.commit()
             return redirect('/api/posts/explorer')
         else:
-            return {"message": "You cannot delete this post"}
+            return {"Unauthorized": "You cannot delete this post"}, 401
     else:
-        return {"message": "Post not found"}
+        return {"Not found": "Post not found"}, 404
