@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from .post import Post
-from app.api.follow_routes import *
+# from app.api.follow_routes import *
 
 
 class User(db.Model, UserMixin):
@@ -54,8 +54,8 @@ class User(db.Model, UserMixin):
             # num_posts: count posts
 
             # num of followers
-            'followers': len(get_follows_for_user(self.id) + 1)
+            # 'followers': len(get_follows_for_user(self.id))  + 1
 
             # num of following
-            # "following": len(get_users_follows(self.id) + 1)
+            # "following": len(get_users_follows(self.id)) + 1
         }

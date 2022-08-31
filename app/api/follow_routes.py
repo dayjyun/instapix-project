@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.models import *
+from app.models import db, User, Follow
 from flask_login import current_user, login_required
 
 follow_routes = Blueprint('follows', __name__)
