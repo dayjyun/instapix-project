@@ -37,6 +37,8 @@ const followReducer = (state = initialState, action) => {
                 getFollowingState[follow.id] = follow
             })
             return getFollowingState
+        default:
+            return state;
     }
 }
 
