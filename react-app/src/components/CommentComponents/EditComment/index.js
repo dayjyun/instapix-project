@@ -19,10 +19,10 @@ const EditComment = () => {
         dispatch(commentActions.editComment({
             body
         }, commentId))
-            // .then(() => {
-            //     history.push(`/posts/${comment.post_id}/comments`)
-            //     // history.push(`/albums/${albumId}`);
-            // })
+            .then(() => {
+                history.push(`/posts/${comment.post_id}/comments`)
+                // history.push(`/albums/${albumId}`);
+            })
             // .catch(async (res) => {
             //     // const data = await res.json();
             //     // if (data && data.errors) {

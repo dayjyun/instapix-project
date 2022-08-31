@@ -65,11 +65,11 @@ export default function reducer(state = initialState, action) {
         });
         return initialState;
      case UPDATE_COMMENT:
-        // return {
-        //     ...state,
-        //     [action.data.comment.id]: action.data.comment
-        // }
-        console.log(action);
+        return {
+            ...state,
+            [action.data.comment.id]: action.data.comment
+        }
+        // console.log(action);
     default:
         return state;
     }

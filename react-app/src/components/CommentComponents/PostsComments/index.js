@@ -12,11 +12,8 @@ const PostsComments = () => {
 
     useEffect(() => {
         dispatch(postActions.loadAllPosts())
+        dispatch(commentActions.loadPostComments(postId))
     }, [dispatch])
-
-    // useEffect(() => {
-    //     dispatch(commentActions.loadPostComments(postId))
-    // }, [dispatch])
 
     return (
         <div>
