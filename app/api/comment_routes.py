@@ -25,7 +25,6 @@ def get_comment(comment_id):
 @login_required
 def edit_comment(comment_id):
     body = request.json
-    print(body)
     # print(body)
     # form = EditCommentForm()
 
