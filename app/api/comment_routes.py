@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request, redirect
 from flask_login import login_required, current_user
 from datetime import datetime
 
@@ -24,27 +24,30 @@ def get_comment(comment_id):
 @comment_routes.route('/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment(comment_id):
-    # try:
-    print('THIS ==============>', request.json['body'])
-    # except Exception as e:
-    #     print('ERRRRRRRRRRRRROOOOORRRRRRR:', e)
-
+    body = request.json
+    print(body)
+    # print(body)
     # form = EditCommentForm()
 
     # # without this line, will cause SyntaxError -- not valid JSON
     # form["csrf_token"].data = request.cookies["csrf_token"]
 
-    # comment = Comment.query.get(comment_id)
+    comment = Comment.query.get(comment_id)
 
     # # check if comment exists
-    # if not comment:
-    #     return jsonify(message="Comment couldn't be found", statusCode=404)
+    if not comment:
+        return jsonify(message="Comment couldn't be found", statusCode=404)
 
     # # check if user is authorized
-    # if current_user.id != comment.user_id:
-    #     return jsonify(message='Not authorized', statusCode=401)
+    if current_user.id != comment.user_id:
+        return jsonify(message='Not authorized', statusCode=401)
 
     # # edit comment
+    comment.body = body
+    comment.updated_at = datetime.now()
+    # db.session.add(comment)
+    db.session.commit()
+    return redirect(f'/comments/{comment_id}'), 201
     # if form.validate_on_submit():
     #     data = form.data
     #     comment.body = data['body']
