@@ -22,6 +22,12 @@ class Post(db.Model):
 
     # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')
 
+    def num_comments():
+        pass
+
+    def num_likes():
+        pass
+
     def to_dict(self):
         return {
             'id': self.id,

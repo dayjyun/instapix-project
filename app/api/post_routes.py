@@ -20,7 +20,7 @@ def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict() for post in all_posts_query]
     return {"posts": all_posts}
-    # TODO return only post_url?
+    # TODO return only post_url, num_likes, num_comments?
     # TODO return random order of all posts
 
 
