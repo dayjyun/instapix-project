@@ -26,15 +26,18 @@ def get_posts():
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())
-    dict = [post.feed_to_dict() for post in all_followed_posts]
-    for post in dict:
+    all_post = [post.feed_to_dict() for post in all_followed_posts]
+
+    for post in all_post:
         user = User.query.get(post['user_id'])
         posts.append(user)
-        
+
     users = [post.user_content() for post in posts]
+
     for i in range(len(users)):
-        dict[i]['User'] = users[i]
-    return {'Posts': dict}
+        all_post[i]['User'] = users[i]
+
+    return {'Posts': all_post}
 
     # following = Follow.query.filter(
     #     Follow.follows_id == current_user.id).order_by(Follow.created_at.desc())
