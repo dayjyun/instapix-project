@@ -23,7 +23,7 @@ class Follow(db.Model):
             'follows_id': self.follows_id
         }
 
-    # Return the ID, username, profile image, and posts from users that the current user is following
+    # TODO Return the ID, username, profile image, and posts from users that the current user is following *
 
     def to_dict_following(self):
         return {

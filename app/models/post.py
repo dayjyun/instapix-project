@@ -2,6 +2,7 @@
 # from app.api.like_routes import get_likes_by_post
 from .db import db
 from datetime import datetime
+from .comment import Comment
 
 
 class Post(db.Model):
@@ -28,6 +29,9 @@ class Post(db.Model):
     def num_likes(self):
         return len(self.likes)
 
+    def get_comments(self):
+        return Comment.query.filter_by(post_id=self.id).all()
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -50,4 +54,16 @@ class Post(db.Model):
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
             "comments": self.num_comments(),
+        }
+
+    def post_details(self):
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            'likes': self.num_likes(),
+            'comments': [comment.to_dict() for comment in self.get_comments()],
         }

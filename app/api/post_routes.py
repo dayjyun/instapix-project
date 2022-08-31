@@ -31,7 +31,7 @@ def get_posts():
 
     following_info = [follow.to_dict_following() for follow in following]
     return {"following": following_info}
-    # TODO Return only id, username, profile_image, [post details], [likes], [comments]
+    # TODO Return only id, username, profile_image, [post details], [likes], [comments] *
 
 
 #** Get post by post id **#
@@ -40,9 +40,8 @@ def get_posts():
 def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
     post = [post.to_dict() for post in all_posts]
-    likes = get_likes_by_post(post_id)
     if post:
-        return {"posts": post, "likes": (len(likes) + 1)}
+        return {"posts": post}
         # TODO return [likes], [comments]
     else:
         return {"message": "Post not found"}
