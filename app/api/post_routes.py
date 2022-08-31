@@ -30,7 +30,11 @@ def get_posts():
     for post in dict:
         user = User.query.get(post['user_id'])
         posts.append(user)
-    return {'Posts': dict,  'user': [post.user_content() for post in posts]}
+        
+    users = [post.user_content() for post in posts]
+    for i in range(len(users)):
+        dict[i]['User'] = users[i]
+    return {'Posts': dict}
 
     # following = Follow.query.filter(
     #     Follow.follows_id == current_user.id).order_by(Follow.created_at.desc())

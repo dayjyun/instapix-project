@@ -83,9 +83,9 @@ class User(db.Model, UserMixin):
             'posts': [post.to_dict() for post in self.user_posts()],
         }
 
-    # def user_content(self):
-    #     return {
-    #         'username': self.username,
-    #         'profile_image': self.profile_image,
-    #         "id": self.id,
-    #     }
+    def user_content(self):
+        return {
+            'username': self.username,
+            'profile_image': self.profile_image,
+            "id": self.id,
+        }

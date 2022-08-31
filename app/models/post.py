@@ -80,7 +80,6 @@ class Post(db.Model):
             'num_likes': self.num_likes(),
             "num_comments": self.num_comments(),
             "comments": [comments.comment_content() for comments in self.comments],
-            'username': user.username,
 
             # 'user_id': [user.user_content() for user in self.user]
 
