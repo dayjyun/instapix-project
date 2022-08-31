@@ -24,9 +24,13 @@ def get_comment(comment_id):
 @comment_routes.route('/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment(comment_id):
+
+    body = request.json
+
     form = EditCommentForm()
     data = request.json
     print('THIS>>>>>>>>>>>>>>>>>>>>>>>', data)
+
     # print(body)
     # form = EditCommentForm()
 
