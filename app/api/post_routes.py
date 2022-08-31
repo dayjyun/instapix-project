@@ -39,7 +39,7 @@ def get_posts():
 @login_required
 def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
-    post = [post.to_dict() for post in all_posts]
+    post = [post.post_details() for post in all_posts]
     if post:
         return {"posts": post}
         # TODO return [likes], [comments]
