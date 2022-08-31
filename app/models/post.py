@@ -1,5 +1,3 @@
-# from app.api.comment_routes import get_comment
-# from app.api.like_routes import get_likes_by_post
 from .db import db
 from datetime import datetime
 from .comment import Comment
@@ -56,7 +54,7 @@ class Post(db.Model):
             "comments": self.num_comments(),
         }
 
-    # returns the contents of a post, the number of likes and comments
+    # returns the contents of a post, the number of likes and comment detailsfi
     def post_details(self):
         return {
             'id': self.id,
@@ -66,5 +64,5 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            # 'comments': [comment.to_dict() for comment in self.get_comments()],
+            "comments": {comments.id: comments.comment_content() for comments in self.comments}
         }
