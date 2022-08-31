@@ -23,13 +23,23 @@ def get_all_posts():
 @post_routes.route('/')  # feed
 @login_required
 def get_posts():
-    following = Follow.query.filter(Follow.follows_id == current_user.id).all()
+    following = Follow.query.filter(
+        Follow.follows_id == current_user.id).order_by(Follow.created_at.desc())
     users_following = [follow.to_dict_following() for follow in following]
-    return {"following": users_following, "posts": "post details"}
+    posts = Post.query.filter()
+    return {"following": users_following}
+
+    # posts = Post.query.filter(Post.user_id == current_user.id).order_by(
+    #     Post.created_at.desc()).all()
+    # following_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
+    #     Follow.follows_id == current_user.id).order_by(Post.created_at.desc()).all()
+    # all_posts = posts + following_posts
+    # return {"posts": all_posts}
     # TODO Return only [user info(done)], [post_details (post.py model)] *
 
+    #** Get post by post id **#
 
-#** Get post by post id **#
+
 @post_routes.route('/<int:post_id>')
 @login_required
 def post_details(post_id):
@@ -61,6 +71,8 @@ def create_post():
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 # get all comments on a specific post, using post_id
+
+
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
@@ -105,6 +117,8 @@ def create_comment(post_id):
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
+
+
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
