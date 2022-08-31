@@ -24,7 +24,6 @@ def user(user_id):
         return user.to_dict()
     else:
         return {"Not Found": "User not found"}, 404
-    # TODO include num_posts, num_followers, num_following of given user at user_id
 
 
 # Get the Current User (me)

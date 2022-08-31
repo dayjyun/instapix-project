@@ -81,3 +81,11 @@ class User(db.Model, UserMixin):
         return {
             'posts': [post.to_dict() for post in self.user_posts()],
         }
+
+    def feed_to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "profile_image": self.profile_image,
+
+        }

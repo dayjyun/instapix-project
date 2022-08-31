@@ -21,7 +21,7 @@ def get_all_posts():
 
 
 #** Get all posts from the following feed **#
-@post_routes.route('/')
+@post_routes.route('/')  # feed
 @login_required
 def get_posts():
     following = Follow.query.filter(Follow.follows_id == current_user.id).all()
@@ -63,6 +63,8 @@ def create_post():
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 # get all comments on a specific post, using post_id
+
+
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):

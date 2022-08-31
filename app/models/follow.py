@@ -31,7 +31,7 @@ class Follow(db.Model):
             'user_id': self.user_id,
             'username': self.users.username,
             'profile_image': self.users.profile_image,
-            'posts': [post.to_dict() for post in self.users.following_posts()]
+            'posts': [post.to_dict() for post in self.users.following_posts()],
         }
 
 # users_table = db.session.query(Follow, User).join(User).all()

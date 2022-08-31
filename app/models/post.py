@@ -66,3 +66,5 @@ class Post(db.Model):
             'likes': self.num_likes(),
             "comments": {comments.id: comments.comment_content() for comments in self.comments}
         }
+
+    #
