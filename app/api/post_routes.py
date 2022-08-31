@@ -79,7 +79,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return jsonify(message="Post couldn't be found", statusCode=404)
+    return {'Not Found': 'Post not found'}, 404
 
 
 #create a comment providing user_id, post_id, and body
@@ -94,7 +94,7 @@ def create_comment(post_id):
 
     #check if post exists
     if not post:
-        return jsonify(message="Post couldn't be found", statusCode=404)
+        return {'Not Found': 'Post not found'}, 404
 
     if form.validate_on_submit():
         data = form.data
