@@ -2,7 +2,7 @@ from flask import Blueprint, session, jsonify, render_template, redirect, reques
 from flask_login import login_required, current_user
 from app.forms.create_edit_post import CreatePostForm, EditPostForm
 from app.forms.comment_forms import CreateCommentForm
-from app.models import db, Follow, Post, Comment
+from app.models import db, Follow, Post, Comment, User
 from datetime import datetime
 
 
@@ -23,11 +23,20 @@ def get_all_posts():
 @post_routes.route('/')  # feed
 @login_required
 def get_posts():
-    following = Follow.query.filter(
-        Follow.follows_id == current_user.id).order_by(Follow.created_at.desc())
-    users_following = [follow.to_dict_following() for follow in following]
-    posts = Post.query.filter()
-    return {"following": users_following}
+    posts = []
+    all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
+        Follow.user_id == current_user.id).order_by(Post.created_at.desc())
+    dict = [post.feed_to_dict() for post in all_followed_posts]
+    for post in dict:
+        user = User.query.get(post['user_id'])
+        posts.append(user)
+    return {'Posts': dict,  'user': [post.user_content() for post in posts]}
+
+    # following = Follow.query.filter(
+    #     Follow.follows_id == current_user.id).order_by(Follow.created_at.desc())
+    # users_following = [follow.to_dict_following() for follow in following]
+    # posts = Post.query.filter()
+    # return {"following": users_following}
 
     # posts = Post.query.filter(Post.user_id == current_user.id).order_by(
     #     Post.created_at.desc()).all()

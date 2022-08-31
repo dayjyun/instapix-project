@@ -1,6 +1,8 @@
 from .db import db
 from datetime import datetime
 from .comment import Comment
+from .user import *
+from app.models import user
 
 
 class Post(db.Model):
@@ -65,4 +67,21 @@ class Post(db.Model):
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
             "comments": [comments.comment_content() for comments in self.comments]
+        }
+
+    def feed_to_dict(self):
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            'num_likes': self.num_likes(),
+            "num_comments": self.num_comments(),
+            "comments": [comments.comment_content() for comments in self.comments],
+            'username': user.username,
+
+            # 'user_id': [user.user_content() for user in self.user]
+
         }
