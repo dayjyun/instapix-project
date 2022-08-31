@@ -42,7 +42,7 @@ def post_details(post_id):
     post = [post.post_details() for post in all_posts]
     if post:
         return {"posts": post}
-        # TODO return [likes], [comments]
+        # TODO return [comments]
     else:
         return {"message": "Post not found"}
 

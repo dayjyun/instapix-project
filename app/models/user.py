@@ -37,8 +37,10 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    # **
     def user_posts(self):
         return Post.query.filter_by(user_id=self.id).all()
+    # **
 
     def following_posts(self):
         return Post.query.join(Follow, Follow.follows_id == self.id).all()
@@ -52,7 +54,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
-            'posts': [post.to_dict() for post in self.user_posts()],
+            'posts': [post.to_dict() for post in self.user_posts()], # **
 
             # num of posts
             # num_posts: count posts

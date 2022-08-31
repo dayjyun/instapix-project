@@ -18,7 +18,6 @@ def users():
 # @login_required
 def user(user_id):
     user = User.query.get(user_id)
-    followers = get_follows_for_user(user_id)
     return user.to_dict()
     # TODO include posts of given user at user_id
 
