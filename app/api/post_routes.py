@@ -28,7 +28,7 @@ def get_all_posts():
 @post_routes.route('/')
 @login_required
 def get_posts():
-    following = get_follows_for_user(current_user.get_id())['Followers']
+    following = get_follows_for_user(current_user.get_id())["My Followers"]
 
     return {"following": following}
     # TODO Return only id, username, profile_image, [post details], [likes], [comments]
