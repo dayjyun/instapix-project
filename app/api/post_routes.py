@@ -1,13 +1,8 @@
-from crypt import methods
 from flask import Blueprint, session, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
-from app.api.auth_routes import authenticate
-from app.api.follow_routes import get_follows_for_user, get_users_follows
-from app.api.like_routes import get_likes_by_post
-from app.forms.create_post import CreatePostForm
+from app.forms.create_edit_post import CreatePostForm, EditPostForm
 from app.forms.comment_forms import CreateCommentForm, EditCommentForm
-from app.models import db, User, Follow, Post, Like, Comment, follow
-from app.seeds import follows
+from app.models import db, User, Follow, Post, Like, Comment
 
 
 post_routes = Blueprint('posts', __name__, url_prefix='/posts')
@@ -42,9 +37,9 @@ def post_details(post_id):
     post = [post.post_details() for post in all_posts]
     if post:
         return {"posts": post}
-        # TODO return [comments]
     else:
         return {"message": "Post not found"}
+        # TODO properly return error
 
 
 #** Create a post **#
@@ -67,8 +62,6 @@ def create_post():
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 # get all comments on a specific post, using post_id
-
-
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
@@ -115,15 +108,28 @@ def create_comment(post_id):
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
-    form = CreatePostForm()
-    if form.validate_on_submit():
-        data = form.data
-        post = Post.query.get(post_id)
-        post.caption = data['caption']
-        post.post_url = data['post_url']
-        db.session.commit()
-        return redirect('/api/posts')
-    return render_template('edit_post.html', form=form)
+    form = EditPostForm()
+    post = Post.query.get(post_id)
+    post_caption = post.caption
+    if post:
+        if post.user_id == current_user.id:
+            if form.validate_on_submit():
+                data = form.data
+                post_info = Post(
+                    user_id=current_user.id,
+                    caption=data['caption'],
+                    # post_url=Post.post_url,
+                    # return new updated_at time
+                )
+                db.session.add(post_info)
+                db.session.commit()
+                return post_info.to_dict()
+                # TODO not rendering post update
+            return render_template('edit_post.html', form=form, post_id=post_id, post_caption=post_caption)
+        else:
+            return {"message": "You cannot edit this post"}
+    else:
+        return {"message": "Post not found"}
 
 
 #** Delete a post **#
