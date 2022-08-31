@@ -18,7 +18,10 @@ def users():
 # @login_required
 def user(user_id):
     user = User.query.get(user_id)
-    return user.to_dict()
+    if user:
+        return user.to_dict()
+    else:
+        return {"Not Found": "User not found"}, 404
     # TODO include num_posts, num_followers, num_following of given user at user_id
 
 
@@ -29,16 +32,11 @@ def get_me():
     c_user = User.query.get(current_user.get_id())
     return c_user.to_dict()
 
-
-# # Get current user's posts
+#** Get all posts from the current user **#
 @user_routes.route('/<int:user_id>/posts')
-def get_user_posts(user_id):
-    user_posts = Post.query.filter(Post.user_id == user_id).order_by(Post.created_at.desc())
-    posts = [post.to_dict() for post in user_posts]
-    return {"posts": posts}
-    # return render template 'following_feed.html'
-    # TODO What if user is not found?
-    # return {"Not Found": "User not found"}, 404
-
-
-# Get a user's following list
+@login_required
+def my_posts(user_id):
+    # c_user = User.query.get(current_user.get_id())
+    posts = Post.query.filter(Post.user_id == user_id)
+    post = [p.to_dict() for p in posts]
+    return {"Post": post}
