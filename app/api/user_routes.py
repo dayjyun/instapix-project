@@ -42,6 +42,6 @@ def get_me():
 def get_user(user_id):
     user = User.query.get(user_id)
     if user:
-        return user.to_dict()
+        return user.posts_to_dict()
     else:
         return {"Not Found": "User not found"}, 404

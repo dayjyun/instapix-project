@@ -54,7 +54,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
-            'posts': [post.to_dict() for post in self.user_posts()], # **
+            'posts': [post.to_dict() for post in self.user_posts()],  # **
 
             # num of posts
             # num_posts: count posts
@@ -75,4 +75,9 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
+        }
+
+    def posts_to_dict(self):
+        return {
+            'posts': [post.to_dict() for post in self.user_posts()],
         }
