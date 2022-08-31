@@ -2,17 +2,17 @@ const GET_LIKE = 'likes/getLike';
 const CREATE_LIKE = 'likes/createLike'
 const DELETE_LIKE = 'likes/deleteLike';
 
-const getLike = like => ({
+export const getLike = like => ({
     type: GET_LIKE,
     payload: like
 })
 
-const deleteLike = (likeId) => ({
+export const deleteLike = (likeId) => ({
     type: DELETE_LIKE,
     payload: likeId
 })
 
-const createLike = (like) => ({
+export const createLike = (like) => ({
     type: CREATE_LIKE,
     payload: like
 })
