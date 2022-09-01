@@ -1,0 +1,68 @@
+.nav-bar-container {
+    display: flex;
+    width: 100vw;
+    height: 6vh;
+    margin-top: none;
+    border-bottom: 1px solid lightgray;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.nav-buttons-right {
+    display: flex;
+    align-items: center;
+    height: .5em
+}
+
+.nav-buttons-left {
+    display: flex;
+    align-items: center;
+    padding-top: .5%;
+    /* justify-content: center; */
+}
+
+.nav-buttons-right button {
+    background-color: transparent;
+    border: none;
+    padding: .8em;
+}
+
+.fa-house {
+    font-size: 1.3em;
+}
+
+.fa-square-plus {
+    font-size: 1.5em;
+    padding: .8em
+}
+
+.fa-compass {
+    font-size: 1.5em
+}
+
+.fa-circle-user {
+    font-size: 1.5em;
+}
+
+.fa-angle-down {
+    background-color: transparent;
+    border: none;
+}
+
+@font-face {
+    font-family: billabong;
+    src: url(FontsFree-Net-Billabong.ttf);
+}
+
+.instapix-button {
+    font-family: 'billabong';
+    background-color: transparent;
+    border: none;
+    font-size: 2.3em;
+    /* font-weight: 100; */
+}
+
+.new-post-button {
+    padding: .8em
+}

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -60,8 +60,8 @@ function App() {
         <Route path='/comments/:commentId/edit' exact={true}>
           <EditComment />
         </Route>
-        <Route>
-          <Following path='/users/:userId/following' exact={true} />
+        <Route path='/users/:userId/following' exact={true}>
+          <Following />
         </Route>
       </Switch>
     </BrowserRouter>

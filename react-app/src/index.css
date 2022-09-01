@@ -1,1 +1,13 @@
 /* TODO Add site wide styles */
+.page {
+    background-color: whitesmoke;
+}
+
+#root {
+    margin-top: -.8%;
+    margin-left: -.75%
+}
+
+button:hover {
+    cursor: pointer;
+}
