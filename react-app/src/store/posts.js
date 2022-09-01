@@ -30,7 +30,7 @@ const followingPosts = (list) => {
     type: GET_FOLLOWING_POSTS,
     list,
   }
-}
+};
 
 export const getFollowingPosts = () => async (dispatch) => {
   const allFollowingPosts = await fetch('/api/posts');
@@ -39,7 +39,7 @@ export const getFollowingPosts = () => async (dispatch) => {
     const resAllPosts = await allFollowingPosts.json();
     dispatch(followingPosts(resAllPosts.Posts))
   }
-}
+};
 
 
 // Get post
@@ -48,7 +48,7 @@ const getCurrentPost = (post) => {
     type: GET_POST,
     post,
   }
-}
+};
 
 export const getPost= (postId) => async (dispatch) => {
   const post = await fetch(`/api/posts/${postId}`);
@@ -57,7 +57,7 @@ export const getPost= (postId) => async (dispatch) => {
     const resPost = await post.json()
     dispatch(getCurrentPost(resPost))
   }
-}
+};
 
 
 // Create post
@@ -66,7 +66,7 @@ const newPost = (post) => {
     type: CREATE_POST,
     post,
   }
-}
+};
 
 export const createPost = (postDetails) => async (dispatch) => {
   const { post_url, caption } = postDetails;
@@ -85,21 +85,50 @@ export const createPost = (postDetails) => async (dispatch) => {
 
   const resPost = await post.json()
   dispatch(newPost(resPost))
-}
+};
 
 
 // Edit post
-const updatePst = (post) => {
+const updatePost = (post) => {
   return {
     type: EDIT_POST,
-    post
-  }
-}
+    post,
+  };
+};
 
 export const editPost = (post) => async (dispatch) => {
-  const post = await fetch(`/api`)
-}
+  const post = await fetch(`/api/posts/${post.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(post)
+  })
 
+  if (post.ok) {
+    const resPost = post.json()
+    dispatch(updatePost(post))
+  }
+};
+
+
+// Delete post
+const removePost = (post) => {
+  return {
+    type: DELETE_POST,
+    post
+  }
+};
+
+export const deletePost = (postId) => async (dispatch) => {
+  const post = await fetch(`/api/posts/${postId}`, {
+    method: "DELETE"
+  })
+
+  if (post.ok) {
+    dispatch(removePost(post))
+  }
+};
 
 let initialState = {};
 
