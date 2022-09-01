@@ -36,12 +36,12 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route>
-          <Followers path='/users/:userId/followers' exact={true} />
-        </Route>
 
-        <Route>
-          <Following path='/users/:userId/follows' exact={true} />
+        <Route path='/users/:userId/following' exact={true}>
+          <Following />
+        </Route>
+        <Route path='/users/:userId/followers' exact={true}>
+          <Followers />
         </Route>
 
 
@@ -55,6 +55,8 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+
+
     </BrowserRouter>
   );
 }
