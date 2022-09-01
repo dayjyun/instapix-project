@@ -20,7 +20,7 @@ def get_all_posts():
 
 
 #** Get all posts from the following feed **#
-@post_routes.route('/')  # feed
+@post_routes.route('/')
 @login_required
 def get_posts():
     posts = []
