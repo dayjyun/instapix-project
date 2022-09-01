@@ -1,33 +1,20 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-<<<<<<< HEAD
-<<<<<<< HEAD
 import likesReducer from './likes';
-import hashtagReducer from './hashtags'
-
-const rootReducer = combineReducers({
-  session,
-  likes: likesReducer,
-  hashtags: hashtagReducer
-=======
-import comments from './comments'
-import posts from './posts'
-
-const rootReducer = combineReducers({
-  session,
-  comments,
-  posts
->>>>>>> jan-store
-=======
+import hashtagReducer from './hashtags';
+import comments from './comments';
+import posts from './posts';
 import followReducer from './follow';
 
 const rootReducer = combineReducers({
   session,
+  comments,
+  posts,
+  likes: likesReducer,
+  hashtags: hashtagReducer,
   follow: followReducer
->>>>>>> skimby-store
 });
-
 
 let enhancer;
 
