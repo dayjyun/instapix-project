@@ -26,7 +26,13 @@ def get_posts():
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())
-    all_post = [post.feed_to_dict() for post in all_followed_posts]
+    all_my_posts = Post.query.filter(
+        Post.user_id == current_user.id).order_by(Post.created_at.desc())
+
+    followed_posts = [post.feed_to_dict() for post in all_followed_posts]
+    my_posts = [post.feed_to_dict() for post in all_my_posts]
+
+    all_post = followed_posts + my_posts
 
     for post in all_post:
         user = User.query.get(post['user_id'])
@@ -38,7 +44,7 @@ def get_posts():
         all_post[i]['User'] = users[i]
 
     return {'Posts': all_post}
-    # TODO include our posts
+
 
 #** Get post by id **#
 @post_routes.route('/<int:post_id>')
@@ -72,6 +78,8 @@ def create_post():
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 # get all comments on a specific post, using post_id
+
+
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
@@ -118,6 +126,8 @@ def create_comment(post_id):
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
+
+
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
