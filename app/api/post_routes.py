@@ -1,4 +1,4 @@
-from flask import Blueprint, session, jsonify, render_template, redirect, request
+from flask import Blueprint, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.forms.create_edit_post import CreatePostForm, EditPostForm
 from app.forms.comment_forms import CreateCommentForm
@@ -75,6 +75,7 @@ def create_post():
         return new_post.to_dict(), 201
     return render_template('create_post.html', form=form)
 
+
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 @post_routes.route('/<int:post_id>/comments')
@@ -89,6 +90,8 @@ def get_post_comments(post_id):
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
     return jsonify(message='Post not found'), 404
+    # TODO should return user_name, profile_picture, user.id
+    # remove bio, first_name, last_name, nums, email
 
 
 # create a comment providing user_id, post_id, and body
@@ -118,14 +121,9 @@ def create_comment(post_id):
         return comment.to_dict()
     # return render_template('create_comment_form.html', form=form)
 
-    # TODO should return user_name, profile_picture, user.id
-    # remove bio, first_name, last_name, nums, email
-
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
-
-
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
