@@ -85,10 +85,3 @@ class User(db.Model, UserMixin):
             'profile_image': self.profile_image,
             "id": self.id,
         }
-
-    def follow_info(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'first_name': self.first_name,
-        }

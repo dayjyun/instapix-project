@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Blueprint, session, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.forms.create_edit_post import CreatePostForm, EditPostForm
@@ -27,13 +26,7 @@ def get_posts():
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())
-    all_my_posts = Post.query.filter(
-        Post.user_id == current_user.id).order_by(Post.created_at.desc())
-
-    followed_posts = [post.feed_to_dict() for post in all_followed_posts]
-    my_posts = [post.feed_to_dict() for post in all_my_posts]
-
-    all_post = followed_posts + my_posts
+    all_post = [post.feed_to_dict() for post in all_followed_posts]
 
     for post in all_post:
         user = User.query.get(post['user_id'])
@@ -45,7 +38,7 @@ def get_posts():
         all_post[i]['User'] = users[i]
 
     return {'Posts': all_post}
-
+    # TODO include our posts
 
 #** Get post by id **#
 @post_routes.route('/<int:post_id>')
@@ -56,7 +49,7 @@ def post_details(post_id):
     if post:
         return {"Post": post}
     else:
-        return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
+        return jsonify({"Not Found": "Post not found"}), 404
 
 
 #** Create a post **#
@@ -78,11 +71,10 @@ def create_post():
 
 # --------------------------- COMMENT ROUTES ------------------------------->
 
-
+# get all comments on a specific post, using post_id
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
-    # added post query for 404 return
     post = Post.query.get(post_id)
 
     if post:
@@ -90,7 +82,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
+    return jsonify({"Not Found": "Post not found"}), 404
 
 
 # create a comment providing user_id, post_id, and body
@@ -105,7 +97,7 @@ def create_comment(post_id):
 
     # check if post exists
     if not post:
-        return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
+        return jsonify({"Not Found": "Post not found"}), 404
 
     if form.validate_on_submit():
         data = form.data
@@ -126,8 +118,6 @@ def create_comment(post_id):
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
-
-
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
@@ -145,9 +135,9 @@ def edit_post(post_id):
                 return post.to_dict()
             return render_template('edit_post.html', form=form, post_id=post_id, post_caption=post_caption)
         else:
-            return jsonify({"Forbidden": "You cannot edit this post", "Status Code": 403}), 403
+            return jsonify({"Forbidden": "You cannot edit this post"}), 403
     else:
-        return jsonify({"Not found": "Post not found", "Status Code": 404}), 404
+        return jsonify({"Not found": "Post not found"}), 404
 
 
 #** Delete a post **#
@@ -161,6 +151,6 @@ def delete_post(post_id):
             db.session.commit()
             return redirect('/api/posts/explorer')
         else:
-            return jsonify({"Forbidden": "You cannot delete this post", "Status Code": 403}), 403
+            return jsonify({"Forbidden": "You cannot delete this post"}), 403
     else:
-        return jsonify({"Not found": "Post not found", "Status Code": 404}), 404
+        return jsonify({"Not found": "Post not found"}), 404

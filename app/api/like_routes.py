@@ -13,9 +13,9 @@ def get_likes_by_post(post_id):
     likes = Like.query.filter(Like.post_id == post_id)
     likes = [like.to_dict() for like in likes]
     if likes:
-        return {'Likes': likes}
+        return {'likes': likes}
     else:
-        return jsonify({'message': 'There are no likes', 'status_code': 404})
+        return jsonify({'message': 'There are no likes', 'status_code': 404}), 404
 
 
 # LIKE A POST
@@ -28,14 +28,14 @@ def like_a_post(post_id):
                                Like.post_id == int(post_id))
     exists = [like.to_dict() for like in exists]
     if exists:
-        return jsonify({'message': 'like already exists'})
+        return jsonify({'message': 'like already exists'}), 409
     else:
         new_like = Like(user_id=curr_user,
                         post_id=post_id
                         )
         db.session.add(new_like)
         db.session.commit()
-        return new_like.to_dict()
+        return new_like.to_dict(), 200
 
 
 # UNLIKE A POST BY POST ID
@@ -51,8 +51,8 @@ def delete_a_like(post_id):
         if exist:
             like.delete()
             db.session.commit()
-            return jsonify({"message": "Successfully deleted", "status_code": "200"})
+            return jsonify({"message": "Successfully deleted", "status_code": "200"}), 200
         else:
-            return jsonify({'message': "Like doesn't exist", 'status_code': '404'})
+            return jsonify({'message': "Like doesn't exist", 'status_code': '404'}), 404
     else:
-        return jsonify({"message": "Post couldn't be found", "status_code": "404"})
+        return jsonify({"message": "Post couldn't be found", "status_code": "404"}), 404

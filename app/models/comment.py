@@ -22,7 +22,7 @@ class Comment(db.Model):
             "body": self.body,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
-            "user": self.users.follow_info()
+            "user": self.users.to_dict()
         }
 
     def comment_content(self):

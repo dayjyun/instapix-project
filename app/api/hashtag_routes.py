@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, jsonify
 from app.models import Hashtag, Post, Post_Hashtag, db
 from flask_login import login_required, current_user
 from app.forms.hashtag_form import HashtagForm
@@ -12,7 +12,7 @@ hashtag_routes = Blueprint('hashtags', __name__)
 def get_all_hash():
     all = Hashtag.query.all()
     all = [hashtag.to_dict() for hashtag in all]
-    return {'Hashtags': all}
+    return jsonify({'Hashtags': all}), 200
 
 
 # GET HASHTAGS FOR A POST
@@ -22,7 +22,7 @@ def tags_for_post(post_id):
     hashtags = Hashtag.query.join('post_hashtags').filter(
         Post_Hashtag.post_id == post_id).all()
     hashtags = [hashtag.to_dict() for hashtag in hashtags]
-    return {'Hashtags': hashtags}
+    return jsonify({'Hashtags': hashtags}), 200
 
 
 # CREATE A HASHTAG FOR A POST
@@ -40,7 +40,7 @@ def new_hashtag(post_id):
             hashtag_id=new_hashtag.id, post_id=post_id)
         db.session.add(new_post_hashtag)
         db.session.commit()
-        return {'hashtag': 'Hashtag successfully created'}
+        return jsonify({'hashtag': 'Hashtag successfully created'}), 200
     return render_template('hashtags.html', form=form, post_id=post_id)
 
 
