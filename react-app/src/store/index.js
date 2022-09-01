@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import likesReducer from './likes';
 import hashtagReducer from './hashtags'
 
@@ -18,6 +19,13 @@ const rootReducer = combineReducers({
   comments,
   posts
 >>>>>>> jan-store
+=======
+import followReducer from './follow';
+
+const rootReducer = combineReducers({
+  session,
+  follow: followReducer
+>>>>>>> skimby-store
 });
 
 

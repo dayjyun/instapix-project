@@ -59,3 +59,10 @@ class User(db.Model, UserMixin):
             # num of following
             # "following": len(get_users_follows(self.id)) + 1
         }
+
+    def follow_info(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'first_name': self.first_name,
+        }

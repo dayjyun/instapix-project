@@ -12,6 +12,7 @@ import TestingComponent from './components/testingstore';
 import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
 import CommentDetails from './components/CommentComponents/CommentDetails';
+import Following from './components/Following/Following'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,6 +59,9 @@ function App() {
         </Route>
         <Route path='/comments/:commentId/edit' exact={true}>
           <EditComment />
+        </Route>
+        <Route>
+          <Following path='/users/:userId/following' exact={true} />
         </Route>
       </Switch>
     </BrowserRouter>
