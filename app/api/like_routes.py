@@ -33,7 +33,6 @@ def like_a_post(post_id):
         new_like = Like(user_id=curr_user,
                         post_id=post_id
                         )
-        print(exists)
         db.session.add(new_like)
         db.session.commit()
         return new_like.to_dict()
