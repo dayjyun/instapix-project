@@ -1,7 +1,8 @@
-# from app.api.comment_routes import get_comment
-# from app.api.like_routes import get_likes_by_post
 from .db import db
 from datetime import datetime
+from .comment import Comment
+from .user import *
+from app.models import user
 
 
 class Post(db.Model):
@@ -22,6 +23,15 @@ class Post(db.Model):
 
     # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')
 
+    def num_comments(self):
+        return len(self.comments)
+
+    def num_likes(self):
+        return len(self.likes)
+
+    def get_comments(self):
+        return Comment.query.filter_by(post_id=self.id).all()
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -30,6 +40,47 @@ class Post(db.Model):
             "post_url": self.post_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            # "likes": len(get_likes_by_post(self.id)) + 1
-            # "comments": get_comment(self.id)
+            'likes': self.num_likes(),
+        }
+
+    # Returns number of comments on a post
+    def to_dict_num_comments(self):
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            'likes': self.num_likes(),
+            "num_comments": self.num_comments(),
+        }
+
+    # returns the contents of a post, the number of likes and comment details
+    def post_details(self):
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            'likes': self.num_likes(),
+            "Comments": [comments.comment_content() for comments in self.comments]
+        }
+
+    def feed_to_dict(self):
+        return {
+            'id': self.id,
+            "user_id": self.user_id,
+            "caption": self.caption,
+            "post_url": self.post_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            'num_likes': self.num_likes(),
+            "num_comments": self.num_comments(),
+            "Comments": [comments.comment_content() for comments in self.comments],
+
+            # 'user_id': [user.user_content() for user in self.user]
+
         }

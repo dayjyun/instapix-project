@@ -1,9 +1,9 @@
-from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from .db import db
 from .post import Post
-# from app.api.follow_routes import *
+from .follow import Follow
 
 
 class User(db.Model, UserMixin):
@@ -39,6 +39,15 @@ class User(db.Model, UserMixin):
     def user_posts(self):
         return Post.query.filter_by(user_id=self.id).all()
 
+    def following_posts(self):
+        return Post.query.join(Follow, Follow.follows_id == self.id).all()
+
+    def get_follows_for_user(self):
+        return Follow.query.filter_by(user_id=self.id).all()
+
+    def get_users_follows(self):
+        return Follow.query.filter_by(follows_id=self.id).all()
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -48,14 +57,31 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
-            'posts': [post.to_dict() for post in self.user_posts()],
+            'posts': [post.to_dict_num_comments() for post in self.user_posts()],
+            'num_followers': len(self.get_users_follows()),
+            'num_following': len(self.get_follows_for_user()),
+            'num_posts': len(self.user_posts()),
+        }
 
-            # num of posts
-            # num_posts: count posts
+    def all_users_to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'bio': self.bio,
+            'profile_image': self.profile_image,
+        }
 
-            # num of followers
-            # 'followers': len(get_follows_for_user(self.id))  + 1
+    def posts_to_dict(self):
+        return {
+            'Posts': [post.to_dict() for post in self.user_posts()],
+        }
 
-            # num of following
-            # "following": len(get_users_follows(self.id)) + 1
+    def user_content(self):
+        return {
+            'username': self.username,
+            'profile_image': self.profile_image,
+            "id": self.id,
         }
