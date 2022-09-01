@@ -49,7 +49,7 @@ def post_details(post_id):
     if post:
         return {"Post": post}
     else:
-        return jsonify({"Not Found": "Post not found"}), 404
+        return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
 
 
 #** Create a post **#
@@ -82,7 +82,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return jsonify({"Not Found": "Post not found"}), 404
+    return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
 
 
 # create a comment providing user_id, post_id, and body
@@ -97,7 +97,7 @@ def create_comment(post_id):
 
     # check if post exists
     if not post:
-        return jsonify({"Not Found": "Post not found"}), 404
+        return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
 
     if form.validate_on_submit():
         data = form.data
@@ -135,9 +135,9 @@ def edit_post(post_id):
                 return post.to_dict()
             return render_template('edit_post.html', form=form, post_id=post_id, post_caption=post_caption)
         else:
-            return jsonify({"Forbidden": "You cannot edit this post"}), 403
+            return jsonify({"Forbidden": "You cannot edit this post", "Status Code": 403}), 403
     else:
-        return jsonify({"Not found": "Post not found"}), 404
+        return jsonify({"Not found": "Post not found", "Status Code": 404}), 404
 
 
 #** Delete a post **#
@@ -151,6 +151,6 @@ def delete_post(post_id):
             db.session.commit()
             return redirect('/api/posts/explorer')
         else:
-            return jsonify({"Forbidden": "You cannot delete this post"}), 403
+            return jsonify({"Forbidden": "You cannot delete this post", "Status Code": 403}), 403
     else:
-        return jsonify({"Not found": "Post not found"}), 404
+        return jsonify({"Not found": "Post not found", "Status Code": 404}), 404
