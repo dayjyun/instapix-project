@@ -18,7 +18,7 @@ export const loadAllPosts = () => async (dispatch) => {
 
 let initialState = {};
 
-export default function reducer(state = initialState, action) {
+export default function postsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_ALL_POSTS:
       initialState = { ...state };
