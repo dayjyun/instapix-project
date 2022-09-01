@@ -40,12 +40,13 @@ def get_posts():
     return {'Posts': all_post}
 
 #** Get post by id **#
+@post_routes.route('/<int:post_id>')
 @login_required
 def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
     post = [post.post_details() for post in all_posts]
     if post:
-        return {"posts": post}
+        return {"Post": post}
     else:
         return jsonify({"Not Found": "Post not found"}), 404
 
@@ -110,6 +111,10 @@ def create_comment(post_id):
         print(comment)
         return comment.to_dict()
     # return render_template('create_comment_form.html', form=form)
+
+    # TODO
+    # should return user_name, profile_picture, user.id
+    # remove bio, first_name, last_name, nums, email
 
 # --------------------------- COMMENT ROUTES ------------------------------->
 

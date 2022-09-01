@@ -34,3 +34,4 @@ class Comment(db.Model):
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
         }
+
