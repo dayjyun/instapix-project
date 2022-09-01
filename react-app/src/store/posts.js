@@ -36,8 +36,8 @@ export const getFollowingPosts = () => async (dispatch) => {
   const allFollowingPosts = await fetch('/api/posts');
 
   if (allFollowingPosts.ok) {
-    const res = await allFollowingPosts.json();
-    dispatch(followingPosts(res.Posts))
+    const resAllPosts = await allFollowingPosts.json();
+    dispatch(followingPosts(resAllPosts.Posts))
   }
 }
 
@@ -54,9 +54,50 @@ export const getPost= (postId) => async (dispatch) => {
   const post = await fetch(`/api/posts/${postId}`);
 
   if (post.ok) {
-    const res = await post.json()
-    dispatch(getCurrentPost(res))
+    const resPost = await post.json()
+    dispatch(getCurrentPost(resPost))
   }
+}
+
+
+// Create post
+const newPost = (post) => {
+  return {
+    type: CREATE_POST,
+    post,
+  }
+}
+
+export const createPost = (postDetails) => async (dispatch) => {
+  const { post_url, caption } = postDetails;
+  const formData = new FormData();
+
+  formData.append("post_url", post_url)
+  if (caption) formData.append('caption', caption)
+
+  const post = await fetch(`/api/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    body: formData,
+  })
+
+  const resPost = await post.json()
+  dispatch(newPost(resPost))
+}
+
+
+// Edit post
+const updatePst = (post) => {
+  return {
+    type: EDIT_POST,
+    post
+  }
+}
+
+export const editPost = (post) => async (dispatch) => {
+  const post = await fetch(`/api`)
 }
 
 
