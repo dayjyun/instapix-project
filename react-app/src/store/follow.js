@@ -20,6 +20,11 @@ export const getFollowingBackend = (userId) => async (dispatch) => {
     dispatch(getFollowing(parsedRes))
 }
 
+// get all user's follows
+export const getFollowsBackend = (userId) => async (dispatch) => {
+    const response = await dispatch()
+}
+
 
 //INITIAL STATE
 const initialState = {}
