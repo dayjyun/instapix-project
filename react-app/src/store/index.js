@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   comments,
   posts,
   follow: followReducer
-}
+})
 
 
 let enhancer;
