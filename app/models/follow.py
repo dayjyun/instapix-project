@@ -1,6 +1,6 @@
 from .db import db
 from datetime import datetime
-from app.models import User
+from .user import User
 
 class Follow(db.Model):
     __tablename__ = 'follows'
