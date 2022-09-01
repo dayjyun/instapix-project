@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InstaPix</title>
+  </head>
+  <body>
+    <h1>Edit Post {{ post_id }}</h1>
+    <h2>Current caption: {{post_caption}}</h2>
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      <p>{{ form.caption(placeholder="Edit your caption...") }}</p>
+      <!-- TODO placeholder should be h1 value -->
+      <p>{{ form.submit }}</p>
+    </form>
+  </body>
+</html>

@@ -12,6 +12,7 @@ class Follow(db.Model):
 
     users = db.relationship('User', back_populates='follows')
 
+    # posts = db.relationship('Post', back_populates='follows')
     # follows = db.relationship('User', back_populates='follows')
     # followed_by = db.relationship('User', back_populates='follows')
 
@@ -22,5 +23,15 @@ class Follow(db.Model):
             'follows_id': self.follows_id
         }
 
+    # TODO Return the ID, username, profile image, and posts from users that the current user is following *
+
+    def to_dict_following(self):
+        return {
+            # 'id': self.id,
+            'user_id': self.user_id,
+            'username': self.users.username,
+            'profile_image': self.users.profile_image,
+            'Posts': [post.to_dict() for post in self.users.following_posts()],
+        }
 
 # users_table = db.session.query(Follow, User).join(User).all()
