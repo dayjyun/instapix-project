@@ -7,12 +7,13 @@
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
+    z-index: -1;
 }
 
 .nav-buttons-right {
     display: flex;
     align-items: center;
-    height: .5em
+    height: 6vh;
 }
 
 .nav-buttons-left {
@@ -46,9 +47,13 @@
 }
 
 .fa-angle-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
     border: none;
 }
+
 
 @font-face {
     font-family: billabong;
@@ -63,6 +68,24 @@
     /* font-weight: 100; */
 }
 
-.new-post-button {
-    padding: .8em
+.arrow-dropdown {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    width: 7vw;
+    height: 15vh;
+    margin-top: 6em;
+    margin-left: -2.5em;
+    border: 1px;
+}
+
+.arrow-dropdown-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 1em 1em;
+}
+
+.arrow-dropdown-list button {
+    background-color: transparent;
+    border: none;
 }
