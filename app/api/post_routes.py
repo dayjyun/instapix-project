@@ -77,12 +77,10 @@ def create_post():
 
 # --------------------------- COMMENT ROUTES ------------------------------->
 
-# get all comments on a specific post, using post_id
-
-
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
+    # added post query for 404 return
     post = Post.query.get(post_id)
 
     if post:
@@ -90,7 +88,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
+    return jsonify(message='Post not found'), 404
 
 
 # create a comment providing user_id, post_id, and body
