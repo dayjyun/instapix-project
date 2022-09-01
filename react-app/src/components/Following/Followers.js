@@ -10,7 +10,6 @@ const Followers = () => {
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
-    // console.log(follows)
     useEffect(() => {
         if (user) {
             dispatch(getFollowersBackend(user?.id))

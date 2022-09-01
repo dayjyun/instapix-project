@@ -1,7 +1,7 @@
 //TYPES
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
-
+const FOLLOW = 'users/FOLLOW'
 
 //ACTIONS
 export const getFollowing = (follows) => {
@@ -18,6 +18,11 @@ export const getFollowers = (follows) => {
     }
 }
 
+// export const postFollow = (follow) => {
+//     return{
+//         type: follow
+//     }
+// }
 //THUNKS
 
 //GET: all user's following
@@ -34,6 +39,13 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
     dispatch(getFollowers(parsedRes))
 }
 
+//POST: a follow || do i need another action or reducer? I just posted and the get thunks should update it right?
+export const postFollowBackend = (userId) => async (dispatch) => {
+    const response = fetch(`/users/${userId}/post`)
+    const parsedRes = response.json();
+    dispatch(postFollow(parsedRes));
+    return parsedRes;
+}
 
 //INITIAL STATE
 const initialState = {}
