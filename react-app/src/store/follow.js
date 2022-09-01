@@ -30,8 +30,8 @@ const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_FOLLOWING:
             const getFollowingState = {}
-            action.payload.My_Followers.forEach(follow => {
-                getFollowingState[follow.id] = follow
+            action.payload.Followers.forEach(follow => {
+                getFollowingState[follow.follow.id] = follow
             })
 
             return getFollowingState;

@@ -13,7 +13,6 @@ const Following = () => {
     const follows = Object.values(useSelector(state => state.follow))
 
     console.log(follows)
-    console.log(user)
 
     useEffect(() => {
         dispatch(getFollowingBackend(user?.id))
@@ -27,8 +26,8 @@ const Following = () => {
                 follows.map((follow, index) => {
                     return (
                         <div className='test' key={index}>
-                            <p>{follow.Follower_Info[0].username}</p>
-                            <p>{follow.Follower_Info[0].first_name}</p>
+                            <p>{follow.follower_info.username}</p>
+                            <p>{follow.follower_info.first_name}</p>
                         </div>
                     )
                 }))}

@@ -16,13 +16,11 @@ def get_follows_for_user(user_id):
     formatted_data = []
     for follow in follows:
         user_info = User.query.filter(follow.user_id == User.id).first()
-        data ={"follow": follow.to_dict_followers(), "follower_info": user_info.follow_info()}
-
+        data ={"follow": follow.to_dict_follows(), "follower_info": user_info.follow_info()}
         formatted_data.append(data)
 
     if user:
         return {'Followers': [follow for follow in formatted_data]}
-
     else:
         return jsonify(message='User could not be found.', status_code=404)
 
@@ -33,13 +31,21 @@ def get_follows_for_user(user_id):
 @follow_routes.route('/users/<int:user_id>/follows')
 @login_required
 def get_users_follows(user_id):
+
     user = User.query.get(user_id)
     follows = Follow.query.filter(Follow.user_id == user_id).all()
 
+    formatted_data = []
+    for follow in follows:
+        user_info = User.query.filter(follow.follows_id == User.id).first()
+        data ={"follow": follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+        formatted_data.append(data)
+
     if user:
-        return {'I_Follow': [follow.to_dict_follows() for follow in follows]}
+        return {'Followers': [follow for follow in formatted_data]}
     else:
-        return jsonify(message='User could not be found.', status_code=404), 404
+        return jsonify(message='User could not be found.', status_code=404)
+
 
 
 
