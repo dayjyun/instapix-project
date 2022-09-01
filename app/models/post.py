@@ -53,7 +53,7 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            "comments": self.num_comments(),
+            "num_comments": self.num_comments(),
         }
 
     # returns the contents of a post, the number of likes and comment details
@@ -66,7 +66,7 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            "comments": [comments.comment_content() for comments in self.comments]
+            "Comments": [comments.comment_content() for comments in self.comments]
         }
 
     def feed_to_dict(self):
@@ -79,7 +79,7 @@ class Post(db.Model):
             "updated_at": self.updated_at,
             'num_likes': self.num_likes(),
             "num_comments": self.num_comments(),
-            "comments": [comments.comment_content() for comments in self.comments],
+            "Comments": [comments.comment_content() for comments in self.comments],
 
             # 'user_id': [user.user_content() for user in self.user]
 
