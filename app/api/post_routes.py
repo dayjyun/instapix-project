@@ -75,7 +75,6 @@ def create_post():
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
-    # added post query for 404 return
     post = Post.query.get(post_id)
 
     if post:
@@ -113,8 +112,7 @@ def create_comment(post_id):
         return comment.to_dict()
     # return render_template('create_comment_form.html', form=form)
 
-    # TODO
-    # should return user_name, profile_picture, user.id
+    # TODO should return user_name, profile_picture, user.id
     # remove bio, first_name, last_name, nums, email
 
 # --------------------------- COMMENT ROUTES ------------------------------->

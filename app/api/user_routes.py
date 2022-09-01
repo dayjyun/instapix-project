@@ -22,7 +22,7 @@ def user(user_id):
     if user:
         return user.to_dict()
     else:
-        return {"Not Found": "User not found"}, 404
+        return jsonify({"Not Found": "User not found"}), 404
 
 
 #** Get all posts from a specific user **#
@@ -33,7 +33,7 @@ def get_user(user_id):
     if user:
         return user.posts_to_dict()
     else:
-        return {"Not Found": "User not found"}, 404
+        return jsonify({"Not Found": "User not found"}), 404
 
 
 #** Get the Current User (me)

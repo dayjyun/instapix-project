@@ -57,13 +57,12 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'bio': self.bio,
             'profile_image': self.profile_image,
-            'posts': [post.to_dict() for post in self.user_posts()],
+            'posts': [post.to_dict_num_comments() for post in self.user_posts()],
             'num_followers': len(self.get_users_follows()),
             'num_following': len(self.get_follows_for_user()),
             'num_posts': len(self.user_posts()),
         }
 
-    # user_routes
     def all_users_to_dict(self):
         return {
             'id': self.id,
@@ -75,7 +74,6 @@ class User(db.Model, UserMixin):
             'profile_image': self.profile_image,
         }
 
-    # user_routes
     def posts_to_dict(self):
         return {
             'Posts': [post.to_dict() for post in self.user_posts()],
