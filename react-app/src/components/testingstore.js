@@ -18,7 +18,7 @@ const TestingComponent = () => {
 
     const handleOnClick = (e) => {
         e.preventDefault()
-        dispatch(likeActions.like(1))
+        dispatch(likeActions.unlike(2))
     }
 
     return (

@@ -43,13 +43,13 @@ export const like = postId => async dispatch => {
 }
 
 export const unlike = postId => async dispatch => {
-    const res = await fetch(`/api/posts/${postId}`, {
+    const res = await fetch(`/api/posts/${postId}/likes`, {
         method: 'DELETE'
     })
 
     if (res.ok) {
         await res.json()
-        dispatch(deleteLike(fetchLike(postId).id))
+        dispatch(deleteLike(fetchLike(postId).Likes))
         return res
     }
 }
