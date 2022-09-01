@@ -37,6 +37,7 @@ const TestingComponent = () => {
                     </div>
                 ))}
             </div>
+            <button onClick={handleOnClick}>LIKE</button>
         </div>
     )
 }
