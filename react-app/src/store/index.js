@@ -5,6 +5,9 @@ import likesReducer from './likes';
 import hashtagReducer from './hashtags';
 import comments from './comments';
 import posts from './posts';
+import hashtagReducer from './hashtags'
+import posts from './posts'
+import comments from './comments'
 import followReducer from './follow';
 
 const rootReducer = combineReducers({
@@ -14,7 +17,7 @@ const rootReducer = combineReducers({
   likes: likesReducer,
   hashtags: hashtagReducer,
   follow: followReducer
-});
+})
 
 let enhancer;
 

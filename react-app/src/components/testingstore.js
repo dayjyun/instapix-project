@@ -15,6 +15,12 @@ const TestingComponent = () => {
         dispatch(hashtagActions.fetchAllHashtags())
         dispatch(likeActions.fetchLike(1))
     }, [dispatch])
+
+    const handleOnClick = (e) => {
+        e.preventDefault()
+        dispatch(likeActions.like(1))
+    }
+
     return (
         <div>
             <div>
@@ -37,6 +43,7 @@ const TestingComponent = () => {
                     </div>
                 ))}
             </div>
+            <button onClick={handleOnClick}>LIKE</button>
         </div>
     )
 }
