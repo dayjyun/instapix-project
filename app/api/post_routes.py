@@ -38,6 +38,7 @@ def get_posts():
         all_post[i]['User'] = users[i]
 
     return {'Posts': all_post}
+    # TODO include our posts
 
 #** Get post by id **#
 @post_routes.route('/<int:post_id>')
