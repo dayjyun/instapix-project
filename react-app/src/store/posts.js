@@ -50,6 +50,15 @@ const getCurrentPost = (post) => {
   }
 }
 
+export const getPost= (postId) => async (dispatch) => {
+  const post = await fetch(`/api/posts/${postId}`);
+
+  if (post.ok) {
+    const res = await post.json()
+    dispatch(getCurrentPost(res))
+  }
+}
+
 
 let initialState = {};
 
