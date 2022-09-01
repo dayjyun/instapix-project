@@ -14,7 +14,7 @@ const CommentDetails = () => {
 
     useEffect(() => {
         dispatch(commentActions.getComment(commentId))
-    }, [dispatch])
+    }, [dispatch, commentId])
 
 
     const handleDeleteBtn = (commentId) => {

@@ -14,7 +14,7 @@ const PostsComments = () => {
     useEffect(() => {
         dispatch(postActions.loadAllPosts())
         dispatch(commentActions.loadPostComments(postId))
-    }, [dispatch])
+    }, [dispatch, postId])
 
     let commentTitle;
 

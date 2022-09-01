@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as commentActions from '../../../store/comments';
 
 const CreateComment = () => {
@@ -8,7 +8,6 @@ const CreateComment = () => {
     const [body, setBody] = useState('');
 
 
-    const history = useHistory();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {

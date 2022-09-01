@@ -1,4 +1,5 @@
 from crypt import methods
+import json
 from flask import Blueprint, session, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
@@ -79,7 +80,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return {'Not Found': 'Post not found'}, 404
+    return jsonify(message='Post not found'), 404
 
 
 #create a comment providing user_id, post_id, and body
@@ -94,7 +95,7 @@ def create_comment(post_id):
 
     #check if post exists
     if not post:
-        return {'Not Found': 'Post not found'}, 404
+        return jsonify(message='Post not found'), 404
 
     if form.validate_on_submit():
         data = form.data

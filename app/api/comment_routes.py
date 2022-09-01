@@ -9,15 +9,13 @@ from ..forms.comment_forms import CreateCommentForm, EditCommentForm
 comment_routes = Blueprint('comments', __name__)
 
 # get a single comment using comment id
-
-
 @comment_routes.route('/<int:comment_id>')
 @login_required
 def get_comment(comment_id):
     comment = Comment.query.get(comment_id)
     if comment:
         return comment.to_dict()
-    return {'Not Found': 'Comment not found'}, 404
+    return jsonify(message='Comment not found', status_code=404), 404
 
 
 # edit a comment using comment_id, by providing a body and updating update_at
@@ -25,44 +23,31 @@ def get_comment(comment_id):
 @login_required
 def edit_comment(comment_id):
 
-    body = request.json
-
     form = EditCommentForm()
-    data = request.json
-    # print('THIS>>>>>>>>>>>>>>>>>>>>>>>', data)
-
-    # print(body)
-    # form = EditCommentForm()
 
     # # without this line, will cause SyntaxError -- not valid JSON
-    # form["csrf_token"].data = request.cookies["csrf_token"]
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     comment = Comment.query.get(comment_id)
 
     # # check if comment exists
     if not comment:
-        return {'Not Found': 'Comment not found'}, 404
+        return jsonify(message='Comment not found', status_code=404), 404
 
     # # check if user is authorized
     if current_user.id != comment.user_id:
-        return {'message': 'Not Authorized'}, 401
+        return jsonify(message='Not authorized', status_code=401), 401
 
-    # # edit comment
-    comment.body = data['body']
-    comment.updated_at = datetime.now()
-    # db.session.add(comment)
-    db.session.commit()
-    return redirect(f'/comments/{comment_id}'), 201
-    # if form.validate_on_submit():
-    #     data = form.data
-    #     comment.body = data['body']
-    #     comment.updated_at = datetime.now()
+    if form.validate_on_submit():
+        data = form.data
+        print(data)
+        comment.body = data['body']
+        comment.updated_at = datetime.now()
 
-    #     db.session.add(comment)
-    #     db.session.commit()
+        db.session.add(comment)
+        db.session.commit()
 
-    #     return comment.to_dict()
-    # return render_template('edit_comment_form.html', form=form)
+        return comment.to_dict()
 
 
 # delete a comment using comment_id
@@ -73,16 +58,16 @@ def delete_comment(comment_id):
 
     # check if comment exists
     if not comment:
-            return {'Not Found': 'Comment not found'}, 404
+        return jsonify(message='Comment not found', status_code=404), 404
 
     # check if user is authenticated
     if current_user.id != comment.user_id:
-        return {'message': 'Not Authorized'}, 401
+        return jsonify(message='Not authorized', status_code=401), 401
 
     db.session.delete(comment)
     db.session.commit()
 
-    return jsonify(message="Successfully deleted", statusCode=200)
+    return jsonify(message="Successfully deleted", status_code=200), 200
 
 
 # FETCH TEMPLATE

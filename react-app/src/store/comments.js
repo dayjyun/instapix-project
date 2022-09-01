@@ -127,9 +127,10 @@ export default function reducer(state = newState, action) {
             [action.comment.id]: action.comment
         }
      case UPDATE_COMMENT:
+        console.log(action.data);
         return {
             ...state,
-            [action.data.comment.id]: action.data.comment
+            [action.data.id]: action.data
         }
     case CREATE_COMMENT:
         return {
