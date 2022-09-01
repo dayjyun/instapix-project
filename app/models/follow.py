@@ -1,5 +1,6 @@
 from .db import db
 from datetime import datetime
+# from .user import User
 
 
 class Follow(db.Model):
@@ -15,6 +16,14 @@ class Follow(db.Model):
     # posts = db.relationship('Post', back_populates='follows')
     # follows = db.relationship('User', back_populates='follows')
     # followed_by = db.relationship('User', back_populates='follows')
+    # def all_followers(self):
+    #     return User.query.filter(User.id==self.user_id).all()
+
+    # def all_follows(self):
+    #     return User.query.filter(User.id==self.follows_id).all()
+
+    # def all_followers(self):
+    # return User.query.filter(User.id == self.id).all()
 
     def to_dict(self):
         return {
@@ -23,7 +32,22 @@ class Follow(db.Model):
             'follows_id': self.follows_id
         }
 
+    # def to_dict_followers(self):
+    #     return {
+    #         'id': self.id,
+    #         'user_id': self.user_id,
+    #         'follows_id': self.follows_id,
+    #         'Follower_Info': [user.follow_info() for user in self.all_followers()]
+    #     }
+    # def to_dict_follows(self):
+    #     return {
+    #         'id': self.id,
+    #         'user_id': self.user_id,
+    #         'follows_id': self.follows_id,
+    #         'Follower_Info': [user.follow_info() for user in self.all_follows()]
+
     # TODO Return the ID, username, profile image, and posts from users that the current user is following *
+        # }
 
     def to_dict_following(self):
         return {
