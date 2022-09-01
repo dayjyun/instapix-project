@@ -130,6 +130,7 @@ export const deletePost = (postId) => async (dispatch) => {
   }
 };
 
+
 let initialState = {};
 
 export default function postsReducer(state = initialState, action) {
@@ -140,6 +141,36 @@ export default function postsReducer(state = initialState, action) {
         initialState[post.id] = post;
       });
       return initialState;
+
+    case GET_FOLLOWING_POSTS:
+      initialState = { ...state }
+      action.list.posts.forEach(post => {
+        initialState[post.id] = post
+      })
+
+      case GET_POST:
+        return {
+          ...state,
+          [action.post.id]: action.post
+        };
+
+      case CREATE_POST:
+        return {
+          ...state,
+          [action.post.id]: action.post
+        }
+
+      case EDIT_POST:
+        return {
+          ...state,
+          [action.post.id]: action.post
+        };
+
+      case DELETE_POST:
+        const removedPostState = { ...state }
+        delete removedPostState[action.id]
+        return removedPostState;
+
     default:
       return state;
   }
