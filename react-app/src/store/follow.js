@@ -1,5 +1,6 @@
 //TYPES
 const GET_FOLLOWING = 'users/following'
+const GET_FOLLOWERS = 'users/followers'
 
 
 //ACTIONS
@@ -10,14 +11,27 @@ export const getFollowing = (follows) => {
     }
 }
 
+export const getFollowers = (follows) => {
+    return {
+        type: GET_FOLLOWERS,
+        payload: follows
+    }
+}
 
 //THUNKS
 
-//get all user's following
+//GET: all user's following
 export const getFollowingBackend = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/follows/users/${userId}/followers`);
+    const response = await fetch(`/api/follows/users/${userId}/follows`);
     const parsedRes = await response.json();
     dispatch(getFollowing(parsedRes))
+}
+
+//GET: all user's followers
+export const getFollowersBackend = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/follows/users/${userId}/followers`)
+    const parsedRes = await response.json()
+    dispatch(getFollowers(parsedRes))
 }
 
 
@@ -35,6 +49,14 @@ const followReducer = (state = initialState, action) => {
             })
 
             return getFollowingState;
+
+        case GET_FOLLOWERS:
+            const getFollowersState = {}
+            action.payload.Followers.forEach(follow => {
+                getFollowersState[follow.follow.id] = follow
+            })
+            return getFollowersState;
+
 
         default:
             return state;

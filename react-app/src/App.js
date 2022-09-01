@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Following from './components/Following/Following';
+import Followers from './components/Following/Followers';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,9 +36,15 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+
         <Route>
           <Following path='/users/:userId/follows' exact={true} />
         </Route>
+
+        <Route>
+          <Followers path='/users/:userId/followers' exact={true} />
+        </Route>
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
