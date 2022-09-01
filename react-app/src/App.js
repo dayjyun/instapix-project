@@ -36,14 +36,14 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route>
+          <Followers path='/users/:userId/followers' exact={true} />
+        </Route>
 
         <Route>
           <Following path='/users/:userId/follows' exact={true} />
         </Route>
 
-        <Route>
-          <Followers path='/users/:userId/followers' exact={true} />
-        </Route>
 
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />

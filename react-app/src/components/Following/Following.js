@@ -7,11 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 const Following = () => {
     const dispatch = useDispatch()
 
-
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
-    // console.log(follows)
 
     useEffect(() => {
         if (user) {

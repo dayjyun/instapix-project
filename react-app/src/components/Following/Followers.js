@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Followers = () => {
     const dispatch = useDispatch()
 
-
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
@@ -16,12 +15,12 @@ const Followers = () => {
         if (user) {
             dispatch(getFollowersBackend(user?.id))
         }
-    }, [dispatch, user, follows])
+    }, [dispatch, user])
 
 
     return (
         <>
-            <h1>Following</h1>
+            <h1>Followers</h1>
             {follows && (
                 follows.map((follow, index) => {
                     return (

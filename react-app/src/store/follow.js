@@ -1,6 +1,6 @@
 //TYPES
-const GET_FOLLOWING = 'users/following'
-const GET_FOLLOWERS = 'users/followers'
+const GET_FOLLOWING = 'users/GET_FOLLOWS'
+const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
 
 
 //ACTIONS
