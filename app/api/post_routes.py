@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, session, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.forms.create_edit_post import CreatePostForm, EditPostForm
@@ -82,7 +83,7 @@ def get_post_comments(post_id):
         if comments:
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
-    return jsonify({"Not Found": "Post not found"}), 404
+    return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
 
 
 # create a comment providing user_id, post_id, and body
@@ -97,7 +98,7 @@ def create_comment(post_id):
 
     # check if post exists
     if not post:
-        return jsonify({"Not Found": "Post not found"}), 404
+        return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
 
     if form.validate_on_submit():
         data = form.data
@@ -135,7 +136,7 @@ def edit_post(post_id):
                 return post.to_dict()
             return render_template('edit_post.html', form=form, post_id=post_id, post_caption=post_caption)
         else:
-            return jsonify({"Forbidden": "You cannot edit this post"}), 403
+            return jsonify({"Forbidden": "You cannot edit this post", "Status Code": 403}), 403
     else:
         return jsonify({"Not found": "Post not found"}), 404
 

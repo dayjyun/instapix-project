@@ -13,7 +13,7 @@ def get_likes_by_post(post_id):
     likes = Like.query.filter(Like.post_id == post_id)
     likes = [like.to_dict() for like in likes]
     if likes:
-        return {'likes': likes}
+        return {'Likes': likes}
     else:
         return jsonify({'message': 'There are no likes', 'status_code': 404}), 404
 
