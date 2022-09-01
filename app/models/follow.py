@@ -58,4 +58,21 @@ class Follow(db.Model):
             'Posts': [post.to_dict() for post in self.users.following_posts()],
         }
 
+
+    def to_dict_followers(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id
+        }
+
+    def to_dict_follows(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id,
+        }
+
+    def __repr__(self):
+            return f"<id:{self.id} user_id:{self.user_id} follows_id: {self.follows_id}>"
 # users_table = db.session.query(Follow, User).join(User).all()
