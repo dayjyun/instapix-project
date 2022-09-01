@@ -7,9 +7,9 @@ export const getLike = like => ({
     payload: like
 })
 
-export const deleteLike = (likeId) => ({
+export const deleteLike = (res) => ({
     type: DELETE_LIKE,
-    payload: likeId
+    payload: res
 })
 
 export const createLike = (like) => ({
@@ -48,8 +48,9 @@ export const unlike = postId => async dispatch => {
     })
 
     if (res.ok) {
-        await res.json()
-        dispatch(deleteLike(fetchLike(postId).Likes))
+        const parsedRes = await res.json()
+        console.log(parsedRes)
+        dispatch(deleteLike(parsedRes))
         return res
     }
 }

@@ -9,7 +9,7 @@ const TestingComponent = () => {
     const history = useHistory()
     const hashtags = Object.values(useSelector(state => state.hashtags))
     const likes = Object.values(useSelector(state => state.likes))
-    console.log("THIs >>>>>>>", hashtags)
+
 
     useEffect(() => {
         dispatch(hashtagActions.fetchAllHashtags())
