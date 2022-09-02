@@ -55,7 +55,8 @@ export const getPost= (postId) => async (dispatch) => {
 
   if (post.ok) {
     const resPost = await post.json()
-    dispatch(getCurrentPost(resPost))
+    dispatch(getCurrentPost(resPost));
+    return post
   }
 };
 
@@ -89,27 +90,27 @@ export const createPost = (postDetails) => async (dispatch) => {
 
 
 // Edit post
-const updatePost = (post) => {
-  return {
-    type: EDIT_POST,
-    post,
-  };
-};
+// const updatePost = (post) => {
+//   return {
+//     type: EDIT_POST,
+//     post,
+//   };
+// };
 
-export const editPost = (post) => async (dispatch) => {
-  const post = await fetch(`/api/posts/${post.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(post)
-  })
+// export const editPost = (postDetails) => async (dispatch) => {
+//   const post = await fetch(`/api/posts/${postDetails.id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(post)
+//   })
 
-  if (post.ok) {
-    const resPost = post.json()
-    dispatch(updatePost(post))
-  }
-};
+//   if (post.ok) {
+//     const resPost = post.json()
+//     dispatch(updatePost(resPost));
+//   }
+// };
 
 
 // Delete post
@@ -136,17 +137,18 @@ let initialState = {};
 export default function postsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_POSTS:
-      initialState = { ...state };
-      action.data.posts.forEach((post) => {
-        initialState[post.id] = post;
+      const newAllPostsState = { ...state };
+      action.data.Posts.forEach((post) => {
+        newAllPostsState[post.id] = post;
       });
-      return initialState;
+      return newAllPostsState;
 
     case GET_FOLLOWING_POSTS:
-      initialState = { ...state }
-      action.list.posts.forEach(post => {
-        initialState[post.id] = post
+      const newFollowingPostsState = { ...state }
+      action.list.Posts.forEach(post => {
+        newFollowingPostsState[post.id] = post;
       })
+      return newFollowingPostsState;;
 
       case GET_POST:
         return {
