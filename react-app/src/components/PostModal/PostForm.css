@@ -13,8 +13,8 @@
 
 .create-new-post {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-around;
   font-weight: 600;
   font-size: 110%;
   border-bottom: 1px solid lightgray;
@@ -63,5 +63,35 @@ ul {
 
 .post-caption-form-container {
   display: grid;
-  grid-template-rows: ;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.post-caption-form-area {
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+}
+
+.post-username {
+  display: flex;
+  padding-left: 1em;
+  padding-top: 1em;
+  align-items: center;
+}
+
+.form-profile-img {
+  margin-right: 1em;
+}
+
+
+.text-area {
+  object-fit: contain;
+  resize: none;
+  width: 29.5vw;
+  height: 15.2vh;
+  margin-top: -1.1em;
+  padding-top: .5em;
+  padding-left: 1em;
+  outline: none;
+  border: none;
+  font-size: 16px;
 }
