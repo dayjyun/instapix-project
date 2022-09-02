@@ -1,25 +1,30 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
+import { createPost } from "../../store/posts";
+import { Redirect, useHistory } from "react-router-dom";
 
 function PostForm() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [caption, setCaption] = useState("");
   const [post_url, setPost_url] = useState("");
+  const history = useHistory();
+  const posts = Object.values(useSelector((state) => state.posts));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    await dispatch(createPost({ caption, post_url }))
+      .then(() => {
+        history.push(`/posts/${+posts.id}`);
+      })
+      .catch((err) => {
+        // setErrors(err);
+      });
+    setCaption("");
+    setPost_url("");
   };
 
   return (
@@ -36,8 +41,11 @@ function PostForm() {
               ))}
             </ul>
           </div>
+          <div className="image-render">
+            <img src={post_url} alt="post" placeholder="Image URL" />
+          </div>
           <div className="form-item">
-            <label>Caption</label>
+            <label>Caption: </label>
             <input
               type="text"
               value={caption}
@@ -46,8 +54,12 @@ function PostForm() {
             />
           </div>
           <div className="form-item">
-            <label>Image URL:</label>
-            <input value={post_url} type="text" />
+            <label>Image URL: </label>
+            <input
+              value={post_url}
+              type="text"
+              onChange={(e) => setPost_url(e.target.value)}
+            />
           </div>
 
           <button type="submit">Post</button>

@@ -59,21 +59,19 @@ def post_details(post_id):
 
 
 #** Create a post **#
-@post_routes.route('/form', methods=["GET", "POST"])
+@post_routes.route('/form', methods=["POST"])
 @login_required
 def create_post():
-    form = CreatePostForm()
-    if form.validate_on_submit():
-        data = form.data
-        new_post = Post(
-            user_id=current_user.id,
-            caption=data['caption'],
-            post_url=data['post_url'],
-        )
-        db.session.add(new_post)
-        db.session.commit()
-        return new_post.to_dict(), 201
-    return render_template('create_post.html', form=form)
+
+    data = request.json
+    new_post = Post(
+        user_id=current_user.id,
+        caption=data['caption'],
+        post_url=data['post_url'],
+    )
+    db.session.add(new_post)
+    db.session.commit()
+    return new_post.to_dict(), 201
 
 
 # --------------------------- COMMENT ROUTES ------------------------------->
@@ -124,6 +122,8 @@ def create_comment(post_id):
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
+
+
 @post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
