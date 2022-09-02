@@ -10,6 +10,9 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Following from './components/Following/Following';
 import Followers from './components/Following/Followers';
+import PostsComments from './components/CommentComponents/PostsComments';
+import CommentDetails from './components/CommentComponents/CommentDetails';
+import EditComment from './components/CommentComponents/EditComment';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,8 +46,18 @@ function App() {
         <Route path='/users/:userId/followers' exact={true}>
           <Followers />
         </Route>
-
-
+        <Route path="/posts/:postId/comments" exact={true}>
+          <PostsComments />
+        </Route>
+        <Route path="/comments/:commentId" exact={true}>
+          <CommentDetails />
+        </Route>
+        <Route path="/comments/:commentId/edit" exact={true}>
+          <EditComment />
+        </Route>
+        <Route>
+          <Following path="/users/:userId/following" exact={true} />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
