@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // import { useParams } from 'react-router-dom'
 import { getFollowingBackend, deleteFollowBackend } from '../../store/follow';
 import { useDispatch, useSelector } from "react-redux";
-
+import './FollowModal.css'
 
 const Following = () => {
     const dispatch = useDispatch()
@@ -25,20 +25,28 @@ const Following = () => {
 
     return (
         <>
-            <h3>Following</h3>
-            {follows && (
-                follows?.map((follow, index) => {
-                    return (
-                        <div className='follower_box' key={index}>
-                            <p>{follow?.follower_info?.username}</p>
-                            <p>{follow?.follower_info?.first_name}</p>
-                            <p>{follow?.follower_info?.profile_image}</p>
-                            <p>{follow?.follow?.follows_id}</p>
-
-                            <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
-                        </div>
-                    )
-                }))}
+            <h3 className='following-header'>Following</h3>
+            <div className='following-modal-container'>
+                {follows && (
+                    follows?.map((follow, index) => {
+                        return (
+                            <div className='each-follower-box' key={index}>
+                                <div className='follower-profile-image'>
+                                    <img src={follow?.follower_info?.profile_image} />
+                                </div>
+                                <div className='follower-user-info'>
+                                    <p>{follow?.follower_info?.username}</p>
+                                    <p>{follow?.follower_info?.first_name}</p>
+                                </div>
+                                <p>{follow?.follower_info?.profile_image}</p>
+                                <p>{follow?.follow?.follows_id}</p>
+                                <div className='follower-follow-btn'>
+                                    <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
+                                </div>
+                            </div>
+                        )
+                    }))}
+            </div>
         </>
     )
 }

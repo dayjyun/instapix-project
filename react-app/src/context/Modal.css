@@ -23,5 +23,6 @@
     background-color: white;
     border-radius: 1em;
     overflow: auto;
-    width: 50%;
+    width: 40%;
+    padding: 1%;
 }

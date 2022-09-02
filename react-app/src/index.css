@@ -15,9 +15,13 @@ button:hover {
 h3 {
     font-family: 'Arimo', sans-serif;
     font-weight: 600;
-
 }
 
 p {
     font-family: 'Arimo', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
