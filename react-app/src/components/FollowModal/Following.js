@@ -9,7 +9,7 @@ const Following = () => {
 
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
-    console.log(follows)
+    // console.log(follows)
 
     useEffect(() => {
         if (user) {
@@ -19,7 +19,8 @@ const Following = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        await dispatch(deleteFollowBackend(user?.id));
+
+        await dispatch(deleteFollowBackend(e.target.id));
     }
 
     return (
@@ -29,12 +30,12 @@ const Following = () => {
                 follows?.map((follow, index) => {
                     return (
                         <div className='follower_box' key={index}>
-                            <p>{follow.follower_info.username}</p>
-                            <p>{follow.follower_info.first_name}</p>
-                            <p>{follow.follower_info.profile_image}</p>
+                            <p>{follow?.follower_info?.username}</p>
+                            <p>{follow?.follower_info?.first_name}</p>
+                            <p>{follow?.follower_info?.profile_image}</p>
+                            <p>{follow?.follow?.follows_id}</p>
 
-                            <button onClick={handleClick}>Unfollow</button>
-
+                            <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
                         </div>
                     )
                 }))}
