@@ -9,6 +9,7 @@ const TestingComponent = () => {
     const history = useHistory()
     const hashtags = Object.values(useSelector(state => state.hashtags))
     const likes = Object.values(useSelector(state => state.likes))
+    // const posts = Object.values(useSelector(state => state.posts))
 
 
     useEffect(() => {

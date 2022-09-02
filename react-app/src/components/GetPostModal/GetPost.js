@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 function GetPost() {
-    const post = useSelector(state => Object.values(state.posts))
+    const post = useSelector(state => Object.values(state.posts))[0]
 
     console.log(post)
     // const [credential, setCredential] = useState("");
