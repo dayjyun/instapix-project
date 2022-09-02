@@ -49,3 +49,8 @@ ul {
   width: 100%;
   background-color: cornflowerblue;
 }
+
+.form-container {
+  display: flex;
+  
+}

@@ -13,11 +13,15 @@ function PostForm() {
     const [postUrl, setPostUrl] = useState("");
     const history = useHistory();
     const posts = Object.values(useSelector((state) => state.posts));
+    console.log(posts[posts.length - 1].id)
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
         dispatch(postActions.createPost({ caption, postUrl }));
+        const postId = posts[posts.length - 1].id
+        history.push(`/posts/${postId}`)
     };
 
     return (
@@ -25,7 +29,10 @@ function PostForm() {
             <div className="create-new-post">
                 <p>Create new post</p>
             </div>
-            <div>
+            <div className="form-container">
+                <div className="form-image">
+                    <img src={postUrl} alt='image'></img>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error, idx) => (
