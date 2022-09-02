@@ -6,9 +6,9 @@ import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
 import PostFormModal from '../PostModal';
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
-import ReactDropdown from 'react-dropdown';
+// import Dropdown from 'react-dropdown'
+// import 'react-dropdown/style.css'
+// import ReactDropdown from 'react-dropdown';
 
 const NavBar = () => {
   const history = useHistory()

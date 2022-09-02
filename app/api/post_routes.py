@@ -53,7 +53,7 @@ def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
     post = [post.post_details() for post in all_posts]
     if post:
-        return {"Post": post}
+        return {"Post": post[0]}
     else:
         return jsonify({"Not Found": "Post not found", "Status Code": 404}), 404
 
