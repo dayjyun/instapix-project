@@ -47,18 +47,18 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
     dispatch(getFollowers(parsedRes))
 }
 
-//POST: a follow || do i need another action or reducer? I just posted and the get thunks should update it right?
+//POST: a follow
 export const postFollowBackend = (userId) => async (dispatch) => {
-    const response = fetch(`/users/${userId}/post`)
-    const parsedRes = response.json();
+    const response = await fetch(`/users/${userId}/post`)
+    const parsedRes = await response.json();
     dispatch(postFollow(parsedRes));
     return parsedRes;
 }
-//DELETE:  a follow (unfollow)
+//DELETE: a follow (unfollow)
 export const deleteFollowBackend = (userId) => async (dispatch) => {
-    const response = fetch(`/api/follows/users/${userId}/delete`);
-    const parsedRes = (await response).json();
-    dispatch(postFollow(parsedRes))
+    const response = await fetch(`/api/follows/users/${userId}/delete`);
+    const parsedRes = await response.json();
+    dispatch(deleteFollow(parsedRes))
 }
 
 //INITIAL STATE
@@ -85,7 +85,14 @@ const followReducer = (state = initialState, action) => {
 
         case FOLLOW:
             const followState = { ...state }
-            followState[action.payload.follow.id] = action.payload.follow
+            followState[action.payload.id] = action.payload
+            return followState
+
+        case UNFOLLOW:
+            const unfollowState = { ...state }
+            delete unfollowState[action.payload.id]
+            return unfollowState;
+
         default:
             return state;
     }

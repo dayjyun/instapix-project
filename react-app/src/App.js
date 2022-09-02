@@ -12,8 +12,8 @@ import TestingComponent from './components/testingstore';
 import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
 import CommentDetails from './components/CommentComponents/CommentDetails';
-import Following from './components/Following/Following';
-import Followers from './components/Following/Followers';
+import Following from './components/FollowModal/Following';
+import Followers from './components/FollowModal/Followers';
 import PostComponent from './components/PostsComponent';
 import GetPostModal from './components/GetPostModal';
 
@@ -48,10 +48,10 @@ function App() {
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <div>
-          <h1>My Home Page</h1>
-          <div className='new-post-button'>
-          <GetPostModal />
-          </div>
+            <h1>My Home Page</h1>
+            <div className='new-post-button'>
+              <GetPostModal />
+            </div>
           </div>
         </ProtectedRoute>
         <Route path='/users/:userId/following' exact={true}>

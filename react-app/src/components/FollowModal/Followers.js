@@ -9,7 +9,7 @@ const Followers = () => {
 
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
-
+    // console.log(follows)
     useEffect(() => {
         if (user) {
             dispatch(getFollowersBackend(user?.id))
@@ -21,12 +21,12 @@ const Followers = () => {
         <>
             <h1>Followers</h1>
             {follows && (
-                follows.map((follow, index) => {
+                follows?.map((follow, index) => {
                     return (
                         <div className='follower_box' key={index}>
-                            <p>{follow.follower_info.username}</p>
-                            <p>{follow.follower_info.first_name}</p>
-                            <p>{follow.follower_info.profile_image}</p>
+                            <p>{follow?.follow?.follower_info?.username}</p>
+                            <p>{follow?.follow?.follower_info?.first_name}</p>
+                            <p>{follow?.follow?.follower_info?.profile_image}</p>
                         </div>
                     )
                 }))}

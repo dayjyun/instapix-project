@@ -68,7 +68,7 @@ def follow_user(user_id):
         )
         db.session.add(new_follow)
         db.session.commit()
-        return jsonify(message='Successfully followed.', status_code=200), 200
+        return new_follow.to_dict()
 
     else:
         return jsonify(message='User could not be found.', status_code=404), 404
@@ -79,7 +79,6 @@ def follow_user(user_id):
 @follow_routes.route('/users/<int:user_id>/delete', methods=['DELETE'])
 @login_required
 def unfollow_user(user_id):
-    user_id= int(user_id)
     user = User.query.get(user_id)
     #get all follows for the user whose page we're on
     all_my_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
@@ -90,9 +89,9 @@ def unfollow_user(user_id):
                 my_follow = Follow.query.get(follow.id)
                 db.session.delete(my_follow)
                 db.session.commit()
-                return jsonify(message='Successfully unfollowed.', status_code=404), 404
+                return my_follow.to_dict()
 
-        return jsonify(message='You cannot unfollow someone you do not follow.', status_code=404), 404
+        return jsonify(message='You cannot unfollow someone you do not follow.', status_code=200), 200
 
     else:
         return jsonify(message='User could not be found.', status_code=404), 404
