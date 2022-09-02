@@ -58,7 +58,7 @@ export const postFollowBackend = (userId) => async (dispatch) => {
 export const deleteFollowBackend = (userId) => async (dispatch) => {
     const response = fetch(`/api/follows/users/${userId}/delete`);
     const parsedRes = (await response).json();
-    dispatch(postFollow())
+    dispatch(postFollow(parsedRes))
 }
 
 //INITIAL STATE
@@ -83,7 +83,9 @@ const followReducer = (state = initialState, action) => {
             })
             return getFollowersState;
 
-
+        case FOLLOW:
+            const followState = { ...state }
+            followState[action.payload.follow.id] = action.payload.follow
         default:
             return state;
     }
