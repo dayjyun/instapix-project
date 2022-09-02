@@ -1,3 +1,5 @@
+import PostComponent from "../components/PostsComponent"
+
 //TYPES
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
@@ -48,8 +50,18 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
 }
 
 //POST: a follow
-export const postFollowBackend = (userId) => async (dispatch) => {
-    const response = await fetch(`/users/${userId}/post`)
+export const postFollowBackend = (input) => async (dispatch) => {
+    // console.log(input.)
+    const response = await fetch(`/api/follows/users/${input.user_id}/post`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: {
+            user_id: input.user_id,
+            follows_id: input.follows_id
+        }
+    })
     const parsedRes = await response.json();
     dispatch(postFollow(parsedRes));
     return parsedRes;
