@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
@@ -8,6 +8,7 @@ import './PostComments.css'
 
 const PostsComments = () => {
     const { postId } = useParams()
+    const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments))
 
     const dispatch = useDispatch();
@@ -25,10 +26,6 @@ const PostsComments = () => {
         return date
     }
 
-    let editCommentBtn = (
-        <div className="edit-comment-btn">...</div>
-    )
-
     return (
         <>
             <div className="post-comments-container">
@@ -43,7 +40,12 @@ const PostsComments = () => {
                                 <div className="comment-username">
                                     {comment?.user?.username}
                                     <div className="comment-date">
-                                        {getCreatedDate(comment?.createdAt)} {editCommentBtn}
+                                        {getCreatedDate(comment?.createdAt)}
+                                        {comment?.user_id === user?.id &&
+                                        <div className="edit-comment-container">
+                                            <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink>
+                                        </div>
+                                        }
                                     </div>
                                 </div>
                                 <div className="comment-body">

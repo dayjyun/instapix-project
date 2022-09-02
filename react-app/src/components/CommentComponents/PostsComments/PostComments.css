@@ -33,9 +33,13 @@
 }
 
 .comment-profile-pic {
-    width: 25px;
+    /* width: 25px;
     height: 25px;
-    border-radius: 25px;
+    border-radius: 25px; */
+    height: 2em;
+    width: 2em;
+    object-fit: cover;
+    border-radius: 50px;
 }
 
 .comment-username {
@@ -54,6 +58,15 @@
 .edit-comment-btn {
     font-size: 10px;
     margin: 0 10px;
+    /* display: none; */
+}
+
+.edit-comment-container {
+    /* display: none; */
+}
+
+.edit-comment-container:hover + .edit-comment-btn {
+    display: inline-block;
 }
 
 .comment-body {
