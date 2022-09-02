@@ -12,7 +12,7 @@ const PostsComments = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(postActions.loadAllPosts())
+        // dispatch(postActions.loadAllPosts())
         dispatch(commentActions.loadPostComments(postId))
     }, [dispatch, postId])
 
