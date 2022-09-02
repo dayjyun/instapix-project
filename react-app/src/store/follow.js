@@ -1,3 +1,5 @@
+import PostComponent from "../components/PostsComponent"
+
 //TYPES
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
@@ -47,18 +49,31 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
     dispatch(getFollowers(parsedRes))
 }
 
-//POST: a follow || do i need another action or reducer? I just posted and the get thunks should update it right?
-export const postFollowBackend = (userId) => async (dispatch) => {
-    const response = fetch(`/users/${userId}/post`)
-    const parsedRes = response.json();
+//POST: a follow
+export const postFollowBackend = (input) => async (dispatch) => {
+    // console.log(input.)
+    const response = await fetch(`/api/follows/users/${input.user_id}/post`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: {
+            user_id: input.user_id,
+            follows_id: input.follows_id
+        }
+    })
+    const parsedRes = await response.json();
     dispatch(postFollow(parsedRes));
     return parsedRes;
 }
-//DELETE:  a follow (unfollow)
+//DELETE: a follow (unfollow)
 export const deleteFollowBackend = (userId) => async (dispatch) => {
-    const response = fetch(`/api/follows/users/${userId}/delete`);
-    const parsedRes = (await response).json();
-    dispatch(postFollow())
+    const response = await fetch(`/api/follows/users/${userId}/delete`, {
+        method: 'DELETE'
+    });
+    const parsedRes = await response.json();
+    console.log(parsedRes)
+    dispatch(deleteFollow(parsedRes))
 }
 
 //INITIAL STATE
@@ -83,6 +98,16 @@ const followReducer = (state = initialState, action) => {
             })
             return getFollowersState;
 
+        case FOLLOW:
+            const followState = { ...state }
+            followState[action.payload.id] = action.payload
+            // console.log(followState)
+            return followState
+
+        case UNFOLLOW:
+            const unfollowState = { ...state }
+            delete unfollowState[action.payload.id]
+            return unfollowState;
 
         default:
             return state;

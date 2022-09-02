@@ -22,5 +22,18 @@
     position: absolute;
     background-color: white;
     border-radius: 1em;
+    /* overflow: auto; */
+    width: 60%;
+    /* padding: 1%; */
+}
+
+/* modal container size for smaller modals (follows) */
+#modal-content-small {
+    position: absolute;
+    background-color: white;
+    border-radius: 1em;
     overflow: auto;
+    width: 300px;
+    /* padding: 1%; */
+    /* overflow: auto; */
 }

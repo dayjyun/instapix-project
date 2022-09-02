@@ -82,6 +82,7 @@ export const createPost = (postDetails) => async (dispatch) => {
 
   const resPost = await post.json()
   dispatch(newPost(resPost))
+  return post
 };
 
 // Edit post
@@ -151,7 +152,6 @@ export default function postsReducer(state = initialState, action) {
 
     case CREATE_POST:
       return {
-        ...state,
         [action.post.id]: action.post
       }
 
