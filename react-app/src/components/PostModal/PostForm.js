@@ -8,33 +8,37 @@ import * as postActions from '../../store/posts'
 
 function PostForm() {
     const dispatch = useDispatch();
+    const [errors, setErrors] = useState([])
+    const [caption, setCaption] = useState('')
+    const [postUrl, setPostUrl] = useState('')
 
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            setErrors([]);
-            dispatch(postActions.createPost({ caption, postUrl }))
-        };
 
-        return (
-            <div className="post-form-container">
-                <div className="create-new-post">
-                    <p>Create new post</p>
-                </div>
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        dispatch(postActions.createPost({ caption, postUrl }))
+    };
+
+    return (
+        <div className="post-form-container">
+            <div className="create-new-post">
+                <p>Create new post</p>
+            </div>
             <div>
-                        <form onSubmit={handleSubmit}>
-                            <ul>
-                                {errors.map((error, idx) => (
-                                    <li key={idx}>{error}</li>
-                                ))}
-                            </ul>
-                            <label>
-                                Caption
-                                <input
-                                    type="text"
-                                    value={caption}
-                                    onChange={(e) => setCaption(e.target.value)}
-                                    required
-                                />
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                    <label>
+                        Caption
+                        <input
+                            type="text"
+                            value={caption}
+                            onChange={(e) => setCaption(e.target.value)}
+                            required
+                        />
                     </label>
                     <label>
                         Post Url
@@ -49,6 +53,6 @@ function PostForm() {
             </div >
         </div >
     );
-    }
+}
 
-    export default PostForm;
+export default PostForm;
