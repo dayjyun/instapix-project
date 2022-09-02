@@ -6,6 +6,7 @@
 
 .each-follower-box {
     width: 100%;
+    height: 2.75em;
     display: inline-flex;
 }
 
@@ -15,8 +16,21 @@
 
 .follower-user-info {
     width: 60%;
+    display: block;
+    padding: 0;
+
 }
 
 .follower-follow-btn {
     width: 30%;
+}
+
+.p-bolded {
+    font-weight: 600;
+    display: block;
+    margin: 0;
+}
+
+.p-no-padding {
+    margin: 0;
 }

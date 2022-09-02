@@ -35,11 +35,11 @@ const Following = () => {
                                     <img src={follow?.follower_info?.profile_image} />
                                 </div>
                                 <div className='follower-user-info'>
-                                    <p>{follow?.follower_info?.username}</p>
-                                    <p>{follow?.follower_info?.first_name}</p>
+                                    <p className='p-bolded'>{follow?.follower_info?.username}</p>
+                                    <p className='p-no-padding'>{follow?.follower_info?.first_name}</p>
                                 </div>
-                                <p>{follow?.follower_info?.profile_image}</p>
-                                <p>{follow?.follow?.follows_id}</p>
+
+
                                 <div className='follower-follow-btn'>
                                     <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
                                 </div>
