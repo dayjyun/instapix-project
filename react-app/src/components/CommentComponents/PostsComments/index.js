@@ -18,18 +18,16 @@ const PostsComments = () => {
     }, [dispatch, postId])
 
 
-    const getDate = (datestr) => {
+    const getCreatedDate = (datestr) => {
+        const now = new Date()
         const fullDate = new Date(datestr).toDateString()
         const date = fullDate.slice(4)
         return date
     }
 
-
-    let commentTitle;
-
-    if (!comments.length) {
-        commentTitle = `No Comments For Post ${postId}`
-    }
+    let editCommentBtn = (
+        <div className="edit-comment-btn">...</div>
+    )
 
     return (
         <>
@@ -39,18 +37,18 @@ const PostsComments = () => {
                         <li className='comment-card-container' key={comment?.id}>
                             {/* <div className="comment-profile-pic"> */}
                                 {/* {comment?.user?.profile_image} */}
-                                <img className="comment-profile-pic" src="https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/11/square-format-01.jpg?resize=50%2C50&ssl=1"></img>
                             {/* </div> */}
-                            <div>
+                            <div className="comment-content">
+                                <img className="comment-profile-pic" src="https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/11/square-format-01.jpg?resize=50%2C50&ssl=1"></img>
                                 <div className="comment-username">
                                     {comment?.user?.username}
+                                    <div className="comment-date">
+                                        {getCreatedDate(comment?.createdAt)} {editCommentBtn}
+                                    </div>
                                 </div>
-                                <div className="comment-date">
-                                    {getDate(comment?.createdAt)}
+                                <div className="comment-body">
+                                    {comment?.body}
                                 </div>
-                            </div>
-                            <div className="comment-body">
-                                {comment?.body}
                             </div>
                         </li>
                     ))}

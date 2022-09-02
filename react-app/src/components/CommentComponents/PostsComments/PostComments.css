@@ -7,6 +7,7 @@
 .comment-card-list {
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
     align-items: flex-start;
     padding: 0;
     margin: 4px;
@@ -14,11 +15,17 @@
 
 .comment-card-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: fit-content;
     font-family: 'Arimo', sans-serif;
     /* justify-content: ; */
     /* background-color: red; */
+}
+
+.comment-content {
+    display: flex;
+    align-items: flex-start;
 }
 
 .comment-card-container > div {
@@ -33,14 +40,23 @@
 
 .comment-username {
     font-weight: bold;
+    margin: 0 5px;
 }
 
 .comment-date {
-    margin: 2px;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
     font-size: 10px;
+    color: rgb(0, 0, 0, 0.6);
+}
+
+.edit-comment-btn {
+    font-size: 10px;
+    margin: 0 10px;
 }
 
 .comment-body {
     width: fit-content;
-    margin: 2px;
+    margin: 0;
 }
