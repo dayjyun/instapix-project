@@ -15,14 +15,10 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
-  justify-content: ;
   align-items: center;
   font-weight: 600;
   font-size: 110%;
   border-bottom: 1px solid lightgray;
-  /* display: grid;
-  grid-template-columns: 100% 20%; */
-
 }
 
 .form-here {
