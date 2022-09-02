@@ -2,6 +2,7 @@
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
 const FOLLOW = 'users/FOLLOW'
+const UNFOLLOW = 'users/FOLLOW'
 
 //ACTIONS
 export const getFollowing = (follows) => {
@@ -18,11 +19,18 @@ export const getFollowers = (follows) => {
     }
 }
 
-// export const postFollow = (follow) => {
-//     return{
-//         type: follow
-//     }
-// }
+export const postFollow = (follow) => {
+    return {
+        type: FOLLOW,
+        payload: follow
+    }
+}
+export const deleteFollow = (follow) => {
+    return {
+        type: UNFOLLOW,
+        payload: follow
+    }
+}
 //THUNKS
 
 //GET: all user's following
@@ -45,6 +53,12 @@ export const postFollowBackend = (userId) => async (dispatch) => {
     const parsedRes = response.json();
     dispatch(postFollow(parsedRes));
     return parsedRes;
+}
+//DELETE:  a follow (unfollow)
+export const deleteFollowBackend = (userId) => async (dispatch) => {
+    const response = fetch(`/api/follows/users/${userId}/delete`);
+    const parsedRes = (await response).json();
+    dispatch(postFollow())
 }
 
 //INITIAL STATE
