@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -39,7 +39,10 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-
+        <ProtectedRoute path='/' exact={true} >
+          <h1>My Home Page</h1>
+          <NavLink to='/post-comment-modal-test' exact={true}>post comment modal test</NavLink>
+        </ProtectedRoute>
         <Route path='/users/:userId/following' exact={true}>
           <Following />
         </Route>
@@ -64,12 +67,7 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
       </Switch>
-
-
     </BrowserRouter>
   );
 }
