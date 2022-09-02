@@ -26,19 +26,20 @@ function User() {
         <div className='user-info-profile'>
           <img src={user.profile_image} className='user-profile-pic' />
         </div>
+
+        <div className='user-info-info'>
+          <h2 className='h2-style-username'>{user.username}</h2>
+
+          <div className='user-stat-box'>
+            <div className='post-count'><p><span className='unbold'>{user.num_posts}</span> posts</p></div>
+            <div className='post-count'><p><span className='unbold'>{user.num_followers}</span> followers</p></div>
+          </div>
+
+        </div>
       </div>
-      {/* <ul>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul> */}
     </div>
+
+
   );
 }
 export default User;
