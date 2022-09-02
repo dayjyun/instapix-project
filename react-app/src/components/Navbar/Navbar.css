@@ -8,6 +8,7 @@
     align-items: center;
     box-sizing: border-box;
     z-index: -1;
+    padding: 35px 0 30px 0;
 }
 
 .nav-buttons-right {
@@ -99,7 +100,7 @@
     margin-top: 5.4em;
     padding-bottom: .5em;
     width: 8vw;
-    height: 15vh;
+    height: 25vh;
 }
 
 .dropdown-shadow {
