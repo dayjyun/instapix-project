@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+import FollowModal from '../FollowModal';
 import './UserComponent.css'
+
 function User() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
@@ -31,8 +34,19 @@ function User() {
           <h2 className='h2-style-username'>{user.username}</h2>
 
           <div className='user-stat-box'>
-            <div className='post-count'><p><span className='unbold'>{user.num_posts}</span> posts</p></div>
-            <div className='post-count'><p><span className='unbold'>{user.num_followers}</span> followers</p></div>
+            <div className='post-count'><p><span className='bold'>{user.num_posts}</span> posts</p></div>
+
+            <div className='post-count'>
+              <FollowModal user={user} />
+            </div>
+
+            <div className='post-count'>
+              <p><span className='bold'>{user.num_following}</span> followers</p></div>
+          </div>
+
+          <div className='user-name-bio'>
+            <p><span className='bold'>{user.first_name}</span></p>
+            <p>{user.bio}</p>
           </div>
 
         </div>

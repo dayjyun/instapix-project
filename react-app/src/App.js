@@ -12,7 +12,7 @@ import TestingComponent from "./components/testingstore";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-import FollowingModal from "./components/FollowModal";
+import FollowModal from "./components/FollowModal";
 import PostComponent from "./components/PostsComponent";
 import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
@@ -86,7 +86,7 @@ function App() {
         </Route>
 
         <ProtectedRoute path="/users/:userId" exact={true}>
-          <FollowingModal />
+          {/* <FollowingModal /> */}
           <User />
         </ProtectedRoute>
       </Switch>

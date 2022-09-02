@@ -11,7 +11,7 @@
 
 }
 
-.unbold {
+.bold {
     font-weight: 600;
 
 }
@@ -32,3 +32,10 @@
     display: flex;
     width: auto;
 }
+
+.user-stat-box {
+    display: inline-flex;
+    column-gap: 2.5em;
+}
+
+.user-name-bio {}
