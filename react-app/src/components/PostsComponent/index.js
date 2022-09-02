@@ -17,6 +17,7 @@ function PostComponent() {
 
   return (
     <div>
+
       <div>
         <ul>
           {posts?.map((post) => (
@@ -31,7 +32,5 @@ function PostComponent() {
     </div>
   )
 }
-
-export default PostComponent;
 
 // Get post by Id
