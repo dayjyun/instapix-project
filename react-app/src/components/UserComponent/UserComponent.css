@@ -1,0 +1,16 @@
+.user-container-background {
+    display: block;
+    margin: 3% 16%;
+}
+
+.user-info-profile {
+    width: 33%;
+
+}
+
+.user-profile-pic {
+    height: 9.375em;
+    width: 9.375em;
+    object-fit: cover;
+    border-radius: 100%;
+}
