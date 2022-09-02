@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
+import EditPostForm from "./EditPost";
 
 function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
-  let posts = Object.values(useSelector((state) => state.posts));
+  const posts = Object.values(useSelector((state) => state.posts));
   // posts = posts.map(post => post)
 
   useEffect(() => {
@@ -28,6 +29,8 @@ function PostComponent() {
           ))}
         </ul>
       </div>
+      {/* Render edit post form  */}
+      {/* <EditPostForm /> */}
     </div>
   )
 }
