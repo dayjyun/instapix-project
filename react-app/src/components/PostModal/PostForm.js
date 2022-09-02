@@ -9,16 +9,6 @@ import * as postActions from '../../store/posts'
 function PostForm() {
     const dispatch = useDispatch();
 
-
-    function PostForm() {
-        const dispatch = useDispatch();
-        const [errors, setErrors] = useState([]);
-        const [caption, setCaption] = useState("");
-        const [postUrl, setPostUrl] = useState("");
-        const history = useHistory();
-        const posts = Object.values(useSelector((state) => state.posts));
-
-
         const handleSubmit = (e) => {
             e.preventDefault();
             setErrors([]);

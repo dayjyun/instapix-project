@@ -6,14 +6,8 @@ import { getPost } from "../../store/posts";
 function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
-<<<<<<< HEAD
-  let post = Object.values(useSelector((state) => state.posts));
-  const comments = Object.values(useSelector((state) => state.comments));
-  post = post[0]?.Post
-=======
   let posts = Object.values(useSelector((state) => state.posts));
   // posts = posts.map(post => post)
->>>>>>> kevin-post-store
 
   useEffect(() => {
     dispatch(getPost(+postId));
@@ -23,14 +17,6 @@ function PostComponent() {
 
   return (
     <div>
-<<<<<<< HEAD
-      {post?.map(p => (
-        <>
-          <p>{p.caption}</p>
-          <img src={p.post_url} alt='preview'></img>
-        </>
-      ))}
-=======
       <div>
         <ul>
           {posts?.map((post) => (
@@ -42,15 +28,8 @@ function PostComponent() {
           ))}
         </ul>
       </div>
->>>>>>> kevin-post-store
     </div>
   )
 }
 
-<<<<<<< HEAD
 export default PostComponent
-=======
-export default PostComponent;
-
-// Get post by Id
->>>>>>> kevin-post-store
