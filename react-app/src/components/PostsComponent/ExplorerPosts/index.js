@@ -1,19 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getPost } from "../../store/posts";
+import { loadAllPosts } from "../../../store/posts";
 
-function PostComponent() {
+function ExplorerPosts() {
   const dispatch = useDispatch();
-  const { postId } = useParams();
+
   let posts = Object.values(useSelector((state) => state.posts));
-  // posts = posts.map(post => post)
 
   useEffect(() => {
-    dispatch(getPost(+postId));
+    dispatch(loadAllPosts());
   }, [dispatch]);
-
-
 
   return (
     <div>
@@ -29,9 +25,9 @@ function PostComponent() {
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
-export default PostComponent;
+export default ExplorerPosts;
 
-// Get post by Id
+// Get all posts in DB
