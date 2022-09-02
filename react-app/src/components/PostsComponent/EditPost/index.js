@@ -20,7 +20,6 @@ function EditPostForm(){
                 id: postId,
                 user_id,
                 caption,
-                post_url,
 
             })
         )
