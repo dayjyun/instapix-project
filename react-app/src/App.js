@@ -32,7 +32,7 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/posts/:postId'>
+        <Route exact path='/posts/:postId'>
           <PostComponent />
         </Route>
         <Route path='/sign-up' exact={true}>
