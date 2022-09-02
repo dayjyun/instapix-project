@@ -8,7 +8,7 @@ function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
-  const post = post[postId]
+//   const post = post[postId]
   console.log(posts[0]?.Post[0].caption);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function PostComponent() {
     <div>
       <div>
         <ul>
-          {post?.map((p) => (
+          {posts?.map((p) => (
             <li key={p.id}>
               <div>{p[0]?.Post[0].caption}</div>
             </li>
