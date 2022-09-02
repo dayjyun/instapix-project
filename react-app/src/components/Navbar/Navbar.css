@@ -11,9 +11,9 @@
 }
 
 .nav-buttons-right {
-    display: flex;
-    align-items: center;
-    height: 6vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 10%;
 }
 
 .nav-buttons-left {
@@ -46,13 +46,13 @@
     font-size: 1.5em;
 }
 
-.fa-angle-down {
+/* .fa-angle-down {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: transparent;
     border: none;
-}
+} */
 
 
 @font-face {
@@ -92,25 +92,25 @@
     border: none;
     padding: 5% 5%
 } */
-
+/*
 .profile-dropdown {
     display: grid;
     grid-template-rows: 41% 59%;
     margin-top: 5.4em;
     padding-bottom: .5em;
     width: 8vw;
-    height: 15vh;
+    height: 20vh;
 }
 
 .dropdown-shadow {
     box-shadow: 0px 0px 10px 3px lightgray;
     padding-top: 5%;
     border-radius: 10px;
-}
+} */
 
-.profile-button {
+/* .profile-button {
     display: flex;
-}
+} */
 
 /* .profile-dropdown {
     display: flex;

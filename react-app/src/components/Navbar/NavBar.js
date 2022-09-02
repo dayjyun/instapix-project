@@ -9,18 +9,17 @@ import PostFormModal from '../PostModal';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import ReactDropdown from 'react-dropdown';
+import { useSelector, useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session'
 
 const NavBar = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [profileToggle, setProfileToggle] = useState(false)
 
   const showMenu = e => {
     e.preventDefault()
-    if (profileToggle) {
-      setProfileToggle(false)
-    } else {
-      setProfileToggle(true)
-    }
+    setProfileToggle(!profileToggle)
   }
   const handleHome = (e) => {
     e.preventDefault()
@@ -32,6 +31,17 @@ const NavBar = () => {
     history.push('/explore')
   }
 
+  const logout = e => {
+    e.preventDefault()
+    dispatch(sessionActions.logout())
+    setProfileToggle(false)
+    history.push('/')
+  }
+
+  const handleProfile = e => {
+    e.preventDefault()
+    history.push('/me')
+  }
   return (
     <div className='nav-bar-container'>
       <div className='nav-buttons-left'>
@@ -47,21 +57,15 @@ const NavBar = () => {
         </div> */}
       </div>
       <div className='nav-buttons-right'>
-        <button className='fa-solid fa-house' onClick={handleHome}></button>
-        <div className='new-post-button'>
-          <PostFormModal />
-        </div>
-        <button className='fa-regular fa-compass' onClick={handleExplore}></button>
+        <button className='fa-solid fa-house house' onClick={handleHome}></button>
+        <PostFormModal />
+        <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
         <div className='profile-dropdown'>
           <button className='fa-regular fa-circle-user profile-button' onClick={showMenu}></button>
           {profileToggle && (
             <div className='dropdown-shadow'>
-              <div>
-                <button className='profile-n-logout'>Profile</button>
-              </div>
-              <div>
-                <button className='profile-n-logout'>Log out</button>
-              </div>
+              <button className='profile-n-logout' onClick={handleProfile}>Profile</button>
+              <button className='profile-n-logout' onClick={logout}>Log out</button>
             </div>
           )}
         </div>
