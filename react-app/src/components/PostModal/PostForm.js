@@ -51,7 +51,10 @@ function PostForm() {
                         <input
                             value={post_url}
                             type='text'
-                            onChange={e => setPost_url(e.target.value)}
+                            onChange={e => {
+                                e.preventDefault()
+                                setPost_url(e.target.value)
+                            }}
                         />
                     </div>
 
