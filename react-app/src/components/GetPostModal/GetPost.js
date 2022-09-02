@@ -1,24 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import * as postActions from '../../store/posts';
+import { useDispatch, useSelector } from "react-redux";
 
 
 function GetPost() {
-    const dispatch = useDispatch();
-    const [credential, setCredential] = useState("");
-    const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const post = useSelector(state => Object.values(state.posts))
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        return dispatch(sessionActions.login({ credential, password })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
-    };
+    console.log(post)
+    // const [credential, setCredential] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(postActions.getPost(1))
+    }, [dispatch])
 
     return (
         <div className="post-modal-container">
