@@ -23,7 +23,7 @@ function PostForm() {
         e.preventDefault();
         setErrors([]);
         dispatch(postActions.createPost({ caption, postUrl }));
-        const postId = posts[posts.length - 1].id
+        const postId = posts[posts.length - 1]?.id
         history.push(`/posts/${postId}`)
     };
 
