@@ -1,0 +1,55 @@
+.fa-square-plus {
+    font-size: 1.5em;
+    padding: .8em
+}
+
+.post-modal-container {
+    /* display: grid; */
+    /* flex-direction: row; */
+    /* grid-template-rows: 8% 92%; */
+    /* border: 5px solid black */
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+    height: 80vh;
+    border-radius: 1em;
+}
+
+.image-content-container {
+    width: 66%;
+    /* background-color: aqua; */
+}
+
+.caption-comment-container {
+    width: 34%;
+    border-left: 1px solid lightgray;
+    /* background-color: blueviolet; */
+}
+
+.post-header-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 110%;
+    border-bottom: 1px solid lightgray;
+}
+
+.post-modal-comments {
+    height: 70vh;
+    /* background-color: red; */
+}
+
+.post-modal-topright-info {
+    display: flex;
+    justify-content: flex-start;
+    padding: 2px;
+    border-bottom: 1px solid lightgray;
+    margin: 5px;
+}
+
+.post-user-profile-pic {
+    width: 25px;
+    border-radius: 25px;
+    margin-top: 10px;
+}

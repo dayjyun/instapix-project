@@ -11,3 +11,7 @@
 button:hover {
     cursor: pointer;
 }
+
+p {
+    font-family: 'Arimo', sans-serif;
+}

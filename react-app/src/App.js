@@ -12,17 +12,11 @@ import TestingComponent from './components/testingstore';
 import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
 import CommentDetails from './components/CommentComponents/CommentDetails';
-import Following from './components/Following/Following'
 import Following from './components/Following/Following';
 import Followers from './components/Following/Followers';
-<<<<<<< HEAD
-import PostsComments from './components/CommentComponents/PostsComments';
-import CommentDetails from './components/CommentComponents/CommentDetails';
-import EditComment from './components/CommentComponents/EditComment';
-=======
 import PostComponent from './components/PostsComponent';
+import GetPostModal from './components/GetPostModal';
 
->>>>>>> dev
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,8 +47,12 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/' exact={true} >
+          <div>
           <h1>My Home Page</h1>
-          <NavLink to='/post-comment-modal-test' exact={true}>post comment modal test</NavLink>
+          <div className='new-post-button'>
+          <GetPostModal />
+          </div>
+          </div>
         </ProtectedRoute>
         <Route path='/users/:userId/following' exact={true}>
           <Following />
