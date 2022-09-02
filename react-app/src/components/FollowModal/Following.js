@@ -25,27 +25,29 @@ const Following = () => {
 
     return (
         <>
-            <h3 className='following-header'>Following</h3>
             <div className='following-modal-container'>
-                {follows && (
-                    follows?.map((follow, index) => {
-                        return (
-                            <div className='each-follower-box' key={index}>
-                                <div className='follower-profile-image'>
-                                    <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' />
-                                </div>
-                                <div className='follower-user-info'>
-                                    <p className='p-bolded'>{follow?.follower_info?.username}</p>
-                                    <p className='p-styling'>{follow?.follower_info?.first_name}</p>
-                                </div>
+                <h3 className='following-header'>Following</h3>
+                <div className='following-info-container'>
+                    {follows && (
+                        follows?.map((follow, index) => {
+                            return (
+                                <div className='each-follower-box' key={index}>
+                                    <div className='follower-profile-image'>
+                                        <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' />
+                                    </div>
+                                    <div className='follower-user-info'>
+                                        <p className='p-bolded'>{follow?.follower_info?.username}</p>
+                                        <p className='p-styling'>{follow?.follower_info?.first_name}</p>
+                                    </div>
 
 
-                                <div className='follower-follow-btn'>
-                                    <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
+                                    <div className='follower-follow-btn'>
+                                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    }))}
+                            )
+                        }))}
+                </div>
             </div>
         </>
     )

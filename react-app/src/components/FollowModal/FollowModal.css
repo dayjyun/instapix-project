@@ -1,7 +1,12 @@
+.following-info-container {
+    padding: 2%;
+}
+
 .following-header {
     text-align: center;
-    padding: 0;
-    margin: 0;
+    padding: 0 0 4% 0;
+    margin: 4% 0;
+    border-bottom: 1px solid lightgray;
 }
 
 .each-follower-box {
@@ -21,8 +26,6 @@
     width: 2.75em;
     object-fit: cover;
     border-radius: 50px;
-
-    /* max-width: 2.75em; */
 }
 
 .follower-user-info {
