@@ -8,18 +8,18 @@ import { useState } from 'react';
 import PostFormModal from '../PostModal';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
+import ReactDropdown from 'react-dropdown';
 
 const NavBar = () => {
   const history = useHistory()
-  const [arrowToggle, setArrowToggle] = useState(false)
-  console.log(arrowToggle)
+  const [profileToggle, setProfileToggle] = useState(false)
 
   const showMenu = e => {
     e.preventDefault()
-    if (arrowToggle) {
-      setArrowToggle(false)
+    if (profileToggle) {
+      setProfileToggle(false)
     } else {
-      setArrowToggle(true)
+      setProfileToggle(true)
     }
   }
   const handleHome = (e) => {
@@ -36,7 +36,7 @@ const NavBar = () => {
     <div className='nav-bar-container'>
       <div className='nav-buttons-left'>
         <button className='instapix-button' onClick={handleHome}>Instapix</button>
-        <div className='arrow-dropdown'>
+        {/* <div className='arrow-dropdown'>
           <button className='fa-solid fa-angle-down' onClick={showMenu}></button>
           {arrowToggle && (
             <div className='arrow-dropdown-list'>
@@ -44,7 +44,7 @@ const NavBar = () => {
               <button>Favorites</button>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
       <div className='nav-buttons-right'>
         <button className='fa-solid fa-house' onClick={handleHome}></button>
@@ -52,7 +52,19 @@ const NavBar = () => {
           <PostFormModal />
         </div>
         <button className='fa-regular fa-compass' onClick={handleExplore}></button>
-        <button className='fa-regular fa-circle-user'></button>
+        <div className='profile-dropdown'>
+          <button className='fa-regular fa-circle-user profile-button' onClick={showMenu}></button>
+          {profileToggle && (
+            <div className='dropdown-shadow'>
+              <div>
+                <button className='profile-n-logout'>Profile</button>
+              </div>
+              <div>
+                <button className='profile-n-logout'>Log out</button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
     </div>
