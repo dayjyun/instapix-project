@@ -1,7 +1,8 @@
 .comment-input-container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin: 4px;
 }
 
 .comment-submit-btn {
@@ -10,9 +11,14 @@
     background: none;
     color: rgb(0,149,246);
     font-weight: bold;
-
+    font-size: 15px;
 }
 
 .comment-body-input {
     border: none;
+    width: 270px;
+}
+
+.comment-body-input:focus {
+    outline: none !important;
 }

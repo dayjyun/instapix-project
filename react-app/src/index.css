@@ -15,3 +15,7 @@ button:hover {
 p {
     font-family: 'Arimo', sans-serif;
 }
+
+ul {
+    list-style: none;
+}
