@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPost } from "../store/posts";
-// import * as postActions from "../store/posts";
+import { getPost } from "../../store/posts";
 
 function PostComponent() {
   const dispatch = useDispatch();

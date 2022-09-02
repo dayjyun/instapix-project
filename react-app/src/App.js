@@ -10,7 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Following from './components/Following/Following';
 import Followers from './components/Following/Followers';
-import PostComponent from './components/Post';
+import PostComponent from './components/PostsComponent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

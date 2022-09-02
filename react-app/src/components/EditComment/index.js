@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import * as commentActions from '../../../store/comments';
+import * as commentActions from '../../store/comments';
 
 const EditComment = () => {
     const { commentId } = useParams()
