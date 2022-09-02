@@ -7,7 +7,7 @@ function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
   let posts = Object.values(useSelector((state) => state.posts));
-  posts = posts.map(post => post.Post)
+  // posts = posts.map(post => post)
 
   useEffect(() => {
     dispatch(getPost(+postId));
