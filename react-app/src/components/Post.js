@@ -8,21 +8,19 @@ function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
-//   const post = post[postId]
   console.log(posts[0]?.Post[0].caption);
 
   useEffect(() => {
     dispatch(getPost(+postId));
-    // dispatch(postActions.getPost(postId));
-  }, [dispatch, postId]);
+  }, [dispatch]);
 
   return (
     <div>
       <div>
         <ul>
-          {posts?.map((p) => (
-            <li key={p.id}>
-              <div>{p[0]?.Post[0].caption}</div>
+          {posts?.map((post) => (
+            <li key={post.id}>
+              <div>{post?.Post[0]?.caption}</div>
             </li>
           ))}
         </ul>
