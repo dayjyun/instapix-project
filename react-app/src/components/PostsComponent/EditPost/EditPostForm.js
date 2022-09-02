@@ -35,18 +35,21 @@ function EditPostForm() {
       <form onSubmit={handlePostFormSubmit}>
         <div>
           <div>
+            <button type={handleCancelBtn}>Cancel</button>
+          </div>
+          <div>
+            <button type="submit">Done</button>
+          </div>
+          <div>
+            <h1>POST URL</h1>
+          </div>
+          <div>
             <label>Caption</label>
             <input
               type="text"
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             />
-          </div>
-          <div>
-            <button type="submit">Done</button>
-          </div>
-          <div>
-            <button type={handleCancelBtn}>Cancel</button>
           </div>
         </div>
       </form>

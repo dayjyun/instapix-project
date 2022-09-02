@@ -10,12 +10,10 @@ function EditPostBtn() {
     <>
       <button onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
-        //   <Modal onClose={() => setShowModal(false)}>
-        //     {/* Render delete post here? */}
-        //   <EditPostForm />
-        // </Modal>
         <Modal onClose={() => setShowModal(false)}>
+            //     {/* Render delete post here? */}
           <EditPostForm />
+            {/* <button>Delete</button> */}
         </Modal>
       )}
     </>
