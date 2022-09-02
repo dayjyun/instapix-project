@@ -13,7 +13,6 @@ import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
 import CommentDetails from './components/CommentComponents/CommentDetails';
 import Following from './components/Following/Following'
-import Following from './components/Following/Following';
 import Followers from './components/Following/Followers';
 
 
