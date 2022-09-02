@@ -7,7 +7,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import * as postActions from "../../store/posts";
 
 
-function PostForm() {
+function PostForm({ closeModal }) {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const [caption, setCaption] = useState("");
@@ -15,30 +15,34 @@ function PostForm() {
     const history = useHistory();
     const posts = Object.values(useSelector((state) => state.posts));
     const currUser = useSelector(state => state.session.user)
-    console.log(currUser)
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        dispatch(postActions.createPost({ caption, postUrl }));
+        dispatch(postActions.createPost({ caption, postUrl }))
+            .then(() => {
+                closeModal()
+            })
+        setPostUrl('')
+        setCaption('')
         const postId = posts[posts.length - 1]?.id
-        history.push(`/posts/${postId}`)
-    };
+        // history.push(`/posts/${postId}`)
+    }
 
     return (
         <div className="post-form-container">
             <div className="create-new-post">
                 <p>Create new post</p>
                 {caption && (
-                    <button type='submit'>Share</button>
+                    <div className="share-button-container">
+                        <button type='submit' onClick={handleSubmit}>Share</button>
+                    </div>
                 )}
             </div>
             <div className="form-container">
                 <div className="form-image">
                     {postUrl && (
-                        <img style={{ width: '32vw', height: '64.4vh' }} src={postUrl}></img>
+                        <img src={postUrl}></img>
                     )}
                 </div>
                 <div className="post-caption-form-container">
@@ -47,31 +51,36 @@ function PostForm() {
                             <img className="profile-img-circle-container form-profile-img" src={currUser?.profile_image} alt="profileImage"></img>
                             <h3>{currUser?.username}</h3>
                         </div>
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             <ul>
                                 {errors.map((error, idx) => (
                                     <li key={idx}>{error}</li>
                                 ))}
                             </ul>
                             <label>
-                                <textarea className="text-area"
+                                <textarea
+                                    className="text-area"
                                     value={caption}
                                     placeholder='Write a caption...'
-                                    onChange={(e) => setCaption(e.target.value)}
+                                    onChange={(e) => {
+                                        setCaption(e.target.value)
+                                    }}
                                     maxLength='2000'
                                     required
                                 />
                             </label>
                         </form>
-                        <form onSubmit={handleSubmit}>
-                            <label>
-                                Post Url
+                        <form>
+                            <div className="char-count-area">
                                 <input
+                                    className="image-url"
                                     type="text"
                                     value={postUrl}
+                                    placeholder='Image Url'
                                     onChange={(e) => setPostUrl(e.target.value)}
                                 />
-                            </label>
+                                <p style={{ color: 'lightgray' }}>{caption.length}/2000</p>
+                            </div>
                             {/* <button type="submit">Post</button> */}
                         </form>
                     </div>
