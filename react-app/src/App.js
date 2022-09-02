@@ -13,6 +13,9 @@ import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
 import CommentDetails from './components/CommentComponents/CommentDetails';
 import Following from './components/Following/Following'
+import Following from './components/Following/Following';
+import Followers from './components/Following/Followers';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +45,15 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+
+        <Route path='/users/:userId/following' exact={true}>
+          <Following />
+        </Route>
+        <Route path='/users/:userId/followers' exact={true}>
+          <Followers />
+        </Route>
+
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
@@ -64,6 +76,8 @@ function App() {
           <Following />
         </Route>
       </Switch>
+
+
     </BrowserRouter>
   );
 }

@@ -92,5 +92,17 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'first_name': self.first_name,
             'profile_image': self.profile_image,
-
         }
+
+    # def to_dict_followers(self):
+    #     return {
+    #         'id': Follow.id,
+    #         'user_id': Follow.user_id,
+    #         'follows_id': Follow.follows_id,
+    #         'Follower_Info': [user.follow_info() for user in self.get_users_follows()]
+    #     }
+
+    # def to_dict_follows(self):
+    #     return {
+    #         'Follower_Info': [user.follow_info() for user in self.get_follows_for_user()]
+    #     }

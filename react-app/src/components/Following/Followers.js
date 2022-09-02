@@ -1,26 +1,25 @@
 import { useEffect } from 'react';
 // import { useParams } from 'react-router-dom'
-import { getFollowingBackend } from '../../store/follow';
+import { getFollowersBackend } from '../../store/follow';
 import { useDispatch, useSelector } from "react-redux";
 
 
-const Following = () => {
+const Followers = () => {
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
-
     useEffect(() => {
         if (user) {
-            dispatch(getFollowingBackend(user?.id))
+            dispatch(getFollowersBackend(user?.id))
         }
     }, [dispatch, user])
 
 
     return (
         <>
-            <h1>Following</h1>
+            <h1>Followers</h1>
             {follows && (
                 follows.map((follow, index) => {
                     return (
@@ -35,4 +34,4 @@ const Following = () => {
     )
 }
 
-export default Following;
+export default Followers;
