@@ -13,7 +13,7 @@ const TestingComponent = () => {
     const posts = Object.values(useSelector((state ) => state.posts));
     const comments = posts[0]?.Post[0]?.Comments
     console.log(comments)
-//   useEffect(() => {
+//   useEffect(() => {git
 //     dispatch(hashtagActions.fetchAllHashtags());
 //     dispatch(likeActions.fetchLike(1));
 //   }, [dispatch]);
