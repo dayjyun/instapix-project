@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getPost } from "../../store/posts";
+import { getFollowingPosts } from "../../../store/posts";
 
-function PostComponent() {
+function FollowingPosts() {
   const dispatch = useDispatch();
-  const { postId } = useParams();
   let posts = Object.values(useSelector((state) => state.posts));
+  let follows = Object.values(useSelector((state) => state.follow));
+  console.log(follows)
 
+  posts = posts.map((post) => post.Post);
 
   useEffect(() => {
-    dispatch(getPost(+postId));
+    dispatch(getFollowingPosts());
   }, [dispatch]);
-
-
 
   return (
     <div>
@@ -21,7 +20,7 @@ function PostComponent() {
         <ul>
           {posts?.map((post) => (
             <li key={post?.id}>
-              <img style={{ width: '500px', height: '500px' }} src={post?.post_url} alt='post_image'></img>
+              <div>{post?.post_url}</div>
               <div>{post?.caption}</div>
               <div>{post?.likes} Likes</div>
             </li>
@@ -29,7 +28,9 @@ function PostComponent() {
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
-export default PostComponent
+export default FollowingPosts;
+
+// Get posts of users I follow
