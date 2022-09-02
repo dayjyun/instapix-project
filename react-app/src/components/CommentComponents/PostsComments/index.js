@@ -41,15 +41,15 @@ const PostsComments = () => {
                                     {comment?.user?.username}
                                     <div className="comment-date">
                                         {getCreatedDate(comment?.createdAt)}
-                                        {comment?.user_id === user?.id &&
-                                        <div className="edit-comment-container">
-                                            <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink>
-                                        </div>
-                                        }
                                     </div>
                                 </div>
                                 <div className="comment-body">
                                     {comment?.body}
+                                    {comment?.user_id === user?.id &&
+                                        <div className="edit-comment-container">
+                                            <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink>
+                                        </div>
+                                        }
                                 </div>
                             </div>
                         </li>

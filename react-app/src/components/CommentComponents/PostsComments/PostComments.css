@@ -62,14 +62,17 @@
 }
 
 .edit-comment-container {
-    /* display: none; */
+    padding-left: 0;
 }
 
 .edit-comment-container:hover + .edit-comment-btn {
-    display: inline-block;
+    display: block;
 }
 
 .comment-body {
     width: fit-content;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
