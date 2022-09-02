@@ -1,22 +1,82 @@
 .fa-square-plus {
-    font-size: 1.5em;
-    padding: .8em
+  font-size: 1.5em;
+  padding: 0.8em;
 }
 
 .post-form-container {
-    display: grid;
-    width: 40vw;
-    height: 80vh;
-    grid-template-rows: 8% 92%;
-    border-radius: 1em;
-    /* border: 5px solid black */
+  display: grid;
+  width: 40vw;
+  height: 60vh;
+  grid-template-rows: 8% 92%;
+  border-radius: 1em;
 }
 
 .create-new-post {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    font-size: 110%;
-    border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 110%;
+  border-bottom: 1px solid lightgray;
+}
+
+.form-here {
+  background-color: chartreuse;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+.caption-url-container {
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  background-color: coral;
+}
+
+/* #modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-content {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  justify-content: center;
+  padding: 15px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  position: absolute;
+  background-color: white;
+} */
+
+.label-div {
+  padding: 5px 2px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }
