@@ -16,6 +16,7 @@ class Follow(db.Model):
     # follows = db.relationship('User', back_populates='follows')
     # followed_by = db.relationship('User', back_populates='follows')
 
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -24,6 +25,7 @@ class Follow(db.Model):
         }
 
     # TODO Return the ID, username, profile image, and posts from users that the current user is following *
+        # }
 
     def to_dict_following(self):
         return {
@@ -34,4 +36,13 @@ class Follow(db.Model):
             'Posts': [post.to_dict() for post in self.users.following_posts()],
         }
 
+    def to_dict_follows(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'follows_id': self.follows_id,
+        }
+
+    def __repr__(self):
+            return f"<id:{self.id} user_id:{self.user_id} follows_id: {self.follows_id}>"
 # users_table = db.session.query(Follow, User).join(User).all()

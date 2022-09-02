@@ -1,0 +1,120 @@
+.nav-bar-container {
+    display: flex;
+    width: 100vw;
+    height: 6vh;
+    margin-top: none;
+    border-bottom: 1px solid lightgray;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: -1;
+    padding: 35px 0 30px 0;
+}
+
+.nav-buttons-right {
+    display: flex;
+    align-items: center;
+    height: 6vh;
+}
+
+.nav-buttons-left {
+    display: flex;
+    align-items: center;
+    padding-top: .5%;
+    /* justify-content: center; */
+}
+
+.nav-buttons-right button {
+    background-color: transparent;
+    border: none;
+    padding: .8em;
+}
+
+.fa-house {
+    font-size: 1.3em;
+}
+
+.fa-square-plus {
+    font-size: 1.5em;
+    padding: .8em
+}
+
+.fa-compass {
+    font-size: 1.5em
+}
+
+.fa-circle-user {
+    font-size: 1.5em;
+}
+
+.fa-angle-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+
+
+@font-face {
+    font-family: billabong;
+    src: url(FontsFree-Net-Billabong.ttf);
+}
+
+.instapix-button {
+    font-family: 'billabong';
+    background-color: transparent;
+    border: none;
+    font-size: 2.3em;
+    /* font-weight: 100; */
+}
+
+/* .arrow-dropdown {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    width: 7vw;
+    height: 7vh;
+    margin-top: 6em;
+    margin-left: -2.5em;
+    border: 1px;
+} */
+
+/* .arrow-dropdown-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    box-shadow: 0px 1px 1px 1px lightgray;
+    padding: 1em 1em;
+    border-radius: 5%;
+} */
+
+/* .arrow-dropdown-list button {
+    background-color: transparent;
+    border: none;
+    padding: 5% 5%
+} */
+
+.profile-dropdown {
+    display: grid;
+    grid-template-rows: 41% 59%;
+    margin-top: 5.4em;
+    padding-bottom: .5em;
+    width: 8vw;
+    height: 25vh;
+}
+
+.dropdown-shadow {
+    box-shadow: 0px 0px 10px 3px lightgray;
+    padding-top: 5%;
+    border-radius: 10px;
+}
+
+.profile-button {
+    display: flex;
+}
+
+/* .profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+} */

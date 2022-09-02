@@ -5,24 +5,25 @@ from flask_login import current_user, login_required
 follow_routes = Blueprint('follows', __name__)
 
 
+
 # Get all accounts that follow the user
 @follow_routes.route('/users/<int:user_id>/followers')
 @login_required
 def get_follows_for_user(user_id):
     user = User.query.get(user_id)
-    follows = Follow.query.filter(Follow.follows_id == user_id)
+    follows = Follow.query.filter(Follow.follows_id == user_id).all()
 
-    follows_list = []
+    formatted_data = []
     for follow in follows:
-        user_info = User.query.filter(User.id == follow.user_id).first()
-        user= {'follower_info': user_info.to_dict()}
-        combined_data=(follow.to_dict(), user)
-        follows_list.append(combined_data)
+        user_info = User.query.filter(follow.user_id == User.id).first()
+        data ={"follow": follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+        formatted_data.append(data)
 
     if user:
-        return {'My Followers': [user for user in follows_list]}
+        return {'Followers': [follow for follow in formatted_data]}
     else:
         return jsonify(message='User could not be found.', status_code=404)
+
 
 
 
@@ -30,20 +31,21 @@ def get_follows_for_user(user_id):
 @follow_routes.route('/users/<int:user_id>/follows')
 @login_required
 def get_users_follows(user_id):
-    user = User.query.get(user_id)
-    follows = Follow.query.filter(Follow.user_id == user_id)
 
-    follows_list = []
+    user = User.query.get(user_id)
+    follows = Follow.query.filter(Follow.user_id == user_id).all()
+
+    formatted_data = []
     for follow in follows:
-        user_info = User.query.filter(User.id == follow.follows_id).first()
-        user= {'my_follower_info': user_info.to_dict()}
-        combined_data=(follow.to_dict(), user)
-        follows_list.append(combined_data)
+        user_info = User.query.filter(follow.follows_id == User.id).first()
+        data ={"follow": follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+        formatted_data.append(data)
 
     if user:
-        return {'I Follow': [user for user in follows_list]}
+        return {'Followers': [follow for follow in formatted_data]}
     else:
         return jsonify(message='User could not be found.', status_code=404)
+
 
 
 
@@ -57,7 +59,7 @@ def follow_user(user_id):
 
     for follow in is_already_following:
         if follow.follows_id == user_id:
-            return jsonify(message='You are already following this user.', status_code=404)
+            return jsonify(message='You are already following this user.', status_code=404), 404
 
     if user:
         new_follow = Follow(
@@ -66,10 +68,10 @@ def follow_user(user_id):
         )
         db.session.add(new_follow)
         db.session.commit()
-        return jsonify(message='Successfully followed.', status_code=200)
+        return new_follow.to_dict()
 
     else:
-        return jsonify(message='User could not be found.', status_code=404)
+        return jsonify(message='User could not be found.', status_code=404), 404
 
 
 
@@ -77,7 +79,6 @@ def follow_user(user_id):
 @follow_routes.route('/users/<int:user_id>/delete', methods=['DELETE'])
 @login_required
 def unfollow_user(user_id):
-    user_id= int(user_id)
     user = User.query.get(user_id)
     #get all follows for the user whose page we're on
     all_my_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
@@ -88,9 +89,9 @@ def unfollow_user(user_id):
                 my_follow = Follow.query.get(follow.id)
                 db.session.delete(my_follow)
                 db.session.commit()
-                return jsonify(message='Successfully unfollowed.', status_code=404)
+                return my_follow.to_dict()
 
-        return jsonify(message='You cannot unfollow someone you do not follow.', status_code=404)
+        return jsonify(message='You cannot unfollow someone you do not follow.', status_code=200), 200
 
     else:
-        return jsonify(message='User could not be found.', status_code=404)
+        return jsonify(message='User could not be found.', status_code=404), 404
