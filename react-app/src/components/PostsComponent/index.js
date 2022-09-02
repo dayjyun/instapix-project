@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
 import EditPostForm from "./EditPost";
+import EditPostBtn from "./EditPost/EditPostBtn";
 
 function PostComponent() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function PostComponent() {
       </div>
       {/* Render edit post form  */}
       {/* <EditPostForm /> */}
+      <EditPostBtn />
     </div>
   )
 }
