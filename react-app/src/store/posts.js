@@ -66,7 +66,8 @@ const newPost = (post) => {
 };
 
 export const createPost = (postDetails) => async (dispatch) => {
-  const { post_url, caption } = postDetails;
+  const { postUrl, caption } = postDetails;
+
 
   const post = await fetch(`/api/posts/form`, {
     method: "POST",
@@ -74,14 +75,13 @@ export const createPost = (postDetails) => async (dispatch) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      post_url,
-      caption
+      caption,
+      post_url: postUrl
     })
-  });
+  })
 
-  const resPost = await post.json();
-  dispatch(newPost(resPost));
-  return post;
+  const resPost = await post.json()
+  dispatch(newPost(resPost))
 };
 
 // Edit post
@@ -146,13 +146,15 @@ export default function postsReducer(state = initialState, action) {
     case GET_POST:
       return {
         ...state,
-        [action.post?.id]: action.post
+        [action.post.id]: action.post
       };
 
     case CREATE_POST:
-      const createPostState = { ...state }
-      createPostState[action.post?.id] = action.post
-      return createPostState
+      return {
+        ...state,
+        [action.post.id]: action.post
+      }
+
     case EDIT_POST:
       return {
         ...state,
@@ -160,8 +162,8 @@ export default function postsReducer(state = initialState, action) {
       };
 
     case DELETE_POST:
-      const removedPostState = { ...state };
-      delete removedPostState[action.id];
+      const removedPostState = { ...state }
+      delete removedPostState[action.id]
       return removedPostState;
 
     default:

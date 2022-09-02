@@ -4,65 +4,61 @@ import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
 import { createPost } from "../../store/posts";
 import { Redirect, useHistory } from "react-router-dom";
+import * as postActions from '../../store/posts'
 
 function PostForm() {
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState([]);
-    const [caption, setCaption] = useState("");
-    const [post_url, setPost_url] = useState("");
-    const history = useHistory();
-    const posts = Object.values(useSelector((state) => state.posts));
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        dispatch(createPost({ caption, post_url }))
-    };
+    function PostForm() {
+        const dispatch = useDispatch();
+        const [errors, setErrors] = useState([]);
+        const [caption, setCaption] = useState("");
+        const [postUrl, setPostUrl] = useState("");
+        const history = useHistory();
+        const posts = Object.values(useSelector((state) => state.posts));
 
-    return (
-        <div className="post-form-container">
-            <div className="create-new-post">
-                <p>Create new post</p>
-            </div>
-            <div className="caption-url-container">
-                <form className="form-here" onSubmit={handleSubmit}>
-                    <div>
-                        <ul>
-                            {errors.map((error, idx) => (
-                                <li key={idx}>{error}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="image-render">
-                        <img src={post_url} alt="post" placeholder="Image URL" />
-                    </div>
-                    <div className="form-item">
-                        <label>Caption: </label>
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            setErrors([]);
+            dispatch(postActions.createPost({ caption, postUrl }))
+        };
+
+        return (
+            <div className="post-form-container">
+                <div className="create-new-post">
+                    <p>Create new post</p>
+                </div>
+            <div>
+                        <form onSubmit={handleSubmit}>
+                            <ul>
+                                {errors.map((error, idx) => (
+                                    <li key={idx}>{error}</li>
+                                ))}
+                            </ul>
+                            <label>
+                                Caption
+                                <input
+                                    type="text"
+                                    value={caption}
+                                    onChange={(e) => setCaption(e.target.value)}
+                                    required
+                                />
+                    </label>
+                    <label>
+                        Post Url
                         <input
-                            type="text"
-                            value={caption}
-                            onChange={(e) => setCaption(e.target.value)}
-                            required
+                            type="password"
+                            value={postUrl}
+                            onChange={(e) => setPostUrl(e.target.value)}
                         />
-                    </div>
-                    <div className="form-item">
-                        <label>Image URL: </label>
-                        <input
-                            value={post_url}
-                            type='text'
-                            onChange={e => {
-                                e.preventDefault()
-                                setPost_url(e.target.value)
-                            }}
-                        />
-                    </div>
-
+                    </label>
                     <button type="submit">Post</button>
-                </form>
-            </div>
-        </div>
+                </form >
+            </div >
+        </div >
     );
-}
+    }
 
-export default PostForm;
+    export default PostForm;
