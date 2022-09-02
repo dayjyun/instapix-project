@@ -70,18 +70,18 @@ const newPost = (post) => {
 };
 
 export const createPost = (postDetails) => async (dispatch) => {
-  const { post_url, caption } = postDetails;
-  const formData = new FormData();
+  const { postUrl, caption } = postDetails;
 
-  formData.append("post_url", post_url)
-  if (caption) formData.append('caption', caption)
 
   const post = await fetch(`/api/posts`, {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data"
+      "Content-Type": "application/json"
     },
-    body: formData,
+    body: JSON.stringify({
+      caption,
+      post_url: postUrl
+    })
   })
 
   const resPost = await post.json()
@@ -150,28 +150,28 @@ export default function postsReducer(state = initialState, action) {
       })
       return newFollowingPostsState;;
 
-      case GET_POST:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        };
+    case GET_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      };
 
-      case CREATE_POST:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        }
+    case CREATE_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      }
 
-      case EDIT_POST:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        };
+    case EDIT_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      };
 
-      case DELETE_POST:
-        const removedPostState = { ...state }
-        delete removedPostState[action.id]
-        return removedPostState;
+    case DELETE_POST:
+      const removedPostState = { ...state }
+      delete removedPostState[action.id]
+      return removedPostState;
 
     default:
       return state;
