@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
-import EditPostForm from "./EditPost";
+import EditPostForm from "./EditPost/EditPostForm";
 import EditPostBtn from "./EditPost/EditPostBtn";
 
 function PostComponent() {
