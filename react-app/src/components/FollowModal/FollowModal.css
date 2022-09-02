@@ -11,15 +11,27 @@
 }
 
 .follower-profile-image {
-    width: 10%;
+    height: 2.75em;
+    width: 2.75em;
+    margin-right: .7em
+}
+
+.profile-img-circle-container {
+    height: 2.75em;
+    width: 2.75em;
+    object-fit: cover;
+    border-radius: 50px;
+
+    /* max-width: 2.75em; */
 }
 
 .follower-user-info {
     width: 60%;
     display: block;
-    padding: 0;
+    padding: .4em 0 0 0;
 
 }
+
 
 .follower-follow-btn {
     width: 30%;
@@ -31,6 +43,8 @@
     margin: 0;
 }
 
-.p-no-padding {
+.p-styling {
     margin: 0;
+    color: rgb(145, 145, 145);
+    font-size: 13.8px;
 }

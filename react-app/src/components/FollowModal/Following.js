@@ -32,11 +32,11 @@ const Following = () => {
                         return (
                             <div className='each-follower-box' key={index}>
                                 <div className='follower-profile-image'>
-                                    <img src={follow?.follower_info?.profile_image} />
+                                    <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' />
                                 </div>
                                 <div className='follower-user-info'>
                                     <p className='p-bolded'>{follow?.follower_info?.username}</p>
-                                    <p className='p-no-padding'>{follow?.follower_info?.first_name}</p>
+                                    <p className='p-styling'>{follow?.follower_info?.first_name}</p>
                                 </div>
 
 

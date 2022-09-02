@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
+import { ModalSmall } from '../../context/Modal';
 import Following from './Following';
 // import './.css
 
@@ -10,9 +10,9 @@ function FollowingModal() {
         <>
             <button onClick={() => setShowModal(true)} >Following</button>
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <ModalSmall onClose={() => setShowModal(false)}>
                     <Following />
-                </Modal>
+                </ModalSmall>
             )}
         </>
     );
