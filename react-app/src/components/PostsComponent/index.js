@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
+import EditPostBtn from "./EditPost/EditPostBtn";
 
 function PostComponent() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function PostComponent() {
           ))}
         </ul>
       </div>
+      <EditPostBtn />
     </div>
   )
 }
