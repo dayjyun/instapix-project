@@ -1,16 +1,15 @@
 const GET_ALL_POSTS = "posts/getAllPosts";
-const GET_FOLLOWING_POSTS = 'posts/getFollowingPosts';
-const GET_POST = 'posts/getPost';
-const CREATE_POST = 'posts/createPost';
-const EDIT_POST = 'posts/editPost';
-const DELETE_POST = 'posts/deletePost';
-
+const GET_FOLLOWING_POSTS = "posts/getFollowingPosts";
+const GET_POST = "posts/getPost";
+const CREATE_POST = "posts/createPost";
+const EDIT_POST = "posts/editPost";
+const DELETE_POST = "posts/deletePost";
 
 // Get all posts
 const loadPosts = (data) => {
   return {
     type: GET_ALL_POSTS,
-    data,
+    data
   };
 };
 
@@ -23,71 +22,67 @@ export const loadAllPosts = () => async (dispatch) => {
   }
 };
 
-
 // Get posts from users I am following
 const followingPosts = (list) => {
   return {
     type: GET_FOLLOWING_POSTS,
-    list,
-  }
+    list
+  };
 };
 
 export const getFollowingPosts = () => async (dispatch) => {
-  const allFollowingPosts = await fetch('/api/posts');
+  const allFollowingPosts = await fetch("/api/posts");
 
   if (allFollowingPosts.ok) {
     const resAllPosts = await allFollowingPosts.json();
-    dispatch(followingPosts(resAllPosts.Posts))
+    dispatch(followingPosts(resAllPosts.Posts));
   }
 };
-
 
 // Get post
 const getCurrentPost = (post) => {
   return {
     type: GET_POST,
-    post,
-  }
+    post
+  };
 };
 
 export const getPost = (postId) => async (dispatch) => {
   const post = await fetch(`/api/posts/${postId}`);
 
   if (post.ok) {
-    const resPost = await post.json()
+    const resPost = await post.json();
     dispatch(getCurrentPost(resPost));
-    return post
+    return post;
   }
 };
-
 
 // Create post
 const newPost = (post) => {
   return {
     type: CREATE_POST,
-    post,
-  }
+    post
+  };
 };
 
 export const createPost = (postDetails) => async (dispatch) => {
-  const { post_url, caption } = postDetails;
-  const formData = new FormData();
+  const { postUrl, caption } = postDetails;
 
-  formData.append("post_url", post_url)
-  if (caption) formData.append('caption', caption)
 
-  const post = await fetch(`/api/posts`, {
+  const post = await fetch(`/api/posts/form`, {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data"
+      "Content-Type": "application/json"
     },
-    body: formData,
+    body: JSON.stringify({
+      caption,
+      post_url: postUrl
+    })
   })
 
   const resPost = await post.json()
   dispatch(newPost(resPost))
 };
-
 
 // Edit post
 // const updatePost = (post) => {
@@ -112,25 +107,23 @@ export const createPost = (postDetails) => async (dispatch) => {
 //   }
 // };
 
-
 // Delete post
 const removePost = (post) => {
   return {
     type: DELETE_POST,
     post
-  }
+  };
 };
 
 export const deletePost = (postId) => async (dispatch) => {
   const post = await fetch(`/api/posts/${postId}`, {
     method: "DELETE"
-  })
+  });
 
   if (post.ok) {
-    dispatch(removePost(post))
+    dispatch(removePost(post));
   }
 };
-
 
 let initialState = {};
 
@@ -144,34 +137,34 @@ export default function postsReducer(state = initialState, action) {
       return newAllPostsState;
 
     case GET_FOLLOWING_POSTS:
-      const newFollowingPostsState = { ...state }
-      action.list.Posts.forEach(post => {
+      const newFollowingPostsState = { ...state };
+      action.list.Posts.forEach((post) => {
         newFollowingPostsState[post.id] = post;
-      })
-      return newFollowingPostsState;;
+      });
+      return newFollowingPostsState;
 
-      case GET_POST:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        };
+    case GET_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      };
 
-      case CREATE_POST:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        }
+    case CREATE_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      }
 
-      case EDIT_POST:
-        return {
-          ...state,
-          [action.post.id]: action.post
-        };
+    case EDIT_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      };
 
-      case DELETE_POST:
-        const removedPostState = { ...state }
-        delete removedPostState[action.id]
-        return removedPostState;
+    case DELETE_POST:
+      const removedPostState = { ...state }
+      delete removedPostState[action.id]
+      return removedPostState;
 
     default:
       return state;

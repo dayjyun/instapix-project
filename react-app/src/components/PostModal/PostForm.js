@@ -1,59 +1,63 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
-import './PostForm.css'
+import { useDispatch, useSelector } from "react-redux";
+import "./PostForm.css";
+import { createPost } from "../../store/posts";
+import { Redirect, useHistory } from "react-router-dom";
+import * as postActions from "../../store/posts";
 
 function PostForm() {
+  const dispatch = useDispatch();
+
+  function PostForm() {
     const dispatch = useDispatch();
-    const [credential, setCredential] = useState("");
-    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [caption, setCaption] = useState("");
+    const [postUrl, setPostUrl] = useState("");
+    const history = useHistory();
+    const posts = Object.values(useSelector((state) => state.posts));
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        return dispatch(sessionActions.login({ credential, password })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
+      e.preventDefault();
+      setErrors([]);
+      dispatch(postActions.createPost({ caption, postUrl }));
     };
 
     return (
-        <div className="post-form-container">
-            <div className="create-new-post">
-                <p>Create new post</p>
-            </div>
-            <div>POST FORM IN HERE</div>
-            {/* <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
-                <label>
-                    Username or Email
-                    <input
-                        type="text"
-                        value={credential}
-                        onChange={(e) => setCredential(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <button type="submit">Log In</button>
-            </form> */}
+      <div className="post-form-container">
+        <div className="create-new-post">
+          <p>Create new post</p>
         </div>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <label>
+              Caption
+              <input
+                type="text"
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Post Url
+              <input
+                type="password"
+                value={postUrl}
+                onChange={(e) => setPostUrl(e.target.value)}
+              />
+            </label>
+            <button type="submit">Post</button>
+          </form>
+        </div>
+      </div>
     );
+  }
 }
 
 export default PostForm;

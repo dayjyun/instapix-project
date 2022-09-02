@@ -17,6 +17,8 @@ import Following from "./components/Following/Following";
 // import Following from './components/Following/Following';
 import Followers from "./components/Following/Followers";
 import PostComponent from "./components/PostsComponent";
+import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
+import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 
 
 function App() {
@@ -47,6 +49,19 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
+
+        {/*  */}
+
+        <Route exact path ='/posts/explorer'>
+          <ExplorerPosts />
+        </Route>
+
+        <Route exact path='/posts'>
+          <FollowingPosts />
+        </Route>
+
+
+        {/*  */}
 
         <Route path="/users/:userId/following" exact={true}>
           <Following />
