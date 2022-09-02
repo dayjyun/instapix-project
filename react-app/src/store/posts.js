@@ -67,11 +67,6 @@ const newPost = (post) => {
 
 export const createPost = (postDetails) => async (dispatch) => {
   const { post_url, caption } = postDetails;
-  const formData = new FormData();
-  console.log(post_url, caption);
-
-  formData.append("post_url", post_url);
-  if (caption) formData.append("caption", caption);
 
   const post = await fetch(`/api/posts/form`, {
     method: "POST",
@@ -151,15 +146,13 @@ export default function postsReducer(state = initialState, action) {
     case GET_POST:
       return {
         ...state,
-        [action.post.id]: action.post
+        [action.post?.id]: action.post
       };
 
     case CREATE_POST:
-      return {
-        ...state,
-        [Object.values(action.post)[0].id]: action.post
-      };
-
+      const createPostState = { ...state }
+      createPostState[action.post?.id] = action.post
+      return createPostState
     case EDIT_POST:
       return {
         ...state,

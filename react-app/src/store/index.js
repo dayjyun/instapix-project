@@ -4,7 +4,6 @@ import session from "./session";
 import likesReducer from "./likes";
 import hashtagReducer from "./hashtags";
 import comments from "./comments";
-import posts from "./posts";
 import followReducer from "./follow";
 import postsReducer from "./posts";
 

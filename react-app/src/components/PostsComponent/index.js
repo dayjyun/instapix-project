@@ -13,16 +13,16 @@ function PostComponent() {
     dispatch(getPost(+postId));
   }, [dispatch]);
 
-  const caption = posts.caption;
-  console.log("CAPTION", caption);
+
 
   return (
     <div>
       <div>
         <ul>
           {posts?.map((post) => (
-            <li key={post.id}>
+            <li key={post?.id}>
               <div>{post?.Post?.caption}</div>
+              <img src={posts.Post[0].post_url} alt='preview'></img>
             </li>
           ))}
         </ul>
