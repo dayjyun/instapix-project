@@ -25,7 +25,7 @@ const Following = () => {
 
     return (
         <>
-            <h1>Following</h1>
+            <h3>Following</h3>
             {follows && (
                 follows?.map((follow, index) => {
                     return (

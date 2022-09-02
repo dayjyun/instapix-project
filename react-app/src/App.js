@@ -12,6 +12,7 @@ import TestingComponent from './components/testingstore';
 import PostsComments from './components/CommentComponents/PostsComments';
 import EditComment from './components/CommentComponents/EditComment';
 import CommentDetails from './components/CommentComponents/CommentDetails';
+import FollowingModal from './components/FollowModal';
 import Following from './components/FollowModal/Following';
 import Followers from './components/FollowModal/Followers';
 import PostComponent from './components/PostsComponent';
@@ -72,12 +73,16 @@ function App() {
         <Route exact path='/posts/:postId'>
           <PostComponent />
         </Route>
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
+
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
+          <FollowingModal />
           <User />
         </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );
