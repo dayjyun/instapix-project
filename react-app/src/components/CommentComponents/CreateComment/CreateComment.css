@@ -1,0 +1,18 @@
+.comment-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.comment-submit-btn {
+    padding: 0;
+    border: none;
+    background: none;
+    color: rgb(0,149,246);
+    font-weight: bold;
+
+}
+
+.comment-body-input {
+    border: none;
+}

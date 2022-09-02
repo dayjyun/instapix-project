@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import * as postActions from '../../store/posts';
 import { useDispatch, useSelector } from "react-redux";
+import CreateComment from "../CommentComponents/CreateComment";
 
 
 function GetPost() {
@@ -38,7 +39,12 @@ function GetPost() {
                     </div>
                     <p>Caption</p>
                 </div>
-                <div className="post-modal-comments"><p>Comments</p></div>
+                <div className="post-modal-comments">
+                    <p>Comments</p>
+                    <div className="create-comment-container">
+                        <CreateComment />
+                    </div>
+                </div>
             </div>
         </div>
     );
