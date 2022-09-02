@@ -8,14 +8,15 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import PostComponent from './components/Post';
+import Following from './components/Following/Following';
+import Followers from './components/Following/Followers';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -32,14 +33,20 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route exact path='/posts/:postId'>
-          <PostComponent />
-        </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+
+        <Route path='/users/:userId/following' exact={true}>
+          <Following />
+        </Route>
+        <Route path='/users/:userId/followers' exact={true}>
+          <Followers />
+        </Route>
+
+
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
@@ -48,6 +55,8 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+
+
     </BrowserRouter>
   );
 }
