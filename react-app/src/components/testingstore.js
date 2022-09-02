@@ -1,15 +1,9 @@
-// import * as hashtagActions from "../store/hashtags";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-// import * as likeActions from "../store/likes";
 import * as postActions from '../store/posts'
 
 const TestingComponent = () => {
   const dispatch = useDispatch();
-//   const history = useHistory();
-//   const hashtags = Object.values(useSelector((state) => state.hashtags));
-//   const likes = Object.values(useSelector((state) => state.likes));
     const posts = Object.values(useSelector((state ) => state.posts));
     const comments = posts[0]?.Post[0]?.Comments
     console.log(comments)
