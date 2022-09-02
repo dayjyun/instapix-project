@@ -3,16 +3,26 @@ import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import TestingComponent from './components/testingstore';
+import PostsComments from './components/CommentComponents/PostsComments';
+import EditComment from './components/CommentComponents/EditComment';
+import CommentDetails from './components/CommentComponents/CommentDetails';
+import Following from './components/Following/Following'
 import Following from './components/Following/Following';
 import Followers from './components/Following/Followers';
+<<<<<<< HEAD
 import PostsComments from './components/CommentComponents/PostsComments';
 import CommentDetails from './components/CommentComponents/CommentDetails';
 import EditComment from './components/CommentComponents/EditComment';
+=======
+import PostComponent from './components/PostsComponent';
+
+>>>>>>> dev
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +46,9 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
+        <Route path='/testingroute'>
+          <TestingComponent />
+        </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
@@ -58,8 +71,8 @@ function App() {
         <Route path="/comments/:commentId/edit" exact={true}>
           <EditComment />
         </Route>
-        <Route>
-          <Following path="/users/:userId/following" exact={true} />
+        <Route exact path='/posts/:postId'>
+          <PostComponent />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
