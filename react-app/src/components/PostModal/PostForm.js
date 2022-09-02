@@ -31,33 +31,37 @@ function PostForm() {
             </div>
             <div className="form-container">
                 <div className="form-image">
-                    <img src={postUrl} alt='image'></img>
+                    {postUrl && (
+                        <img style={{ width: '32vw', height: '64.4vh' }} src={postUrl}></img>
+                    )}
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <ul>
-                        {errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}
-                    </ul>
-                    <label>
-                        Caption
-                        <input
-                            type="text"
-                            value={caption}
-                            onChange={(e) => setCaption(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Post Url
-                        <input
-                            type="password"
-                            value={postUrl}
-                            onChange={(e) => setPostUrl(e.target.value)}
-                        />
-                    </label>
-                    <button type="submit">Post</button>
-                </form>
+                <div className="post-caption-form-container">
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                        <label>
+                            Caption
+                            <input
+                                type="text"
+                                value={caption}
+                                onChange={(e) => setCaption(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label>
+                            Post Url
+                            <input
+                                type="text"
+                                value={postUrl}
+                                onChange={(e) => setPostUrl(e.target.value)}
+                            />
+                        </label>
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
             </div>
         </div>
     );

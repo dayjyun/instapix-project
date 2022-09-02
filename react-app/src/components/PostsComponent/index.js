@@ -21,7 +21,7 @@ function PostComponent() {
         <ul>
           {posts?.map((post) => (
             <li key={post?.id}>
-              <div>{post?.post_url}</div>
+              <img style={{ width: '500px', height: '500px' }} src={post?.post_url} alt='post_image'></img>
               <div>{post?.caption}</div>
               <div>{post?.likes} Likes</div>
             </li>
