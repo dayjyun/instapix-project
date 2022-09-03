@@ -2,20 +2,24 @@ import React, { useState } from 'react';
 import { ModalSmall } from '../../context/Modal';
 import Following from './Following';
 // import './.css
+import '../UserComponent/UserComponent.css'
 
-function FollowingModal() {
+function FollowModal({ user }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            <button onClick={() => setShowModal(true)} >Following</button>
-            {showModal && (
-                <ModalSmall onClose={() => setShowModal(false)}>
-                    <Following />
-                </ModalSmall>
-            )}
+
+            <p onClick={() => setShowModal(true)} ><span className='bold'>{user.num_followers}</span> followers</p>
+            {
+                showModal && (
+                    <ModalSmall onClose={() => setShowModal(false)}>
+                        <Following />
+                    </ModalSmall>
+                )
+            }
         </>
     );
 }
 
-export default FollowingModal;
+export default FollowModal;
