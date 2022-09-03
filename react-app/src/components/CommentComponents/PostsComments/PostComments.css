@@ -76,3 +76,7 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
+.comment-body-input {
+    margin: 5px 5px;
+}
