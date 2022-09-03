@@ -12,7 +12,6 @@ function PostMenu({ setShowMenuButtons }) {
   const currUser = useSelector((state) => state.session.user);
   const { postId } = useParams();
   const [showEditPost, setShowEditPost] = useState(false);
-  console.log(currUser);
 
   const handleDeletePostBtn = (e) => {
     e.preventDefault();
