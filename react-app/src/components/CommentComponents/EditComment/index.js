@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import * as commentActions from '../../store/comments';
+import * as commentActions from '../../../store/comments';
 
 const EditComment = () => {
     const { commentId } = useParams()
@@ -34,7 +34,7 @@ const EditComment = () => {
                     </ul> */}
                     <div className='input-container'>
                         <label htmlFor='title'>Body</label>
-                        <input type='text' name='body' value={body} placeholder={comment.body} onChange={(e) => setBody(e.target.value)} />
+                        <input type='text' name='body' value={body} placeholder={comment?.body} onChange={(e) => setBody(e.target.value)} />
                     </div>
                     <div >
                         <button>Submit</button>

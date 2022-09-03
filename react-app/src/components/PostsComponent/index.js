@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
+import EditPostBtn from "./EditPost/EditPostBtn";
 
 function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
-  console.log(posts[0]?.Post[0].caption);
 
   useEffect(() => {
     dispatch(getPost(+postId));
@@ -15,11 +15,18 @@ function PostComponent() {
 
   return (
     <div>
+      <EditPostBtn />
       <div>
         <ul>
           {posts?.map((post) => (
-            <li key={post.id}>
-              <div>{post?.Post[0]?.caption}</div>
+            <li key={post?.id}>
+              <img
+                style={{ width: "500px", height: "500px" }}
+                src={post?.post_url}
+                alt="post_image"
+              ></img>
+              <div>{post?.caption}</div>
+              <div>{post?.likes} Likes</div>
             </li>
           ))}
         </ul>

@@ -6,11 +6,7 @@ import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
 import PostFormModal from '../PostModal';
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
-import ReactDropdown from 'react-dropdown';
-import { useSelector, useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session'
+import { useDispatch } from 'react-redux';
 
 const NavBar = () => {
   const history = useHistory()
