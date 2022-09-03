@@ -15,7 +15,7 @@ function PostMenu() {
       <button onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <button onClick={handleCancelBtn}>Cancel</button>
+          {/* <button onClick={handleCancelBtn}>Cancel</button> */}
           <EditPostForm />
         </Modal>
       )}
