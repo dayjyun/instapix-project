@@ -12,7 +12,11 @@ const HomePageComponent = () => {
         )
     } else {
         return (
-            <h1>Sign in home page component</h1>
+            <div className="logged-out-container">
+                <div className="logged-out-content-container">
+                    
+                </div>
+            </div>
         )
     }
 }

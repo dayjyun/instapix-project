@@ -8,7 +8,6 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/UserComponent";
 import { authenticate } from "./store/session";
-import TestingComponent from "./components/testingstore";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
@@ -38,54 +37,43 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path="/login" exact={true}>
+        {/* <Route path="/login" exact={true}>
           <LoginForm />
-        </Route>
-        <Route path="/testingroute">
-          <TestingComponent />
-        </Route>
+        </Route> */}
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-
         <Route exact path="/posts/explorer">
           <ExplorerPosts />
         </Route>
-
         <Route exact path="/posts">
           <FollowingPosts />
         </Route>
-
-        <ProtectedRoute path="/" exact={true}>
-          <div>
-            <HomePageComponent />
+        <Route exact path="/">
+          <LoginForm />
+          <HomePageComponent />
+          {/* <div>
             <div className="new-post-button">
               <GetPostModal />
             </div>
-          </div>
-        </ProtectedRoute>
-
+          </div> */}
+        </Route>
         <Route exact path="/posts/:postId">
           <PostComponent />
         </Route>
-
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
-
         <Route path="/posts/:postId/comments" exact={true}>
           <PostsComments />
         </Route>
-
         <Route path="/comments/:commentId" exact={true}>
           <CommentDetails />
         </Route>
-
         {/* EDIT COMMENT BROKEN */}
         <Route path="/comments/:commentId/edit" exact={true}>
           <EditComment />
         </Route>
-
         <ProtectedRoute path="/users/:userId" exact={true}>
           {/* <FollowingModal /> */}
           <User />
