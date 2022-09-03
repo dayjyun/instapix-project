@@ -1,7 +1,7 @@
 /* TODO Add site wide styles */
-.page {
+/* .page {
     background-color: whitesmoke;
-}
+} */
 
 #root {
     margin-top: -.8%;
@@ -10,6 +10,13 @@
 
 button:hover {
     cursor: pointer;
+}
+
+h2 {
+    font-family: 'Arimo', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    margin: 0;
 }
 
 h3 {
@@ -25,4 +32,5 @@ p {
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(250, 250, 250);
 }
