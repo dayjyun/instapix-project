@@ -22,11 +22,13 @@ const NavBar = () => {
   }
   const handleHome = (e) => {
     e.preventDefault()
+    setProfileToggle(false)
     history.push('/')
   }
 
   const handleExplore = e => {
     e.preventDefault()
+    setProfileToggle(false)
     history.push('/explore')
   }
 
@@ -38,6 +40,7 @@ const NavBar = () => {
   }
   const handleProfile = e => {
     e.preventDefault()
+    setProfileToggle(false)
     history.push('/me')
   }
 
@@ -60,9 +63,11 @@ const NavBar = () => {
         <PostFormModal />
         <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
         <div className='profile-dropdown'>
-          <button className='profile-button' onClick={showMenu}>
-            <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
-          </button>
+          <div>
+            <button className='profile-button' onClick={showMenu}>
+              <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
+            </button>
+          </div>
           {profileToggle && (
             <div className='dropdown-shadow'>
 
