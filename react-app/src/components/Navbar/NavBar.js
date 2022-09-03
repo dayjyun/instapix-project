@@ -61,10 +61,11 @@ const NavBar = () => {
         <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
         <div className='profile-dropdown'>
           <button className='profile-button' onClick={showMenu}>
-            <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser.profile_image} alt='preview'></img>
+            <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
           </button>
           {profileToggle && (
             <div className='dropdown-shadow'>
+
               <button className='profile-n-logout' onClick={handleProfile}>Profile</button>
               <button className='profile-n-logout' onClick={logout}>Log out</button>
             </div>
