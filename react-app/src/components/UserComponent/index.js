@@ -3,11 +3,18 @@ import { useParams } from 'react-router-dom';
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
 import './UserComponent.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function User() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
+
+  const curUser = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch()
+  // })
 
   useEffect(() => {
     if (!userId) {
