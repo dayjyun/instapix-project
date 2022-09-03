@@ -22,7 +22,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
         caption,
       })
     );
-    history.push(`/users/${currUser.id}`).then(() => setShowEditPost(false))
+    history.push(`/users/${currUser.id}`)
   };
 
   const handleCancelBtn = (e) => {

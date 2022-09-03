@@ -21,6 +21,11 @@ function PostMenu({ setShowMenuButtons }) {
   };
   // ! Not deleting
 
+  const handleOnClose = () => {
+    setShowEditPost(false);
+    setShowMenuButtons(false);
+  }
+
   const handleCancelBtn = (e) => {
     e.preventDefault();
     setShowMenuButtons(false);
@@ -31,7 +36,7 @@ function PostMenu({ setShowMenuButtons }) {
       <button onClick={handleDeletePostBtn}>Delete</button>
       <button onClick={() => setShowEditPost(true)}>Edit</button>
       {showEditPost && (
-        <Modal onClose={() => setShowEditPost(false)}>
+        <Modal onClose={handleOnClose}>
           <EditPostForm
             setShowMenuButtons={setShowMenuButtons}
             setShowEditPost={setShowEditPost}
