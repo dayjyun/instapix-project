@@ -1,32 +1,42 @@
-import { useEffect } from 'react';
-// import { useParams } from 'react-router-dom'
-import { getFollowingBackend, deleteFollowBackend } from '../../store/follow';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import './FollowModal.css'
+import { getFollowersBackend, postFollowBackend } from '../../../store/follow';
 
-const Following = () => {
+import '../FollowModal.css'
+
+const Followers = () => {
     const dispatch = useDispatch()
+    // Add a follow button or 'already follows' p tag later
+    // const [doesFollow, setDoesFollow] = useState();
 
     const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
-    // console.log(follows)
 
     useEffect(() => {
         if (user) {
-            dispatch(getFollowingBackend(user?.id))
+            dispatch(getFollowersBackend(user?.id))
         }
     }, [dispatch, user])
 
     const handleClick = async (e) => {
         e.preventDefault();
 
-        await dispatch(deleteFollowBackend(e.target.id));
+        const input = {
+            user_id: user?.id,
+            follows_id: e.target.id
+        }
+
+        await dispatch(postFollowBackend(input));
     }
+
+    // useEffect(() => {
+    //     if (user?.)
+    // })
 
     return (
         <>
             <div className='following-modal-container'>
-                <h3 className='following-header'>Following</h3>
+                <h3 className='following-header'>Followers</h3>
                 <div className='following-info-container'>
                     {follows && (
                         follows?.map((follow, index) => {
@@ -42,8 +52,13 @@ const Following = () => {
 
 
                                     <div className='follower-follow-btn'>
-                                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
+                                        <p>You Follow</p>
                                     </div>
+
+                                    {/* <div className='follower-follow-btn'>
+                                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>
+                                    </div> */}
+
                                 </div>
                             )
                         }))}
@@ -53,4 +68,4 @@ const Following = () => {
     )
 }
 
-export default Following;
+export default Followers;
