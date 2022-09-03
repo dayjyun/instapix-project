@@ -17,6 +17,7 @@ import PostComponent from "./components/PostsComponent";
 import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
+import HomePageComponent from "./components/HomePageComponent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,7 +58,7 @@ function App() {
 
         <ProtectedRoute path="/" exact={true}>
           <div>
-            <h1>My Home Page</h1>
+            <HomePageComponent />
             <div className="new-post-button">
               <GetPostModal />
             </div>

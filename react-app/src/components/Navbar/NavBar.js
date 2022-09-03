@@ -1,7 +1,5 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
@@ -70,6 +68,8 @@ const NavBar = () => {
         </div>
       </div>
     );
+  } else {
+    return null
   }
 }
 
