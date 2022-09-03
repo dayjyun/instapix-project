@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
 import "./EditPostForm.css";
 
-function EditPostForm({ setShowEditPost }) {
+function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
@@ -22,12 +22,13 @@ function EditPostForm({ setShowEditPost }) {
         caption,
       })
     );
-    history.push(`/users/${currUser.id}`);
+    history.push(`/users/${currUser.id}`).then(() => setShowEditPost(false))
   };
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
     setShowEditPost(false);
+    setShowMenuButtons(false);
   };
 
   return (

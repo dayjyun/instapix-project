@@ -32,7 +32,10 @@ function PostMenu({ setShowMenuButtons }) {
       <button onClick={() => setShowEditPost(true)}>Edit</button>
       {showEditPost && (
         <Modal onClose={() => setShowEditPost(false)}>
-          <EditPostForm setShowEditPost={setShowEditPost} />
+          <EditPostForm
+            setShowMenuButtons={setShowMenuButtons}
+            setShowEditPost={setShowEditPost}
+          />
         </Modal>
       )}
       <button onClick={handleCancelBtn}>Cancel</button>
