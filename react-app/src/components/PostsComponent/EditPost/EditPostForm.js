@@ -7,8 +7,9 @@ function EditPostForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
-  // const posts = Object.values(useSelector(state => state.posts))
-  const [caption, setCaption] = useState(""); // render to grab current caption
+  const posts = Object.values(useSelector(state => state.posts))
+  const [caption, setCaption] = useState(posts?.map((post) => post?.caption))
+
 
   // useEffect(() => {
   //     dispatch(editPost(+postId))

@@ -6,17 +6,18 @@ import { deletePost } from "../../../store/posts";
 import PostMenu from "./PostMenu";
 
 function EditPostBtn() {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const { postId } = useParams()
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { postId } = useParams();
   const [showModal, setShowModal] = useState(false);
 
   const handleDeletePostBtn = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(deletePost(+postId));
     alert("Post successfully deleted");
-    history.push("/posts/explorer");
-  }
+    history.push("/posts/explorer"); // ! redirect to current user profile
+  };
+  // ! Not deleting
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
@@ -27,7 +28,7 @@ function EditPostBtn() {
     <>
       <button onClick={() => setShowModal(true)}>Menu Button...</button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClick={() => setShowModal(false)}>
           <button onClick={handleDeletePostBtn}>Delete</button>
           <PostMenu />
           <button onClick={handleCancelBtn}>Cancel</button>
