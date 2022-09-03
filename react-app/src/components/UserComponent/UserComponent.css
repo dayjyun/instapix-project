@@ -48,19 +48,17 @@
 /* user posts */
 .user-posts-collection {
     width: auto;
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    column-gap: 1.7em;
-    row-gap: 1.7em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1.15em;
+    row-gap: 1.15em;
     padding: 3% 25%;
 
 }
 
 .user-post-card {
-    width: 18.75em;
-    height: 18.75em;
+    width: 18.5em;
+    height: 18.5em;
 }
 
 .user-img-card {
@@ -73,6 +71,6 @@
 
 hr.solid {
     border-top: 1px solid lightgray;
-    margin: 3% 25%;
+    margin: 1% 25%;
 
 }
