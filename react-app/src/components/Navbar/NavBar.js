@@ -6,12 +6,15 @@ import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
 import PostFormModal from '../PostModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import * as sessionActions from '../../store/session'
 
 const NavBar = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [profileToggle, setProfileToggle] = useState(false)
+  const sessionUser = useSelector(state => state.session.user)
+
 
   const showMenu = e => {
     e.preventDefault()
@@ -33,11 +36,11 @@ const NavBar = () => {
     setProfileToggle(false)
     history.push('/')
   }
-
   const handleProfile = e => {
     e.preventDefault()
     history.push('/me')
   }
+
   return (
     <div className='nav-bar-container'>
       <div className='nav-buttons-left'>
@@ -57,7 +60,9 @@ const NavBar = () => {
         <PostFormModal />
         <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
         <div className='profile-dropdown'>
-          <button className='fa-regular fa-circle-user profile-button' onClick={showMenu}></button>
+          <button className='profile-button' onClick={showMenu}>
+            <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser.profile_image} alt='preview'></img>
+          </button>
           {profileToggle && (
             <div className='dropdown-shadow'>
               <button className='profile-n-logout' onClick={handleProfile}>Profile</button>
@@ -66,7 +71,6 @@ const NavBar = () => {
           )}
         </div>
       </div>
-
     </div>
     // <nav>
     //   <ul>
