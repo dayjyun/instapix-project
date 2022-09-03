@@ -5,7 +5,6 @@ import PostMenu from "./PostMenu";
 function EditPostBtn() {
   const [showMenuButtons, setShowMenuButtons] = useState(false);
 
-
   return (
     <>
       <button onClick={() => setShowMenuButtons(true)}>Menu Button...</button>
