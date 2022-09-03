@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Modal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
 import PostMenu from "./PostMenu";
@@ -8,12 +8,12 @@ import PostMenu from "./PostMenu";
 function EditPostBtn() {
     const dispatch = useDispatch()
     const history = useHistory()
-    // postId?
+    const { postId } = useParams()
   const [showModal, setShowModal] = useState(false);
 
   const handleDeletePostBtn = (e) => {
     e.preventDefault()
-    dispatch(deletePost(1))
+    dispatch(deletePost(+postId));
     alert("Post successfully deleted");
     history.push("/posts/explorer");
   }
