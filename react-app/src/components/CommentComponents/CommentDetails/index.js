@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
 import * as commentActions from '../../../store/comments';
+import './CommentDetails.css'
 
 const CommentDetails = () => {
     const { commentId } = useParams();
