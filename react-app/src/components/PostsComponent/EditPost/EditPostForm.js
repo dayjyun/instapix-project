@@ -4,11 +4,11 @@ import { useHistory, useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
 import "./EditPostForm.css";
 
-function EditPostForm() {
+function EditPostForm({ setShowEditPost }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
-  const currUser = useSelector(state => state.session.user)
+  const currUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.posts));
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
@@ -27,7 +27,7 @@ function EditPostForm() {
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
-    history.push(`/posts/${+postId}`);
+    setShowEditPost(false);
   };
 
   return (
@@ -57,9 +57,9 @@ function EditPostForm() {
               <div className="edit-post-image-caption">
                 <label>
                   <textarea
-                  className="edit-post-text-area"
+                    className="edit-post-text-area"
                     value={caption}
-                    maxLength='2000'
+                    maxLength="2000"
                     onChange={(e) => setCaption(e.target.value)}
                   />
                 </label>

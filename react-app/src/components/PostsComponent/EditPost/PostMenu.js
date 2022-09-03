@@ -30,11 +30,12 @@ function PostMenu({ setShowMenuButtons }) {
   return (
     <div className="post-menu-buttons">
       <button onClick={handleDeletePostBtn}>Delete</button>
-      <button onClick={() => setShowEditPost(true)}>Edit</button>
+      <button onClick={() => setShowEditPost(true)}
+      >Edit</button>
       {showEditPost && (
         <Modal onClose={() => setShowEditPost(false)}>
           {/* <button onClick={handleCancelBtn}>Cancel</button> */}
-          <EditPostForm />
+          <EditPostForm setShowEditPost={setShowEditPost} />
         </Modal>
       )}
       <button onClick={handleCancelBtn}>Cancel</button>
