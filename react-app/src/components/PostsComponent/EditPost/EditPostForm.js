@@ -13,9 +13,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
   const [caption, setCaption] = useState(post_caption);
-
-  console.log(currUser)
-
+  
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
