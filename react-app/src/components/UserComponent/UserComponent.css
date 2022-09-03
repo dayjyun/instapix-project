@@ -4,6 +4,7 @@
     margin: 3% 16%;
 }
 
+
 .user-info-profile {
     width: 33%;
 
@@ -40,4 +41,16 @@
     column-gap: 2.5em;
 }
 
-.user-name-bio {}
+/* user posts */
+.user-posts-collection {
+    width: 70%;
+    display: inline-flex;
+    margin: 3% 16%;
+    height: 500px;
+}
+
+.user-post-card {
+    width: 23%;
+
+    column-gap: 2.5em;
+}

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
 import './UserComponent.css'
+import { useSelector } from 'react-redux';
 
 function User() {
   const [user, setUser] = useState({});
@@ -52,6 +53,19 @@ function User() {
           </div>
 
         </div>
+      </div>
+
+      <div className='user-posts-collection'>
+        {user?.posts?.map(post => {
+          return (
+            <div className='user-post-card'>
+              <div>
+                {post?.caption}
+              </div>
+            </div>
+
+          )
+        })}
       </div>
     </div>
 
