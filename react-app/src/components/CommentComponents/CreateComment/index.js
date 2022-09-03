@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as commentActions from '../../../store/comments';
 
+import './CreateComment.css'
+
 const CreateComment = () => {
     const { postId } = useParams()
     const [body, setBody] = useState('');
@@ -20,7 +22,6 @@ const CreateComment = () => {
 
     return (
         <>
-            <h2 >Create A Comment</h2>
             <div>
                 <form onSubmit={handleSubmit}>
                     {/* <ul>
@@ -28,12 +29,13 @@ const CreateComment = () => {
                             <li className='error-li' key={index}>{error}</li>
                         ))}
                     </ul> */}
-                    <div className='input-container'>
-                        <label htmlFor='title'>Body</label>
-                        <input type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
-                    </div>
-                    <div >
-                        <button>Submit</button>
+                    <div className='comment-input-container'>
+                        <div>
+                        <input className='comment-body-input' type='text' name='body' value={body} placeholder='Add a comment...' onChange={(e) => setBody(e.target.value)} />
+                        </div>
+                        <div>
+                        <button className="comment-submit-btn">Post</button>
+                        </div>
                     </div>
                 </form>
             </div>
