@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
+import './EditPostForm.css'
 
 function EditPostForm() {
   const dispatch = useDispatch();
