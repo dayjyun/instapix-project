@@ -44,68 +44,33 @@ const NavBar = () => {
     history.push('/me')
   }
 
-  return (
-    <div className='nav-bar-container'>
-      <div className='nav-buttons-left'>
-        <button className='instapix-button' onClick={handleHome}>Instapix</button>
-        {/* <div className='arrow-dropdown'>
-          <button className='fa-solid fa-angle-down' onClick={showMenu}></button>
-          {arrowToggle && (
-            <div className='arrow-dropdown-list'>
-              <button>Following</button>
-              <button>Favorites</button>
+  if (sessionUser) {
+    return (
+      <div className='nav-bar-container'>
+        <div className='nav-buttons-left'>
+          <button className='instapix-button' onClick={handleHome}>Instapix</button>
+        </div>
+        <div className='nav-buttons-right'>
+          <button className='fa-solid fa-house house' onClick={handleHome}></button>
+          <PostFormModal />
+          <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
+          <div className='profile-dropdown'>
+            <div>
+              <button className='profile-button' onClick={showMenu}>
+                <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
+              </button>
             </div>
-          )}
-        </div> */}
-      </div>
-      <div className='nav-buttons-right'>
-        <button className='fa-solid fa-house house' onClick={handleHome}></button>
-        <PostFormModal />
-        <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
-        <div className='profile-dropdown'>
-          <div>
-            <button className='profile-button' onClick={showMenu}>
-              <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
-            </button>
+            {profileToggle && (
+              <div className='dropdown-shadow'>
+                <button className='profile-n-logout' onClick={handleProfile}>Profile</button>
+                <button className='profile-n-logout' onClick={logout}>Log out</button>
+              </div>
+            )}
           </div>
-          {profileToggle && (
-            <div className='dropdown-shadow'>
-
-              <button className='profile-n-logout' onClick={handleProfile}>Profile</button>
-              <button className='profile-n-logout' onClick={logout}>Log out</button>
-            </div>
-          )}
         </div>
       </div>
-    </div>
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <NavLink to='/' exact={true} activeClassName='active'>
-    //         Home
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/login' exact={true} activeClassName='active'>
-    //         Login
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/sign-up' exact={true} activeClassName='active'>
-    //         Sign Up
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/users' exact={true} activeClassName='active'>
-    //         Users
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <LogoutButton />
-    //     </li>
-    //   </ul>
-    // </nav>
-  );
+    );
+  }
 }
 
 export default NavBar;
