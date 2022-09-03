@@ -64,7 +64,8 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            "Comments": [comments.comment_content() for comments in self.comments]
+            "Comments": [comments.comment_content() for comments in self.comments],
+            # "user": self.users.follow_info()
         }
 
     def feed_to_dict(self):

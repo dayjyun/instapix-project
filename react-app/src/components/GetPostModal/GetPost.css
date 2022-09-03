@@ -17,13 +17,14 @@
 
 .image-content-container {
     /* width: 66%; */
+    position: relative;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     /* border-radius: 6px; */
     height: 310px;
     width: 310px;
-    padding-top: 28%;
+    padding-top: 30%;
     margin: 20px 0;
     /* border: 4px solid rgb(255, 85, 1, 0.7); */
     /* background-color: aqua; */
