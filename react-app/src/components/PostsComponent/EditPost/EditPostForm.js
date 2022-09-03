@@ -8,7 +8,9 @@ function EditPostForm() {
   const history = useHistory();
   const { postId } = useParams();
   const posts = Object.values(useSelector(state => state.posts))
-  const [caption, setCaption] = useState(posts?.map((post) => post?.caption))
+  const post_caption = posts?.map((post) => post?.caption);
+  const post_image = posts?.map((post) => post?.post_url);
+  const [caption, setCaption] = useState(post_caption)
 
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
@@ -30,12 +32,13 @@ function EditPostForm() {
             <button type="submit">Done</button>
           </div>
           <div>
-            <h1>POST URL</h1>
+            {/* <h1>POST URL</h1> */}
+            <img style={{ width: "500px", height: "500px" }} src={post_image} />
           </div>
           <div>
             <label>Caption</label>
             <input
-              type="text"
+              type="text" // !caption should be bigger
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             />
