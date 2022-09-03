@@ -63,7 +63,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
                   className="profile-img-circle-container form-profile-img"
                   src={currUser?.profile_image}
                 />
-                <h2>{currUser?.username}</h2>
+                <h3>{currUser?.username}</h3>
               </div>
               <div className="edit-post-image-caption">
                 <label>

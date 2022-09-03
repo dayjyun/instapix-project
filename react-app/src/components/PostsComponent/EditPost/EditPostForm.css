@@ -23,6 +23,7 @@
 
 .edit-post-user-info {
     /* border-top: 5px black; */
+    display: flex;
 }
 
 .edit-post-text-area {
@@ -30,9 +31,7 @@
   resize: none;
   width: 22.5vw;
   height: 15.2vh;
-  /* width: 100%;
-  height: 100%; */
-  margin-top: -1.1em;
+  /* margin-top: -1.1em; */
   padding-top: 0.5em;
   padding-left: 1em;
   outline: none;
