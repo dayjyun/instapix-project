@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
-import { createPost } from "../../store/posts";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as postActions from "../../store/posts";
-
 
 function PostForm({ closeModal }) {
     const dispatch = useDispatch();
@@ -90,15 +87,5 @@ function PostForm({ closeModal }) {
     );
 }
 
-
-{/* <label>
-                                Post Url
-                                <input
-                                    type="text"
-                                    value={postUrl}
-                                    onChange={(e) => setPostUrl(e.target.value)}
-                                />
-                            </label>
-                            <button type="submit">Post</button> */}
 
 export default PostForm;

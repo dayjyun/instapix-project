@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Modal } from "../../../context/Modal";
-// import { Modal } from "../../context/Modal";
-import EditPostForm from "./EditPostForm";
+import PostMenu from "./PostMenu";
 
 function EditPostBtn() {
-  const [showModal, setShowModal] = useState(false);
+  const [showMenuButtons, setShowMenuButtons] = useState(false);
+
+  const closeModal = () => {
+    setShowMenuButtons(false)
+  }
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-            //     {/* Render delete post here? */}
-          <EditPostForm />
-            {/* <button>Delete</button> */}
+      <button onClick={() => setShowMenuButtons(true)}>Menu Button...</button>
+      {showMenuButtons && (
+        <Modal onClose={() => setShowMenuButtons(false)}>
+          <PostMenu setShowMenuButtons={setShowMenuButtons}/>
         </Modal>
       )}
     </>
