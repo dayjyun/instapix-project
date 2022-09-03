@@ -28,7 +28,7 @@ function EditPostBtn() {
     <>
       <button onClick={() => setShowModal(true)}>Menu Button...</button>
       {showModal && (
-        <Modal onClick={() => setShowModal(false)}>
+        <Modal onClose={() => setShowModal(false)}>
           <button onClick={handleDeletePostBtn}>Delete</button>
           <PostMenu />
           <button onClick={handleCancelBtn}>Cancel</button>

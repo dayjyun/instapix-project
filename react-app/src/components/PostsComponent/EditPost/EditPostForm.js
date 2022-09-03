@@ -10,11 +10,6 @@ function EditPostForm() {
   const posts = Object.values(useSelector(state => state.posts))
   const [caption, setCaption] = useState(posts?.map((post) => post?.caption))
 
-
-  // useEffect(() => {
-  //     dispatch(editPost(+postId))
-  // }, [dispatch])
-
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
