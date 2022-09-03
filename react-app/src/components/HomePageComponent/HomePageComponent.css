@@ -69,7 +69,7 @@
     font-size: 12px;
     width: 50%;
     height: 50%;
-    color: gray;
+    color: rgb(192, 185, 185);
     margin-top: -.8em;
     margin-left: .5em;
     padding-bottom: -.1em;
@@ -93,7 +93,7 @@
     width: 80%;
     height: 50%;
     border-radius: 5px;
-    background-color: rgb(42, 126, 187);
+    background-color: rgb(185, 219, 243);
     border: transparent;
     color: white;
     font-size: 16px;

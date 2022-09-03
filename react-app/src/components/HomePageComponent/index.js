@@ -1,20 +1,45 @@
-import { useState, useDispatch, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { login } from '../../store/session'
 import './HomePageComponent.css'
 
 
 const HomePageComponent = () => {
-    const sessionUser = useSelector(state => state.session.user)
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [toggle, setToggle] = useState(true)
+    const [style, setStyle] = useState({})
+    const [errors, setErrors] = useState([])
+    const sessionUser = useSelector(state => state.session.user)
 
     useEffect(() => {
         if (email && password) {
-            setToggle(false)
+            setStyle({ backgroundColor: 'rgb(42, 126, 187' })
         }
     }, [email, password])
+
+    const onLogin = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(login(email, password));
+        if (data) {
+            setErrors(data);
+            setEmail('')
+            setPassword('')
+        }
+    };
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(login(email, password));
+        if (data) {
+            setErrors(data);
+            setEmail('')
+            setPassword('')
+        }
+    };
+
+
 
     if (sessionUser) {
         return (
@@ -59,7 +84,13 @@ const HomePageComponent = () => {
                                 </div>
                             </div>
                             <div className="login-input-container">
-                                <button disabled={toggle} className="login-button">Log In</button>
+                                <button
+                                    type='submit'
+                                    onSubmit={onSubmit}
+                                    style={style}
+                                    onClick={onLogin}
+                                    className="login-button"
+                                >Log In</button>
                             </div>
                         </div>
                         <div className="sign-up-link">

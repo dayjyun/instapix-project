@@ -50,7 +50,6 @@ function App() {
           <FollowingPosts />
         </Route>
         <Route exact path="/">
-          <LoginForm />
           <HomePageComponent />
           {/* <div>
             <div className="new-post-button">
