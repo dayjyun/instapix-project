@@ -39,7 +39,7 @@ const NavBar = () => {
   const handleProfile = e => {
     e.preventDefault()
     setProfileToggle(false)
-    history.push('/me')
+    history.push(`/users/${sessionUser?.id}`)
   }
 
   if (sessionUser) {
