@@ -38,7 +38,7 @@ function EditPostForm() {
           <div>
             <label>Caption</label>
             <input
-              type="text" // !caption should be bigger
+              type="text" // ! caption space should be bigger
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             />
