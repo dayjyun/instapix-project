@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { Modal } from "../../../context/Modal";
+import { EditModal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
 import "./PostMenu.css";
+
 
 function PostMenu({ setShowMenuButtons }) {
   const dispatch = useDispatch();
@@ -40,12 +41,12 @@ function PostMenu({ setShowMenuButtons }) {
         Edit
       </button>
       {showEditPost && (
-        <Modal onClose={handleOnClose}>
+        <EditModal style={{ backgroundColor: 'gray' }} onClose={handleOnClose}>
           <EditPostForm
             setShowMenuButtons={setShowMenuButtons}
             setShowEditPost={setShowEditPost}
           />
-        </Modal>
+        </EditModal>
       )}
       <button className="pmb cancel" onClick={handleCancelBtn}>
         Cancel
