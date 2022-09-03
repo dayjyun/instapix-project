@@ -8,11 +8,14 @@ function EditPostForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
+  const currentUser = useSelector(state => state.session.user)
   const posts = Object.values(useSelector((state) => state.posts));
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
-  const post_id = posts?.map((post) => post?.id);
   const [caption, setCaption] = useState(post_caption);
+
+  console.log(currentUser)
+
 
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +30,7 @@ function EditPostForm() {
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
-    history.push(`/posts/${+post_id}`);
+    history.push(`/posts/${+postId}`);
   };
 
   return (
@@ -52,15 +55,17 @@ function EditPostForm() {
             </div>
             <div className="edit-post-user-content">
               <div className="edit-post-user-info">
-                <h2>Profile content</h2>
+                <h2>{currentUser?.username}</h2>
               </div>
               <div className="edit-post-image-caption">
-                <label>Caption</label>
-                <input
-                  type="text" // ! caption space should be bigger
-                  value={caption}
-                  onChange={(e) => setCaption(e.target.value)}
-                />
+                <label>
+                  <textarea
+                  className="edit-post-text-area"
+                    value={caption}
+                    maxLength='2000'
+                    onChange={(e) => setCaption(e.target.value)}
+                  />
+                </label>
               </div>
             </div>
           </div>
