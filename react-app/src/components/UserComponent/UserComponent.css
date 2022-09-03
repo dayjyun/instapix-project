@@ -44,13 +44,27 @@
 /* user posts */
 .user-posts-collection {
     width: 70%;
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1.7em;
+    row-gap: 1.7em;
     margin: 3% 16%;
-    height: 500px;
+
 }
 
 .user-post-card {
-    width: 23%;
+    width: 13.8em;
+    height: 13.8em;
+}
 
-    column-gap: 2.5em;
+.user-img-card {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+}
+
+hr.solid {
+    border-top: 1px solid lightgray;
+    margin: 3% 16%;
+
 }

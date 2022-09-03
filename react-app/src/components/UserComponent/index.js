@@ -55,13 +55,15 @@ function User() {
         </div>
       </div>
 
+      <hr className="solid"></hr>
+
       <div className='user-posts-collection'>
         {user?.posts?.map(post => {
           return (
             <div className='user-post-card'>
-              <div>
-                {post?.caption}
-              </div>
+
+              <img src={post?.post_url} className='user-img-card' />
+
             </div>
 
           )
