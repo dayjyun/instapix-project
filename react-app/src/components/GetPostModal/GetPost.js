@@ -16,15 +16,14 @@ function GetPost() {
 
     useEffect(() => {
         dispatch(postActions.getPost(1))
-
     }, [dispatch])
 
-    console.log(post)
+    console.log('THIS', post)
 
     return (
         <div className="post-modal-container">
-            <div className="image-content-container">
-                <p>{post?.Post[0].id}</p>
+            {/* <div className="image-content-container"> */}
+            <div className='image-content-container' style={{ backgroundImage: 'url(' + post?.post_url + ')' }}>
             </div>
             <div className="caption-comment-container">
                 <div className="post-modal-topright-info">
