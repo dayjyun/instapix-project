@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
@@ -14,16 +14,18 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const post_image = posts?.map((post) => post?.post_url);
   const [caption, setCaption] = useState(post_caption);
 
-  const handlePostFormSubmit = async (e) => {
+  const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
-    await dispatch(
+    dispatch(
       editPost({
         caption,
       })
+    ).then(() =>
+    history.push(`/posts/${+postId}`)
     );
-    history.push(`/users/${currUser.id}`)
   };
+  // ! Not editing post
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
 
   return (
     <div>
-      <form onSubmit={handlePostFormSubmit}>
+      <form>
         <div className="edit-post-container">
           <div className="edit-post-container-top">
             <div>
@@ -41,7 +43,9 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
             </div>
             <h3>Edit info</h3>
             <div>
-              <button type="submit">Done</button>
+              <button type="submit" onSubmit={handlePostFormSubmit}>
+                Done
+              </button>
             </div>
           </div>
           <div className="edit-post-content">
@@ -58,9 +62,9 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
               <div className="edit-post-image-caption">
                 <label>
                   <textarea
+                    maxLength="2000"
                     className="edit-post-text-area"
                     value={caption}
-                    maxLength="2000"
                     onChange={(e) => setCaption(e.target.value)}
                   />
                 </label>

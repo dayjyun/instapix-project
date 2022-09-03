@@ -53,7 +53,6 @@ export const getPost = (postId) => async (dispatch) => {
   if (post.ok) {
     const resPost = await post.json();
     dispatch(getCurrentPost(resPost));
-    return post;
   }
 };
 
@@ -99,11 +98,11 @@ export const editPost = (postDetails) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(post)
-  })
+    body: JSON.stringify(postDetails),
+  });
 
   if (post.ok) {
-    const resPost = post.json()
+    const resPost = await post.json()
     dispatch(updatePost(resPost));
   }
 };
