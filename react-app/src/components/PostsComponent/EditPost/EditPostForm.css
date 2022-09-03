@@ -140,7 +140,6 @@ ul {
 }
 
 .edit-post-text-area {
-  background-color: greenyellow;
   object-fit: contain;
   resize: none;
   width: 22.5vw;

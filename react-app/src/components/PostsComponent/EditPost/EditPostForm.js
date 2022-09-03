@@ -8,24 +8,21 @@ function EditPostForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
-  const currentUser = useSelector(state => state.session.user)
+  const currUser = useSelector(state => state.session.user)
   const posts = Object.values(useSelector((state) => state.posts));
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
   const [caption, setCaption] = useState(post_caption);
 
-  console.log(currentUser)
-
-
-  const handlePostFormSubmit = (e) => {
+  const handlePostFormSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(
+    await dispatch(
       editPost({
         caption,
       })
     );
-    history.push(`/posts/${+postId}`);
+    history.push(`/users/${currUser.id}`);
   };
 
   const handleCancelBtn = (e) => {
@@ -55,7 +52,7 @@ function EditPostForm() {
             </div>
             <div className="edit-post-user-content">
               <div className="edit-post-user-info">
-                <h2>{currentUser?.username}</h2>
+                <h2>{currUser?.username}</h2>
               </div>
               <div className="edit-post-image-caption">
                 <label>

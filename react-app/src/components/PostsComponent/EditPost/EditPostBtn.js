@@ -9,7 +9,7 @@ function EditPostBtn() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
-  const [showModal, setShowModal] = useState(false);
+  const [showMenuButtons, setShowMenuButtons] = useState(false);
 
   // const handleDeletePostBtn = (e) => {
   //   e.preventDefault();
@@ -20,19 +20,13 @@ function EditPostBtn() {
   // };
   // // ! Not deleting
 
-  const handleCancelBtn = (e) => {
-    e.preventDefault();
-    setShowModal(false);
-  };
-
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Menu Button...</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      <button onClick={() => setShowMenuButtons(true)}>Menu Button...</button>
+      {showMenuButtons && (
+        <Modal onClose={() => setShowMenuButtons(false)}>
           {/* <button onClick={handleDeletePostBtn}>Delete</button> */}
-          <PostMenu />
-          {/* <button onClick={handleCancelBtn}>Cancel</button> */}
+          <PostMenu setShowMenuButtons={setShowMenuButtons}/>
         </Modal>
       )}
     </>
