@@ -25,18 +25,11 @@ function EditPostForm() {
     history.push(`/posts/${+postId}`);
   };
 
-  const handleCancelBtn = (e) => {
-    e.preventDefault();
-    // setShowModal(False)
-  };
-
   return (
     <div>
       <form onSubmit={handlePostFormSubmit}>
         <div>
-          <div>
-            <button type={handleCancelBtn}>Cancel</button>
-          </div>
+          <h3>Edit info</h3>
           <div>
             <button type="submit">Done</button>
           </div>

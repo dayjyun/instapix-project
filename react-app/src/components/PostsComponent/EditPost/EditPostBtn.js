@@ -14,13 +14,13 @@ function EditPostBtn() {
   const handleDeletePostBtn = (e) => {
     e.preventDefault()
     dispatch(deletePost(1))
+    alert("Post successfully deleted");
+    history.push("/posts/explorer");
   }
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
     setShowModal(false);
-    alert('Post successfully deleted')
-    history.pushState('/')
   };
 
   return (
