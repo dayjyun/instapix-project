@@ -53,7 +53,6 @@ export const getPost = (postId) => async (dispatch) => {
   if (post.ok) {
     const resPost = await post.json();
     dispatch(getCurrentPost(resPost));
-    return post;
   }
 };
 
@@ -86,27 +85,27 @@ export const createPost = (postDetails) => async (dispatch) => {
 };
 
 // Edit post
-// const updatePost = (post) => {
-//   return {
-//     type: EDIT_POST,
-//     post,
-//   };
-// };
+const updatePost = (post) => {
+  return {
+    type: EDIT_POST,
+    post,
+  };
+};
 
-// export const editPost = (postDetails) => async (dispatch) => {
-//   const post = await fetch(`/api/posts/${postDetails.id}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(post)
-//   })
+export const editPost = (postDetails) => async (dispatch) => {
+  const post = await fetch(`/api/posts/${postDetails.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postDetails),
+  });
 
-//   if (post.ok) {
-//     const resPost = post.json()
-//     dispatch(updatePost(resPost));
-//   }
-// };
+  if (post.ok) {
+    const resPost = await post.json()
+    dispatch(updatePost(resPost));
+  }
+};
 
 // Delete post
 const removePost = (post) => {

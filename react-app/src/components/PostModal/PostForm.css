@@ -12,29 +12,30 @@
 }
 
 .create-new-post {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  font-size: 110%;
-  border-bottom: 1px solid lightgray;
-
+  display: grid;
+  grid-template-columns: 58% 42%;
+  border-bottom: 1px solid lightgray
 }
 
-.form-here {
-  background-color: chartreuse;
+.create-new-post p {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  height: 30vh;
+  font-size: 16px;
+  font-weight: 900;
 }
 
-.caption-url-container {
+.share-button-container {
   display: flex;
-  flex-direction: column;
-  height: 40%;
-  background-color: coral;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.share-button-container button {
+  color: blue;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
 }
 
 .label-div {
@@ -46,22 +47,63 @@ ul {
   padding: 0;
 }
 
-.image-render img {
-  width: 100%;
-  background-color: cornflowerblue;
-}
-
 .form-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 60% 40%;
 }
 
-.form-image {
-  width: fit-content;
-  height: fit-content;
+
+.form-image img {
+  width: 100%;
+  height: 100%;
 }
 
 .post-caption-form-container {
   display: grid;
-  grid-template-rows: ;
+  grid-template-rows: repeat(2, 1fr);
+  border-left: 1px solid lightgray;
+}
+
+.post-caption-form-area {
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+}
+
+.post-username {
+  display: flex;
+  padding-left: 1em;
+  padding-top: 1em;
+  align-items: center;
+}
+
+.form-profile-img {
+  margin-right: 1em;
+}
+
+
+.text-area {
+  object-fit: contain;
+  resize: none;
+  width: 22.5vw;
+  height: 15.2vh;
+  margin-top: -1.1em;
+  padding-top: .5em;
+  padding-left: 1em;
+  outline: none;
+  border: none;
+  font-size: 16px;
+}
+
+.image-url {
+  outline: none;
+  margin-left: 1em;
+  width: 16vw;
+  border: none;
+}
+
+.char-count-area {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1em;
+  font-size: 15px;
 }
