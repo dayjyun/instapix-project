@@ -14,6 +14,8 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const post_image = posts?.map((post) => post?.post_url);
   const [caption, setCaption] = useState(post_caption);
 
+  console.log(currUser)
+
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
@@ -57,6 +59,10 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
             </div>
             <div className="edit-post-user-content">
               <div className="edit-post-user-info">
+                <img
+                  className="profile-img-circle-container form-profile-img"
+                  src={currUser?.profile_image}
+                />
                 <h2>{currUser?.username}</h2>
               </div>
               <div className="edit-post-image-caption">
