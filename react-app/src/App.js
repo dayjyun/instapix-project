@@ -47,7 +47,7 @@ function App() {
           <SignUpForm />
         </Route>
 
-        <Route exact path="/posts/explorer">
+        <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
 
