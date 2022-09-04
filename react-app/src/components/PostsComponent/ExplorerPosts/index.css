@@ -14,7 +14,7 @@
 }
 
 .explore-post-card:hover {
-  filter: brightness(50%);
+  filter: brightness(70%);
   color: white;
 }
 /* text is showing faded. Change to full white */
