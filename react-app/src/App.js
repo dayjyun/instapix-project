@@ -16,6 +16,7 @@ import PostComponent from "./components/PostsComponent";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
+import SignUpUserForm from "./components/SignUpComponent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,7 +41,7 @@ function App() {
           <LoginForm />
         </Route> */}
         <Route path="/sign-up" exact={true}>
-          <SignUpForm />
+          <SignUpUserForm />
         </Route>
         <Route exact path="/explore">
           <ExplorerPosts />

@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signup-background {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo-container {
+  margin-top: 15px;
+  text-align: center;
+  padding: 20px;
+}
+
+.logo-container p {
+  font-weight: 700;
+  color: #8e8e8e;
+  font-size: 16px;
+}
+
+.logo-container h1 {
+  font-weight: 700;
+  color: #262626;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.signup-form-container {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.signup-input-container {
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+  padding: 10px 5px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.signup-input-container input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  color: #8e8e8e;
+  background-color: #fafafa;
+}
+
+.signup-button {
+  margin-bottom: 2rem;
+  padding: 1em 1.3em;
+  border-radius: 7px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+  width: 100%;
+}
+
+.signup-demo-user {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1em 1.3em;
+  border-radius: 7px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+}
+.login-link-container {
+  margin-top: 0.5rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+.auth-separator {
+  font-weight: 400;
+  font-size: 16px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.auth-separator span {
+  background-color: #fff;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  color: #8e8e8e;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.auth-separator::after {
+  border-top: 1px solid #8e8e8e;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 0.7em;
+  right: 0.7em;
+  width: 43%;
+}
+
+.auth-separator::before {
+  border-top: 1px solid #8e8e8e;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 0.7em;
+  left: 0.7em;
+  width: 43%;
+}
+
+.login-link-container a {
+  color: #0095f6;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+}
