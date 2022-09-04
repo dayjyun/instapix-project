@@ -31,7 +31,7 @@ const Following = ({ user }) => {
                             return (
                                 <div className='each-follower-box' key={index}>
                                     <div className='follower-profile-image'>
-                                        <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' />
+                                        <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' alt='preview' />
                                     </div>
                                     <div className='follower-user-info'>
                                         <p className='p-bolded'>{follow?.follower_info?.username}</p>

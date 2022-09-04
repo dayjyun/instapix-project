@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -11,9 +10,9 @@ import { authenticate } from "./store/session";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-import FollowModal from "./components/FollowModal/FollowerModal";
+// import FollowModal from "./components/FollowModal/FollowerModal";
 import PostComponent from "./components/PostsComponent";
-import GetPostModal from "./components/GetPostModal";
+// import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
@@ -44,7 +43,7 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpUserForm />
         </Route>
-        <Route exact path="/posts/explorer">
+        <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
         <Route exact path="/posts">

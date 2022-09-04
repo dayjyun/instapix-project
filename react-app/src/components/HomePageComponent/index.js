@@ -70,7 +70,28 @@ const HomePageComponent = () => {
 
     if (sessionUser) {
         return (
-            <h1>Logged in home page component</h1>
+            <div className='home-page-container'>
+                <div className="home-content-container">
+                    <div className="users-container">
+                        <div className="users-section">
+                            <h1>USERS GO HERE</h1>
+                        </div>
+                        <div className="feed-section">
+                            <h1>FEED GOES HERE</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                        </div>
+                    </div>
+                    <div className="suggestions-container">
+                        <h1>SUGGESTIONS GOES HERE</h1>
+                    </div>
+                </div>
+            </div>
         )
     } else {
         return (
@@ -136,7 +157,7 @@ const HomePageComponent = () => {
                         <div className="sign-up-link">
                             {/* sign up modal goes here */}
                             <p>Don't have an account?
-                                <a href="/signup"> Sign up</a>
+                                <a href="/sign-up"> Sign up</a>
                             </p>
                         </div>
                     </div>
