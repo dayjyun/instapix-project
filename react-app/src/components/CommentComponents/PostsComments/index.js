@@ -36,7 +36,7 @@ const PostsComments = ({post}) => {
                             {/* {comment?.user?.profile_image} */}
                             {/* </div> */}
                             <div className="comment-content">
-                                <img className="comment-profile-pic" src="https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/11/square-format-01.jpg?resize=50%2C50&ssl=1" alt='preview'></img>
+                                <img className="comment-profile-pic" src={comment?.user?.profile_image} alt='preview'></img>
                                 <div className="comment-username">
                                     {comment?.user?.username}
                                     <div className="comment-date">
@@ -55,9 +55,9 @@ const PostsComments = ({post}) => {
                         </li>
                     ))}
                 </ul>
-                <CreateComment />
-            </div>
-            <div>
+                <div>
+                    <CreateComment post={post}/>
+                </div>
             </div>
         </>
     )

@@ -1,13 +1,15 @@
 .post-comments-container {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    justify-content: space-between;
+    /* align-items: space-between; */
+    height: 100%;
+    width: 100%;
 }
 
 .comment-card-list {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: flex-start;
     padding: 0;
     margin: 4px;
@@ -19,8 +21,6 @@
     align-items: center;
     width: fit-content;
     font-family: 'Arimo', sans-serif;
-    /* justify-content: ; */
-    /* background-color: red; */
 }
 
 .comment-content {
@@ -33,9 +33,6 @@
 }
 
 .comment-profile-pic {
-    /* width: 25px;
-    height: 25px;
-    border-radius: 25px; */
     height: 2em;
     width: 2em;
     object-fit: cover;
@@ -58,7 +55,6 @@
 .edit-comment-btn {
     font-size: 10px;
     margin: 0;
-    /* display: none; */
 }
 
 .edit-comment-container {

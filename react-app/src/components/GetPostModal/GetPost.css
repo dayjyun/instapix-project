@@ -8,57 +8,91 @@
     /* flex-direction: row; */
     /* grid-template-rows: 8% 92%; */
     /* border: 5px solid black */
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
     width: 30em;
     height: 20em;
+    border-radius: 1em; */
+    display: grid;
+    grid-template-columns: 52% 48%;
+    width: 55em;
+    height: 40em;
     border-radius: 1em;
 }
 
 .image-content-container {
-    /* width: 66%; */
-    position: relative;
+    /* width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    /* border-radius: 6px; */
-    height: 310px;
-    width: 310px;
     padding-top: 30%;
-    margin: 20px 0;
-    /* border: 4px solid rgb(255, 85, 1, 0.7); */
-    /* background-color: aqua; */
+    margin: 20px 0; */
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    /* background-color: black; */
+    /* height: 86%; */
+}
+
+.image-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* object-fit: contain; */
 }
 
 .caption-comment-container {
-    width: 34%;
-    border-left: 1px solid lightgray;
-    /* background-color: blueviolet; */
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 10% 10% 80%;
 }
 
-.post-header-container {
+/* .post-header-container {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     font-weight: 600;
     font-size: 110%;
     border-bottom: 1px solid lightgray;
-}
+} */
 
-.post-modal-comments {
+/* .post-modal-comments {
     height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* background-color: red; */
-}
+} */
 
-.post-modal-topright-info {
+.user-info-container {
     display: flex;
+    width: 100%;
+    height: 100%;
     justify-content: flex-start;
+    align-items: center;
     padding: 2px;
     border-bottom: 1px solid lightgray;
     margin: 5px;
+    font-family: 'Arimo', sans-serif;
+}
+
+.post-caption-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 2px;
+    align-items: center;
+    margin: 5px;
+    font-family: 'Arimo', sans-serif;
+
 }
 
 .post-user-profile-pic {
@@ -73,4 +107,9 @@
     object-fit: cover;
     border-radius: 50px;
     background-color: red;
+}
+
+.post-username-text {
+    font-weight: bold;
+    margin: 5px;
 }

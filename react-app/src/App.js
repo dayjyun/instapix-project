@@ -12,7 +12,7 @@ import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
 // import FollowModal from "./components/FollowModal/FollowerModal";
 import PostComponent from "./components/PostsComponent";
-// import GetPostModal from "./components/GetPostModal";
+import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
@@ -50,11 +50,11 @@ function App() {
         </Route>
         <Route exact path="/">
           <HomePageComponent />
-          {/* <div>
+          <div>
             <div className="new-post-button">
               <GetPostModal />
             </div>
-          </div> */}
+          </div>
         </Route>
         <Route exact path="/posts/:postId">
           <PostComponent />
