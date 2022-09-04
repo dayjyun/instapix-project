@@ -10,9 +10,9 @@ import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 
 function GetPost({post}) {
     // const post = useSelector(state => Object.values(state.posts))[0]
-    const users = useSelector(state => Object.values(state.users))[0]
+    const user = useSelector(state => Object.values(state.users))[0]
 
-    console.log(users);
+    console.log(user);
 
 
     // const [credential, setCredential] = useState("");
@@ -22,7 +22,7 @@ function GetPost({post}) {
 
     useEffect(() => {
         dispatch(postActions.getPost(post?.id));
-        dispatch(userActions.getAllUsers());
+        dispatch(userActions.getOneUser(post?.user_id));
     }, [dispatch])
 
     // console.log('THIS', post)
@@ -38,16 +38,16 @@ function GetPost({post}) {
             <div className="caption-comment-container">
                 <div className="user-info-container">
                     <div className="profile-pic-username">
-                    <img className="comment-profile-pic" src={users?.post?.user_id?.profile_image} alt='preview'></img>
-                    <div className="post-username-text">{users?.post?.user_id?.username}</div>
+                    <img className="comment-profile-pic" src={user?.profile_image} alt='preview'></img>
+                    <div className="post-username-text">{user?.username}</div>
                     </div>
                     <EditPostBtn />
                 </div>
                 <div className="post-caption-container">
                     <div className="profile-pic-mini">
-                    <img className="comment-profile-pic" src={users?.post?.user_id?.profile_image} alt='preview'></img>
+                    <img className="comment-profile-pic" src={user?.profile_image} alt='preview'></img>
                     </div>
-                    <div className="post-username-text">{users?.post?.user_id?.username}</div>
+                    <div className="post-username-text">{user?.username}</div>
                     <div>{post?.caption}</div>
                 </div>
                 <div className="post-modal-comments">
