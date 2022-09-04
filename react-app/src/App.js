@@ -6,13 +6,13 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
-import User from "./components/User";
+import User from "./components/UserComponent";
 import { authenticate } from "./store/session";
 import TestingComponent from "./components/testingstore";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-import FollowingModal from "./components/FollowModal";
+import FollowModal from "./components/FollowModal";
 import PostComponent from "./components/PostsComponent";
 import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
@@ -47,7 +47,7 @@ function App() {
           <SignUpForm />
         </Route>
 
-        <Route exact path="/posts/explorer">
+        <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
 
@@ -86,7 +86,7 @@ function App() {
         </Route>
 
         <ProtectedRoute path="/users/:userId" exact={true}>
-          <FollowingModal />
+          {/* <FollowingModal /> */}
           <User />
         </ProtectedRoute>
       </Switch>

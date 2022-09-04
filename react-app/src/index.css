@@ -1,5 +1,9 @@
 /* TODO Add site wide styles */
-.page {
+/* .page {
+    background-color: whitesmoke;
+} */
+
+#page {
     background-color: whitesmoke;
 }
 
@@ -12,6 +16,13 @@ button:hover {
     cursor: pointer;
 }
 
+h2 {
+    font-family: 'Arimo', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    margin: 0;
+}
+
 h3 {
     font-family: 'Arimo', sans-serif;
     font-weight: 600;
@@ -22,7 +33,16 @@ p {
     font-family: 'Arimo', sans-serif;
 }
 
+ul {
+    list-style: none;
+}
+
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(250, 250, 250);
+}
+
+a {
+    text-decoration: none;
 }

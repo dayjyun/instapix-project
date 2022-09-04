@@ -1,0 +1,82 @@
+.post-comments-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.comment-card-list {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: flex-start;
+    padding: 0;
+    margin: 4px;
+}
+
+.comment-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    font-family: 'Arimo', sans-serif;
+    /* justify-content: ; */
+    /* background-color: red; */
+}
+
+.comment-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.comment-card-container > div {
+    margin: 10px 5px;
+}
+
+.comment-profile-pic {
+    /* width: 25px;
+    height: 25px;
+    border-radius: 25px; */
+    height: 2em;
+    width: 2em;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.comment-username {
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.comment-date {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    font-size: 10px;
+    color: rgb(0, 0, 0, 0.6);
+}
+
+.edit-comment-btn {
+    font-size: 10px;
+    margin: 0;
+    /* display: none; */
+}
+
+.edit-comment-container {
+    padding-left: 0;
+}
+
+.edit-comment-container:hover + .edit-comment-btn {
+    display: block;
+}
+
+.comment-body {
+    width: fit-content;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comment-body-input {
+    margin: 5px 5px;
+}
