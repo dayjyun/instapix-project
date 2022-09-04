@@ -23,7 +23,6 @@ function ExplorerPosts() {
               className="explore-post-card"
               style={{ backgroundImage: "url(" + post?.post_url + ")" }}
             >
-              {/* <img className="explorer-image" src={post?.post_url} /> */}
               <div className="explore-post-text">
                 <p className="ept-likes">{post?.likes} Likes</p>
                 <p className="ept-comments">{post?.num_comments} Comments</p>
@@ -37,5 +36,3 @@ function ExplorerPosts() {
 }
 
 export default ExplorerPosts;
-
-// Get all posts in DB

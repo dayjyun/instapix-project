@@ -19,10 +19,6 @@
   margin: 6rem;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.explore-post-text {
-  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,5 +30,15 @@
 
 .explore-post-card:hover {
   color: white;
+}
+
+.explore-post-text {
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ept-likes, .ept-comments {
+    padding: 0 1em;
 }
