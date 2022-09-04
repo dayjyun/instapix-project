@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
 }
 .logo-container {
   margin-top: 15px;
@@ -82,7 +84,6 @@
 
 .signup-demo-user {
   margin-top: 2rem;
-  margin-bottom: 2rem;
   padding: 1em 1.3em;
   border-radius: 7px;
   border: none;
@@ -142,4 +143,11 @@
   font-weight: 700;
   font-size: 16px;
   text-decoration: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
