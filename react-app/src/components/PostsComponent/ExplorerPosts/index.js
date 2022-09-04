@@ -18,19 +18,20 @@ function ExplorerPosts() {
       <div className="explore-post">
         {posts.map((post) => (
           <li key={post?.id} className="explore-post-wrap">
-            <Link to={{ pathname: `/posts/${post.id}` }}>
+            {/* <Link to={{ pathname: `/posts/${post.id}` }}> */}
+              <GetPostModal post={post}/>
               <div
                 className="explore-post-card"
                 style={{ backgroundImage: "url(" + post?.post_url + ")" }}
               >
                 <div className="explore-post-text">
-                  <i class="fa-sharp fa-solid fa-heart"></i>
+                  <i className="fa-sharp fa-solid fa-heart"></i>
                   <p className="ept-likes">{post?.likes}</p>
-                  <i class="fa-sharp fa-solid fa-comment"></i>
+                  <i className="fa-sharp fa-solid fa-comment"></i>
                   <p className="ept-comments">{post?.num_comments}</p>
                 </div>
               </div>
-            </Link>
+            {/* </Link> */}
           </li>
         ))}
       </div>
