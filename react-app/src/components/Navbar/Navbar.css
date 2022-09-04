@@ -111,6 +111,7 @@
 
 .dropdown-shadow {
     display: grid;
+    background-color: white;
     grid-template-rows: repeat(2, 1fr);
     box-shadow: 0px 0px 10px 3px lightgray;
     /* padding-top: 5%; */
