@@ -10,8 +10,8 @@
     /* border: 5px solid black */
     display: flex;
     justify-content: space-between;
-    width: 40vw;
-    height: 80vh;
+    width: 30em;
+    height: 2;
     border-radius: 1em;
 }
 
