@@ -9,7 +9,7 @@ function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
-  const currUser = useSelector((state) => state.session.user);
+  // const currUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getPost(+postId));
@@ -27,12 +27,12 @@ function PostComponent() {
           <div className="page-page-post-details">
             <div className="post-page-details-top">
               <div className="post-username">
-                <img
+                {/* <img
                   className="profile-img-circle-container form-profile-img"
                   src={currUser?.profile_image}
                   alt="profileImage"
-                ></img>
-                <h3>{currUser?.username}</h3>
+                ></img> */}
+                {/* <h3>{currUser?.username}</h3> */}
               </div>
               <EditPostBtn />
             </div>
