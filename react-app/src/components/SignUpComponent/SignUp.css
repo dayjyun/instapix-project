@@ -1,9 +1,3 @@
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
 .signup-background {
   background-color: #fafafa;
   display: flex;
@@ -33,6 +27,8 @@
 }
 
 .signup-form-container {
+  box-sizing: border-box;
+
   margin-top: 1rem;
   width: 100%;
   max-width: 400px;
@@ -44,6 +40,7 @@
 }
 
 .signup-form {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,6 +58,7 @@
   padding: 10px 5px;
   margin: 5px 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .signup-input-container input {
@@ -71,6 +69,7 @@
   padding: 5px;
   color: #8e8e8e;
   background-color: #fafafa;
+  box-sizing: border-box;
 }
 
 .signup-button {
@@ -147,9 +146,9 @@
   text-decoration: none;
 }
 
-/* #root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
+.signup-page {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: chartreuse;
+}
