@@ -5,10 +5,6 @@ import PostMenu from "./PostMenu";
 function EditPostBtn() {
   const [showMenuButtons, setShowMenuButtons] = useState(false);
 
-  const closeModal = () => {
-    setShowMenuButtons(false)
-  }
-
   return (
     <>
       <button onClick={() => setShowMenuButtons(true)}>Menu Button...</button>

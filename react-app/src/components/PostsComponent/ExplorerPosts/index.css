@@ -1,0 +1,31 @@
+.explore-post-card {
+  height: 45vh;
+  width: 45vh;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.explore-post-card {
+    color: transparent
+}
+
+.explore-post-card:hover {
+  filter: brightness(70%);
+  color: white;
+}
+/* text is showing faded. Change to full white */
+
+.explore-post-text {
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ept-likes, .ept-comments {
+    padding: 0 1em;
+}
