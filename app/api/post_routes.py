@@ -122,12 +122,11 @@ def create_comment(post_id):
 # --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
-
-
-@post_routes.route('/<int:post_id>', methods=["GET", "POST"])
+@post_routes.route('/<int:post_id>', methods=["PUT"])
 @login_required
 def edit_post(post_id):
     form = EditPostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     post = Post.query.get(post_id)
     if post:
         if post.user_id == current_user.id:

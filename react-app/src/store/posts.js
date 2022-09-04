@@ -93,7 +93,7 @@ const updatePost = (post) => {
 };
 
 export const editPost = (postDetails) => async (dispatch) => {
-  const post = await fetch(`/api/posts/${postDetails.id}`, {
+  const post = await fetch(`/api/posts/${postDetails?.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
