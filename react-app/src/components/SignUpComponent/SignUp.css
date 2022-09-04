@@ -12,7 +12,6 @@
 }
 .logo-container {
   margin-top: 15px;
-  margin-bottom: 15px;
   text-align: center;
   padding: 20px;
 }
@@ -31,7 +30,7 @@
 }
 
 .signup-form-container {
-  margin-top: 3rem;
+  margin-top: 1rem;
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -102,7 +101,6 @@
 .auth-separator {
   font-weight: 400;
   font-size: 16px;
-  margin: 10px 0;
   position: relative;
   text-align: center;
   width: 100%;
@@ -137,4 +135,11 @@
   top: 0.7em;
   left: 0.7em;
   width: 43%;
+}
+
+.login-link-container a {
+  color: #0095f6;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
 }
