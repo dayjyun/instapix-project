@@ -35,8 +35,13 @@ const SignUpUserForm = () => {
         <div className="logo-container">
           <h1 className="logo">Instapix</h1>
           <p>Sign up to see photos and videos from your friends.</p>
+          <button className="signup-demo-user">
+            <i class="fa-sharp fa-solid fa-user"></i> Log in as a demo user
+          </button>
         </div>
-
+        <div className="auth-separator">
+          <span>OR</span>
+        </div>
         <div id="signup-errors">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>

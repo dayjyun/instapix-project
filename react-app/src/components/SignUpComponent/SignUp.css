@@ -14,6 +14,7 @@
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
+  padding: 20px;
 }
 
 .logo-container p {
@@ -80,8 +81,60 @@
   width: 100%;
 }
 
+.signup-demo-user {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1em 1.3em;
+  border-radius: 7px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+}
 .login-link-container {
   margin-top: 0.5rem;
   text-align: center;
   background-color: #fff;
+}
+
+.auth-separator {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 10px 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.auth-separator span {
+  background-color: #fff;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  color: #8e8e8e;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.auth-separator::after {
+  border-top: 1px solid #8e8e8e;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 0.7em;
+  right: 0.7em;
+  width: 43%;
+}
+
+.auth-separator::before {
+  border-top: 1px solid #8e8e8e;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 0.7em;
+  left: 0.7em;
+  width: 43%;
 }
