@@ -1,10 +1,17 @@
 .signup-background {
   background-color: #fafafa;
-  height: 100vh;
-  width: 100vw;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+
+.signup-form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgb(7, 219, 123);
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .signup-form {
@@ -15,9 +22,9 @@
   width: 100%;
   max-width: 400px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #dbdbdb;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: rgb(242, 32, 32);
 }
 
 .signup-input-container {
@@ -27,4 +34,15 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 10px;
+  background-color: aqua;
+}
+
+.signup-button {
+  margin-bottom: 2rem;
+  padding: 1em 1.3em;
+  border-radius: 7px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+  width: 100%;
 }

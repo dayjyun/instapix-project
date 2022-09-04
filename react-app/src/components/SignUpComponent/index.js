@@ -30,11 +30,13 @@ const SignUpUserForm = () => {
   };
 
   return (
-    <div className="sign-up-background">
+    <div className="signup-background">
       <div className="signup-form-container">
         <div className="logo-container">
           <h1 className="logo">Instapix</h1>
+          <p>Sign up to see photos and videos from your friends.</p>
         </div>
+
         <div id="signup-errors">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -42,7 +44,7 @@ const SignUpUserForm = () => {
         </div>
         <form className="signup-form" onSubmit={onSignUp}>
           <div className="signup-input-container">
-            <label className="signup-label">Username</label>
+            <label className="signup-label"></label>
             <input
               className="signup-input"
               placeholder="Username"
@@ -53,7 +55,7 @@ const SignUpUserForm = () => {
             ></input>
           </div>
           <div className="signup-input-container">
-            <label className="signup-label">Email</label>
+            <label className="signup-label"></label>
             <input
               className="signup-input"
               type="text"
@@ -64,7 +66,7 @@ const SignUpUserForm = () => {
             ></input>
           </div>
           <div className="signup-input-container">
-            <label className="signup-label">Password</label>
+            <label className="signup-label"></label>
             <input
               className="signup-input"
               type="password"
