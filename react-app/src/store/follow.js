@@ -42,6 +42,13 @@ export const deleteFollow = (follow) => {
     }
 }
 //THUNKS
+//GET: logged user's following
+export const getLoggedUserFollowingBackend = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/follows/users/${userId}/follows`);
+    const parsedRes = await response.json();
+    dispatch(getLoggedUserFollowing(parsedRes))
+
+}
 
 //GET: all user's following
 export const getFollowingBackend = (userId) => async (dispatch) => {
@@ -85,7 +92,7 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
 }
 
 //INITIAL STATE
-const initialState = {}
+const initialState = { loggedUser: null }
 
 
 ///REDUCERS
@@ -93,20 +100,18 @@ const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }
-            getLoggedUserFollowing['loggedUser'] = action.type.payload
-            console.log(getLoggedUserFollowingState)
+            getLoggedUserFollowingState.loggedUser = action.payload
             return getLoggedUserFollowingState;
 
         case GET_FOLLOWING:
-            const getFollowingState = {}
+            const getFollowingState = { ...state }
             action.payload.Followers.forEach(follow => {
                 getFollowingState[follow.follow.id] = follow
             })
-
             return getFollowingState;
 
         case GET_FOLLOWERS:
-            const getFollowersState = {}
+            const getFollowersState = { ...state }
             action.payload.Followers.forEach(follow => {
                 getFollowersState[follow.follow.id] = follow
             })

@@ -1,38 +1,43 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getFollowersBackend, postFollowBackend } from '../../../store/follow';
-import { authenticate } from '../../../store/session';
+import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend } from '../../../store/follow';
 import '../FollowModal.css'
 
 const Followers = ({ user }) => {
     const dispatch = useDispatch()
+    //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
-    // const loggedUserFollows = useSelector(state => (state.session.follow.loggedUser))
-
+    const follows = Object.values(useSelector(state => state.follow))
+    let loggedUserFollows = follows.pop()
+    loggedUserFollows = loggedUserFollows?.Followers
+    console.log(loggedUserFollows)
+    // loggedUserFollows = Object.values(loggedUserFollows)
     // Add a follow button or 'already follows' p tag later
     const [isMyPage, setIsMyPage] = useState(false);
     const [iFollow, setIFollow] = useState()
-    // const user = useSelector(state => state.session.user)
-    const follows = Object.values(useSelector(state => state.follow))
 
-    // useEffect(() => {
-    //     dispatch(authenticate())
-    //     if (loggedUser?.id === user.id) {
-    //         setIsMyPage(true)
+    // console.log(follows)
+    // console.log(loggedUserFollows)
+    const isFollowing = (follow) => {
+        console.log('testing')
 
-    //     }
-    // }, [dispatch, isMyPage])
 
-    console.log(follows)
-    console.log(loggedUser)
-    // console.log(loggedUser?.id)
-    // console.log(user.id)
+        for (let i = 0; i < loggedUserFollows.length; i++) {
+            let loggedUserFollow = loggedUserFollows[i];
 
-    useEffect(() => {
-        if (loggedUser) {
-            dispatch(getFollowersBackend(loggedUser?.id))
+            if (follow.user_id === loggedUserFollows?.follow?.follows_id) {
+                return (
+                    <div className='follower-follow-btn'>
+                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>
+                    </div>
+                )
+            }
         }
-    }, [dispatch, loggedUser])
+        loggedUserFollows?.forEach(loggedUserFollow => {
+
+        })
+
+    }
 
 
     useEffect(() => {
@@ -41,6 +46,12 @@ const Followers = ({ user }) => {
         }
     }, [dispatch, user])
 
+    useEffect(() => {
+        if (loggedUser) {
+            dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
+        }
+    }, [dispatch, loggedUser])
+
     const handleClick = async (e) => {
         e.preventDefault();
 
@@ -48,10 +59,8 @@ const Followers = ({ user }) => {
             user_id: user?.id,
             follows_id: e.target.id
         }
-
         await dispatch(postFollowBackend(input));
     }
-
 
     return (
         <>
@@ -70,12 +79,15 @@ const Followers = ({ user }) => {
                                         <p className='p-styling'>{follow?.follower_info?.first_name}</p>
                                     </div>
 
+                                    {isFollowing(follow)}
 
-                                    {isMyPage && (
+
+
+                                    {/* {isMyPage && (
                                         <div className='follower-follow-btn'>
                                             <p>You Follow</p>
                                         </div>
-                                    )}
+                                    )} */}
 
                                     {/* <div className='follower-follow-btn'>
                                         <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>
