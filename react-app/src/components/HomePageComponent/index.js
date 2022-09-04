@@ -5,6 +5,18 @@ import { login } from '../../store/session'
 import * as userActions from '../../store/users'
 import './HomePageComponent.css'
 
+const uniqueIndex = () => {
+    const indexes = []
+    while (indexes.length !== 5) {
+        const randomIndex = Math.floor(Math.random() * 6)
+        if (!indexes.includes(randomIndex)) {
+            indexes.push(randomIndex)
+        }
+    }
+    return indexes
+}
+let i;
+
 
 const HomePageComponent = () => {
     const dispatch = useDispatch()
@@ -12,29 +24,15 @@ const HomePageComponent = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
+    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
 
-    const randomUsers5 = () => {
-        const users = []
-
-        let i = 0
-        while (users.length !== 5) {
-            const randomIndex = Math.floor(Math.random() * allUsers.length)
-            const user = allUsers[randomIndex]
-            if (user?.profile_image)
-                users.push(allUsers[randomIndex])
-            i++
-        }
-        return users;
-    }
 
 
-    const reset = () => {
-        setEmail("")
-        setPassword('')
-        setStyle({})
-    }
+    useEffect(() => {
+        i = uniqueIndex()
+    }, [])
 
     useEffect(() => {
         if (email && password) {
@@ -45,6 +43,12 @@ const HomePageComponent = () => {
     useEffect(() => {
         dispatch(userActions.getAllUsers())
     }, [dispatch])
+
+    const reset = () => {
+        setEmail("")
+        setPassword('')
+        setStyle({})
+    }
 
     const onLogin = async (e) => {
         e.preventDefault();
@@ -98,11 +102,23 @@ const HomePageComponent = () => {
                             <div className="trending">
                                 <p>Trending 🔥🔥🔥</p>
                             </div>
-                            <div className='user-pics-container'>
-                                {randomUsers5()?.map(user => (
+                            <div className="user-pics-container">
+                                {i?.map(i => (
                                     <div className="user-pics">
-                                        <img className="profile-img-circle-container" src={user?.profile_image}></img>
-                                        {/* <p>{user?.username}</p> */}
+                                        <button onClick={e => {
+                                            e.preventDefault()
+                                            history.push(`/users/${allUsers[i]?.id}`)
+                                        }}>
+                                            <img className="users-img-circle-container" src={allUsers[i]?.profile_image}>
+                                            </img>
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="user-pics-container">
+                                {i?.map(i => (
+                                    <div className="username">
+                                        <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
                                     </div>
                                 ))}
                             </div>
@@ -121,8 +137,8 @@ const HomePageComponent = () => {
                     <div className="suggestions-container">
                         <h1>SUGGESTIONS GOES HERE</h1>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     } else {
         return (
