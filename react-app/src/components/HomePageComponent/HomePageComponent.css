@@ -19,10 +19,48 @@
     border: 1px solid red;
 }
 
+.trending {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 16px;
+    margin-top: -.5em;
+    width: 100%;
+    height: 100%;
+}
+
+.user-pics-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+    height: 100%;
+    /* padding-top: 1em; */
+}
+
+.user-pics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.user-pics p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+}
+
 .users-section {
+    display: grid;
+    grid-template-rows: 25% 50% 25%;
     border: 1px solid black;
     margin-bottom: .5em;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
 }
+
 
 .feed-section {
     border: 1px solid green

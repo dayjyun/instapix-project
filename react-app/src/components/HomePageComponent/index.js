@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { login } from '../../store/session'
+import * as userActions from '../../store/users'
 import './HomePageComponent.css'
 
 
@@ -12,6 +13,22 @@ const HomePageComponent = () => {
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
     const sessionUser = useSelector(state => state.session.user)
+    const allUsers = Object.values(useSelector(state => state.users))
+
+    const randomUsers5 = () => {
+        const users = []
+
+        let i = 0
+        while (users.length !== 5) {
+            const randomIndex = Math.floor(Math.random() * allUsers.length)
+            const user = allUsers[randomIndex]
+            if (user?.profile_image)
+                users.push(allUsers[randomIndex])
+            i++
+        }
+        return users;
+    }
+
 
     const reset = () => {
         setEmail("")
@@ -24,6 +41,10 @@ const HomePageComponent = () => {
             setStyle({ backgroundColor: 'rgb(42, 126, 187' })
         }
     }, [email, password])
+
+    useEffect(() => {
+        dispatch(userActions.getAllUsers())
+    }, [dispatch])
 
     const onLogin = async (e) => {
         e.preventDefault();
@@ -74,7 +95,17 @@ const HomePageComponent = () => {
                 <div className="home-content-container">
                     <div className="users-container">
                         <div className="users-section">
-                            <h1>USERS GO HERE</h1>
+                            <div className="trending">
+                                <p>Trending 🔥🔥🔥</p>
+                            </div>
+                            <div className='user-pics-container'>
+                                {randomUsers5()?.map(user => (
+                                    <div className="user-pics">
+                                        <img className="profile-img-circle-container" src={user?.profile_image}></img>
+                                        {/* <p>{user?.username}</p> */}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <div className="feed-section">
                             <h1>FEED GOES HERE</h1>

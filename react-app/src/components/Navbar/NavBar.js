@@ -28,7 +28,6 @@ const NavBar = () => {
     }
   }
 
-
   const showMenu = e => {
     e.preventDefault()
     setProfileToggle(!profileToggle)
@@ -70,9 +69,6 @@ const NavBar = () => {
           <div className='profile-dropdown'>
             <div>
               {profileImageTag()}
-              {/* <button className='profile-button' onClick={showMenu}>
-                <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
-              </button> */}
             </div>
             {profileToggle && (
               <div className='dropdown-shadow'>
