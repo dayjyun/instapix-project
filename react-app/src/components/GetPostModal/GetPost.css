@@ -49,9 +49,11 @@
 }
 
 .caption-comment-container {
+    box-sizing: border-box;
     object-fit: contain;
+    background-size: contain ;
     height: 100%;
-    width: 100%;
+    width: 98%;
     display: grid;
     grid-template-rows: 10% 10% 80%;
 }

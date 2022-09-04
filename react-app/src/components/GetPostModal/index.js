@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
+import { PostModal } from '../../context/Modal';
 import GetPost from './GetPost';
 import './GetPost.css'
 
@@ -10,9 +10,9 @@ function GetPostModal() {
         <>
             <button onClick={() => setShowModal(true)} className='fa-regular fa-square-plus'>GETPOSTTEST</button>
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <PostModal onClose={() => setShowModal(false)}>
                     <GetPost />
-                </Modal>
+                </PostModal>
             )}
         </>
     );
