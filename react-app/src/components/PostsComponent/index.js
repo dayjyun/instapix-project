@@ -13,14 +13,16 @@ function PostComponent() {
   const posts = Object.values(useSelector((state) => state.posts));
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
-  const user = Object.values(useSelector(state => state.users))[0]
+  const userInfo = User
+  console.log(userInfo)
+  // const user = Object.values(useSelector(state => state.users))[0]
 
     // console.log(user['userId']);
-    console.log(user);
+    // console.log(user);
 
   useEffect(() => {
     dispatch(getPost(+postId));
-    dispatch(getOneUser(+userId))
+    // dispatch(getOneUser(+userId))
   }, [dispatch]);
 
   let editPostBtn;
