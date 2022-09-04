@@ -38,3 +38,7 @@ body {
     padding: 0;
     background-color: rgb(250, 250, 250);
 }
+
+a {
+    text-decoration: none;
+}
