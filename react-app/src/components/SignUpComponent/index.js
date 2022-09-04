@@ -13,6 +13,7 @@ const SignUpUserForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ const SignUpUserForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     const data = await dispatch(
-      signUp(username, email, password, firstName, lastName)
+      signUp(username, email, password, firstName, lastName, profileImage)
     );
     if (data) {
       setErrors(data);
@@ -60,6 +61,9 @@ const SignUpUserForm = () => {
 
   const updateLastName = (e) => {
     setLastName(e.target.value);
+  };
+  const updateProfileImage = (e) => {
+    setProfileImage(e.target.value);
   };
 
   if (user) {
@@ -140,6 +144,17 @@ const SignUpUserForm = () => {
                 onChange={updatePassword}
                 value={password}
                 placeholder="Password"
+              ></input>
+            </div>
+            <div className="signup-input-container">
+              <label className="signup-label"></label>
+              <input
+                className="signup-input"
+                type="text"
+                name="profileImage"
+                onChange={updateProfileImage}
+                value={profileImage}
+                placeholder="Upload Profile Image"
               ></input>
             </div>
             <button className="signup-button" type="submit">
