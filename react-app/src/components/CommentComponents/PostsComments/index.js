@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 // import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
+import EditComment from "../EditComment";
 import './PostComments.css'
 
 const PostsComments = ({post}) => {
     // const { postId } = useParams()
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments))
+    const [editing, setEditing] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -26,6 +28,8 @@ const PostsComments = ({post}) => {
         return date
     }
 
+
+
     return (
         <>
             <div className="post-comments-container">
@@ -36,7 +40,7 @@ const PostsComments = ({post}) => {
                             {/* {comment?.user?.profile_image} */}
                             {/* </div> */}
                             <div className="comment-content">
-                                <img className="comment-profile-pic" src="https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/11/square-format-01.jpg?resize=50%2C50&ssl=1" alt='preview'></img>
+                                <img className="comment-profile-pic" src={comment?.user?.profile_image} alt='preview'></img>
                                 <div className="comment-username">
                                     {comment?.user?.username}
                                     <div className="comment-date">
@@ -44,10 +48,12 @@ const PostsComments = ({post}) => {
                                     </div>
                                 </div>
                                 <div className="comment-body">
-                                    {comment?.body}
+                                    {editing ? <EditComment /> : comment?.body}
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
-                                            <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink>
+                                            {/* <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink> */}
+                                            <button className="edit-comment-btn" onClick={() => setEditing(!editing)}>...</button>
+                                            {/* onClick={setEditing(!editing)} */}
                                         </div>
                                     }
                                 </div>
@@ -55,9 +61,9 @@ const PostsComments = ({post}) => {
                         </li>
                     ))}
                 </ul>
-                <CreateComment />
-            </div>
-            <div>
+                <div>
+                    <CreateComment post={post}/>
+                </div>
             </div>
         </>
     )

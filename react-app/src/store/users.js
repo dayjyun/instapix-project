@@ -40,7 +40,8 @@ const newState = {};
 export default function userReducer(state = newState, action) {
     switch (action.type) {
         case GET_USER:
-            return { ...state, [action.data.id]: action.data }
+            // console.log(action);
+            return { ...state, [action.payload.id]: action.payload }
         case LOAD_USERS:
             const allUserState = { ...state }
             action.payload.users.forEach(user => {
