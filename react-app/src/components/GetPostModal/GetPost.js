@@ -24,7 +24,7 @@ function GetPost() {
         dispatch(userActions.getOneUser(1));
     }, [dispatch])
 
-    console.log('THIS', post)
+    // console.log('THIS', post)
 
     return (
         <div className="post-modal-container">

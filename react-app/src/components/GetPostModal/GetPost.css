@@ -49,6 +49,7 @@
 }
 
 .caption-comment-container {
+    object-fit: contain;
     height: 100%;
     width: 100%;
     display: grid;
@@ -75,7 +76,7 @@
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     align-items: center;
     padding: 2px;
     border-bottom: 1px solid lightgray;
@@ -85,6 +86,7 @@
 
 .post-caption-container {
     display: flex;
+    object-fit: contain;
     width: 100%;
     height: 100%;
     justify-content: flex-start;
@@ -99,6 +101,10 @@
     width: 25px;
     border-radius: 25px;
     margin-top: 10px;
+}
+
+.post-comments-container {
+    width: 100%;
 }
 
 .profile-pic-mini {

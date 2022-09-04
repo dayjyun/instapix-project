@@ -55,6 +55,15 @@
 .edit-comment-btn {
     font-size: 10px;
     margin: 0;
+    outline: none !important;
+    padding: 0;
+    margin-right: 5px;
+    border: none;
+    background: none;
+    /* color: rgb(0,149,246); */
+    font-weight: bold;
+    font-size: 15px;
+
 }
 
 .edit-comment-container {
