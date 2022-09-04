@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { Redirect, Link } from "react-router-dom";
+import { login } from "../../store/session";
+
 import "./SignUp.css";
 
 const SignUpUserForm = () => {
@@ -11,6 +13,25 @@ const SignUpUserForm = () => {
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
+  const reset = () => {
+    setEmail("");
+    setPassword("");
+  };
+
+  const handleGuestLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"))
+      .then(() => {
+        reset();
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(Object.values(data.errors));
+        }
+      });
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -29,13 +50,16 @@ const SignUpUserForm = () => {
     setPassword(e.target.value);
   };
 
+  if (user) {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="signup-background">
       <div className="signup-form-container">
         <div className="logo-container">
           <h1 className="logo">Instapix</h1>
           <p>Sign up to see photos and videos from your friends.</p>
-          <button className="signup-demo-user">
+          <button onClick={handleGuestLogin} className="signup-demo-user">
             <i class="fa-sharp fa-solid fa-user"></i> Log in as a demo user
           </button>
         </div>
