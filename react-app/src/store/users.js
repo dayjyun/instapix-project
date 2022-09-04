@@ -1,28 +1,29 @@
 const LOAD_USERS = 'users/loadUsers';
 const GET_USER = 'users/getUser';
 
-// const loadUsers = (data) => {
-//     return {
-//         type: LOAD_USERS,
-//         data
-//     }
-// }
-
-const getUser = (data) => {
+const loadUsers = (users) => {
     return {
-        type: GET_USER,
-        data
+        type: LOAD_USERS,
+        payload: users
     }
 }
 
-// export const getAllUsers = () => async (dispatch) => {
-//     const res = await fetch('/api/users')
+const getUser = (user) => {
+    return {
+        type: GET_USER,
+        payload: user
+    }
+}
 
-//     if (res.ok) {
-//         const users = await res.json();
-//         dispatch(loadUsers(users));
-//     };
-// };
+export const getAllUsers = () => async (dispatch) => {
+    const res = await fetch('/api/users')
+
+    if (res.ok) {
+        const users = await res.json();
+        dispatch(loadUsers(users));
+        return res;
+    };
+};
 
 export const getOneUser = (userId) => async (dispatch) => {
     const res = await fetch(`/api/users/${userId}`);
@@ -37,11 +38,16 @@ export const getOneUser = (userId) => async (dispatch) => {
 const newState = {};
 
 export default function userReducer(state = newState, action) {
-  switch (action.type) {
-    case GET_USER:
-        // console.log(action.data);
-        return { ...state, [action.data.id]: action.data}
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case GET_USER:
+            return { ...state, [action.data.id]: action.data }
+        case LOAD_USERS:
+            const allUserState = { ...state }
+            action.payload.users.forEach(user => {
+                allUserState[user.id] = user
+            })
+            return allUserState
+        default:
+            return state;
+    }
 }

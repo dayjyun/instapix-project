@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { login } from '../../store/session'
 import './HomePageComponent.css'
+import { getAllUsers } from "../../store/users"
 
 
 const HomePageComponent = () => {
@@ -13,6 +14,13 @@ const HomePageComponent = () => {
     const [errors, setErrors] = useState([])
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
+    const users = Object.values(useSelector(state => state.users))
+    console.log(users)
+
+
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [dispatch])
 
     const reset = () => {
         setEmail("")
