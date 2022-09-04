@@ -54,6 +54,7 @@ export const getLoggedUserFollowingBackend = (userId) => async (dispatch) => {
 export const getFollowingBackend = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     const parsedRes = await response.json();
+    console.log(parsedRes)
     dispatch(getFollowing(parsedRes))
 }
 
@@ -61,6 +62,7 @@ export const getFollowingBackend = (userId) => async (dispatch) => {
 export const getFollowersBackend = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/followers`)
     const parsedRes = await response.json()
+    console.log(parsedRes)
     dispatch(getFollowers(parsedRes))
 }
 
@@ -100,45 +102,43 @@ const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }
-            console.log(getLoggedUserFollowingState)
             getLoggedUserFollowingState.loggedUser = action.payload
-            console.log(getLoggedUserFollowingState)
-
             return getLoggedUserFollowingState;
 
         case GET_FOLLOWING:
-            const getFollowingState = {}
-            const copy = { ...state }
+            const getFollowingState = { ...state }
+            let follows = {}
+
             action.payload.Followers.forEach(follow => {
-                getFollowingState[follow.follow.id] = follow
+                follows[follow.follow.id] = follow
             })
-            getFollowingState['loggedUser'] = copy.loggedUser
+            getFollowingState.follows = follows
+
             return getFollowingState;
 
         case GET_FOLLOWERS:
-            const getFollowersState = {}
-            const copy2 = { ...state }
+            const getFollowersState = { ...state }
+            let follower = {}
 
-            action.payload.Followers.forEach(follow => {
-                getFollowersState[follow.follow.id] = follow
+            action.payload.Followers.forEach((follow) => {
+                follower[follow.follow.id] = follow
             })
-            getFollowersState['loggedUser'] = copy2.loggedUser
 
+            getFollowersState['followers'] = follower
             return getFollowersState;
 
         case FOLLOW:
             const followState = { ...state }
             // console.log(followState)
             // console.log(action.payload.id)
-            followState[action.payload.follow.id] = action.payload
+            followState.follows[action.payload.follow.id] = action.payload
             // console.log(followState)
             return followState
 
-        case UNFOLLOW:
-            const unfollowState = { ...state }
-            delete unfollowState[action.payload.id]
-            console.log(unfollowState)
-            return unfollowState;
+        // case UNFOLLOW:
+        //     const unfollowState = { ...state }
+        //     delete unfollowState.follows[action.payload.id]
+        //     return unfollowState;
 
         default:
             return state;

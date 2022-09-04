@@ -7,9 +7,14 @@ const Followers = ({ user }) => {
     const dispatch = useDispatch()
     //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
-    const follows = Object.values(useSelector(state => state.follow))
-    let loggedUserFollows = follows.pop()
-    loggedUserFollows = loggedUserFollows?.Followers
+    const allFollows = useSelector(state => state.follow)
+
+    let loggedUserFollows = allFollows.loggedUser
+    const followers = Object.values(allFollows.followers)
+
+    console.log(allFollows)
+    console.log(followers)
+    // loggedUserFollows = loggedUserFollows?.Followers
 
 
     const isFollowing = (follow) => {
@@ -69,8 +74,9 @@ const Followers = ({ user }) => {
             <div className='following-modal-container'>
                 <h3 className='following-header'>Followers</h3>
                 <div className='following-info-container'>
-                    {follows && (
-                        follows?.map((follow, index) => {
+
+                    {followers && (
+                        followers?.map((follow, index) => {
                             return (
                                 <div className='each-follower-box' key={index}>
                                     <div className='follower-profile-image'>
@@ -82,7 +88,6 @@ const Followers = ({ user }) => {
                                     </div>
 
                                     {isFollowing(follow)}
-
 
                                 </div>
                             )
