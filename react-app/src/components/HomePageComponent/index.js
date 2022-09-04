@@ -70,7 +70,21 @@ const HomePageComponent = () => {
 
     if (sessionUser) {
         return (
-            <h1>Logged in home page component</h1>
+            <div className='home-page-container'>
+                <div className="feed-container">
+                    <div className="feed-container-left-users">
+                        <div>
+                            <h1>USERS GO HERE</h1>
+                        </div>
+                        <div>
+                            <h1>FEED GOES HERE</h1>
+                        </div>
+                    </div>
+                    <div className="feed-container-left-feed">
+                        <h1>SUGGESTIONS GOES HERE</h1>
+                    </div>
+                </div>
+            </div>
         )
     } else {
         return (
