@@ -11,25 +11,16 @@ const Followers = ({ user }) => {
     let loggedUserFollows = follows.pop()
     loggedUserFollows = loggedUserFollows?.Followers
 
-    console.log(loggedUserFollows)
+
     const isFollowing = (follow) => {
-
-
-
-
-
-
 
         for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
 
-            // console.log(loggedUserFollows[i])
-            console.log(follow.follow.user_id, loggedUserFollow?.follower_info?.id)
-
-            if (follow.follow.user_id === loggedUserFollow?.follower_info?.id) {
+            if (follow?.follow?.user_id === loggedUserFollow?.follower_info?.id) {
                 return (
                     <div className='follower-follow-btn'>
-                        <button id={follow?.follow?.follows_id} onClick={handleClickUnfollow}>Unfollow</button>
+                        <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
                     </div>
                 )
             }
@@ -39,12 +30,7 @@ const Followers = ({ user }) => {
                 <button id={follow?.follow?.follows_id} onClick={handleClickFollow}>Follow</button>
             </div>
         )
-
-
-
-
     }
-
 
     useEffect(() => {
         if (user) {
@@ -52,11 +38,13 @@ const Followers = ({ user }) => {
         }
     }, [dispatch, user])
 
+
     useEffect(() => {
         if (loggedUser) {
             dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
         }
     }, [dispatch, loggedUser])
+
 
     const handleClickFollow = async (e) => {
         e.preventDefault();
@@ -70,9 +58,12 @@ const Followers = ({ user }) => {
 
     const handleClickUnfollow = async (e) => {
         e.preventDefault();
-
+        console.log('unfollow')
+        console.log(e.target)
         await dispatch(deleteFollowBackend(e.target.id));
+        console.log('gets here?')
     }
+
     return (
         <>
             <div className='following-modal-container'>

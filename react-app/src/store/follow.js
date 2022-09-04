@@ -132,6 +132,7 @@ const followReducer = (state = initialState, action) => {
         case UNFOLLOW:
             const unfollowState = { ...state }
             delete unfollowState[action.payload.id]
+            console.log(unfollowState)
             return unfollowState;
 
         default:
