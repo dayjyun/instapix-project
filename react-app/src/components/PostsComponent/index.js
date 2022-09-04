@@ -10,7 +10,7 @@ function PostComponent() {
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
   // const currUser = useSelector((state) => state.session.user);
-  const userId = posts.map(post => post?.id)
+  const userId = posts.map(post => post?.user_id)
 
   useEffect(() => {
     dispatch(getPost(+postId));
