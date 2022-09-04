@@ -43,7 +43,7 @@
     border-top: 30px solid black;
     border-bottom: 30px solid black;
     width: 100%;
-    height: 90.5%;
+    height: 91%;
     display: grid;
     background-repeat: no-repeat;
     background-size: contain;
@@ -78,6 +78,7 @@
 
 .user-info-container {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
     /* justify-content: flex-start; */
@@ -99,6 +100,11 @@
     margin: 5px;
     font-family: 'Arimo', sans-serif;
 
+}
+
+.profile-pic-username {
+    display: flex;
+    align-items: center;
 }
 
 .post-user-profile-pic {

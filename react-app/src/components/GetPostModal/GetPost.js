@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CreateComment from "../CommentComponents/CreateComment";
 import * as userActions from '../../store/users';
 import PostsComments from "../CommentComponents/PostsComments";
+import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 
 
 function GetPost() {
@@ -36,8 +37,11 @@ function GetPost() {
             </div>
             <div className="caption-comment-container">
                 <div className="user-info-container">
+                    <div className="profile-pic-username">
                     <img className="comment-profile-pic" src={user?.profile_image} alt='preview'></img>
                     <div className="post-username-text">{user?.username}</div>
+                    </div>
+                    <EditPostBtn />
                 </div>
                 <div className="post-caption-container">
                     <div className="profile-pic-mini">
