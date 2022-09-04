@@ -40,9 +40,9 @@ function PostComponent() {
                   src={currUser?.profile_image}
                   alt="profileImage"
                 ></img> */}
+                  {/* RENDER POST USER'S PROFILE IMAGE */}
                 <h3>{userId}</h3>
               </div>
-              {/* <EditPostBtn /> */}
               {editPostBtn}
             </div>
             <div className="post-page-user-details">
