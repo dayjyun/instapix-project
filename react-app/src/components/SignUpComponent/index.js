@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { Redirect, Link } from "react-router-dom";
+import "./SignUp.css";
 
 const SignUpUserForm = () => {
   const [errors, setErrors] = useState([]);
@@ -29,7 +30,7 @@ const SignUpUserForm = () => {
   };
 
   return (
-    <>
+    <div className="sign-up-background">
       <div className="signup-form-container">
         <div className="logo-container">
           <h1 className="logo">Instapix</h1>
@@ -44,6 +45,7 @@ const SignUpUserForm = () => {
             <label className="signup-label">Username</label>
             <input
               className="signup-input"
+              placeholder="Username"
               type="text"
               name="username"
               onChange={updateUsername}
@@ -58,6 +60,7 @@ const SignUpUserForm = () => {
               name="email"
               onChange={updateEmail}
               value={email}
+              placeholder="Email"
             ></input>
           </div>
           <div className="signup-input-container">
@@ -68,6 +71,7 @@ const SignUpUserForm = () => {
               name="password"
               onChange={updatePassword}
               value={password}
+              placeholder="Password"
             ></input>
           </div>
           <button className="signup-button" type="submit">
@@ -80,7 +84,7 @@ const SignUpUserForm = () => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
