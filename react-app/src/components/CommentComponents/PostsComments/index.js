@@ -52,7 +52,7 @@ const PostsComments = ({post}) => {
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
                                             {/* <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink> */}
-                                            <button className="edit-comment-btn" >...</button>
+                                            <button className="edit-comment-btn" onClick={() => setEditing(!editing)}>...</button>
                                             {/* onClick={setEditing(!editing)} */}
                                         </div>
                                     }
