@@ -23,8 +23,10 @@ function ExplorerPosts() {
                 style={{ backgroundImage: "url(" + post?.post_url + ")" }}
               >
                 <div className="explore-post-text">
-                  <p className="ept-likes">{post?.likes} Likes</p>
-                  <p className="ept-comments">{post?.num_comments} Comments</p>
+                  <i class="fa-sharp fa-solid fa-heart"></i>
+                  <p className="ept-likes">{post?.likes}</p>
+                  <i class="fa-sharp fa-solid fa-comment"></i>
+                  <p className="ept-comments">{post?.num_comments}</p>
                 </div>
               </div>
             </Link>
