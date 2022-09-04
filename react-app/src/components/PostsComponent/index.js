@@ -18,14 +18,14 @@ function PostComponent() {
   return (
     <div className="post-page">
       {posts?.map((post) => (
-        <li key={post?.id} className="post-id-card">
+        <li key={post?.id} className="post-page-id-card">
           <img
             style={{ width: "500px", height: "500px" }}
             src={post?.post_url}
             alt="post_image"
           ></img>
-          <div className="page-post-details">
-            <div className="post-details-top">
+          <div className="page-page-post-details">
+            <div className="post-page-details-top">
               <div className="post-username">
                 <img
                   className="profile-img-circle-container form-profile-img"
@@ -36,7 +36,7 @@ function PostComponent() {
               </div>
               <EditPostBtn />
             </div>
-            <div className="post-user-details">
+            <div className="post-page-user-details">
               <div>{post?.caption}</div>
               <div>{post?.likes} Likes</div>
             </div>
