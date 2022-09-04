@@ -1,6 +1,6 @@
 .explore-post-card {
-  height: 45vh;
-  width: 45vh;
+  height: 35vh;
+  width: 35vh;
   cursor: pointer;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10,13 +10,14 @@
 }
 
 .explore-post-card {
-    color: transparent
+  color: transparent;
 }
 
 .explore-post-card:hover {
   filter: brightness(70%);
   color: white;
 }
+
 /* text is showing faded. Change to full white */
 
 .explore-post-text {
@@ -26,6 +27,27 @@
   align-items: center;
 }
 
-.ept-likes, .ept-comments {
-    padding: 0 1em;
+.ept-likes,
+.ept-comments {
+  padding: 0 1em;
+}
+
+.explore-page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.explore-post {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 1.5em;
+  padding: 13em 20em;
 }
