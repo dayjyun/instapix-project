@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend } from '../../../store/follow';
+import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend, deleteFollowBackend } from '../../../store/follow';
 import '../FollowModal.css'
 
 const Followers = ({ user }) => {
@@ -10,29 +10,38 @@ const Followers = ({ user }) => {
     const follows = Object.values(useSelector(state => state.follow))
     let loggedUserFollows = follows.pop()
     loggedUserFollows = loggedUserFollows?.Followers
-    // loggedUserFollows = Object.values(loggedUserFollows)
-    // Add a follow button or 'already follows' p tag later
-    const [isMyPage, setIsMyPage] = useState(false);
-    const [iFollow, setIFollow] = useState()
 
-
+    console.log(loggedUserFollows)
     const isFollowing = (follow) => {
+
+
+
+
+
+
 
         for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
-            // console.log(follow)
-            // console.log(loggedUserFollow?.follow?.follows_id)
-            if (follow.follow.user_id === loggedUserFollow?.follow?.follows_id) {
+
+            // console.log(loggedUserFollows[i])
+            console.log(follow.follow.user_id, loggedUserFollow?.follower_info?.id)
+
+            if (follow.follow.user_id === loggedUserFollow?.follower_info?.id) {
                 return (
                     <div className='follower-follow-btn'>
-                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>
+                        <button id={follow?.follow?.follows_id} onClick={handleClickUnfollow}>Unfollow</button>
                     </div>
                 )
             }
         }
-        loggedUserFollows?.forEach(loggedUserFollow => {
+        return (
+            <div className='follower-follow-btn'>
+                <button id={follow?.follow?.follows_id} onClick={handleClickFollow}>Follow</button>
+            </div>
+        )
 
-        })
+
+
 
     }
 
@@ -49,7 +58,7 @@ const Followers = ({ user }) => {
         }
     }, [dispatch, loggedUser])
 
-    const handleClick = async (e) => {
+    const handleClickFollow = async (e) => {
         e.preventDefault();
 
         const input = {
@@ -59,6 +68,11 @@ const Followers = ({ user }) => {
         await dispatch(postFollowBackend(input));
     }
 
+    const handleClickUnfollow = async (e) => {
+        e.preventDefault();
+
+        await dispatch(deleteFollowBackend(e.target.id));
+    }
     return (
         <>
             <div className='following-modal-container'>
@@ -78,17 +92,6 @@ const Followers = ({ user }) => {
 
                                     {isFollowing(follow)}
 
-
-
-                                    {/* {isMyPage && (
-                                        <div className='follower-follow-btn'>
-                                            <p>You Follow</p>
-                                        </div>
-                                    )} */}
-
-                                    {/* <div className='follower-follow-btn'>
-                                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>
-                                    </div> */}
 
                                 </div>
                             )
