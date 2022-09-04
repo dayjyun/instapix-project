@@ -11,7 +11,7 @@ import { authenticate } from "./store/session";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-import FollowModal from "./components/FollowModal";
+import FollowModal from "./components/FollowModal/FollowerModal";
 import PostComponent from "./components/PostsComponent";
 import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
