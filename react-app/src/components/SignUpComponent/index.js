@@ -80,6 +80,8 @@ const SignUpUserForm = () => {
             Sign Up
           </button>
         </form>
+      </div>
+      <div className="signup-form-container">
         <div className="login-link-container">
           <Link className="login-link" to="/login">
             Already have an account? Log in
