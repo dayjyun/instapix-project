@@ -1,4 +1,6 @@
-.user-container-background {}
+.user-container-background {
+    z-index: -1;
+}
 
 .user-information-container {
     width: 70%;

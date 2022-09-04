@@ -119,6 +119,7 @@
     height: 100%;
     margin-left: -1.4em;
     margin-top: .2em;
+    z-index: 10;
 }
 
 /* .profile-button {
