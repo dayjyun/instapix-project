@@ -43,6 +43,7 @@ export default function userReducer(state = newState, action) {
             // console.log(action);
             return { ...state, [action.payload.id]: action.payload }
         case LOAD_USERS:
+            console.log(action);
             const allUserState = { ...state }
             action.payload.users.forEach(user => {
                 allUserState[user.id] = user
