@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
+import User from "../UserComponent";
 import EditPostBtn from "./EditPost/EditPostBtn";
 import "./Posts.css";
 
@@ -11,7 +12,8 @@ function PostComponent() {
   const posts = Object.values(useSelector((state) => state.posts));
   // const currUser = useSelector((state) => state.session.user);
   const userId = posts.map(post => post?.user_id)
-  const userInfo = 
+  const userInfo = User
+  console.log(userInfo())
 
   useEffect(() => {
     dispatch(getPost(+postId));
