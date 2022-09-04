@@ -6,10 +6,12 @@ import hashtagReducer from "./hashtags";
 import comments from "./comments";
 import followReducer from "./follow";
 import postsReducer from "./posts";
+import userReducer from "./users";
 
 const rootReducer = combineReducers({
   session,
   comments,
+  users: userReducer,
   posts: postsReducer,
   likes: likesReducer,
   hashtags: hashtagReducer,

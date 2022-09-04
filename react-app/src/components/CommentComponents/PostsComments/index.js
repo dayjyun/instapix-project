@@ -6,8 +6,8 @@ import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
 import './PostComments.css'
 
-const PostsComments = () => {
-    const { postId } = useParams()
+const PostsComments = ({post}) => {
+    // const { postId } = useParams()
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments))
 
@@ -15,8 +15,8 @@ const PostsComments = () => {
 
     useEffect(() => {
         // dispatch(postActions.loadAllPosts())
-        dispatch(commentActions.loadPostComments(postId))
-    }, [dispatch, postId])
+        dispatch(commentActions.loadPostComments(post?.id))
+    }, [dispatch, post?.id])
 
 
     const getCreatedDate = (datestr) => {
