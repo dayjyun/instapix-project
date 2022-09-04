@@ -17,15 +17,19 @@ function ExplorerPosts() {
     <div className="explore-page">
       <div className="explore-post">
         {posts?.map((post) => (
-          <li key={post?.id} className="explore-post-card">
-            <Link exact to={{ pathname: `/posts/${post?.id}` }}>
+          <Link exact to={{ pathname: `/posts/${post?.id}` }}>
+            <ul
+              key={post?.id}
+              className="explore-post-card"
+              style={{ backgroundImage: "url(" + post?.post_url + ")" }}
+            >
               {/* <img className="explorer-image" src={post?.post_url} /> */}
-              <div className="explore-post-wrapper" style={{ backgroundImage: "url(" + post?.post_url + ")" }}>
-                <div className="explore-post-text ep-likes">{post?.likes} Likes</div>
-                <div className="explore-post-text ep-comments-count">{post?.num_comments} Comments</div>
+              <div className="explore-post-text">
+                <p className="ept-likes">{post?.likes} Likes</p>
+                <p className="ept-comments">{post?.num_comments} Comments</p>
               </div>
-            </Link>
-          </li>
+            </ul>
+          </Link>
         ))}
       </div>
     </div>
