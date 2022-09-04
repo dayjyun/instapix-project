@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
@@ -11,7 +11,22 @@ const NavBar = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [profileToggle, setProfileToggle] = useState(false)
+  const [profileImage, setProfileImage] = useState('')
   const sessionUser = useSelector(state => state.session.user)
+
+  const profileImageTag = () => {
+    if (sessionUser?.profile_image) {
+      return (
+        <button className='profile-button' onClick={showMenu}>
+          <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
+        </button>
+      )
+    } else {
+      return (
+        <button style={{ marginTop: '-.1em' }} onClick={showMenu} className='fa-regular fa-user-circle fa-xl'></button>
+      )
+    }
+  }
 
 
   const showMenu = e => {
@@ -54,9 +69,10 @@ const NavBar = () => {
           <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
           <div className='profile-dropdown'>
             <div>
-              <button className='profile-button' onClick={showMenu}>
+              {profileImageTag()}
+              {/* <button className='profile-button' onClick={showMenu}>
                 <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
-              </button>
+              </button> */}
             </div>
             {profileToggle && (
               <div className='dropdown-shadow'>
