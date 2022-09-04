@@ -8,6 +8,8 @@ import "./SignUp.css";
 
 const SignUpUserForm = () => {
   const [errors, setErrors] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +37,9 @@ const SignUpUserForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const data = await dispatch(signUp(username, email, password));
+    const data = await dispatch(
+      signUp(username, email, password, firstName, lastName)
+    );
     if (data) {
       setErrors(data);
     }
@@ -48,6 +52,14 @@ const SignUpUserForm = () => {
   };
   const updatePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   if (user) {
@@ -72,6 +84,30 @@ const SignUpUserForm = () => {
           ))}
         </div>
         <form className="signup-form" onSubmit={onSignUp}>
+          <div className="signup-input-container">
+            <label className="signup-label"></label>
+            <input
+              className="signup-input"
+              placeholder="First Name"
+              type="text"
+              name="firstName"
+              onChange={updateFirstName}
+              value={firstName}
+            ></input>
+          </div>
+
+          <div className="signup-input-container">
+            <label className="signup-label"></label>
+            <input
+              className="signup-input"
+              placeholder="Last Name"
+              type="text"
+              name="lastName"
+              onChange={updateLastName}
+              value={lastName}
+            ></input>
+          </div>
+
           <div className="signup-input-container">
             <label className="signup-label"></label>
             <input
