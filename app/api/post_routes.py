@@ -124,7 +124,7 @@ def create_comment(post_id):
 #** Edit a post **#
 
 
-@post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
+@post_routes.route('/<int:post_id>', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
     form = EditPostForm()
@@ -147,15 +147,16 @@ def edit_post(post_id):
 
 
 #** Delete a post **#
-@post_routes.route('/delete/<int:post_id>', methods=['DELETE'])
+@post_routes.route('/<int:post_id>', methods=['DELETE'])
 @login_required
 def delete_post(post_id):
     post = Post.query.get(post_id)
+
     if post:
         if post.user_id == current_user.id:
             db.session.delete(post)
             db.session.commit()
-            return redirect('/api/posts/explorer')
+            return post.to_dict()
         else:
             return jsonify({"Forbidden": "You cannot delete this post", "Status Code": 403}), 403
     else:

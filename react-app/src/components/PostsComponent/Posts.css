@@ -1,0 +1,38 @@
+.post-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-page-id-card {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.page-page-post-details {
+    /* border: 2px solid orange */
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+
+.post-page-details-top {
+    /* border: 2px solid cyan; */
+    display: flex;
+    justify-content: space-between;border-bottom: 1px solid lightgray;
+}
+
+.post-page-user-details {
+    /* border: 2px solid greenyellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.post-page-meta-data {
+    border-bottom: 1px solid lightgray;
+}

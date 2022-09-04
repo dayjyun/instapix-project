@@ -1,4 +1,5 @@
 .user-container-background {
+    z-index: -1;
     width: auto;
     z-index: -1;
     padding: 3% 25%;
@@ -15,6 +16,7 @@
     width: 33%;
     padding-left: 3%;
 }
+
 
 .bold {
     font-weight: 600;

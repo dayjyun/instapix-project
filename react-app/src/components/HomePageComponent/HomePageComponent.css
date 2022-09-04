@@ -1,16 +1,61 @@
+.home-page-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.home-content-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 56em;
+    margin-top: 1.6em;
+}
+
+.users-container {
+    display: grid;
+    grid-template-rows: auto;
+    /* border: 1px solid black; */
+    border: 1px solid red;
+}
+
+.users-section {
+    border: 1px solid black;
+    margin-bottom: .5em;
+}
+
+.feed-section {
+    border: 1px solid green
+}
+
+.suggestions-container {
+    border: 1px solid blue;
+    margin-left: 1em;
+    padding-left: 1em;
+}
+
 .logged-out-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
 }
 
+.front-page-image {
+    width: 300%;
+    height: 100%;
+    margin-left: -30em;
+    /* margin-left: -30em; */
+    margin-top: -2.5em;
+}
+
 .logged-out-content-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 55%;
-    height: 60%;
+    width: 50em;
+    height: 45em;
 }
 
 .login-form-container {
@@ -102,4 +147,53 @@
 
 .login-button:disabled {
     background: rgb(185, 219, 243)
+}
+
+.or-container {
+    display: flex;
+    justify-content: center;
+    height: 50%;
+    margin-top: .5em;
+}
+
+.or {
+    margin-top: 1.4em;
+    color: gray
+}
+
+.or1 {
+    display: flex;
+    align-items: flex-start;
+    padding-right: 1em;
+    color: lightgray;
+}
+
+.or2 {
+    display: flex;
+    padding-left: 1em;
+    color: lightgray
+}
+
+.login-button-guest {
+    width: 80%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: rgb(42, 126, 187);
+    border: transparent;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.sign-up-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    height: 50%;
+    margin-top: -1em;
+}
+
+.sign-up-link a {
+    color: blue
 }

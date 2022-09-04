@@ -120,9 +120,8 @@ export const deletePost = (postId) => async (dispatch) => {
     method: "DELETE"
   });
 
-  if (post.ok) {
-    dispatch(removePost(post));
-  }
+  const parsedPost = await post.json()
+  dispatch(removePost(parsedPost));
 };
 
 let initialState = {};

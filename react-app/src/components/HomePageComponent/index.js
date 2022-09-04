@@ -13,6 +13,12 @@ const HomePageComponent = () => {
     const [errors, setErrors] = useState([])
     const sessionUser = useSelector(state => state.session.user)
 
+    const reset = () => {
+        setEmail("")
+        setPassword('')
+        setStyle({})
+    }
+
     useEffect(() => {
         if (email && password) {
             setStyle({ backgroundColor: 'rgb(42, 126, 187' })
@@ -21,35 +27,77 @@ const HomePageComponent = () => {
 
     const onLogin = async (e) => {
         e.preventDefault();
-        const data = await dispatch(login(email, password));
-        if (data) {
-            setErrors(data);
-            setEmail('')
-            setPassword('')
-        }
+        const data = await dispatch(login(email, password))
+            .then(() => {
+                reset()
+            })
+            .catch(async res => {
+                const data = await res.json()
+                if (data && data.errors) {
+                    setErrors(Object.values(data.errors))
+                }
+            })
     };
+
+    const handleGuestLogin = async e => {
+        e.preventDefault()
+        const data = await dispatch(login('demo@aa.io', 'password'))
+            .then(() => {
+                reset()
+            })
+            .catch(async res => {
+                const data = await res.json()
+                if (data && data.errors) {
+                    setErrors(Object.values(data.errors))
+                }
+            })
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(login(email, password));
-        if (data) {
-            setErrors(data);
-            setEmail('')
-            setPassword('')
-        }
+        const data = await dispatch(login(email, password))
+            .then(() => {
+                reset()
+            })
+            .catch(async res => {
+                const data = await res.json()
+                if (data && data.errors) {
+                    setErrors(Object.values(data.errors))
+                }
+            })
     };
-
 
 
     if (sessionUser) {
         return (
-            <h1>Logged in home page component</h1>
+            <div className='home-page-container'>
+                <div className="home-content-container">
+                    <div className="users-container">
+                        <div className="users-section">
+                            <h1>USERS GO HERE</h1>
+                        </div>
+                        <div className="feed-section">
+                            <h1>FEED GOES HERE</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                        </div>
+                    </div>
+                    <div className="suggestions-container">
+                        <h1>SUGGESTIONS GOES HERE</h1>
+                    </div>
+                </div>
+            </div>
         )
     } else {
         return (
             <div className="logged-out-container">
                 <div className="logged-out-content-container">
-                    <h1>hey</h1>
+                    <img className="front-page-image" src='https://instagram-clone-files.s3.us-west-1.amazonaws.com/frontpage.png' alt='preview'></img>
                     <div className="login-form-container">
                         <div className="login-form">
                             <h1>Instapix</h1>
@@ -92,14 +140,29 @@ const HomePageComponent = () => {
                                     className="login-button"
                                 >Log In</button>
                             </div>
+                            <div className="or-container">
+                                <p className="or1">______________</p>
+                                <p className='or'>OR</p>
+                                <p className="or2">______________</p>
+                            </div>
+                            <div className="login-input-container">
+                                <button
+                                    type='submit'
+                                    style={style}
+                                    onClick={handleGuestLogin}
+                                    className="login-button-guest"
+                                >Log in as Guest</button>
+                            </div>
                         </div>
                         <div className="sign-up-link">
                             {/* sign up modal goes here */}
-                            <h1>bottom</h1>
+                            <p>Don't have an account?
+                                <a href="/sign-up"> Sign up</a>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
