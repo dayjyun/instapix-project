@@ -32,12 +32,7 @@
     border: 1px solid blue;
     margin-left: 1em;
     padding-left: 1em;
-    z-index: -1;
 }
-
-/* .suggestions-container h1 {
-    z-index: -20
-} */
 
 .logged-out-container {
     display: flex;
