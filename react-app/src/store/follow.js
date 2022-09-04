@@ -104,17 +104,23 @@ const followReducer = (state = initialState, action) => {
             return getLoggedUserFollowingState;
 
         case GET_FOLLOWING:
-            const getFollowingState = { ...state }
+            const getFollowingState = {}
+            const copy = { ...state }
             action.payload.Followers.forEach(follow => {
                 getFollowingState[follow.follow.id] = follow
             })
+            getFollowingState['loggedUser'] = copy.loggedUser
             return getFollowingState;
 
         case GET_FOLLOWERS:
-            const getFollowersState = { ...state }
+            const getFollowersState = {}
+            const copy2 = { ...state }
+
             action.payload.Followers.forEach(follow => {
                 getFollowersState[follow.follow.id] = follow
             })
+            getFollowersState['loggedUser'] = copy2.loggedUser
+
             return getFollowersState;
 
         case FOLLOW:
