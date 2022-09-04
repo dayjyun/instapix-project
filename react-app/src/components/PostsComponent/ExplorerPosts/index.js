@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadAllPosts } from "../../../store/posts";
+import GetPostModal from "../../GetPostModal";
 import "./index.css";
 
 function ExplorerPosts() {
