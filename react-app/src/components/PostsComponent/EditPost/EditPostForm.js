@@ -1,26 +1,20 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
 import "./EditPostForm.css";
 
 function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { postId } = useParams();
   const currUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.posts));
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
-
-  // const userId = posts.map((post) => post?.user_id);
-
   const [caption, setCaption] = useState(post_caption);
 
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
-
-    console.log(currUser);
 
     dispatch(
       editPost({
@@ -30,10 +24,8 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
     ).then(() => {
       setShowEditPost(false);
       setShowMenuButtons(false);
-      history.push(`/posts/${+postId}`);
     });
   };
-  // ! Not editing post
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
