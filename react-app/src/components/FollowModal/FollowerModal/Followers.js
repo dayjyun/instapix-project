@@ -1,17 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowersBackend, postFollowBackend } from '../../../store/follow';
-
+import { authenticate } from '../../../store/session';
 import '../FollowModal.css'
 
 const Followers = ({ user }) => {
     const dispatch = useDispatch()
+    const loggedUser = useSelector(state => (state.session))
+
     // Add a follow button or 'already follows' p tag later
-    // const [doesFollow, setDoesFollow] = useState();
+    const [isMyPage, setIsMyPage] = useState();
 
     // const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
+    useEffect(() => {
+        dispatch(authenticate())
+        if (loggedUser?.id === user.id) {
+            setIsMyPage(true)
+        }
+        console.log(loggedUser)
+        console.log(isMyPage)
+    }, [dispatch, isMyPage])
+    console.log(isMyPage)
     useEffect(() => {
         if (user) {
             dispatch(getFollowersBackend(user?.id))
@@ -29,9 +40,6 @@ const Followers = ({ user }) => {
         await dispatch(postFollowBackend(input));
     }
 
-    // useEffect(() => {
-    //     if (user?.)
-    // })
 
     return (
         <>
@@ -51,9 +59,11 @@ const Followers = ({ user }) => {
                                     </div>
 
 
-                                    <div className='follower-follow-btn'>
-                                        <p>You Follow</p>
-                                    </div>
+                                    {isMyPage && (
+                                        <div className='follower-follow-btn'>
+                                            <p>You Follow</p>
+                                        </div>
+                                    )}
 
                                     {/* <div className='follower-follow-btn'>
                                         <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>

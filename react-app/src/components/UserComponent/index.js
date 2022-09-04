@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
 import './UserComponent.css'
+import { useSelector } from 'react-redux';
 // import { useDispatch, useSelector } from 'react-redux';
 
 function User() {
@@ -19,6 +20,7 @@ function User() {
       setUser(user);
     })();
   }, [userId]);
+
 
   if (!user) {
     return null;
