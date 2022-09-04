@@ -33,7 +33,7 @@ function GetPost() {
             </div>
             <div className="caption-comment-container">
                 <div className="post-modal-topright-info">
-                    <div className="profile-pic-mini" style={{ backgroundImage: 'url(' + user?.profile_image + ')' }}>
+                    <div className="profile-pic-mini">
                     </div>
                     <p>User Info</p>
                 </div>
