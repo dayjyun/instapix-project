@@ -76,7 +76,7 @@ const HomePageComponent = () => {
         return (
             <div className="logged-out-container">
                 <div className="logged-out-content-container">
-                    <h1>hey</h1>
+                    <img className="front-page-image" src='https://instagram-clone-files.s3.us-west-1.amazonaws.com/frontpage.png' alt='preview'></img>
                     <div className="login-form-container">
                         <div className="login-form">
                             <h1>Instapix</h1>

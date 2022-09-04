@@ -1,16 +1,25 @@
 .logged-out-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
 }
 
+.front-page-image {
+    width: 300%;
+    height: 100%;
+    margin-left: -30em;
+    /* margin-left: -30em; */
+    margin-top: -2em;
+}
+
 .logged-out-content-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 50em;
-    height: 70%;
+    height: 45em;
 }
 
 .login-form-container {
