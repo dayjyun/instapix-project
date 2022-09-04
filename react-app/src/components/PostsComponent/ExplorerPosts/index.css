@@ -28,8 +28,8 @@
   align-items: center;
 }
 
-.explore-post-text:hover {
-  opacity: 1;
+.explore-post-card {
+    color: transparent
 }
 
 .explore-post-card:hover {
