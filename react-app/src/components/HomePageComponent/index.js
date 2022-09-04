@@ -11,6 +11,7 @@ const HomePageComponent = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
+    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
 
     const reset = () => {
@@ -70,7 +71,13 @@ const HomePageComponent = () => {
 
     if (sessionUser) {
         return (
-            <h1>Logged in home page component</h1>
+            <>
+                <h1>Logged in home page component</h1>
+                <button onClick={e => {
+                    e.preventDefault()
+                    history.push('/posts/1')
+                }}>POST DETAILS PAGE</button>
+            </>
         )
     } else {
         return (
