@@ -1,4 +1,4 @@
-.explorer-page {
+.explore-page {
   align-items: stretch;
   box-sizing: border-box;
   display: flex;
@@ -11,7 +11,7 @@
   position: relative;
 }
 
-.explorer-card {
+.explore-post-card {
   border: 2px solid red;
   height: 40vh;
   width: 40vh;
@@ -20,7 +20,37 @@
   margin: 6rem;
 }
 
-.explorer-image {
-    height: 400px;
-    width: 400px;
+/* .explore-post-card:hover {
+  color: white;
+} */
+/* Didn't work */
+
+/* .explore-post-wrapper:hover {
+    color: white;
+} */
+/* Didn't work */
+
+
+.explore-post-wrapper {
+    height: 50vh;
+    width: 50vh;
+}
+
+.explore-post-card:hover {
+    transform: scale(1.1);
+    /* need to darken image */
+}
+
+.explore-post-wrapper:hover {
+    color: white;
+    opacity: 1;
+}
+
+.explore-post-text {
+  opacity: 0;
+}
+
+.explore-post-text:hover {
+  opacity: 1;
+  /* color: white; */
 }
