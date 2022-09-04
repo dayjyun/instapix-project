@@ -10,22 +10,19 @@ const Followers = ({ user }) => {
     const follows = Object.values(useSelector(state => state.follow))
     let loggedUserFollows = follows.pop()
     loggedUserFollows = loggedUserFollows?.Followers
-    console.log(loggedUserFollows)
     // loggedUserFollows = Object.values(loggedUserFollows)
     // Add a follow button or 'already follows' p tag later
     const [isMyPage, setIsMyPage] = useState(false);
     const [iFollow, setIFollow] = useState()
 
-    // console.log(follows)
-    // console.log(loggedUserFollows)
+
     const isFollowing = (follow) => {
-        console.log('testing')
 
-
-        for (let i = 0; i < loggedUserFollows.length; i++) {
+        for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
-
-            if (follow.user_id === loggedUserFollows?.follow?.follows_id) {
+            // console.log(follow)
+            // console.log(loggedUserFollow?.follow?.follows_id)
+            if (follow.follow.user_id === loggedUserFollow?.follow?.follows_id) {
                 return (
                     <div className='follower-follow-btn'>
                         <button id={follow?.follow?.follows_id} onClick={handleClick}>Follow</button>
