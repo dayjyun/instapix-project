@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
+import { Redirect, Link } from "react-router-dom";
 
 const SignUpUserForm = () => {
   const [errors, setErrors] = useState([]);
@@ -28,46 +29,59 @@ const SignUpUserForm = () => {
   };
 
   return (
-    <div className="signup-form-container">
-      <div className="logo-container">
-        <h1 className="logo">Instapix</h1>
-      </div>
-      <div id="signup-errors">
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <form className="signup-form" onSubmit={onSignUp}>
-        <div className="signup-input-container">
-          <label className="signup-label">Username</label>
-          <input
-            className="signup-input"
-            type="text"
-            name="username"
-            onChange={updateUsername}
-            value={username}
-          ></input>
+    <>
+      <div className="signup-form-container">
+        <div className="logo-container">
+          <h1 className="logo">Instapix</h1>
         </div>
-        <div className="signup-input-container">
-          <label className="signup-label">Email</label>
-          <input
-            className="signup-input"
-            type="text"
-            name="email"
-            onChange={updateEmail}
-            value={email}
-          ></input>
+        <div id="signup-errors">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <form className="signup-form" onSubmit={onSignUp}>
+          <div className="signup-input-container">
+            <label className="signup-label">Username</label>
+            <input
+              className="signup-input"
+              type="text"
+              name="username"
+              onChange={updateUsername}
+              value={username}
+            ></input>
+          </div>
+          <div className="signup-input-container">
+            <label className="signup-label">Email</label>
+            <input
+              className="signup-input"
+              type="text"
+              name="email"
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
           <div className="signup-input-container">
             <label className="signup-label">Password</label>
             <input
-                className="signup-input"
-                type="password"
-                name="password"
-                onChange={updatePassword}
-                value={password}
+              className="signup-input"
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
             ></input>
+          </div>
+          <button className="signup-button" type="submit">
+            Sign Up
+          </button>
+        </form>
+        <div className="login-link-container">
+          <Link className="login-link" to="/login">
+            Already have an account? Log in
+          </Link>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
+
+export default SignUpUserForm;
