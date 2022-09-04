@@ -68,6 +68,10 @@ def follow_user(user_id):
         )
         db.session.add(new_follow)
         db.session.commit()
+
+
+
+
         return new_follow.to_dict()
 
     else:

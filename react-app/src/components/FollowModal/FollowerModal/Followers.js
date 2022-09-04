@@ -27,7 +27,7 @@ const Followers = ({ user }) => {
         }
         return (
             <div className='follower-follow-btn'>
-                <button id={follow?.follow?.follows_id} onClick={handleClickFollow}>Follow</button>
+                <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
             </div>
         )
     }
@@ -48,10 +48,10 @@ const Followers = ({ user }) => {
 
     const handleClickFollow = async (e) => {
         e.preventDefault();
-
+        console.log('follow')
         const input = {
             user_id: user?.id,
-            follows_id: e.target.id
+            follows_id: parseInt(e.target.id)
         }
         await dispatch(postFollowBackend(input));
     }

@@ -67,7 +67,7 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
 //POST: a follow
 export const postFollowBackend = (input) => async (dispatch) => {
     // console.log(input.)
-    const response = await fetch(`/api/follows/users/${input.user_id}/post`, {
+    const response = await fetch(`/api/follows/users/${input.follows_id}/post`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -125,6 +125,8 @@ const followReducer = (state = initialState, action) => {
 
         case FOLLOW:
             const followState = { ...state }
+            console.log(followState)
+            // console.log(action.payload.id)
             followState[action.payload.id] = action.payload
             // console.log(followState)
             return followState
