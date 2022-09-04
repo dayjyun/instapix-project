@@ -9,8 +9,8 @@
 .logged-out-content-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 55%;
-    height: 60%;
+    width: 50em;
+    height: 70%;
 }
 
 .login-form-container {
@@ -102,4 +102,53 @@
 
 .login-button:disabled {
     background: rgb(185, 219, 243)
+}
+
+.or-container {
+    display: flex;
+    justify-content: center;
+    height: 50%;
+    margin-top: .5em;
+}
+
+.or {
+    margin-top: 1.4em;
+    color: gray
+}
+
+.or1 {
+    display: flex;
+    align-items: flex-start;
+    padding-right: 1em;
+    color: lightgray;
+}
+
+.or2 {
+    display: flex;
+    padding-left: 1em;
+    color: lightgray
+}
+
+.login-button-guest {
+    width: 80%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: rgb(42, 126, 187);
+    border: transparent;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.sign-up-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    height: 50%;
+    margin-top: -1em;
+}
+
+.sign-up-link a {
+    color: blue
 }
