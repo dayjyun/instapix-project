@@ -4,12 +4,12 @@ import { getFollowersBackend, postFollowBackend } from '../../../store/follow';
 
 import '../FollowModal.css'
 
-const Followers = () => {
+const Followers = ({ user }) => {
     const dispatch = useDispatch()
     // Add a follow button or 'already follows' p tag later
     // const [doesFollow, setDoesFollow] = useState();
 
-    const user = useSelector(state => state.session.user)
+    // const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
     useEffect(() => {

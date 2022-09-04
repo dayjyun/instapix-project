@@ -3,10 +3,10 @@ import { getFollowingBackend, deleteFollowBackend } from '../../../store/follow'
 import { useDispatch, useSelector } from "react-redux";
 import '../FollowModal.css'
 
-const Following = () => {
+const Following = ({ user }) => {
     const dispatch = useDispatch()
 
-    const user = useSelector(state => state.session.user)
+    // const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
     useEffect(() => {

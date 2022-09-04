@@ -13,7 +13,7 @@ function FollowModal({ user }) {
             {
                 showModal && (
                     <ModalSmall onClose={() => setShowModal(false)}>
-                        <Following />
+                        <Following user={user} />
                     </ModalSmall>
                 )
             }

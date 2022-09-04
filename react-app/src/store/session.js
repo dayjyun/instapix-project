@@ -104,8 +104,8 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 
-// const getUserBackend = (userId) => async (dispatch) => {
-//   const response = await fetch(`api/users/${userId}`)
+// export const getUserBackend = (userId) => async (dispatch) => {
+//   const response = await fetch(`/api/users/${userId}`)
 //   const parsedRes = await response.json()
 //   dispatch(getUser(parsedRes))
 // }
@@ -116,6 +116,11 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    // case GET_USER:
+    //   const getUserState = { ...state }
+    //   getUserState['getUser'] = action.payload.user
+    //   console.log(getUserState)
+    //   return getUserState;
     default:
       return state;
   }

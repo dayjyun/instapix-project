@@ -9,10 +9,11 @@ function FollowerModal({ user }) {
     return (
         <>
             <p onClick={() => setShowModal(true)} ><span className='bold'>{user.num_followers}</span> followers</p>
+
             {
                 showModal && (
                     <ModalSmall onClose={() => setShowModal(false)}>
-                        <Followers />
+                        <Followers user={user} />
                     </ModalSmall>
                 )
             }
