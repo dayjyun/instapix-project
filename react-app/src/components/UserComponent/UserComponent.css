@@ -1,5 +1,6 @@
 .user-container-background {
     width: auto;
+    z-index: -1;
 }
 
 .user-information-container {
