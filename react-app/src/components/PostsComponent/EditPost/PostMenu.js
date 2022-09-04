@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { EditModal } from "../../../context/Modal";
 import { Modal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
@@ -16,9 +16,9 @@ function PostMenu({ setShowMenuButtons }) {
 
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
-    await dispatch(deletePost(+postId))
-    alert('Post successfully deleted')
-    history.push(`/users/${currUser?.id}`)
+    await dispatch(deletePost(+postId));
+    alert("Post successfully deleted");
+    history.push(`/users/${currUser?.id}`);
   };
 
   const handleOnClose = () => {
@@ -40,14 +40,16 @@ function PostMenu({ setShowMenuButtons }) {
         Edit
       </button>
       {showEditPost && (
-        <Modal onClose={handleOnClose}>
-        {/* <EditModal onClose={handleOnClose}> */}
-          <EditPostForm
-            setShowMenuButtons={setShowMenuButtons}
-            setShowEditPost={setShowEditPost}
-          />
-        {/* </EditModal> */}
-        </Modal>
+        <Link to=''>
+          <Modal onClose={handleOnClose}>
+            {/* <EditModal onClose={handleOnClose}> */}
+            <EditPostForm
+              setShowMenuButtons={setShowMenuButtons}
+              setShowEditPost={setShowEditPost}
+            />
+            {/* </EditModal> */}
+          </Modal>
+        </Link>
       )}
       <button className="pmb cancel" onClick={handleCancelBtn}>
         Cancel

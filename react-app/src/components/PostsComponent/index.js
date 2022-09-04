@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
+import { getOneUser } from "../../store/users";
 import User from "../UserComponent";
 import EditPostBtn from "./EditPost/EditPostBtn";
 import "./Posts.css";
@@ -11,10 +12,15 @@ function PostComponent() {
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
   const currUser = useSelector((state) => state.session.user);
-  const userId = posts.map((post) => post?.user_id);
+  const userId = posts.map((post) => post?.user_id)[0];
+  const user = Object.values(useSelector(state => state.users))[0]
+
+    // console.log(user['userId']);
+    console.log(user);
 
   useEffect(() => {
     dispatch(getPost(+postId));
+    dispatch(getOneUser(+userId))
   }, [dispatch]);
 
   let editPostBtn;
