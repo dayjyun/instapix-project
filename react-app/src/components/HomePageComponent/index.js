@@ -71,13 +71,28 @@ const HomePageComponent = () => {
 
     if (sessionUser) {
         return (
-            <>
-                <h1>Logged in home page component</h1>
-                <button onClick={e => {
-                    e.preventDefault()
-                    history.push('/posts/1')
-                }}>POST DETAILS PAGE</button>
-            </>
+            <div className='home-page-container'>
+                <div className="home-content-container">
+                    <div className="users-container">
+                        <div className="users-section">
+                            <h1>USERS GO HERE</h1>
+                        </div>
+                        <div className="feed-section">
+                            <h1>FEED GOES HERE</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                        </div>
+                    </div>
+                    <div className="suggestions-container">
+                        <h1>SUGGESTIONS GOES HERE</h1>
+                    </div>
+                </div>
+            </div>
         )
     } else {
         return (

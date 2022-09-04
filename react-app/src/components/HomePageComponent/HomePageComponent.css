@@ -1,3 +1,39 @@
+.home-page-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.home-content-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 56em;
+    margin-top: 1.6em;
+}
+
+.users-container {
+    display: grid;
+    grid-template-rows: auto;
+    /* border: 1px solid black; */
+    border: 1px solid red;
+}
+
+.users-section {
+    border: 1px solid black;
+    margin-bottom: .5em;
+}
+
+.feed-section {
+    border: 1px solid green
+}
+
+.suggestions-container {
+    border: 1px solid blue;
+    margin-left: 1em;
+    padding-left: 1em;
+}
+
 .logged-out-container {
     display: flex;
     flex-wrap: wrap;
