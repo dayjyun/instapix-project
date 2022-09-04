@@ -17,12 +17,17 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
+    console.log(currUser)
+
     dispatch(
       editPost({
+        id: postId,
         caption,
       })
-    ).then(() =>
+      ).then(() => {
+      console.log('2')
     history.push(`/posts/${+postId}`)
+      }
     );
   };
   // ! Not editing post
@@ -35,7 +40,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handlePostFormSubmit}>
         <div className="edit-post-container">
           <div className="edit-post-container-top">
             <div>
@@ -43,9 +48,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
             </div>
             <h3>Edit info</h3>
             <div>
-              <button type="submit" onSubmit={handlePostFormSubmit}>
-                Done
-              </button>
+              <button type="submit">Done</button>
             </div>
           </div>
           <div className="edit-post-content">
