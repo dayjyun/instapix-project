@@ -1,8 +1,8 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .signup-background {
   background-color: #fafafa;
@@ -12,6 +12,7 @@
   justify-content: center;
   margin-top: 3rem;
 }
+
 .logo-container {
   margin-top: 15px;
   text-align: center;
@@ -93,6 +94,7 @@
   font-weight: 500;
   font-size: 16px;
 }
+
 .login-link-container {
   margin-top: 0.5rem;
   text-align: center;
@@ -145,9 +147,9 @@
   text-decoration: none;
 }
 
-#root {
+/* #root {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */

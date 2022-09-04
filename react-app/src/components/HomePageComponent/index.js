@@ -157,7 +157,7 @@ const HomePageComponent = () => {
                         <div className="sign-up-link">
                             {/* sign up modal goes here */}
                             <p>Don't have an account?
-                                <a href="/signup"> Sign up</a>
+                                <a href="/sign-up"> Sign up</a>
                             </p>
                         </div>
                     </div>
