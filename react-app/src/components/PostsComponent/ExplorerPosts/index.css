@@ -17,20 +17,6 @@
   filter: brightness(70%);
   color: white;
 }
-
-/* text is showing faded. Change to full white */
-.explore-post-card:hover p {
-  filter: brightness(70%);
-  color: white;
-}
-
-.explore-post-text {
-  opacity: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .ept-likes,
 .ept-comments {
   padding: 0 1em;
