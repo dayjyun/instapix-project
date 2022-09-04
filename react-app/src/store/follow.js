@@ -84,7 +84,7 @@ const initialState = {}
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_FOLLOWING:
-            const getFollowingState = {}
+            const getFollowingState = { ...state }
             action.payload.Followers.forEach(follow => {
                 getFollowingState[follow.follow.id] = follow
             })
@@ -99,7 +99,7 @@ const followReducer = (state = initialState, action) => {
             return getFollowersState;
 
         case FOLLOW:
-            const followState = { ...state }
+            const followState = {}
             followState[action.payload.id] = action.payload
             // console.log(followState)
             return followState

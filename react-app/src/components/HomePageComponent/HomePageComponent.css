@@ -94,16 +94,11 @@
 .users-section {
     display: grid;
     grid-template-rows: 25% 50% 25%;
-    border: 1px solid black;
+    border: 1px solid lightgray;
     margin-bottom: .5em;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 100%;
     height: 100%;
-}
-
-
-.feed-section {
-    border: 1px solid green
 }
 
 .suggestions-container {
@@ -274,4 +269,25 @@
 
 .sign-up-link a {
     color: blue
+}
+
+.feed-section {
+    border: 1px solid green;
+    margin-top: 1em;
+    width: 100%;
+}
+
+.feed-post-container {
+    display: grid;
+    grid-template-rows: 10% 40% 10% 10% 10% 10%;
+    width: 99%;
+    height: 50em;
+    border: 3px solid black;
+    margin-bottom: 1em;
+}
+
+.feed-username-container {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    height: 1em;
 }

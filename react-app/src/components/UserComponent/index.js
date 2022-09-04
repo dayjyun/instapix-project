@@ -50,8 +50,8 @@ function User() {
           </div>
 
           <div className='user-name-bio ' >
-            <p><span className='bold'>{user.first_name}</span></p>
-            <p>{user.bio}</p>
+            <p><span className='bold'>{user?.first_name}</span></p>
+            <p>{user?.bio}</p>
           </div>
 
         </div>

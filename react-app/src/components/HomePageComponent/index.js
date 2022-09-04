@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { login } from '../../store/session'
 import * as userActions from '../../store/users'
+import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
 
 const uniqueIndex = () => {
@@ -27,9 +28,9 @@ const HomePageComponent = () => {
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
+    const following = Object.values(useSelector(state => state.follow))
 
-
-
+    console.log(following)
     useEffect(() => {
         i = uniqueIndex()
     }, [])
@@ -42,6 +43,7 @@ const HomePageComponent = () => {
 
     useEffect(() => {
         dispatch(userActions.getAllUsers())
+        dispatch(followingActions.getFollowingBackend(sessionUser?.id))
     }, [dispatch])
 
     const reset = () => {
@@ -124,9 +126,15 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            <h1>FEED GOES HERE</h1>
-                            <h1>add as much as needed</h1>
-                            <h1>add as much as needed</h1>
+                            {following?.map(follow => (
+                                <div className="feed-post-container">
+                                    <div className="feed-username-container">
+                                        <button className="">
+                                            {/* <img src={follow?} */}
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
