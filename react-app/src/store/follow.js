@@ -1,12 +1,20 @@
 import PostComponent from "../components/PostsComponent"
 
 //TYPES
+const GET_LOGGED_USER_FOLLOWING = 'user/GET_LOGGED_USER_FOLLOWING'
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
 const FOLLOW = 'users/FOLLOW'
 const UNFOLLOW = 'users/FOLLOW'
 
 //ACTIONS
+export const getLoggedUserFollowing = (follows) => {
+    return {
+        type: GET_LOGGED_USER_FOLLOWING,
+        payload: follows
+    }
+}
+
 export const getFollowing = (follows) => {
     return {
         type: GET_FOLLOWING,
@@ -83,6 +91,12 @@ const initialState = {}
 ///REDUCERS
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_LOGGED_USER_FOLLOWING:
+            const getLoggedUserFollowingState = { ...state }
+            getLoggedUserFollowing['loggedUser'] = action.type.payload
+            console.log(getLoggedUserFollowingState)
+            return getLoggedUserFollowingState;
+
         case GET_FOLLOWING:
             const getFollowingState = {}
             action.payload.Followers.forEach(follow => {

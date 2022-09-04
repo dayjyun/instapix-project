@@ -6,25 +6,34 @@ import '../FollowModal.css'
 
 const Followers = ({ user }) => {
     const dispatch = useDispatch()
-    const loggedUser = useSelector(state => (state.session.user))
+    const loggedUser = useSelector(state => state.session.user)
+    // const loggedUserFollows = useSelector(state => (state.session.follow.loggedUser))
 
     // Add a follow button or 'already follows' p tag later
     const [isMyPage, setIsMyPage] = useState(false);
-
+    const [iFollow, setIFollow] = useState()
     // const user = useSelector(state => state.session.user)
     const follows = Object.values(useSelector(state => state.follow))
 
-    useEffect(() => {
-        dispatch(authenticate())
-        if (loggedUser?.id === user.id) {
-            setIsMyPage(true)
-        }
-        console.log(isMyPage)
-    }, [dispatch, isMyPage])
+    // useEffect(() => {
+    //     dispatch(authenticate())
+    //     if (loggedUser?.id === user.id) {
+    //         setIsMyPage(true)
 
+    //     }
+    // }, [dispatch, isMyPage])
+
+    console.log(follows)
     console.log(loggedUser)
-    console.log(loggedUser?.id)
-    console.log(user.id)
+    // console.log(loggedUser?.id)
+    // console.log(user.id)
+
+    useEffect(() => {
+        if (loggedUser) {
+            dispatch(getFollowersBackend(loggedUser?.id))
+        }
+    }, [dispatch, loggedUser])
+
 
     useEffect(() => {
         if (user) {
