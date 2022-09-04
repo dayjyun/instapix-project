@@ -122,7 +122,6 @@ export const deletePost = (postId) => async (dispatch) => {
 
   const parsedPost = await post.json()
   dispatch(removePost(parsedPost));
-
 };
 
 let initialState = {};
