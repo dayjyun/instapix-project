@@ -38,7 +38,10 @@ function PostComponent() {
             </div>
             <div className="post-page-user-details">
               <div>{post?.caption}</div>
+            </div>
+            <div className="post-page-meta-data">
               <div>{post?.likes} Likes</div>
+              <div>{post?.created_at}</div>
             </div>
           </div>
         </li>
