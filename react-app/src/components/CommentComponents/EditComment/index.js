@@ -24,14 +24,9 @@ const EditComment = () => {
 
     return (
         <>
-            <h2 >Edit Your Comment</h2>
+            <h2>Edit Your Comment</h2>
             <div>
                 <form onSubmit={handleSubmit}>
-                    {/* <ul>
-                        {Object.values(errors).map((error, index) => (
-                            <li className='error-li' key={index}>{error}</li>
-                        ))}
-                    </ul> */}
                     <div className='input-container'>
                         <label htmlFor='title'>Body</label>
                         <input type='text' name='body' value={body} placeholder={comment?.body} onChange={(e) => setBody(e.target.value)} />
