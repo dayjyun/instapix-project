@@ -10,6 +10,7 @@ function PostComponent() {
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
   // const currUser = useSelector((state) => state.session.user);
+  const userId = posts.map(post => post?.id)
 
   useEffect(() => {
     dispatch(getPost(+postId));
@@ -32,7 +33,7 @@ function PostComponent() {
                   src={currUser?.profile_image}
                   alt="profileImage"
                 ></img> */}
-                {/* <h3>{currUser?.username}</h3> */}
+                <h3>{userId}</h3>
               </div>
               <EditPostBtn />
             </div>
