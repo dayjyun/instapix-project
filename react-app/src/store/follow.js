@@ -92,7 +92,7 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
 }
 
 //INITIAL STATE
-const initialState = { loggedUser: null }
+const initialState = { loggedUser: null, follows: null, followers: null }
 
 
 ///REDUCERS
@@ -100,7 +100,10 @@ const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }
+            console.log(getLoggedUserFollowingState)
             getLoggedUserFollowingState.loggedUser = action.payload
+            console.log(getLoggedUserFollowingState)
+
             return getLoggedUserFollowingState;
 
         case GET_FOLLOWING:
@@ -125,9 +128,9 @@ const followReducer = (state = initialState, action) => {
 
         case FOLLOW:
             const followState = { ...state }
-            console.log(followState)
+            // console.log(followState)
             // console.log(action.payload.id)
-            followState[action.payload.id] = action.payload
+            followState[action.payload.follow.id] = action.payload
             // console.log(followState)
             return followState
 

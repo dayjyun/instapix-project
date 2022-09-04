@@ -69,10 +69,10 @@ def follow_user(user_id):
         db.session.add(new_follow)
         db.session.commit()
 
+        user_info = User.query.filter(new_follow.follows_id == User.id).first()
+        data = {"follow": new_follow.to_dict_follows(), "follower_info": user_info.follow_info()}
 
-
-
-        return new_follow.to_dict()
+        return data
 
     else:
         return jsonify(message='User could not be found.', status_code=404), 404
