@@ -6,8 +6,8 @@ import "./index.css";
 
 function ExplorerPosts() {
   const dispatch = useDispatch();
-
   let posts = Object.values(useSelector((state) => state.posts));
+  // posts = posts.map(post => post[0])
 
   useEffect(() => {
     dispatch(loadAllPosts());

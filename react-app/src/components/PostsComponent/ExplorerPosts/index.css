@@ -1,22 +1,7 @@
-.explore-page {
-  align-items: stretch;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 0;
-  margin: 0;
-  order: 4;
-  padding: 0;
-  position: relative;
-}
-
 .explore-post-card {
-  height: 40vh;
-  width: 40vh;
+  height: 45vh;
+  width: 45vh;
   cursor: pointer;
-  padding: 4rem;
-  margin: 6rem;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -30,6 +15,7 @@
 
 .explore-post-card:hover {
   color: white;
+  background-color: rgba(0, 0, 0, .5);
 }
 
 .explore-post-text {
