@@ -6,8 +6,7 @@ import "./index.css";
 
 function ExplorerPosts() {
   const dispatch = useDispatch();
-  let posts = Object.values(useSelector((state) => state.posts));
-  // posts = posts.map(post => post[0])
+  const posts = Object.values(useSelector((state) => state.posts));
 
   useEffect(() => {
     dispatch(loadAllPosts());
@@ -16,19 +15,20 @@ function ExplorerPosts() {
   return (
     <div className="explore-page">
       <div className="explore-post">
-        {posts?.map((post) => (
-          <Link to={{ pathname: `/posts/${post?.id}` }}>
-            <ul
-              key={post?.id}
-              className="explore-post-card"
-              style={{ backgroundImage: "url(" + post?.post_url + ")" }}
-            >
-              <div className="explore-post-text">
-                <p className="ept-likes">{post?.likes} Likes</p>
-                <p className="ept-comments">{post?.num_comments} Comments</p>
+        {posts.map((post) => (
+          <li key={post?.id} className="explore-post-wrap">
+            <Link to={{ pathname: `/posts/${post.id}` }}>
+              <div
+                className="explore-post-card"
+                style={{ backgroundImage: "url(" + post?.post_url + ")" }}
+              >
+                <div className="explore-post-text">
+                  <p className="ept-likes">{post?.likes} Likes</p>
+                  <p className="ept-comments">{post?.num_comments} Comments</p>
+                </div>
               </div>
-            </ul>
-          </Link>
+            </Link>
+          </li>
         ))}
       </div>
     </div>
