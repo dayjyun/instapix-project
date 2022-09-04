@@ -5,15 +5,33 @@
     height: 100%;
 }
 
-.feed-container {
+.home-content-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    width: 56em;
+    margin-top: 1.6em;
 }
 
-.feed-container-left-users {
+.users-container {
     display: grid;
-    grid-template-rows: 25% 75%;
+    grid-template-rows: auto;
+    /* border: 1px solid black; */
+    border: 1px solid red;
+}
+
+.users-section {
     border: 1px solid black;
+    margin-bottom: .5em;
+}
+
+.feed-section {
+    border: 1px solid green
+}
+
+.suggestions-container {
+    border: 1px solid blue;
+    margin-left: 1em;
+    padding-left: 1em;
 }
 
 .logged-out-container {

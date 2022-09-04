@@ -71,16 +71,23 @@ const HomePageComponent = () => {
     if (sessionUser) {
         return (
             <div className='home-page-container'>
-                <div className="feed-container">
-                    <div className="feed-container-left-users">
-                        <div>
+                <div className="home-content-container">
+                    <div className="users-container">
+                        <div className="users-section">
                             <h1>USERS GO HERE</h1>
                         </div>
-                        <div>
+                        <div className="feed-section">
                             <h1>FEED GOES HERE</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
+                            <h1>add as much as needed</h1>
                         </div>
                     </div>
-                    <div className="feed-container-left-feed">
+                    <div className="suggestions-container">
                         <h1>SUGGESTIONS GOES HERE</h1>
                     </div>
                 </div>
