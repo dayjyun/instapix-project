@@ -124,7 +124,7 @@ def create_comment(post_id):
 #** Edit a post **#
 
 
-@post_routes.route('/<int:post_id>/edit', methods=["GET", "POST"])
+@post_routes.route('/<int:post_id>', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
     form = EditPostForm()
@@ -151,7 +151,7 @@ def edit_post(post_id):
 @login_required
 def delete_post(post_id):
     post = Post.query.get(post_id)
-    print('THISSSSS ===================>>>>>>>>>>', post)
+
     if post:
         if post.user_id == current_user.id:
             db.session.delete(post)

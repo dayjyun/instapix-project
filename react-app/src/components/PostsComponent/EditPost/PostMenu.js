@@ -17,8 +17,9 @@ function PostMenu({ setShowMenuButtons }) {
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
     await dispatch(deletePost(+postId))
+    alert('Post successfully deleted')
+    history.push(`/users/${currUser?.id}`)
   };
-  // ! Not deleting
 
   const handleOnClose = () => {
     setShowEditPost(false);

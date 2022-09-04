@@ -10,14 +10,18 @@ function PostComponent() {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
-  // const currUser = useSelector((state) => state.session.user);
-  const userId = posts.map(post => post?.user_id)
-  const userInfo = User
-  console.log(userInfo())
+  const currUser = useSelector((state) => state.session.user);
+  const userId = posts.map((post) => post?.user_id);
 
   useEffect(() => {
     dispatch(getPost(+postId));
   }, [dispatch]);
+
+  let editPostBtn;
+
+  if (currUser?.id == +userId) {
+    editPostBtn = <EditPostBtn />;
+  }
 
   return (
     <div className="post-page">
@@ -36,9 +40,10 @@ function PostComponent() {
                   src={currUser?.profile_image}
                   alt="profileImage"
                 ></img> */}
+                  {/* RENDER POST USER'S PROFILE IMAGE */}
                 <h3>{userId}</h3>
               </div>
-              <EditPostBtn />
+              {editPostBtn}
             </div>
             <div className="post-page-user-details">
               <div>{post?.caption}</div>
