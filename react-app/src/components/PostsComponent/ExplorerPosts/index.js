@@ -17,7 +17,7 @@ function ExplorerPosts() {
     <div className="explore-page">
       <div className="explore-post">
         {posts?.map((post) => (
-          <Link exact to={{ pathname: `/posts/${post?.id}` }}>
+          <Link to={{ pathname: `/posts/${post?.id}` }}>
             <ul
               key={post?.id}
               className="explore-post-card"
