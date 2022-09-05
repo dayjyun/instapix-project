@@ -5,16 +5,37 @@ import FollowerModal from '../FollowModal/FollowerModal';
 import './UserComponent.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneUser } from '../../store/users'
+import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend } from '../../store/follow'
 
 function User() {
   const { userId } = useParams();
   const dispatch = useDispatch()
+  //GET LOGGED USER ID
+  const loggedUser = useSelector(state => state.session.user)
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
+  const follows = useSelector(state => state.follow)
+
+
+  // const loggedUserFollows = Object.values(follows?.loggedUser)
+  // const following = Object.values(follows?.follows)
+  // const followers = Object.values(follows?.followers)
+
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
   }, [dispatch, userId])
+
+  useEffect(() => {
+    dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
+  }, [dispatch, loggedUser])
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getFollowersBackend(user?.id))
+      dispatch(getFollowingBackend(user?.id))
+    }
+  }, [dispatch, user])
 
 
   return (

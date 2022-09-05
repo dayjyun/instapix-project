@@ -49,7 +49,6 @@ export const getLoggedUserFollowingBackend = (userId) => async (dispatch) => {
         const parsedRes = await response.json();
         dispatch(getLoggedUserFollowing(parsedRes))
     }
-
 }
 
 //GET: all user's following

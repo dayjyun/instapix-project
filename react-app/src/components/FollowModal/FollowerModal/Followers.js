@@ -1,4 +1,3 @@
-import { useInsertionEffect } from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend, deleteFollowBackend } from '../../../store/follow';
@@ -16,7 +15,6 @@ const Followers = ({ user }) => {
         loggedUserFollows = allFollows?.loggedUser?.Followers
     }
 
-    // useEffect(() => {
     const isFollowing = (follow) => {
         for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
@@ -35,7 +33,6 @@ const Followers = ({ user }) => {
         )
     }
 
-    // })
 
     useEffect(() => {
         if (user) {
