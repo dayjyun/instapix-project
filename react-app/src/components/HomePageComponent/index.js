@@ -170,7 +170,7 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            {Object.values(following2)?.map(follow => (
+                            {following2 && (Object.values(following2)?.map(follow => (
                                 <div className="feed-post-container">
                                     <div className="feed-username-container">
                                         <button className="">
@@ -178,7 +178,7 @@ const HomePageComponent = () => {
                                         </button>
                                     </div>
                                 </div>
-                            ))}
+                            )))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
