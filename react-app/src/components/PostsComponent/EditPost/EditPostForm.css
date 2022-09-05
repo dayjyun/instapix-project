@@ -1,6 +1,7 @@
 .edit-post-container {
   grid-template-rows: 8% 92%;
   border-radius: 1em;
+  border: 2px solid red;
 }
 
 .edit-post-container-top {
