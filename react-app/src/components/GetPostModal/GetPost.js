@@ -9,15 +9,15 @@ import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 
 function GetPost({ post }) {
   const dispatch = useDispatch();
-  const posts = useSelector(state => Object.values(state.posts))
-//   const user = useSelector((state) => Object.values(state.users))[0];
+  const posts = useSelector((state) => Object.values(state.posts));
+  //   const user = useSelector((state) => Object.values(state.users))[0];
   const userInfo = Object.values(useSelector((state) => state.users));
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
 
-  console.log("HERE", userInfo)
+  console.log("HERE", posts);
 
-//   posts.user_id = User.id
+  //   posts.user_id = User.id
 
   useEffect(() => {
     dispatch(postActions.getPost(post?.id));
@@ -25,14 +25,14 @@ function GetPost({ post }) {
   }, [dispatch]);
 
   const getUser = (id) => {
-    let user = userInfo.find(user => user.id === id);
+    let user = userInfo.find((user) => user.id === id);
     return user;
   };
 
   let editPostBtn;
 
   if (currUser?.id == +userId) {
-    editPostBtn = <EditPostBtn />;
+    editPostBtn = <EditPostBtn post={post}/>;
   }
 
   return (
@@ -48,10 +48,12 @@ function GetPost({ post }) {
               src={getUser(post?.user_id)?.profile_image}
               alt="preview"
             ></img>
-            <div className="post-username-text">{getUser(post?.user_id)?.username}</div>
+            <div className="post-username-text">
+              {getUser(post?.user_id)?.username}
+            </div>
           </div>
           {/* {currUser?.id === post.user_id && editPostBtn} */}
-          {currUser?.id === post.user_id ? editPostBtn : ''}
+          {currUser?.id === post.user_id ? editPostBtn : ""}
         </div>
         <div className="post-caption-container">
           <div className="profile-pic-mini">
@@ -61,12 +63,12 @@ function GetPost({ post }) {
               alt="preview"
             ></img>
           </div>
-            <div className="post-username-text">
-                {getUser(post?.user_id)?.username}
-            </div>
-            <div className="caption-text">
+          <div className="post-username-text">
+            {getUser(post?.user_id)?.username}
+          </div>
+          <div className="caption-text">
             <div className="caption-container">{post?.caption}</div>
-            </div>
+          </div>
         </div>
         <div className="post-modal-comments">
           <PostsComments post={post} />
@@ -78,3 +80,4 @@ function GetPost({ post }) {
 }
 
 export default GetPost;
+

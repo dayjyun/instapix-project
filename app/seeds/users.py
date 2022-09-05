@@ -4,7 +4,7 @@ from app.models.user import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name='Demo', last_name='Lition', bio='This is about me', profile_image='https://image.shutterstock.com/image-photo/demolition-building-excavator-breaks-old-260nw-2006150615.jpg')
+        username='demoLition', email='demo@aa.io', password='password', first_name='Demo', last_name='User', bio='This is about me', profile_image='https://image.shutterstock.com/image-photo/demolition-building-excavator-breaks-old-260nw-2006150615.jpg')
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password', first_name='Marnie', last_name='Last', bio='This is about me', profile_image='https://i.dailymail.co.uk/1s/2022/01/13/11/52879753-10397951-Snowball_appears_to_be_shy_in_this_shot_but_this_cannot_stop_him-a-1_1642074249114.jpg')
     bobbie = User(
@@ -18,7 +18,7 @@ def seed_users():
     jan = User(
         username='wickedjan', email='b@aa.io', password='password', first_name='Jan', last_name='Wicked', bio='This is about me', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
     felipe = User(
-        username='thotfelipe', email='c@aa.io', password='password', first_name='Felipe', last_name='Thot', bio='This is about me', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
+        username='thorfelipe', email='c@aa.io', password='password', first_name='Felipe', last_name='Thor', bio='This is about me', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
     kev = User(
         username='kevsawesome', email='d@aa.io', password='password', first_name='Kev', last_name='Awesome', bio='This is about me', profile_image='https://m.media-amazon.com/images/I/81Y+P59yklL._SS500_.jpg')
     hotgirl = User(

@@ -5,34 +5,32 @@ import FollowerModal from '../FollowModal/FollowerModal';
 import './UserComponent.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneUser } from '../../store/users'
+import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend } from '../../store/follow'
 
 function User() {
-  // const [user, setUser] = useState({});
   const { userId } = useParams();
   const dispatch = useDispatch()
+  //GET LOGGED USER ID
+  const loggedUser = useSelector(state => state.session.user)
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
-
-  // useEffect(() => {
-  //   if (!userId) {
-  //     return;
-  //   }
-  //   (async () => {
-  //     const response = await fetch(`/api/users/${userId}`);
-  //     const user = await response.json();
-  //     setUser(user);
-  //   })();
-  // }, [userId]);
-
+  const follows = useSelector(state => state.follow)
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
   }, [dispatch, userId])
 
-  // console.log(user)
-  // if (!user) {
-  //   return null;
-  // }
+  useEffect(() => {
+    dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
+  }, [dispatch, loggedUser])
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getFollowersBackend(user?.id))
+      dispatch(getFollowingBackend(user?.id))
+    }
+  }, [dispatch, user])
+
 
   return (
     <>
@@ -49,15 +47,18 @@ function User() {
               <div className='user-stat-box'>
                 <div className='post-count'><p><span className='bold'>{user?.num_posts}</span> posts</p></div>
 
-                <div className='post-count pointer'>
-                  <FollowerModal userId={userId} />
-                </div>
+                {follows?.followers && (
+                  <div className='post-count pointer'>
+                    <FollowerModal user={user} />
+                  </div>
+                )}
 
-                <div className='post-count pointer'>
-                  <FollowModal user={user} />
-                </div>
+                {follows?.follows && (
+                  <div className='post-count pointer'>
+                    <FollowModal user={user} following={follows?.follows} />
+                  </div>
+                )}
               </div>
-
 
               <div className='user-name-bio' >
                 <p><span className='bold'>{user?.first_name}</span></p>

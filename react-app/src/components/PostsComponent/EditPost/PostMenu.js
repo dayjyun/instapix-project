@@ -7,16 +7,15 @@ import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
 import "./PostMenu.css";
 
-function PostMenu({ setShowMenuButtons }) {
+function PostMenu({ setShowMenuButtons, post }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const currUser = useSelector((state) => state.session.user);
-  const { postId } = useParams();
   const [showEditPost, setShowEditPost] = useState(false);
 
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
-    await dispatch(deletePost(+postId));
+    await dispatch(deletePost(+post.id));
     alert("Post successfully deleted");
     history.push(`/users/${currUser?.id}`);
   };
@@ -32,26 +31,30 @@ function PostMenu({ setShowMenuButtons }) {
   };
 
   return (
-    <div className="post-menu-buttons-container">
-      <button className="pmb delete" onClick={handleDeletePostBtn}>
-        Delete
-      </button>
-      <button className="pmb edit" onClick={() => setShowEditPost(true)}>
-        Edit
-      </button>
-      {showEditPost && (
+    <div className="edit-post-modal">
+      <div className="post-menu-buttons-container">
+        <button className="pmb delete" onClick={handleDeletePostBtn}>
+          Delete
+        </button>
+        <button className="pmb edit" onClick={() => setShowEditPost(true)}>
+          Edit
+        </button>
+
+        {showEditPost && (
           <Modal onClose={handleOnClose}>
             {/* <EditModal onClose={handleOnClose}> */}
             <EditPostForm
+              post={post}
               setShowMenuButtons={setShowMenuButtons}
               setShowEditPost={setShowEditPost}
             />
             {/* </EditModal> */}
           </Modal>
-      )}
-      <button className="pmb cancel" onClick={handleCancelBtn}>
-        Cancel
-      </button>
+        )}
+        <button className="pmb cancel" onClick={handleCancelBtn}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

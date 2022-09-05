@@ -8,7 +8,12 @@ function GetPostModal({ post }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>GETPOSTTEST</button>
+      <button
+        style={{ backgroundColor: "transparent", border: "none" }}
+        onClick={() => setShowModal(true)}
+      >
+        <img src={post?.post_url}></img>
+      </button>
       {showModal && (
         <PostModal onClose={() => setShowModal(false)}>
           <GetPost post={post} />
