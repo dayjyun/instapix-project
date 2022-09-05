@@ -78,3 +78,4 @@ function GetPost({ post }) {
 }
 
 export default GetPost;
+
