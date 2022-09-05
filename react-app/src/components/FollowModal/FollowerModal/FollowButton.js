@@ -7,20 +7,34 @@ const FollowButton = ({ user, follow, loggedUserFollows }) => {
     const dispatch = useDispatch()
     const [followButton, setFollowButton] = useState()
 
+    console.log(follow)
+    console.log(loggedUserFollows)
+
     useEffect(() => {
-        for (let i = 0; i < loggedUserFollows?.length; i++) {
-            let loggedUserFollow = loggedUserFollows[i];
-            if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
-                setFollowButton(false)
+        let yes;
+        if (follow && loggedUserFollows) {
+            for (let i = 0; i < loggedUserFollows?.length; i++) {
+                let loggedUserFollow = loggedUserFollows[i];
+
+                console.log(follow?.follower_info?.id, loggedUserFollow?.follower_info?.id)
+
+                if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
+                    setFollowButton(false)
+                    yes = true
+                    return
+                }
             }
+            console.log(followButton)
+            // setFollowButton(true)
         }
-        setFollowButton(true)
-    })
+        if (!yes) {
+            setFollowButton(true)
+        }
+    }, [loggedUserFollows, follow, followButton])
 
 
     const handleClickFollow = async (e) => {
         e.preventDefault();
-
         const input = {
             user_id: user?.id,
             follows_id: parseInt(follow?.follower_info?.id)
@@ -28,11 +42,12 @@ const FollowButton = ({ user, follow, loggedUserFollows }) => {
         await dispatch(postFollowBackend(input));
     }
 
+
     const handleClickUnfollow = async (e) => {
         e.preventDefault();
-
         await dispatch(deleteFollowBackend(e.target.id));
     }
+
 
     return (
         <>
