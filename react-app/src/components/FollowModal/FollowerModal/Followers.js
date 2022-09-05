@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend, deleteFollowBackend } from '../../../store/follow';
+import FollowButton from './FollowButton';
 import '../FollowModal.css'
 
 const Followers = ({ user, followers }) => {
@@ -9,11 +10,8 @@ const Followers = ({ user, followers }) => {
     const loggedUser = useSelector(state => state.session.user)
     const loggedUserFollows = useSelector(state => state?.follow?.loggedUser?.Followers)
 
-    console.log(loggedUserFollows)
 
     const followers2 = useSelector(state => state.follow.followers)
-
-    console.log(followers2)
 
     const [followBtn, setFollowBtn] = useState()
 
@@ -22,12 +20,6 @@ const Followers = ({ user, followers }) => {
         if (loggedUserFollows) {
             for (let i = 0; i < loggedUserFollows?.length; i++) {
                 let loggedUserFollow = loggedUserFollows[i];
-
-
-                console.log(follow?.follower_info?.id)
-                console.log(loggedUserFollow)
-                console.log(loggedUserFollow?.follower_info?.id)
-
                 if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
                     return (
                         <div className='follower-follow-btn'>
@@ -41,8 +33,6 @@ const Followers = ({ user, followers }) => {
                     <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
                 </div>
             )
-
-
         }
     }
 
@@ -93,6 +83,8 @@ const Followers = ({ user, followers }) => {
                                         <p className='p-bolded'>{follow?.follower_info?.username}</p>
                                         <p className='p-styling'>{follow?.follower_info?.first_name}</p>
                                     </div>
+
+                                    <FollowButton user={user} follow={follow} />
 
                                     {isFollowing(follow)}
 
