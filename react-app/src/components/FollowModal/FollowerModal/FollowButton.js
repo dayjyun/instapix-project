@@ -8,7 +8,6 @@ const FollowButton = ({ user, follow }) => {
     const [followButton, setFollowButton] = useState()
 
     const loggedUserFollows = Object.values(useSelector(state => state?.follow?.loggedUser))
-    console.log(loggedUserFollows)
 
     useEffect(() => {
         dispatch(getLoggedUserFollowingBackend(user?.id))
@@ -47,7 +46,6 @@ const FollowButton = ({ user, follow }) => {
         e.preventDefault();
         await dispatch(deleteFollowBackend(e.target.id));
     }
-
 
     return (
         <>

@@ -4,35 +4,33 @@ import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend, 
 import FollowButton from './FollowButton';
 import '../FollowModal.css'
 
-const Followers = ({ user, followers }) => {
+const Followers = ({ user }) => {
     const dispatch = useDispatch()
     //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
     const loggedUserFollows = useSelector(state => state?.follow?.loggedUser?.Followers)
 
-    const followers2 = useSelector(state => state.follow.followers)
+    const followers = useSelector(state => state.follow.followers)
 
-    console.log(followers2)
-
-    const isFollowing = (follow) => {
-        if (loggedUserFollows) {
-            for (let i = 0; i < loggedUserFollows?.length; i++) {
-                let loggedUserFollow = loggedUserFollows[i];
-                if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
-                    return (
-                        <div className='follower-follow-btn'>
-                            <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
-                        </div>
-                    )
-                }
-            }
-            return (
-                <div className='follower-follow-btn'>
-                    <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
-                </div>
-            )
-        }
-    }
+    // const isFollowing = (follow) => {
+    //     if (loggedUserFollows) {
+    //         for (let i = 0; i < loggedUserFollows?.length; i++) {
+    //             let loggedUserFollow = loggedUserFollows[i];
+    //             if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
+    //                 return (
+    //                     <div className='follower-follow-btn'>
+    //                         <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
+    //                     </div>
+    //                 )
+    //             }
+    //         }
+    //         return (
+    //             <div className='follower-follow-btn'>
+    //                 <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
+    //             </div>
+    //         )
+    //     }
+    // }
 
     useEffect(() => {
         if (loggedUser) {
@@ -48,21 +46,21 @@ const Followers = ({ user, followers }) => {
     }, [dispatch, user])
 
 
-    const handleClickFollow = async (e) => {
-        e.preventDefault();
+    // const handleClickFollow = async (e) => {
+    //     e.preventDefault();
 
-        const input = {
-            user_id: user?.id,
-            follows_id: parseInt(e.target.id)
-        }
-        await dispatch(postFollowBackend(input));
-    }
+    //     const input = {
+    //         user_id: user?.id,
+    //         follows_id: parseInt(e.target.id)
+    //     }
+    //     await dispatch(postFollowBackend(input));
+    // }
 
-    const handleClickUnfollow = async (e) => {
-        e.preventDefault();
+    // const handleClickUnfollow = async (e) => {
+    //     e.preventDefault();
 
-        await dispatch(deleteFollowBackend(e.target.id));
-    }
+    //     await dispatch(deleteFollowBackend(e.target.id));
+    // }
 
     return (
         <>
@@ -70,8 +68,8 @@ const Followers = ({ user, followers }) => {
                 <h3 className='following-header'>Followers</h3>
                 <div className='following-info-container'>
 
-                    {followers2 && (
-                        Object.values(followers2)?.map((follow, index) => {
+                    {followers && (
+                        Object.values(followers)?.map((follow, index) => {
                             return (
                                 <div className='each-follower-box' key={index}>
                                     <div className='follower-profile-image'>
@@ -84,7 +82,7 @@ const Followers = ({ user, followers }) => {
 
                                     <FollowButton user={user} follow={follow} />
 
-                                    {isFollowing(follow)}
+                                    {/* {isFollowing(follow)} */}
 
                                     {/*
 if the follow state is true,  && the logged user is not following then render a follow button

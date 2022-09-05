@@ -3,7 +3,7 @@ import { ModalSmall } from '../../../context/Modal';
 import Followers from './Followers';
 import '../../UserComponent/UserComponent.css'
 
-function FollowerModal({ user, followers }) {
+function FollowerModal({ user }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -12,7 +12,7 @@ function FollowerModal({ user, followers }) {
             {
                 showModal && (
                     <ModalSmall onClose={() => setShowModal(false)}>
-                        <Followers user={user} followers={followers} />
+                        <Followers user={user} />
                     </ModalSmall>
                 )
             }

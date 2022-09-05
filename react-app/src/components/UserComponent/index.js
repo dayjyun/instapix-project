@@ -49,7 +49,7 @@ function User() {
 
                 {follows?.followers && (
                   <div className='post-count pointer'>
-                    <FollowerModal user={user} followers={follows?.followers} />
+                    <FollowerModal user={user} />
                   </div>
                 )}
 
