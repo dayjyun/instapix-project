@@ -54,5 +54,8 @@
 .edit-post-image {
   box-sizing: border-box;
   object-fit: contain;
-  object-fit: scale-down;
+  width: 100%;
+  height: 25rem;
+  background-repeat: no-repeat;
+  display: block;
 }
