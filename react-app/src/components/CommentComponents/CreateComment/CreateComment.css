@@ -5,12 +5,12 @@
     margin: 4px;
     padding: 4px;
     border-top: 1px solid lightgray;
-    width: 99%;
+    width: auto;
 }
 
 .comment-submit-btn {
     padding: 0;
-    margin-right: 5px;
+    margin-right: 8px;
     border: none;
     background: none;
     color: rgb(0,149,246);

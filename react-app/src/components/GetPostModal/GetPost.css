@@ -51,11 +51,14 @@
 }
 
 .caption-comment-container {
+    /* display: grid;
+    grid-template-rows: 10% 25% 55% 10%;
+    height: 40em; */
     box-sizing: border-box;
     object-fit: contain;
-    background-size: contain ;
+    background-size: contain;
     height: 100%;
-    width: 98%;
+    width: 100%;
     display: grid;
     grid-template-rows: 10% 10% 80%;
 }
@@ -79,28 +82,42 @@
 .user-info-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 98.2%;
     height: 100%;
     /* justify-content: flex-start; */
     align-items: center;
-    padding: 2px;
+    padding-left: .5em;
+    /* margin-left: .5em; */
+    /* padding: 2px; */
     border-bottom: 1px solid lightgray;
-    margin: 5px;
+    /* margin: 5px; */
     font-family: 'Arimo', sans-serif;
 }
 
 .post-caption-container {
+    /* display: grid;
+    grid-template-columns: 15% 15% 70%;
+    padding-top: 1em;
+    height: fit-content; */
     display: flex;
     object-fit: contain;
-    width: 100%;
-    height: 100%;
+    width: fit-content;
+    height: fit-content;
     justify-content: flex-start;
+    flex-wrap: wrap;
     padding: 2px;
     align-items: center;
-    margin: 5px;
+    align-self: flex-start;
+    margin: 6px;
+    margin-top: 10px;
+    /* margin-right: 10px; */
     font-family: 'Arimo', sans-serif;
-
 }
+
+/* .post-caption-container span {
+    font-family: 'Arimo', sans-serif;
+    padding-top: .3em;
+} */
 
 .profile-pic-username {
     display: flex;
@@ -114,7 +131,20 @@
 }
 
 .post-comments-container {
+    display: flex;
     width: 100%;
+    height: 100%;
+}
+
+
+
+.caption-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* object-fit: contain; */
+    margin: 2px;
+    height: 100%;
 }
 
 .profile-pic-mini {
@@ -128,4 +158,23 @@
 .post-username-text {
     font-weight: bold;
     margin: 5px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.profile-caption-pic {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    margin-left: -.6em;
+    margin-top: -.2em;
+}
+
+.profile-pic-button {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    margin-left: .5em;
 }

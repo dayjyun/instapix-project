@@ -7,7 +7,7 @@ import CreateComment from "../CreateComment";
 import EditComment from "../EditComment";
 import './PostComments.css'
 
-const PostsComments = ({post}) => {
+const PostsComments = ({ post }) => {
     // const { postId } = useParams()
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments))
@@ -18,7 +18,7 @@ const PostsComments = ({post}) => {
     useEffect(() => {
         // dispatch(postActions.loadAllPosts())
         dispatch(commentActions.loadPostComments(post?.id))
-    }, [dispatch, post?.id])
+    }, [dispatch])
 
 
     const getCreatedDate = (datestr) => {
@@ -62,7 +62,7 @@ const PostsComments = ({post}) => {
                     ))}
                 </ul>
                 <div>
-                    <CreateComment post={post}/>
+                    <CreateComment post={post} />
                 </div>
             </div>
         </>

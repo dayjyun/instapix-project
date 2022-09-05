@@ -51,11 +51,11 @@ function App() {
         </Route>
         <Route exact path="/">
           <HomePageComponent />
-          <div>
+          {/* <div>
             <div className="new-post-button">
               <GetPostModal />
             </div>
-          </div>
+          </div> */}
         </Route>
         <Route exact path="/posts/:postId">
           <PostComponent />
