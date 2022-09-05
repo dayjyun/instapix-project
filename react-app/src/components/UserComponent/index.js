@@ -15,7 +15,7 @@ function User() {
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
   const follows = useSelector(state => state.follow)
-
+  console.log(follows)
 
   // const loggedUserFollows = Object.values(follows?.loggedUser)
   // const following = Object.values(follows?.follows)
@@ -53,13 +53,18 @@ function User() {
               <div className='user-stat-box'>
                 <div className='post-count'><p><span className='bold'>{user?.num_posts}</span> posts</p></div>
 
-                <div className='post-count pointer'>
-                  <FollowerModal userId={userId} />
-                </div>
+                {follows?.followers && (
+                  <div className='post-count pointer'>
+                    <FollowerModal user={user} followers={follows?.followers} />
+                  </div>
+                )}
 
-                <div className='post-count pointer'>
-                  <FollowModal user={user} />
-                </div>
+                {follows?.follows && (
+                  <div className='post-count pointer'>
+                    <FollowModal user={user} following={follows?.follows} />
+                  </div>
+
+                )}
               </div>
 
 

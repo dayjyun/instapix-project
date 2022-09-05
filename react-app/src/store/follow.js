@@ -101,19 +101,20 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
 
 //INITIAL STATE
 const initialState = { loggedUser: null, follows: null, followers: null }
-
+// loggedUser = currently logged in users follows
+// follows = the user page youre on, their following users
+// followers = the user page youre on, their followers
 
 ///REDUCERS
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case FOLLOW:
-            const followState = { ...state }
-            const test = {}
-            test[action.payload.follow.id] = action.payload
-
-            followState.follows = test
-            return followState
+            const followState = { ...state };
+            const copy = followState.follows;
+            copy[action.payload.follow.id] = action.payload;
+            followState.follows = copy;
+            return followState;
 
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }

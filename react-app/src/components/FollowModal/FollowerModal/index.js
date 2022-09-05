@@ -6,17 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneUser } from '../../../store/users'
 import { getFollowers } from '../../../store/follow'
 
-function FollowerModal({ userId }) {
+function FollowerModal({ user, followers }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch()
-    const followers = useSelector(state => state.follow.followers)
 
-    let user = Object.values(useSelector(state => state.users))
-    user = user[0]
+    // const followers = useSelector(state => state.follow.followers)
+
+    // let user = Object.values(useSelector(state => state.users))
+    // user = user[0]
 
     useEffect(() => {
-        dispatch(getOneUser(parseInt(userId)))
-    }, [dispatch, userId])
+        dispatch(getOneUser(parseInt(user?.id)))
+    }, [dispatch])
 
     return (
         <>
@@ -25,7 +26,7 @@ function FollowerModal({ userId }) {
             {
                 showModal && (
                     <ModalSmall onClose={() => setShowModal(false)}>
-                        <Followers user={user} />
+                        <Followers user={user} followers={followers} />
                     </ModalSmall>
                 )
             }

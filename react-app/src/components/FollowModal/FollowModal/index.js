@@ -3,17 +3,20 @@ import { ModalSmall } from '../../../context/Modal';
 import Following from './Following';
 import '../../UserComponent/UserComponent.css'
 
-function FollowModal({ user }) {
+function FollowModal({ user, following }) {
     const [showModal, setShowModal] = useState(false);
+
+    console.log(user)
+    console.log(following)
 
     return (
         <>
-            <p onClick={() => setShowModal(true)} ><span className='bold'>{user.num_following}</span> following</p>
+            <p onClick={() => setShowModal(true)} ><span className='bold'>{Object.values(following)?.length}</span> following</p>
 
             {
                 showModal && (
                     <ModalSmall onClose={() => setShowModal(false)}>
-                        <Following user={user} />
+                        <Following user={user} following={following} />
                     </ModalSmall>
                 )
             }

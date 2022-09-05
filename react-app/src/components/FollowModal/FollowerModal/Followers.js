@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFollowersBackend, postFollowBackend, getLoggedUserFollowingBackend, deleteFollowBackend } from '../../../store/follow';
 import '../FollowModal.css'
 
-const Followers = ({ user }) => {
+const Followers = ({ user, followers }) => {
     const dispatch = useDispatch()
     //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
     const allFollows = useSelector(state => state.follow)
     let loggedUserFollows;
-    let followers = allFollows?.followers
+    // let followers = allFollows?.followers
 
     if (allFollows) {
         loggedUserFollows = allFollows?.loggedUser?.Followers
@@ -34,11 +34,11 @@ const Followers = ({ user }) => {
     }
 
 
-    useEffect(() => {
-        if (user) {
-            dispatch(getFollowersBackend(user?.id))
-        }
-    }, [dispatch, user])
+    // useEffect(() => {
+    //     if (user) {
+    //         dispatch(getFollowersBackend(user?.id))
+    //     }
+    // }, [dispatch, user])
 
 
     useEffect(() => {
