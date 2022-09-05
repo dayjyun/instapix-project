@@ -5,7 +5,7 @@ const GET_LOGGED_USER_FOLLOWING = 'user/GET_LOGGED_USER_FOLLOWING'
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
 const FOLLOW = 'users/FOLLOW'
-const UNFOLLOW = 'users/FOLLOW'
+const UNFOLLOW = 'users/UNFOLLOW'
 
 //ACTIONS
 export const getLoggedUserFollowing = (follows) => {
@@ -72,7 +72,6 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
 
 //POST: a follow
 export const postFollowBackend = (input) => async (dispatch) => {
-    // console.log(input.)
     const response = await fetch(`/api/follows/users/${input.follows_id}/post`, {
         method: "POST",
         headers: {
@@ -96,6 +95,7 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
     });
     if (response.ok) {
         const parsedRes = await response.json();
+        console.log(parsedRes)
         dispatch(deleteFollow(parsedRes))
     }
 }
