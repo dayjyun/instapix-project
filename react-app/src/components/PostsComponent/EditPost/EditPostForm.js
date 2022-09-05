@@ -63,7 +63,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
                 {/* username of post_id == User.id */}
               </div>
               <div className="edit-post-image-caption">
-                <label>Caption</label>
+                <label>Caption:</label>
                 <textarea
                   maxLength="2000"
                   className="edit-post-text-area"
