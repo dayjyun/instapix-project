@@ -5,11 +5,11 @@ import "./EditPostForm.css";
 
 function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
   const dispatch = useDispatch();
-  const posts = Object.values(useSelector((state) => state.posts));
+  // const posts = Object.values(useSelector((state) => state.posts));
   const userInfo = Object.values(useSelector((state) => state.users))[0];
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState(post.caption);
   const curr_img = post.post_url;
-  console.log(post.post_url);
+
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
