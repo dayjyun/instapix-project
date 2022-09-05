@@ -61,7 +61,6 @@ const Following = ({ user }) => {
 
     const handleClickUnfollow = async (e) => {
         e.preventDefault();
-        console.log('unfollow')
         await dispatch(deleteFollowBackend(e.target.id));
     }
 
@@ -83,9 +82,7 @@ const Following = ({ user }) => {
                                     </div>
 
                                     {isFollowing(follow)}
-                                    {/* <div className='follower-follow-btn'>
-                                        <button id={follow?.follow?.follows_id} onClick={handleClick}>Unfollow</button>
-                                    </div> */}
+
                                 </div>
                             )
                         }))}

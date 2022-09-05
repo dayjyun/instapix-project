@@ -20,9 +20,6 @@ const Followers = ({ user }) => {
     const isFollowing = (follow) => {
         for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
-
-            console.log(follow?.follow?.user_id, loggedUserFollow?.follower_info?.id)
-
             if (follow?.follow?.user_id === loggedUserFollow?.follower_info?.id) {
                 return (
                     <div className='follower-follow-btn'>
@@ -67,10 +64,9 @@ const Followers = ({ user }) => {
 
     const handleClickUnfollow = async (e) => {
         e.preventDefault();
-        console.log('unfollow')
-        console.log(e.target)
+
         await dispatch(deleteFollowBackend(e.target.id));
-        console.log('gets here?')
+
     }
 
     return (

@@ -45,25 +45,29 @@ export const deleteFollow = (follow) => {
 //GET: logged user's following
 export const getLoggedUserFollowingBackend = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
-    const parsedRes = await response.json();
-    dispatch(getLoggedUserFollowing(parsedRes))
+    if (response.ok) {
+        const parsedRes = await response.json();
+        dispatch(getLoggedUserFollowing(parsedRes))
+    }
 
 }
 
 //GET: all user's following
 export const getFollowingBackend = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
-    const parsedRes = await response.json();
-    console.log(parsedRes)
-    dispatch(getFollowing(parsedRes))
+    if (response.ok) {
+        const parsedRes = await response.json();
+        dispatch(getFollowing(parsedRes))
+    }
 }
 
 //GET: all user's followers
 export const getFollowersBackend = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/followers`)
-    const parsedRes = await response.json()
-    console.log(parsedRes)
-    dispatch(getFollowers(parsedRes))
+    if (response.ok) {
+        const parsedRes = await response.json()
+        dispatch(getFollowers(parsedRes))
+    }
 }
 
 //POST: a follow
@@ -79,18 +83,21 @@ export const postFollowBackend = (input) => async (dispatch) => {
             follows_id: input.follows_id
         }
     })
-    const parsedRes = await response.json();
-    dispatch(postFollow(parsedRes));
-    return parsedRes;
+    if (response.ok) {
+        const parsedRes = await response.json();
+        dispatch(postFollow(parsedRes));
+        return parsedRes;
+    }
 }
 //DELETE: a follow (unfollow)
 export const deleteFollowBackend = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/delete`, {
         method: 'DELETE'
     });
-    const parsedRes = await response.json();
-    console.log(parsedRes)
-    dispatch(deleteFollow(parsedRes))
+    if (response.ok) {
+        const parsedRes = await response.json();
+        dispatch(deleteFollow(parsedRes))
+    }
 }
 
 //INITIAL STATE
@@ -100,11 +107,6 @@ const initialState = { loggedUser: null, follows: null, followers: null }
 ///REDUCERS
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UNFOLLOW:
-            const unfollowState = { ...state }
-            delete unfollowState['follows'][action.payload.follow.id]
-
-            return unfollowState;
 
         case FOLLOW:
             const followState = { ...state }
@@ -140,6 +142,12 @@ const followReducer = (state = initialState, action) => {
 
             getFollowersState['followers'] = follower
             return getFollowersState;
+
+        case UNFOLLOW:
+            const unfollowState = { ...state }
+            delete unfollowState['follows'][action.payload.follow.id]
+
+            return unfollowState;
 
 
         default:

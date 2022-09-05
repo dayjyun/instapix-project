@@ -30,6 +30,7 @@ export const getOneUser = (userId) => async (dispatch) => {
 
     if (res.ok) {
         const user = await res.json();
+        // console.log(user)
         dispatch(getUser(user));
     }
 
@@ -39,8 +40,14 @@ const newState = {};
 
 export default function userReducer(state = newState, action) {
     switch (action.type) {
+        // case GET_USER:
+        //     return { ...state, [action.data.id]: action.data }
         case GET_USER:
-            return { ...state, [action.data.id]: action.data }
+            const getUserState = { ...state }
+            getUserState[action.payload.id] = action.payload
+            console.log(getUserState)
+            return getUserState
+        // return { ...state, [action.payload.id]: action.payload }
         case LOAD_USERS:
             const allUserState = { ...state }
             action.payload.users.forEach(user => {
