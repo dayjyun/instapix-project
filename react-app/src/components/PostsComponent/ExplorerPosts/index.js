@@ -19,11 +19,11 @@ function ExplorerPosts() {
         {posts.map((post) => (
           <li key={post?.id} className="explore-post-wrap">
             {/* <Link to={{ pathname: `/posts/${post.id}` }}> */}
-              <GetPostModal post={post}/>
               <div
                 className="explore-post-card"
                 style={{ backgroundImage: "url(" + post?.post_url + ")" }}
               >
+              <GetPostModal post={post}/>
                 <div className="explore-post-text">
                   <i className="fa-sharp fa-solid fa-heart"></i>
                   <p className="ept-likes">{post?.likes}</p>
