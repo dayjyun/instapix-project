@@ -7,32 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneUser } from '../../store/users'
 
 function User() {
-  // const [user, setUser] = useState({});
   const { userId } = useParams();
   const dispatch = useDispatch()
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
 
-  // useEffect(() => {
-  //   if (!userId) {
-  //     return;
-  //   }
-  //   (async () => {
-  //     const response = await fetch(`/api/users/${userId}`);
-  //     const user = await response.json();
-  //     setUser(user);
-  //   })();
-  // }, [userId]);
-
-
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
   }, [dispatch, userId])
 
-  // console.log(user)
-  // if (!user) {
-  //   return null;
-  // }
 
   return (
     <>

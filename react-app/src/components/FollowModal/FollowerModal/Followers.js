@@ -40,7 +40,6 @@ const Followers = ({ user }) => {
     useEffect(() => {
         if (user) {
             dispatch(getFollowersBackend(user?.id))
-
         }
     }, [dispatch, user])
 
@@ -54,7 +53,7 @@ const Followers = ({ user }) => {
 
     const handleClickFollow = async (e) => {
         e.preventDefault();
-        console.log('follow')
+
         const input = {
             user_id: user?.id,
             follows_id: parseInt(e.target.id)
@@ -66,7 +65,6 @@ const Followers = ({ user }) => {
         e.preventDefault();
 
         await dispatch(deleteFollowBackend(e.target.id));
-
     }
 
     return (
