@@ -3,7 +3,7 @@ import { PostCardMenuModal } from '../../../context/Modal';
 import PostCardButtons from './PostCardButtons';
 import './PostCardButtons.css'
 
-function PostCardModal({ follower }) {
+function PostCardModal({ follower, randomPost }) {
     const [showModal, setShowModal] = useState(false);
 
     const closeModal = () => {
@@ -12,10 +12,10 @@ function PostCardModal({ follower }) {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>...</button>
+            <button className='postcard-menu-button' onClick={() => setShowModal(true)}>...</button>
             {showModal && (
                 <PostCardMenuModal onClose={() => setShowModal(false)}>
-                    <PostCardButtons follower={follower} closeModal={closeModal} />
+                    <PostCardButtons follower={follower} closeModal={closeModal} randomPost={randomPost} />
                 </PostCardMenuModal>
             )}
         </>

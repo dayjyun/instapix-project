@@ -1,26 +1,37 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { deleteFollow } from '../../../store/follow'
+import { postFollowBackend, deleteFollowBackend } from '../../../store/follow'
+import { useState, useEffect } from 'react'
+import * as sessionActions from '../../../store/session'
 
-const PostCardButtons = ({ follower }) => {
+
+const PostCardButtons = ({ follower, closeModal, randomPost }) => {
     const history = useHistory()
     const dispatch = useDispatch()
-
+    const [follow, setFollow] = useState('Unfollow')
+    const currUser = useSelector(state => state.session.user)
+    console.log(randomPost)
 
     const handleUnfollow = e => {
         e.preventDefault()
-        dispatch(deleteFollow(follower?.follower_info?.id))
+        dispatch(deleteFollowBackend(follower?.follower_info?.id))
+        closeModal()
+    }
+
+    const handleGoToPost = e => {
+        e.preventDefault()
+        history.push(`/post/${randomPost.id}`)
     }
 
     return (
         <>
             <div className='postcard-button-container'>
-                <button onClick={handleUnfollow} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>Unfollow</button>
+                <button onClick={handleUnfollow} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>{follow}</button>
             </div>
             <div className='postcard-button-container'>
-                <button style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
+                <button onClick={handleGoToPost} style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
             </div>
-            <div className='postcard-button-container'>
+            <div className='postcard-button-container' onClick={closeModal} className='postcard-button-container'>
                 <button>Cancel</button>
             </div>
         </>

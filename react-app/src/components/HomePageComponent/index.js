@@ -7,6 +7,7 @@ import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
 import PostCardButtons from "./PostCardModal/PostCardButtons"
 import PostCardModal from "./PostCardModal"
+import * as postActions from '../../store/posts'
 
 const uniqueIndex = () => {
     const indexes = []
@@ -31,10 +32,16 @@ const HomePageComponent = () => {
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
+    const allPost = Object.values(useSelector(state => state.posts))
     let following = useSelector(state => state.follow)
     let following2 = following?.follows
-    console.log(following2)
 
+    const filteredPost = (userId) => {
+        const post = allPost?.filter(post => {
+            return post?.user_id === userId
+        })
+        return post
+    }
 
     useEffect(() => {
         i = uniqueIndex()
@@ -50,6 +57,7 @@ const HomePageComponent = () => {
     useEffect(() => {
         dispatch(userActions.getAllUsers())
         dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+        dispatch(postActions.loadAllPosts())
     }, [dispatch])
 
     const reset = () => {
@@ -198,7 +206,7 @@ const HomePageComponent = () => {
                                         {ProfileImageTagSmallCard(follow)}
                                         <p>{follow?.follower_info.username}</p>
                                         <div>
-                                            <PostCardModal follower={follow} />
+                                            <PostCardModal follower={follow} randomPost={filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]} />
                                         </div>
                                     </div>
                                     <div>
