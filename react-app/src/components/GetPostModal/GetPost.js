@@ -24,11 +24,16 @@ function GetPost({ post }) {
     dispatch(userActions.getOneUser(post?.user_id));
   }, [dispatch]);
 
+  const getUser = (id) => {
+    let user = userInfo.find(user => user.id === id);
+    return user;
+  };
+
   let editPostBtn;
 
   if (currUser?.id == +userId) {
     editPostBtn = <EditPostBtn />;
-  } 
+  }
 
   return (
     <div className="post-modal-container">
@@ -40,24 +45,28 @@ function GetPost({ post }) {
           <div className="profile-pic-username">
             <img
               className="comment-profile-pic"
-              src={userInfo?.profile_image}
+              src={getUser(post?.user_id)?.profile_image}
               alt="preview"
             ></img>
-            <div className="post-username-text">{userInfo?.username}</div>
+            <div className="post-username-text">{getUser(post?.user_id)?.username}</div>
           </div>
           {/* {currUser?.id === post.user_id && editPostBtn} */}
-          {currUser?.id === post.user_id ? editPostBtn : "menu"}
+          {currUser?.id === post.user_id ? editPostBtn : ''}
         </div>
         <div className="post-caption-container">
           <div className="profile-pic-mini">
             <img
               className="comment-profile-pic"
-              src={userInfo?.profile_image}
+              src={getUser(post?.user_id)?.profile_image}
               alt="preview"
             ></img>
           </div>
-          <div className="post-username-text">{userInfo?.username}</div>
-          <div>{post?.caption}</div>
+            <div className="post-username-text">
+                {getUser(post?.user_id)?.username}
+            </div>
+            <div className="caption-text">
+            <div className="caption-container">{post?.caption}</div>
+            </div>
         </div>
         <div className="post-modal-comments">
           <PostsComments post={post} />
