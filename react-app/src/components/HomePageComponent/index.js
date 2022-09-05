@@ -5,6 +5,8 @@ import { login } from '../../store/session'
 import * as userActions from '../../store/users'
 import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
+import PostCardButtons from "./PostCardModal/PostCardButtons"
+import PostCardModal from "./PostCardModal"
 
 const uniqueIndex = () => {
     const indexes = []
@@ -96,6 +98,26 @@ const HomePageComponent = () => {
         }
     }
 
+    const ProfileImageTagSmallCard = (follow) => {
+        if (follow?.follower_info?.profile_image) {
+            return (
+                <button className="profile-button-large-2" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${follow?.follower_info.id}`)
+                }}>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={follow?.follower_info?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${follow?.follower_info?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
+        }
+    }
+
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
@@ -173,9 +195,13 @@ const HomePageComponent = () => {
                             {following2 && (Object.values(following2)?.map(follow => (
                                 <div className="feed-post-container">
                                     <div className="feed-username-container">
-                                        <button className="">
-
-                                        </button>
+                                        {ProfileImageTagSmallCard(follow)}
+                                        <p>{follow?.follower_info.username}</p>
+                                        <div>
+                                            <PostCardModal follower={follow} />
+                                        </div>
+                                    </div>
+                                    <div>
                                     </div>
                                 </div>
                             )))}

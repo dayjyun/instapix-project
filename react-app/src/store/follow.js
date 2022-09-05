@@ -90,6 +90,7 @@ export const postFollowBackend = (input) => async (dispatch) => {
 }
 //DELETE: a follow (unfollow)
 export const deleteFollowBackend = (userId) => async (dispatch) => {
+    console.log("THISSSSSSSSSS", userId)
     const response = await fetch(`/api/follows/users/${userId}/delete`, {
         method: 'DELETE'
     });
@@ -149,7 +150,8 @@ const followReducer = (state = initialState, action) => {
 
         case UNFOLLOW:
             const unfollowState = { ...state }
-            delete unfollowState['follows'][action.payload.follow.id]
+            console.log('UNFOLLOW STATE', unfollowState)
+            delete unfollowState['follows'][action.payload.follower_info.id]
 
             return unfollowState;
 
