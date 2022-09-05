@@ -40,3 +40,10 @@
   border-right: 0;
   border-top: 1px solid gray;
 }
+
+.edit-post-modal {
+  width: 20em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -32,14 +32,16 @@ function PostMenu({ setShowMenuButtons }) {
   };
 
   return (
-    <div className="post-menu-buttons-container">
-      <button className="pmb delete" onClick={handleDeletePostBtn}>
-        Delete
-      </button>
-      <button className="pmb edit" onClick={() => setShowEditPost(true)}>
-        Edit
-      </button>
-      {showEditPost && (
+    <div className="edit-post-modal">
+      <div className="post-menu-buttons-container">
+        <button className="pmb delete" onClick={handleDeletePostBtn}>
+          Delete
+        </button>
+        <button className="pmb edit" onClick={() => setShowEditPost(true)}>
+          Edit
+        </button>
+
+        {showEditPost && (
           <Modal onClose={handleOnClose}>
             {/* <EditModal onClose={handleOnClose}> */}
             <EditPostForm
@@ -48,10 +50,11 @@ function PostMenu({ setShowMenuButtons }) {
             />
             {/* </EditModal> */}
           </Modal>
-      )}
-      <button className="pmb cancel" onClick={handleCancelBtn}>
-        Cancel
-      </button>
+        )}
+        <button className="pmb cancel" onClick={handleCancelBtn}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }
