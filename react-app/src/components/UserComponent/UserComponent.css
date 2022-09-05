@@ -1,8 +1,10 @@
 .user-container-background {
     z-index: -1;
-    width: auto;
+    width: 100%;
+    max-width: 800px;
     z-index: -1;
     padding: 3% 25%;
+    margin: 0 auto;
 }
 
 .user-information-container {
@@ -49,16 +51,17 @@
 
 /* user posts */
 .user-posts-collection {
-    width: auto;
+    width: 800px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* grid-auto-rows: 1fr; */
     column-gap: 1.15em;
     row-gap: 1.15em;
 }
 
 .user-post-card {
-    width: 18.5em;
-    height: 18.5em;
+    width: auto;
+    /* height: auto; */
 }
 
 .user-post-card:hover {
