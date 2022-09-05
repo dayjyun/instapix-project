@@ -1,6 +1,5 @@
 .edit-post-container {
   grid-template-rows: 8% 92%;
-  width: 60vw;
   height: 70vh;
   border-radius: 1em;
 }
@@ -9,14 +8,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 1em;
 }
 
 .edit-post-content {
   display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
 }
 
 .edit-post-user-info {
-    display: flex;
+  display: flex;
 }
 
 .edit-post-text-area {
@@ -29,4 +31,28 @@
   outline: none;
   border: none;
   font-size: 16px;
+}
+
+.edit-post-image-caption {
+  object-fit: contain;
+  resize: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 0.5em;
+  outline: none;
+  border: none;
+  font-size: 16px;
+}
+
+.edit-post-image-content {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.edit-post-image {
+  box-sizing: border-box;
+  object-fit: contain;
+  object-fit: scale-down;
 }

@@ -11,10 +11,9 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const posts = Object.values(useSelector((state) => state.posts));
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
-  const userInfo = Object.values(useSelector(state => state.users))[0]
+  const userInfo = Object.values(useSelector((state) => state.users))[0];
   const [caption, setCaption] = useState(post_caption);
-
-  console.log({userInfo})
+  const current_post_caption = caption[0];
 
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +21,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
     dispatch(
       editPost({
         id: postId,
-        caption,
+        caption
       })
     ).then(() => {
       setShowEditPost(false);
@@ -51,10 +50,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
           </div>
           <div className="edit-post-content">
             <div className="edit-post-image-content">
-              <img
-                style={{ width: "500px", height: "500px" }}
-                src={post_image}
-              />
+              <img className="edit-post-image" src={post_image[0]} />
             </div>
             <div className="edit-post-user-content">
               <div className="edit-post-user-info">
@@ -71,7 +67,8 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
                 <textarea
                   maxLength="2000"
                   className="edit-post-text-area"
-                  value={caption}
+                  type="text"
+                  value={current_post_caption}
                   onChange={(e) => setCaption(e.target.value)}
                 />
               </div>
