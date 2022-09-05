@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
 import "./EditPostForm.css";
 
 function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { postId } = useParams();
   const currUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.posts));
@@ -19,13 +18,14 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
 
     dispatch(
       editPost({
+        id: postId,
         caption,
       })
-    ).then(() =>
-    history.push(`/posts/${+postId}`)
-    );
+    ).then(() => {
+      setShowEditPost(false);
+      setShowMenuButtons(false);
+    });
   };
-  // ! Not editing post
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handlePostFormSubmit}>
         <div className="edit-post-container">
           <div className="edit-post-container-top">
             <div>
@@ -43,9 +43,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
             </div>
             <h3>Edit info</h3>
             <div>
-              <button type="submit" onSubmit={handlePostFormSubmit}>
-                Done
-              </button>
+              <button type="submit">Done</button>
             </div>
           </div>
           <div className="edit-post-content">
@@ -64,14 +62,13 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
                 <h3>{currUser?.username}</h3>
               </div>
               <div className="edit-post-image-caption">
-                <label>
-                  <textarea
-                    maxLength="2000"
-                    className="edit-post-text-area"
-                    value={caption}
-                    onChange={(e) => setCaption(e.target.value)}
-                  />
-                </label>
+                <label>Caption</label>
+                <textarea
+                  maxLength="2000"
+                  className="edit-post-text-area"
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                />
               </div>
             </div>
           </div>

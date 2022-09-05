@@ -49,14 +49,30 @@ function User() {
               <div className='user-stat-box'>
                 <div className='post-count'><p><span className='bold'>{user?.num_posts}</span> posts</p></div>
 
+
+
+                {/*
                 <div className='post-count pointer'>
                   <FollowerModal userId={userId} />
                 </div>
 
+          <div className='user-name-bio ' >
+            <p><span className='bold'>{user?.first_name}</span></p>
+            <p>{user?.bio}</p>
+          </div>
+
+        </div>
+      </div> */}
+
+
+
+
+
+
                 <div className='post-count pointer'>
                   <FollowModal user={user} />
-
                 </div>
+
               </div>
 
               <div className='user-name-bio ' >

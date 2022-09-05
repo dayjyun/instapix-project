@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadAllPosts } from "../../../store/posts";
+import GetPostModal from "../../GetPostModal";
 import "./index.css";
 
 function ExplorerPosts() {
@@ -17,17 +18,20 @@ function ExplorerPosts() {
       <div className="explore-post">
         {posts.map((post) => (
           <li key={post?.id} className="explore-post-wrap">
-            <Link to={{ pathname: `/posts/${post.id}` }}>
+            {/* <Link to={{ pathname: `/posts/${post.id}` }}> */}
+              <GetPostModal post={post}/>
               <div
                 className="explore-post-card"
                 style={{ backgroundImage: "url(" + post?.post_url + ")" }}
               >
                 <div className="explore-post-text">
-                  <p className="ept-likes">{post?.likes} Likes</p>
-                  <p className="ept-comments">{post?.num_comments} Comments</p>
+                  <i className="fa-sharp fa-solid fa-heart"></i>
+                  <p className="ept-likes">{post?.likes}</p>
+                  <i className="fa-sharp fa-solid fa-comment"></i>
+                  <p className="ept-comments">{post?.num_comments}</p>
                 </div>
               </div>
-            </Link>
+            {/* </Link> */}
           </li>
         ))}
       </div>

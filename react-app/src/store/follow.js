@@ -124,12 +124,10 @@ const followReducer = (state = initialState, action) => {
         case GET_FOLLOWING:
             const getFollowingState = { ...state }
             let follows = {}
-
             action.payload.Followers.forEach(follow => {
                 follows[follow.follow.id] = follow
             })
             getFollowingState.follows = follows
-
             return getFollowingState;
 
         case GET_FOLLOWERS:
@@ -139,9 +137,15 @@ const followReducer = (state = initialState, action) => {
             action.payload.Followers.forEach((follow) => {
                 follower[follow.follow.id] = follow
             })
-
             getFollowersState['followers'] = follower
             return getFollowersState;
+
+        case FOLLOW:
+            const followStateCopy = {}
+            followStateCopy[action.payload.id] = action.payload
+            // console.log(followState)
+            return followStateCopy
+
 
         case UNFOLLOW:
             const unfollowState = { ...state }

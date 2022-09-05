@@ -18,6 +18,7 @@ const CreateComment = ({post}) => {
         dispatch(commentActions.createComment({
             body
         }, post?.id))
+        .then(setBody(''))
     };
 
     return (

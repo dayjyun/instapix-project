@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import CreateComment from "../CommentComponents/CreateComment";
 import * as userActions from '../../store/users';
 import PostsComments from "../CommentComponents/PostsComments";
+import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 
 
-function GetPost() {
-    const post = useSelector(state => Object.values(state.posts))[0]
+function GetPost({post}) {
+    // const post = useSelector(state => Object.values(state.posts))[0]
     const user = useSelector(state => Object.values(state.users))[0]
 
     console.log(user);
@@ -20,34 +21,40 @@ function GetPost() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(postActions.getPost(1));
-        dispatch(userActions.getOneUser(1));
+        dispatch(postActions.getPost(post?.id));
+        dispatch(userActions.getOneUser(post?.user_id));
     }, [dispatch])
 
-    console.log('THIS', post)
+    // console.log('THIS', post)
 
     return (
         <div className="post-modal-container">
-            {/* <div className="image-content-container"> */}
-            <div className='image-content-container' style={{ backgroundImage: 'url(' + post?.post_url + ')' }}>
+            <div className="image-content-container">
+                {/* <h1>goodbye world</h1> */}
+            {/* <div className="image-content" style={{ backgroundImage: 'url(' + post?.post_url + ')' }}>
+            </div> */}
+            <img className="image-content" src={post?.post_url}></img>
             </div>
             <div className="caption-comment-container">
-                <div className="post-modal-topright-info">
-                    <div className="profile-pic-mini" style={{ backgroundImage: 'url(' + user?.profile_image + ')' }}>
+                <div className="user-info-container">
+                    <div className="profile-pic-username">
+                    <img className="comment-profile-pic" src={user?.profile_image} alt='preview'></img>
+                    <div className="post-username-text">{user?.username}</div>
                     </div>
-                    <p>User Info</p>
+                    <EditPostBtn />
                 </div>
-                <div className="post-modal-topright-info">
+                <div className="post-caption-container">
                     <div className="profile-pic-mini">
-                        <img src='https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/11/square-format-01.jpg?resize=600%2C600&ssl=1' className="post-user-profile-pic"></img>
+                    <img className="comment-profile-pic" src={user?.profile_image} alt='preview'></img>
                     </div>
-                    <p>Caption</p>
+                    <div className="post-username-text">{user?.username}</div>
+                    <div>{post?.caption}</div>
                 </div>
                 <div className="post-modal-comments">
                     {/* <p>Comments</p> */}
-                    <div className="create-comment-container">
+                    {/* <div className="create-comment-container"> */}
                         <PostsComments post={post}/>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
         </div>
