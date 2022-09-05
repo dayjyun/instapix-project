@@ -10,9 +10,12 @@ import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 function GetPost({ post }) {
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts))
-  const user = useSelector((state) => Object.values(state.users))[0];
+//   const user = useSelector((state) => Object.values(state.users))[0];
+  const userInfo = Object.values(useSelector((state) => state.users))[0];
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
+
+//   posts.user_id = User.id
 
   useEffect(() => {
     dispatch(postActions.getPost(post?.id));
@@ -35,29 +38,28 @@ function GetPost({ post }) {
           <div className="profile-pic-username">
             <img
               className="comment-profile-pic"
-              src={user?.profile_image}
+              src={userInfo?.profile_image}
               alt="preview"
             ></img>
-            <div className="post-username-text">{user?.username}</div>
+            <div className="post-username-text">{userInfo?.username}</div>
           </div>
-          {currUser?.id === post.user_id && (
-            editPostBtn
-          )}
+          {currUser?.id === post.user_id && editPostBtn}
         </div>
         <div className="post-caption-container">
           <div className="profile-pic-mini">
             <img
               className="comment-profile-pic"
-              src={user?.profile_image}
+              src={userInfo?.profile_image}
               alt="preview"
             ></img>
           </div>
-          <div className="post-username-text">{user?.username}</div>
+          <div className="post-username-text">{userInfo?.username}</div>
           <div>{post?.caption}</div>
         </div>
         <div className="post-modal-comments">
           <PostsComments post={post} />
         </div>
+        {/* Create Comment Modal??? */}
       </div>
     </div>
   );
