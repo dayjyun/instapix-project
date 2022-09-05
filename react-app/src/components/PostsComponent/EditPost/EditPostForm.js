@@ -1,20 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
 import "./EditPostForm.css";
 
 function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
   const dispatch = useDispatch();
-  const { postId } = useParams();
-  // const currUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.posts));
-  const post_caption = posts?.map((post) => post?.caption);
-  const post_image = posts?.map((post) => post?.post_url);
   const userInfo = Object.values(useSelector((state) => state.users))[0];
   const [caption, setCaption] = useState("");
-  const current_post_caption = caption[0];
-  console.log(postId);
+  const curr_img = post.post_url;
+  console.log(post.post_url);
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
@@ -50,7 +45,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
           </div>
           <div className="edit-post-content">
             <div className="edit-post-image-content">
-              <img className="edit-post-image" src={post_image[0]} />
+              <img className="edit-post-image" src={curr_img} />
             </div>
             <div className="edit-post-user-content">
               <div className="edit-post-user-info">
@@ -59,8 +54,6 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
                   src={userInfo?.profile_image}
                 />
                 <h3>{userInfo?.username}</h3>
-                {/* Profile Image */}
-                {/* username of post_id == User.id */}
               </div>
               <div className="edit-post-image-caption">
                 <label>Caption:</label>
