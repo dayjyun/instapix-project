@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { postFollowBackend, deleteFollowBackend } from '../../../store/follow'
 import { useState, useEffect } from 'react'
-import * as sessionActions from '../../../store/session'
+// import * as sessionActions from '../../../store/session'
 
 
 const PostCardButtons = ({ follower, closeModal, randomPost }) => {
@@ -31,7 +31,7 @@ const PostCardButtons = ({ follower, closeModal, randomPost }) => {
             <div className='postcard-button-container'>
                 <button onClick={handleGoToPost} style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
             </div>
-            <div className='postcard-button-container' onClick={closeModal} className='postcard-button-container'>
+            <div className='postcard-button-container' onClick={closeModal}>
                 <button>Cancel</button>
             </div>
         </>
