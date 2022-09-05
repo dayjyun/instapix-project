@@ -13,11 +13,9 @@ function PostComponent() {
   const posts = Object.values(useSelector((state) => state.posts));
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
-  const userInfo = User
 
   useEffect(() => {
     dispatch(getPost(+postId));
-    // dispatch(getOneUser(+userId))
   }, [dispatch]);
 
   let editPostBtn;
@@ -38,12 +36,6 @@ function PostComponent() {
           <div className="page-page-post-details">
             <div className="post-page-details-top">
               <div className="post-username">
-                {/* <img
-                  className="profile-img-circle-container form-profile-img"
-                  src={currUser?.profile_image}
-                  alt="profileImage"
-                ></img> */}
-                  {/* RENDER POST USER'S PROFILE IMAGE */}
                 <h3>{userId}</h3>
               </div>
               {editPostBtn}

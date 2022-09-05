@@ -40,7 +40,6 @@ function PostMenu({ setShowMenuButtons }) {
         Edit
       </button>
       {showEditPost && (
-        <Link to=''>
           <Modal onClose={handleOnClose}>
             {/* <EditModal onClose={handleOnClose}> */}
             <EditPostForm
@@ -49,7 +48,6 @@ function PostMenu({ setShowMenuButtons }) {
             />
             {/* </EditModal> */}
           </Modal>
-        </Link>
       )}
       <button className="pmb cancel" onClick={handleCancelBtn}>
         Cancel

@@ -7,11 +7,14 @@ import "./EditPostForm.css";
 function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const dispatch = useDispatch();
   const { postId } = useParams();
-  const currUser = useSelector((state) => state.session.user);
+  // const currUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.posts));
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
+  const userInfo = Object.values(useSelector(state => state.users))[0]
   const [caption, setCaption] = useState(post_caption);
+
+  console.log({userInfo})
 
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
@@ -57,9 +60,11 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
               <div className="edit-post-user-info">
                 <img
                   className="profile-img-circle-container form-profile-img"
-                  src={currUser?.profile_image}
+                  src={userInfo?.profile_image}
                 />
-                <h3>{currUser?.username}</h3>
+                <h3>{userInfo?.username}</h3>
+                {/* Profile Image */}
+                {/* username of post_id == User.id */}
               </div>
               <div className="edit-post-image-caption">
                 <label>Caption</label>
