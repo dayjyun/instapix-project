@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 
 .pmb {
@@ -17,6 +18,11 @@
   padding: 4px 8px;
   text-align: center;
   vertical-align: middle;
+  width: 100%;
+}
+.pmb:hover {
+  background-color: #e6e6e6;
+  border-radius: 1rem;
 }
 
 .pmb.delete {

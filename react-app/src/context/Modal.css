@@ -67,3 +67,8 @@
   /* width: 60%; */
   /* padding: 1%; */
 }
+
+#edit-post-modal {
+  background-color: chartreuse;
+  width: 300px;
+}
