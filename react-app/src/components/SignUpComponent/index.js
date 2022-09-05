@@ -77,7 +77,7 @@ const SignUpUserForm = () => {
             <h1 className="logo">Instapix</h1>
             <p>Sign up to see photos and videos from your friends.</p>
             <button onClick={handleGuestLogin} className="signup-demo-user">
-              <i class="fa-sharp fa-solid fa-user"></i> Log in as a demo user
+              <i className="fa-sharp fa-solid fa-user"></i> Log in as a demo user
             </button>
           </div>
           <div className="auth-separator">
