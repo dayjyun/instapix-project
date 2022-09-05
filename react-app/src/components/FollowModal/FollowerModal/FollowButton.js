@@ -1,9 +1,21 @@
 import { useDispatch } from "react-redux";
-import { postFollowBackend } from "../../../store/follow";
+import { postFollowBackend, deleteFollowBackend } from "../../../store/follow";
+import { useState, useEffect } from 'react';
 
 
-const FollowButton = (user, follow) => {
+const FollowButton = ({ user, follow, loggedUserFollows }) => {
     const dispatch = useDispatch()
+    const [followButton, setFollowButton] = useState()
+
+    useEffect(() => {
+        for (let i = 0; i < loggedUserFollows?.length; i++) {
+            let loggedUserFollow = loggedUserFollows[i];
+            if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
+                setFollowButton(false)
+            }
+        }
+        setFollowButton(true)
+    })
 
 
     const handleClickFollow = async (e) => {
@@ -11,15 +23,32 @@ const FollowButton = (user, follow) => {
 
         const input = {
             user_id: user?.id,
-            follows_id: parseInt(e.target.id)
+            follows_id: parseInt(follow?.follower_info?.id)
         }
         await dispatch(postFollowBackend(input));
     }
 
+    const handleClickUnfollow = async (e) => {
+        e.preventDefault();
+
+        await dispatch(deleteFollowBackend(e.target.id));
+    }
+
     return (
-        <div className='follower-follow-btn'>
-            <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
-        </div>
+        <>
+            {followButton && (
+                <>
+                    <div className='follower-follow-btn'>
+                        <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
+                    </div>
+                </>
+            )}
+            {!followButton && (
+                <div className='follower-follow-btn'>
+                    <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
+                </div>
+            )}
+        </>
     )
 }
 

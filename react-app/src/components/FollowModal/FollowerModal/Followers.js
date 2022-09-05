@@ -10,13 +10,11 @@ const Followers = ({ user, followers }) => {
     const loggedUser = useSelector(state => state.session.user)
     const loggedUserFollows = useSelector(state => state?.follow?.loggedUser?.Followers)
 
-
     const followers2 = useSelector(state => state.follow.followers)
 
-    const [followBtn, setFollowBtn] = useState()
+    console.log(followers2)
 
     const isFollowing = (follow) => {
-
         if (loggedUserFollows) {
             for (let i = 0; i < loggedUserFollows?.length; i++) {
                 let loggedUserFollow = loggedUserFollows[i];
@@ -84,7 +82,7 @@ const Followers = ({ user, followers }) => {
                                         <p className='p-styling'>{follow?.follower_info?.first_name}</p>
                                     </div>
 
-                                    <FollowButton user={user} follow={follow} />
+                                    <FollowButton user={user} follow={follow} loggedUserFollows={loggedUserFollows} />
 
                                     {isFollowing(follow)}
 
