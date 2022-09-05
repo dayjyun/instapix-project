@@ -16,6 +16,17 @@
   padding: 8em 13em;
 }
 
+.explore-post-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 1.5em;
+  height: 35vh;
+  width: 35vh;
+  /* padding: 8em 13em; */
+}
 .explore-post-card {
   height: 35vh;
   width: 35vh;
@@ -26,6 +37,22 @@
   justify-content: center;
   align-items: center;
   color: transparent;
+  box-sizing: border-box;
+}
+.explore-post-card button img {
+  height: 35vh;
+  width: 35vh;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: white;
 }
 
 .explore-post-card:hover {

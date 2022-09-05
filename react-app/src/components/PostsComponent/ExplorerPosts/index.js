@@ -13,8 +13,6 @@ function ExplorerPosts() {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
-
-
   return (
     <div className="explore-page">
       <div className="explore-post">
@@ -24,7 +22,9 @@ function ExplorerPosts() {
               className="explore-post-card"
               style={{ backgroundImage: "url(" + post?.post_url + ")" }}
             > */}
-            <GetPostModal post={post} />
+            <div className="explore-post-card">
+              <GetPostModal post={post} />
+            </div>
             <div className="explore-post-text">
               <i className="fa-sharp fa-solid fa-heart"></i>
               <p className="ept-likes">{post?.likes}</p>
@@ -35,7 +35,7 @@ function ExplorerPosts() {
           </li>
         ))}
       </div>
-    </div >
+    </div>
   );
 }
 
