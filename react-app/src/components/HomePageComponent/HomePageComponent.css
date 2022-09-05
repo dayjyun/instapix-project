@@ -16,7 +16,7 @@
     display: grid;
     grid-template-rows: auto;
     /* border: 1px solid black; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .users-img-circle-container {
@@ -102,9 +102,16 @@
 }
 
 .suggestions-container {
-    border: 1px solid blue;
+    display: grid;
+    grid-template-rows: 15% 12.5% 60% 12.5%;
+    /* border: 1px solid blue; */
     margin-left: 1em;
-    padding-left: 1em;
+    height: 30em;
+}
+
+.suggestions-username-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
 }
 
 .logged-out-container {
@@ -290,4 +297,73 @@
     display: grid;
     grid-template-columns: 10% 80% 10%;
     height: 1em;
+}
+
+.profile-button-large {
+    border-radius: 50px;
+    border: none;
+    background-color: transparent;
+    width: 4.5em;
+    height: 4.5em;
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.suggestions-username-name {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: -2em;
+    padding-bottom: -2em;
+}
+
+.suggestions-username {
+    padding-top: 1.3em;
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.suggestions-username-name {
+    color: gray;
+}
+
+.suggestions-for-u {
+    display: flex;
+    align-items: flex-end;
+    font-size: 14px;
+    color: gray;
+    font-weight: 900;
+    margin-left: .8em;
+}
+
+.suggestions-users-container {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    width: 100%;
+    height: 100%;
+}
+
+.suggestions-user-card {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    height: 3.5em;
+    /* padding-top: 2em; */
+}
+
+.user-card-follow-btn {
+    display: flex;
+    align-items: center;
+    padding-top: .5em;
+}
+
+.user-card-follow-btn button {
+    color: rgb(73, 137, 247);
+    background-color: transparent;
+    border: none;
+}
+
+.copyright {
+    color: rgb(188, 186, 186);
+    /* margin-left: 1em; */
 }

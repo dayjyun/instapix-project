@@ -17,6 +17,7 @@ const uniqueIndex = () => {
     return indexes
 }
 let i;
+let i2;
 
 
 const HomePageComponent = () => {
@@ -30,9 +31,9 @@ const HomePageComponent = () => {
     const allUsers = Object.values(useSelector(state => state.users))
     const following = Object.values(useSelector(state => state.follow))
 
-    console.log(following)
     useEffect(() => {
         i = uniqueIndex()
+        i2 = uniqueIndex()
     }, [])
 
     useEffect(() => {
@@ -50,6 +51,46 @@ const HomePageComponent = () => {
         setEmail("")
         setPassword('')
         setStyle({})
+    }
+
+    const ProfileImageTagLarge = () => {
+        if (sessionUser?.profile_image) {
+            return (
+                <button className="profile-button-large" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${sessionUser?.id}`)
+                }}>
+                    <img style={{ width: '4em', height: '4em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${sessionUser?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
+        }
+    }
+
+    const ProfileImageTagSmall = (users, i) => {
+        if (users[i]?.profile_image) {
+            return (
+                <button className="profile-button-large" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${users[i]?.id}`)
+                }}>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={users[i]?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${users[i]?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
+        }
     }
 
     const onLogin = async (e) => {
@@ -143,7 +184,31 @@ const HomePageComponent = () => {
                         </div>
                     </div>
                     <div className="suggestions-container">
-                        <h1>SUGGESTIONS GOES HERE</h1>
+                        <div className="suggestions-username-container">
+                            {ProfileImageTagLarge()}
+                            <div className="suggestions-username-name">
+                                <a className="suggestions-username" href={`/users/${sessionUser?.id}`}>{sessionUser?.username}</a>
+                                <span>{sessionUser.first_name}</span>
+                            </div>
+                        </div>
+                        <p className="suggestions-for-u">Suggestions For You</p>
+                        <div className="suggestions-users-containers">
+                            {i2?.map(i => (
+                                <div className="suggestions-user-card">
+                                    {ProfileImageTagSmall(allUsers, i)}
+                                    <div className="suggestions-username-name">
+                                        <a className="suggestions-username" href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
+                                        <span style={{ fontSize: '14px' }}>Popular</span>
+                                    </div>
+                                    <div className="user-card-follow-btn">
+                                        <button>Follow</button>
+                                    </div>
+                                </div>
+                            ))}
+                            <div style={{ marginLeft: '.8em' }}>
+                                <p className="copyright">© 2022 INSTAPIX FROM FELIPE SALLY JAN KEVIN HUYDU</p>
+                            </div>
+                        </div>
                     </div>
                 </div >
             </div >
