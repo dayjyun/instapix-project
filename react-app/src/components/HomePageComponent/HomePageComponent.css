@@ -377,10 +377,11 @@
     /* margin-left: 1em; */
 }
 
-.feed-username-container p {
-    padding-top: .5em;
-    padding-left: .4em;
+.feed-username-container a {
+    padding-top: 1.5em;
+    padding-left: .7em;
     font-size: 14px;
     font-family: sans-serif;
     font-weight: 600;
+    color: black;
 }

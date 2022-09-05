@@ -204,7 +204,7 @@ const HomePageComponent = () => {
                                 <div className="feed-post-container">
                                     <div className="feed-username-container">
                                         {ProfileImageTagSmallCard(follow)}
-                                        <p>{follow?.follower_info.username}</p>
+                                        <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
                                         <div>
                                             <PostCardModal follower={follow} randomPost={filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]} />
                                         </div>
