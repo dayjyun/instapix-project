@@ -129,10 +129,10 @@ const followReducer = (state = initialState, action) => {
 
         case FOLLOW:
             const followState = { ...state }
-            // console.log(followState)
-            // console.log(action.payload.id)
-            followState.follows[action.payload.follow.id] = action.payload
-            // console.log(followState)
+            const test = {}
+            test[action.payload.follow.id] = action.payload
+
+            followState.follows = test
             return followState
 
         // case UNFOLLOW:

@@ -8,19 +8,23 @@ const Followers = ({ user }) => {
     //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
     const allFollows = useSelector(state => state.follow)
+    let loggedUserFollows;
+    let followers = allFollows?.followers
 
-    let loggedUserFollows = allFollows.loggedUser
-    const followers = Object.values(allFollows.followers)
+    if (allFollows) {
+        loggedUserFollows = allFollows?.loggedUser?.Followers
+
+    }
 
     console.log(allFollows)
-    console.log(followers)
-    // loggedUserFollows = loggedUserFollows?.Followers
-
+    console.log(loggedUserFollows)
 
     const isFollowing = (follow) => {
 
         for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
+
+            console.log(follow?.follow?.user_id, loggedUserFollow?.follower_info?.id)
 
             if (follow?.follow?.user_id === loggedUserFollow?.follower_info?.id) {
                 return (
@@ -40,6 +44,7 @@ const Followers = ({ user }) => {
     useEffect(() => {
         if (user) {
             dispatch(getFollowersBackend(user?.id))
+
         }
     }, [dispatch, user])
 
@@ -76,7 +81,7 @@ const Followers = ({ user }) => {
                 <div className='following-info-container'>
 
                     {followers && (
-                        followers?.map((follow, index) => {
+                        Object.values(followers)?.map((follow, index) => {
                             return (
                                 <div className='each-follower-box' key={index}>
                                     <div className='follower-profile-image'>
