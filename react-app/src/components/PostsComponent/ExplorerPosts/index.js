@@ -13,13 +13,6 @@ function ExplorerPosts() {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
-  const handleGetPost = (e) => {
-    e.preventDefault();
-    console.log("GETPOSTTEST");
-    <GetPostModal  post={post}/>;
-    };
-  };
-
   return (
     <div className="explore-page">
       <div className="explore-post">
