@@ -11,9 +11,11 @@ function GetPost({ post }) {
   const dispatch = useDispatch();
   const posts = useSelector(state => Object.values(state.posts))
 //   const user = useSelector((state) => Object.values(state.users))[0];
-  const userInfo = Object.values(useSelector((state) => state.users))[0];
+  const userInfo = Object.values(useSelector((state) => state.users));
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
+
+  console.log("HERE", userInfo)
 
 //   posts.user_id = User.id
 
@@ -26,7 +28,7 @@ function GetPost({ post }) {
 
   if (currUser?.id == +userId) {
     editPostBtn = <EditPostBtn />;
-  }
+  } 
 
   return (
     <div className="post-modal-container">
@@ -43,7 +45,8 @@ function GetPost({ post }) {
             ></img>
             <div className="post-username-text">{userInfo?.username}</div>
           </div>
-          {currUser?.id === post.user_id && editPostBtn}
+          {/* {currUser?.id === post.user_id && editPostBtn} */}
+          {currUser?.id === post.user_id ? editPostBtn : "menu"}
         </div>
         <div className="post-caption-container">
           <div className="profile-pic-mini">
