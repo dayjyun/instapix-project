@@ -13,14 +13,21 @@ function ExplorerPosts() {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
+  const handleGetPost = (e) => {
+    e.preventDefault();
+    console.log("GETPOSTTEST");
+    <GetPostModal  post={post}/>;
+    };
+  };
+
   return (
     <div className="explore-page">
       <div className="explore-post">
         {posts.map((post) => (
           <li key={post?.id} className="explore-post-wrap">
-            {/* <Link to={{ pathname: `/posts/${post.id}` }}> */}
             <div
               className="explore-post-card"
+              onClick={handleGetPost}
               style={{ backgroundImage: "url(" + post?.post_url + ")" }}
             >
               <GetPostModal post={post} />
@@ -31,7 +38,6 @@ function ExplorerPosts() {
                 <p className="ept-comments">{post?.num_comments}</p>
               </div>
             </div>
-            {/* </Link> */}
           </li>
         ))}
       </div>
