@@ -8,8 +8,8 @@ import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 
 
-function GetPost() {
-    const post = useSelector(state => Object.values(state.posts))[0]
+function GetPost({post}) {
+    // const post = useSelector(state => Object.values(state.posts))[0]
     const user = useSelector(state => Object.values(state.users))[0]
 
     console.log(user);
@@ -21,8 +21,8 @@ function GetPost() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(postActions.getPost(1));
-        dispatch(userActions.getOneUser(1));
+        dispatch(postActions.getPost(post?.id));
+        dispatch(userActions.getOneUser(post?.user_id));
     }, [dispatch])
 
     // console.log('THIS', post)

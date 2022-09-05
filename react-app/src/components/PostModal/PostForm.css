@@ -6,7 +6,7 @@
 .post-form-container {
   display: grid;
   grid-template-rows: 8% 92%;
-  width: 60vw;
+  width: 59.3vw;
   height: 70vh;
   border-radius: 1em;
 }
@@ -14,7 +14,8 @@
 .create-new-post {
   display: grid;
   grid-template-columns: 58% 42%;
-  border-bottom: 1px solid lightgray
+  border-bottom: 1px solid lightgray;
+  /* width: 98.8%; */
 }
 
 .create-new-post p {
@@ -29,6 +30,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  /* padding-right: .6em; */
 }
 
 .share-button-container button {
@@ -50,6 +52,7 @@ ul {
 .form-container {
   display: grid;
   grid-template-columns: 60% 40%;
+  width: 59.2vw
 }
 
 
@@ -61,7 +64,7 @@ ul {
 .post-caption-form-container {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  width: 22vw;
+  width: 100%;
   border-left: 1px solid lightgray;
 }
 
@@ -106,6 +109,7 @@ ul {
 .char-count-area {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding-right: 1em;
   font-size: 15px;
 }

@@ -2,7 +2,22 @@ import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { login } from '../../store/session'
+import * as userActions from '../../store/users'
+import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
+
+const uniqueIndex = () => {
+    const indexes = []
+    while (indexes.length !== 5) {
+        const randomIndex = Math.floor(Math.random() * 6)
+        if (!indexes.includes(randomIndex)) {
+            indexes.push(randomIndex)
+        }
+    }
+    return indexes
+}
+let i;
+let i2;
 
 
 const HomePageComponent = () => {
@@ -11,7 +26,26 @@ const HomePageComponent = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
+    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
+    const allUsers = Object.values(useSelector(state => state.users))
+    const following = Object.values(useSelector(state => state.follow))
+
+    useEffect(() => {
+        i = uniqueIndex()
+        i2 = uniqueIndex()
+    }, [])
+
+    useEffect(() => {
+        if (email && password) {
+            setStyle({ backgroundColor: 'rgb(42, 126, 187' })
+        }
+    }, [email, password])
+
+    useEffect(() => {
+        dispatch(userActions.getAllUsers())
+        dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+    }, [dispatch])
 
     const reset = () => {
         setEmail("")
@@ -19,11 +53,45 @@ const HomePageComponent = () => {
         setStyle({})
     }
 
-    useEffect(() => {
-        if (email && password) {
-            setStyle({ backgroundColor: 'rgb(42, 126, 187' })
+    const ProfileImageTagLarge = () => {
+        if (sessionUser?.profile_image) {
+            return (
+                <button className="profile-button-large" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${sessionUser?.id}`)
+                }}>
+                    <img style={{ width: '4em', height: '4em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${sessionUser?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
         }
-    }, [email, password])
+    }
+
+    const ProfileImageTagSmall = (users, i) => {
+        if (users[i]?.profile_image) {
+            return (
+                <button className="profile-button-large" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${users[i]?.id}`)
+                }}>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={users[i]?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${users[i]?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
+        }
+    }
 
     const onLogin = async (e) => {
         e.preventDefault();
@@ -74,12 +142,40 @@ const HomePageComponent = () => {
                 <div className="home-content-container">
                     <div className="users-container">
                         <div className="users-section">
-                            <h1>USERS GO HERE</h1>
+                            <div className="trending">
+                                <p>Trending 🔥🔥🔥</p>
+                            </div>
+                            <div className="user-pics-container">
+                                {i?.map(i => (
+                                    <div className="user-pics">
+                                        <button onClick={e => {
+                                            e.preventDefault()
+                                            history.push(`/users/${allUsers[i]?.id}`)
+                                        }}>
+                                            <img className="users-img-circle-container" src={allUsers[i]?.profile_image}>
+                                            </img>
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="user-pics-container">
+                                {i?.map(i => (
+                                    <div className="username">
+                                        <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <div className="feed-section">
-                            <h1>FEED GOES HERE</h1>
-                            <h1>add as much as needed</h1>
-                            <h1>add as much as needed</h1>
+                            {following?.map(follow => (
+                                <div className="feed-post-container">
+                                    <div className="feed-username-container">
+                                        <button className="">
+                                            {/* <img src={follow?} */}
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
@@ -88,10 +184,34 @@ const HomePageComponent = () => {
                         </div>
                     </div>
                     <div className="suggestions-container">
-                        <h1>SUGGESTIONS GOES HERE</h1>
+                        <div className="suggestions-username-container">
+                            {ProfileImageTagLarge()}
+                            <div className="suggestions-username-name">
+                                <a className="suggestions-username" href={`/users/${sessionUser?.id}`}>{sessionUser?.username}</a>
+                                <span>{sessionUser.first_name}</span>
+                            </div>
+                        </div>
+                        <p className="suggestions-for-u">Suggestions For You</p>
+                        <div className="suggestions-users-containers">
+                            {i2?.map(i => (
+                                <div className="suggestions-user-card">
+                                    {ProfileImageTagSmall(allUsers, i)}
+                                    <div className="suggestions-username-name">
+                                        <a className="suggestions-username" href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
+                                        <span style={{ fontSize: '14px' }}>Popular</span>
+                                    </div>
+                                    <div className="user-card-follow-btn">
+                                        <button>Follow</button>
+                                    </div>
+                                </div>
+                            ))}
+                            <div style={{ marginLeft: '.8em' }}>
+                                <p className="copyright">© 2022 INSTAPIX FROM FELIPE SALLY JAN KEVIN HUYDU</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     } else {
         return (

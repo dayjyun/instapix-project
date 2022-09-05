@@ -68,7 +68,11 @@ def follow_user(user_id):
         )
         db.session.add(new_follow)
         db.session.commit()
-        return new_follow.to_dict()
+
+        user_info = User.query.filter(new_follow.follows_id == User.id).first()
+        data = {"follow": new_follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+
+        return data
 
     else:
         return jsonify(message='User could not be found.', status_code=404), 404
@@ -87,9 +91,15 @@ def unfollow_user(user_id):
         for follow in all_my_follows:
             if follow.follows_id == user_id:
                 my_follow = Follow.query.get(follow.id)
+
+                user_info = User.query.filter(my_follow.follows_id == User.id).first()
+                data = {"follow": my_follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+
+
+
                 db.session.delete(my_follow)
                 db.session.commit()
-                return my_follow.to_dict()
+                return data
 
         return jsonify(message='You cannot unfollow someone you do not follow.', status_code=200), 200
 

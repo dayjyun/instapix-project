@@ -143,7 +143,7 @@ export default function postsReducer(state = initialState, action) {
       return newFollowingPostsState;
 
     case GET_POST:
-      console.log(action)
+      // console.log(action)
       return {
         ...state,
         [action.post.id]: action.post

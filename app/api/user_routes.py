@@ -6,15 +6,15 @@ from app.models import User, Post
 user_routes = Blueprint('users', __name__)
 
 
-#** Get all users in the database
+# ** Get all users in the database
 @user_routes.route('/')
-@login_required
+# @login_required
 def users():
     users = User.query.all()
     return {'users': [user.all_users_to_dict() for user in users]}
 
 
-#** Get user by user_id
+# ** Get user by user_id
 @user_routes.route('/<int:user_id>')
 @login_required
 def user(user_id):
@@ -36,7 +36,7 @@ def get_user(user_id):
         return jsonify({"Not Found": "User not found"}), 404
 
 
-#** Get the Current User (me)
+# ** Get the Current User (me)
 @user_routes.route('/me')
 @login_required
 def get_me():
