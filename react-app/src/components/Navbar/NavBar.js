@@ -1,98 +1,88 @@
 
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
 import PostFormModal from '../PostModal';
+import { useDispatch, useSelector } from 'react-redux';
+import * as sessionActions from '../../store/session'
 
 const NavBar = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [profileToggle, setProfileToggle] = useState(false)
+  const [profileImage, setProfileImage] = useState('')
+  const sessionUser = useSelector(state => state.session.user)
+
+  const profileImageTag = () => {
+    if (sessionUser?.profile_image) {
+      return (
+        <button className='profile-button' onClick={showMenu}>
+          <img style={{ width: '1.9em', height: '1.9em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
+        </button>
+      )
+    } else {
+      return (
+        <button style={{ marginTop: '-.1em' }} onClick={showMenu} className='fa-regular fa-user-circle fa-xl'></button>
+      )
+    }
+  }
 
   const showMenu = e => {
     e.preventDefault()
-    if (profileToggle) {
-      setProfileToggle(false)
-    } else {
-      setProfileToggle(true)
-    }
+    setProfileToggle(!profileToggle)
   }
   const handleHome = (e) => {
     e.preventDefault()
+    setProfileToggle(false)
     history.push('/')
   }
 
   const handleExplore = e => {
     e.preventDefault()
+    setProfileToggle(false)
     history.push('/explore')
   }
 
-  return (
-    <div className='nav-bar-container'>
-      <div className='nav-buttons-left'>
-        <button className='instapix-button' onClick={handleHome}>Instapix</button>
-        {/* <div className='arrow-dropdown'>
-          <button className='fa-solid fa-angle-down' onClick={showMenu}></button>
-          {arrowToggle && (
-            <div className='arrow-dropdown-list'>
-              <button>Following</button>
-              <button>Favorites</button>
-            </div>
-          )}
-        </div> */}
-      </div>
-      <div className='nav-buttons-right'>
-        <button className='fa-solid fa-house' onClick={handleHome}></button>
-        <div className='new-post-button'>
-          <PostFormModal />
-        </div>
-        <button className='fa-regular fa-compass' onClick={handleExplore}></button>
-        <div className='profile-dropdown'>
-          <button className='fa-regular fa-circle-user profile-button' onClick={showMenu}></button>
-          {profileToggle && (
-            <div className='dropdown-shadow'>
-              <div>
-                <button className='profile-n-logout'>Profile</button>
-              </div>
-              <div>
-                <button className='profile-n-logout'>Log out</button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+  const logout = e => {
+    e.preventDefault()
+    dispatch(sessionActions.logout())
+    setProfileToggle(false)
+    history.push('/')
+  }
+  const handleProfile = e => {
+    e.preventDefault()
+    setProfileToggle(false)
+    history.push(`/users/${sessionUser?.id}`)
+  }
 
-    </div>
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <NavLink to='/' exact={true} activeClassName='active'>
-    //         Home
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/login' exact={true} activeClassName='active'>
-    //         Login
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/sign-up' exact={true} activeClassName='active'>
-    //         Sign Up
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/users' exact={true} activeClassName='active'>
-    //         Users
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <LogoutButton />
-    //     </li>
-    //   </ul>
-    // </nav>
-  );
+  if (sessionUser) {
+    return (
+      <div className='nav-bar-container'>
+        <div className='nav-buttons-left'>
+          <button className='instapix-button' onClick={handleHome}>Instapix</button>
+        </div>
+        <div className='nav-buttons-right'>
+          <button className='fa-solid fa-house house' onClick={handleHome}></button>
+          <PostFormModal />
+          <button className='fa-regular fa-compass explore' onClick={handleExplore}></button>
+          <div className='profile-dropdown'>
+            <div>
+              {profileImageTag()}
+            </div>
+            {profileToggle && (
+              <div className='dropdown-shadow'>
+                <button className='profile-n-logout' onClick={handleProfile}>Profile</button>
+                <button className='profile-n-logout' onClick={logout}>Log out</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return null
+  }
 }
 
 export default NavBar;

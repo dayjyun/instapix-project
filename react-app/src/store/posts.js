@@ -93,7 +93,7 @@ const updatePost = (post) => {
 };
 
 export const editPost = (postDetails) => async (dispatch) => {
-  const post = await fetch(`/api/posts/${postDetails.id}`, {
+  const post = await fetch(`/api/posts/${postDetails?.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -120,9 +120,8 @@ export const deletePost = (postId) => async (dispatch) => {
     method: "DELETE"
   });
 
-  if (post.ok) {
-    dispatch(removePost(post));
-  }
+  const parsedPost = await post.json()
+  dispatch(removePost(parsedPost));
 };
 
 let initialState = {};
@@ -144,6 +143,7 @@ export default function postsReducer(state = initialState, action) {
       return newFollowingPostsState;
 
     case GET_POST:
+      // console.log(action)
       return {
         ...state,
         [action.post.id]: action.post

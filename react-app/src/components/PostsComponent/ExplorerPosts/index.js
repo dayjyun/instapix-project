@@ -1,33 +1,42 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { loadAllPosts } from "../../../store/posts";
+import GetPostModal from "../../GetPostModal";
+import "./index.css";
 
 function ExplorerPosts() {
   const dispatch = useDispatch();
-
-  let posts = Object.values(useSelector((state) => state.posts));
+  const posts = Object.values(useSelector((state) => state.posts));
 
   useEffect(() => {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
   return (
-    <div>
-      <div>
-        <ul>
-          {posts?.map((post) => (
-            <li key={post?.id}>
-              <div>{post?.post_url}</div>
-              <div>{post?.caption}</div>
-              <div>{post?.likes} Likes</div>
-            </li>
-          ))}
-        </ul>
+    <div className="explore-page">
+      <div className="explore-post">
+        {posts.map((post) => (
+          <li key={post?.id} className="explore-post-wrap">
+            {/* <div
+              className="explore-post-card"
+              style={{ backgroundImage: "url(" + post?.post_url + ")" }}
+            > */}
+            <div className="explore-post-card">
+              <GetPostModal post={post} />
+            </div>
+            <div className="explore-post-text">
+              <i className="fa-sharp fa-solid fa-heart"></i>
+              <p className="ept-likes">{post?.likes}</p>
+              <i className="fa-sharp fa-solid fa-comment"></i>
+              <p className="ept-comments">{post?.num_comments}</p>
+            </div>
+            {/* </div> */}
+          </li>
+        ))}
       </div>
     </div>
   );
 }
 
 export default ExplorerPosts;
-
-// Get all posts in DB

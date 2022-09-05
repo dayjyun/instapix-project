@@ -12,7 +12,7 @@ def seed_posts():
     post4 = Post(
         user_id=4, caption='happy hour with the family!', post_url='https://i.pinimg.com/originals/f0/0d/ae/f00dae40fa38727e2ab1eaa4760f2e6c.jpg')
     post5 = Post(
-        user_id=1, caption='my second instapix post! #tbh', post_url='https://yt3.ggpht.com/-TPzt6V6JZIs/AAAAAAAAAAI/AAAAAAAAAAA/otPdYjyxaNw/s900-c-k-no-mo-rj-c0xffffff/photo.jpg')
+        user_id=1, caption='my second instapix post! #tbh', post_url='https://cdn.pixabay.com/photo/2016/07/07/16/46/dice-1502706__340.jpg')
     post6 = Post(
         user_id=2, caption='went to the local cafe for a coffee, again! Yum! #omg', post_url='https://i0.wp.com/www.teamjimmyjoe.com/wp-content/uploads/2016/08/funny-dog-duck-lips.jpg?resize=600%2C600')
     post7 = Post(

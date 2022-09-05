@@ -5,8 +5,8 @@ import * as commentActions from '../../../store/comments';
 
 import './CreateComment.css'
 
-const CreateComment = () => {
-    const { postId } = useParams()
+const CreateComment = ({post}) => {
+    // const { postId } = useParams()
     const [body, setBody] = useState('');
 
 
@@ -17,7 +17,8 @@ const CreateComment = () => {
 
         dispatch(commentActions.createComment({
             body
-        }, postId))
+        }, post?.id))
+        .then(setBody(''))
     };
 
     return (

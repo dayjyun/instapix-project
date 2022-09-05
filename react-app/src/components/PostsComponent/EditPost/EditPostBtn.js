@@ -1,20 +1,17 @@
 import { useState } from "react";
 import { Modal } from "../../../context/Modal";
 import PostMenu from "./PostMenu";
+import './EditPostBtn.css'
 
-function EditPostBtn() {
+function EditPostBtn({post}) {
   const [showMenuButtons, setShowMenuButtons] = useState(false);
-
-  const closeModal = () => {
-    setShowMenuButtons(false)
-  }
 
   return (
     <>
-      <button onClick={() => setShowMenuButtons(true)}>Menu Button...</button>
+      <button className="edit-post-button" onClick={() => setShowMenuButtons(true)}>...</button>
       {showMenuButtons && (
         <Modal onClose={() => setShowMenuButtons(false)}>
-          <PostMenu setShowMenuButtons={setShowMenuButtons}/>
+          <PostMenu post={post} setShowMenuButtons={setShowMenuButtons}/>
         </Modal>
       )}
     </>

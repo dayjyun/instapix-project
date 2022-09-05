@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
-import GetPost from './GetPost';
-import './GetPost.css'
+import React, { useState } from "react";
+import { PostModal } from "../../context/Modal";
+import GetPost from "./GetPost";
+import "./GetPost.css";
 
-function GetPostModal() {
-    const [showModal, setShowModal] = useState(false);
+function GetPostModal({ post }) {
+  const [showModal, setShowModal] = useState(false);
 
-    return (
-        <>
-            <button onClick={() => setShowModal(true)} className='fa-regular fa-square-plus'>GETPOSTTEST</button>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <GetPost />
-                </Modal>
-            )}
-        </>
-    );
+  return (
+    <>
+      <button
+        style={{ backgroundColor: "transparent", border: "none" }}
+        onClick={() => setShowModal(true)}
+      >
+        <img src={post?.post_url}></img>
+      </button>
+      {showModal && (
+        <PostModal onClose={() => setShowModal(false)}>
+          <GetPost post={post} />
+        </PostModal>
+      )}
+    </>
+  );
 }
 
 export default GetPostModal;

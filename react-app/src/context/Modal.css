@@ -1,39 +1,73 @@
 #modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #modal-background {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #modal-content {
-    position: absolute;
-    background-color: white;
-    border-radius: 1em;
-    /* overflow: auto; */
-    width: 60%;
-    /* padding: 1%; */
+  position: absolute;
+  background-color: white;
+  border-radius: 1em;
+  box-sizing: border-box;
+  /* overflow: auto; */
+  /* width: 60%; */
+  /* padding: 1%; */
 }
 
 /* modal container size for smaller modals (follows) */
 #modal-content-small {
-    position: absolute;
-    background-color: white;
-    border-radius: 1em;
-    overflow: auto;
-    width: 300px;
-    /* padding: 1%; */
-    /* overflow: auto; */
+  position: absolute;
+  background-color: white;
+  border-radius: 1em;
+  overflow: auto;
+  width: 300px;
+  /* padding: 1%; */
+  /* overflow: auto; */
+}
+
+#post-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#post-modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#post-modal-content {
+  position: absolute;
+  background-color: white;
+  border-radius: 1em;
+  overflow: hidden;
+  /* width: 60%; */
+  /* padding: 1%; */
+}
+
+#edit-post-modal {
+  width: 300px;
 }
