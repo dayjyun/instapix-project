@@ -1,14 +1,18 @@
-import { useDispatch } from "react-redux";
-import { postFollowBackend, deleteFollowBackend } from "../../../store/follow";
+import { useDispatch, useSelector } from "react-redux";
+import { postFollowBackend, deleteFollowBackend, getLoggedUserFollowingBackend } from "../../../store/follow";
 import { useState, useEffect } from 'react';
 
 
-const FollowButton = ({ user, follow, loggedUserFollows }) => {
+const FollowButton = ({ user, follow }) => {
     const dispatch = useDispatch()
     const [followButton, setFollowButton] = useState()
 
-    console.log(follow)
+    const loggedUserFollows = Object.values(useSelector(state => state?.follow?.loggedUser))
     console.log(loggedUserFollows)
+
+    useEffect(() => {
+        dispatch(getLoggedUserFollowingBackend(user?.id))
+    }, [user, dispatch])
 
     useEffect(() => {
         let yes;
@@ -16,12 +20,10 @@ const FollowButton = ({ user, follow, loggedUserFollows }) => {
             for (let i = 0; i < loggedUserFollows?.length; i++) {
                 let loggedUserFollow = loggedUserFollows[i];
 
-                console.log(follow?.follower_info?.id, loggedUserFollow?.follower_info?.id)
-
                 if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
                     setFollowButton(false)
                     yes = true
-                    return
+                    return;
                 }
             }
         }
@@ -52,13 +54,13 @@ const FollowButton = ({ user, follow, loggedUserFollows }) => {
             {followButton && (
                 <>
                     <div className='follower-follow-btn'>
-                        <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
+                        <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow!</button>
                     </div>
                 </>
             )}
             {!followButton && (
                 <div className='follower-follow-btn'>
-                    <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
+                    <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow!</button>
                 </div>
             )}
         </>

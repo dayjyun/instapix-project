@@ -82,7 +82,7 @@ const Followers = ({ user, followers }) => {
                                         <p className='p-styling'>{follow?.follower_info?.first_name}</p>
                                     </div>
 
-                                    <FollowButton user={user} follow={follow} loggedUserFollows={loggedUserFollows} />
+                                    <FollowButton user={user} follow={follow} />
 
                                     {isFollowing(follow)}
 

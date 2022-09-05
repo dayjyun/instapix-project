@@ -111,15 +111,28 @@ const followReducer = (state = initialState, action) => {
         case FOLLOW:
             const followState = { ...state };
             const copy = followState.follows;
-            copy[action.payload.follow.id] = action.payload;
-            followState.follows = copy;
+            const copy2 = followState.loggedUser;
 
+            copy[action.payload.follow.id] = action.payload;
+            copy2[action.payload.follow.id] = action.payload;
+
+            followState.follows = copy;
+            followState.loggedUser = copy2
             return followState;
 
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }
-            getLoggedUserFollowingState.loggedUser = action.payload
+            const user = {}
+
+            action.payload.Followers.forEach(follow => {
+                user[follow.follow.id] = follow
+            })
+            getLoggedUserFollowingState['loggedUser'] = user
             return getLoggedUserFollowingState;
+
+        // const getLoggedUserFollowingState = { ...state }
+        // getLoggedUserFollowingState.loggedUser = action.payload
+        // return getLoggedUserFollowingState;
 
         case GET_FOLLOWING:
             const getFollowingState = { ...state }
@@ -140,17 +153,24 @@ const followReducer = (state = initialState, action) => {
             getFollowersState['followers'] = follower
             return getFollowersState;
 
-        case FOLLOW:
-            const followStateCopy = {}
-            followStateCopy[action.payload.id] = action.payload
-            // console.log(followState)
-            return followStateCopy
+        // case FOLLOW:
+        //     const followStateCopy = {};
+        //     followStateCopy[action.payload.id] = action.payload;
+
+        //     // console.log(followState)
+        //     return followStateCopy
 
 
         case UNFOLLOW:
             const unfollowState = { ...state }
-            delete unfollowState['follows'][action.payload.follow.id]
+            // console.log(unfollowState.loggedUser)
 
+            delete unfollowState['follows'][action.payload.follow.id]
+            delete unfollowState['loggedUser'][action.payload.follow.id]
+            // delete unfollowState['loggedUser']['Followers']['follow'][action.payload.follow.follows_id]
+            // console.log(unfollowState.follows)
+
+            // console.log(unfollowState)
             return unfollowState;
 
 
