@@ -29,7 +29,10 @@ const HomePageComponent = () => {
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-    const following = Object.values(useSelector(state => state.follow))
+    let following = useSelector(state => state.follow)
+    let following2 = following?.follows
+    console.log(following2)
+
 
     useEffect(() => {
         i = uniqueIndex()
@@ -167,11 +170,11 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            {following?.map(follow => (
+                            {Object.values(following2)?.map(follow => (
                                 <div className="feed-post-container">
                                     <div className="feed-username-container">
                                         <button className="">
-                                            {/* <img src={follow?} */}
+
                                         </button>
                                     </div>
                                 </div>
