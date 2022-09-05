@@ -12,9 +12,9 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
   const post_caption = posts?.map((post) => post?.caption);
   const post_image = posts?.map((post) => post?.post_url);
   const userInfo = Object.values(useSelector((state) => state.users))[0];
-  const [caption, setCaption] = useState(post_caption);
+  const [caption, setCaption] = useState("");
   const current_post_caption = caption[0];
-
+  console.log(postId);
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
@@ -68,7 +68,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
                   maxLength="2000"
                   className="edit-post-text-area"
                   type="text"
-                  value={current_post_caption}
+                  value={caption}
                   onChange={(e) => setCaption(e.target.value)}
                 />
               </div>

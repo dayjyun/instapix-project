@@ -13,7 +13,7 @@ function PostMenu({ setShowMenuButtons }) {
   const currUser = useSelector((state) => state.session.user);
   const { postId } = useParams();
   const [showEditPost, setShowEditPost] = useState(false);
-
+  console.log(postId);
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
     await dispatch(deletePost(+postId));
@@ -45,6 +45,7 @@ function PostMenu({ setShowMenuButtons }) {
           <Modal onClose={handleOnClose}>
             {/* <EditModal onClose={handleOnClose}> */}
             <EditPostForm
+              post={post}
               setShowMenuButtons={setShowMenuButtons}
               setShowEditPost={setShowEditPost}
             />
