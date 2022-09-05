@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 // import * as postActions from '../../../store/posts'
 import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
+import EditCommentModal from "../EditComment";
 import EditComment from "../EditComment";
 import './PostComments.css'
 
@@ -52,7 +53,8 @@ const PostsComments = ({ post }) => {
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
                                             {/* <NavLink className='edit-comment-btn' to={`/comments/${comment?.id}/edit`}>...</NavLink> */}
-                                            <button className="edit-comment-btn" onClick={() => setEditing(!editing)}>...</button>
+                                            {/* <button className="edit-comment-btn" onClick={() => setEditing(!editing)}>...</button> */}
+                                            <EditCommentModal comment={comment}/>
                                             {/* onClick={setEditing(!editing)} */}
                                         </div>
                                     }
