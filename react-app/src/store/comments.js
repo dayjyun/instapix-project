@@ -115,33 +115,33 @@ let newState = {}
 
 export default function reducer(state = newState, action) {
     switch (action.type) {
-      case LOAD_POST_COMMENTS:
-        newState = {...state};
-        action.data.Comments.forEach((comment) => {
-            newState[comment.id] = comment;
-        });
-        return newState;
-     case LOAD_ONE_COMMENT:
-        return {
-            ...state,
-            [action.comment.id]: action.comment
-        }
-     case UPDATE_COMMENT:
-        console.log(action.data);
-        return {
-            ...state,
-            [action.data.id]: action.data
-        }
-    case CREATE_COMMENT:
-        return {
-            ...state,
-            [action.comment.id]: action.comment
-        }
-    case DELETE_COMMENT:
-        newState = {...state};
-        delete newState[action.id];
-        return newState
-    default:
-        return state;
+        case LOAD_POST_COMMENTS:
+            newState = {};
+            action.data.Comments.forEach((comment) => {
+                newState[comment.id] = comment;
+            });
+            return newState;
+        case LOAD_ONE_COMMENT:
+            return {
+                ...state,
+                [action.comment.id]: action.comment
+            }
+        case UPDATE_COMMENT:
+            console.log(action.data);
+            return {
+                ...state,
+                [action.data.id]: action.data
+            }
+        case CREATE_COMMENT:
+            return {
+                ...state,
+                [action.comment.id]: action.comment
+            }
+        case DELETE_COMMENT:
+            newState = { ...state };
+            delete newState[action.id];
+            return newState
+        default:
+            return state;
     }
 }
