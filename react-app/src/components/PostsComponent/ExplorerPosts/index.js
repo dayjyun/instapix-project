@@ -13,28 +13,29 @@ function ExplorerPosts() {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
+
+
   return (
     <div className="explore-page">
       <div className="explore-post">
         {posts.map((post) => (
           <li key={post?.id} className="explore-post-wrap">
-            <div
+            {/* <div
               className="explore-post-card"
-              onClick={handleGetPost}
               style={{ backgroundImage: "url(" + post?.post_url + ")" }}
-            >
-              <GetPostModal post={post} />
-              <div className="explore-post-text">
-                <i className="fa-sharp fa-solid fa-heart"></i>
-                <p className="ept-likes">{post?.likes}</p>
-                <i className="fa-sharp fa-solid fa-comment"></i>
-                <p className="ept-comments">{post?.num_comments}</p>
-              </div>
+            > */}
+            <GetPostModal post={post} />
+            <div className="explore-post-text">
+              <i className="fa-sharp fa-solid fa-heart"></i>
+              <p className="ept-likes">{post?.likes}</p>
+              <i className="fa-sharp fa-solid fa-comment"></i>
+              <p className="ept-comments">{post?.num_comments}</p>
             </div>
+            {/* </div> */}
           </li>
         ))}
       </div>
-    </div>
+    </div >
   );
 }
 
