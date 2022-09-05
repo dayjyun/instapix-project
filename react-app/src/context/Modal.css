@@ -62,7 +62,7 @@
     position: absolute;
     background-color: white;
     border-radius: 1em;
-    /* overflow: auto; */
+    overflow: hidden;
     /* width: 60%; */
     /* padding: 1%; */
 }
