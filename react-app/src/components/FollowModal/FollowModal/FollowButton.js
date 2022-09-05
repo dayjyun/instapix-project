@@ -5,19 +5,17 @@ import { useState, useEffect } from 'react';
 
 const FollowButton = ({ user, follow }) => {
     const dispatch = useDispatch()
+
     const [followButton, setFollowButton] = useState()
 
     const loggedUser = useSelector(state => state.session.user)
     const loggedUserFollows = Object.values(useSelector(state => state?.follow?.loggedUser))
-    // const test = useSelector(state => state?.follow)
 
-    // console.log(loggedUser)
-
-    // console.log(user)
 
     useEffect(() => {
         dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
     }, [loggedUser, dispatch])
+
 
     useEffect(() => {
         let yes;

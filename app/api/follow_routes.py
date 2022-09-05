@@ -102,7 +102,7 @@ def unfollow_user(user_id):
                 db.session.commit()
                 return data
 
-        return jsonify(message='You cannot unfollow someone you do not follow.', status_code=200), 200
+        return jsonify(message='You cannot unfollow someone you do not follow.', status_code=404), 404
 
     else:
         return jsonify(message='User could not be found.', status_code=404), 404
