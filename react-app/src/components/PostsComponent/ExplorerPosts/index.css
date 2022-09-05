@@ -13,7 +13,7 @@
   align-items: center;
   list-style: none;
   gap: 1.5em;
-  padding: 8em 20em;
+  padding: 8em 13em;
 }
 
 .explore-post-card {
@@ -37,11 +37,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: auto
+  z-index: auto;
 }
 
 .explore-post-text:hover {
-  color:white;
+  color: white;
 }
 
 .ept-likes,
