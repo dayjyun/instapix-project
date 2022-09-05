@@ -5,6 +5,9 @@ import { login } from '../../store/session'
 import * as userActions from '../../store/users'
 import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
+import PostCardButtons from "./PostCardModal/PostCardButtons"
+import PostCardModal from "./PostCardModal"
+import * as postActions from '../../store/posts'
 
 const uniqueIndex = () => {
     const indexes = []
@@ -29,7 +32,16 @@ const HomePageComponent = () => {
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-    const following = Object.values(useSelector(state => state.follow))
+    const allPost = Object.values(useSelector(state => state.posts))
+    let following = useSelector(state => state.follow)
+    let following2 = following?.follows
+
+    const filteredPost = (userId) => {
+        const post = allPost?.filter(post => {
+            return post?.user_id === userId
+        })
+        return post
+    }
 
     useEffect(() => {
         i = uniqueIndex()
@@ -45,6 +57,7 @@ const HomePageComponent = () => {
     useEffect(() => {
         dispatch(userActions.getAllUsers())
         dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+        dispatch(postActions.loadAllPosts())
     }, [dispatch])
 
     const reset = () => {
@@ -88,6 +101,26 @@ const HomePageComponent = () => {
                 <button style={{ marginTop: '-.1em' }} onClick={e => {
                     e.preventDefault()
                     history.push(`/users/${users[i]?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
+        }
+    }
+
+    const ProfileImageTagSmallCard = (follow) => {
+        if (follow?.follower_info?.profile_image) {
+            return (
+                <button className="profile-button-large-2" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${follow?.follower_info.id}`)
+                }}>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={follow?.follower_info?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${follow?.follower_info?.id}`)
                 }} className='fa-regular fa-user-circle fa-xl'></button>
             )
         }
@@ -167,15 +200,19 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            {following?.map(follow => (
+                            {following2 && (Object.values(following2)?.map(follow => (
                                 <div className="feed-post-container">
                                     <div className="feed-username-container">
-                                        <button className="">
-                                            {/* <img src={follow?} */}
-                                        </button>
+                                        {ProfileImageTagSmallCard(follow)}
+                                        <p>{follow?.follower_info.username}</p>
+                                        <div>
+                                            <PostCardModal follower={follow} randomPost={filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]} />
+                                        </div>
+                                    </div>
+                                    <div>
                                     </div>
                                 </div>
-                            ))}
+                            )))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
