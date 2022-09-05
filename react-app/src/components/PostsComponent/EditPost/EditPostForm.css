@@ -26,7 +26,7 @@
 }
 
 .ep-cancel:active {
-  color: rgb(128, 128, 128)
+  color: rgb(143, 142, 142)
 }
 
 .edit-post-content {
@@ -83,3 +83,6 @@
   outline: none;
   box-sizing: border-box;
 }
+
+/* Image is bleeding out of container.  */
+/* If screen is smaller, only make image show  */
