@@ -6,13 +6,9 @@ import '../../UserComponent/UserComponent.css'
 function FollowModal({ user, following }) {
     const [showModal, setShowModal] = useState(false);
 
-    console.log(user)
-    console.log(following)
-
     return (
         <>
             <p onClick={() => setShowModal(true)} ><span className='bold'>{Object.values(following)?.length}</span> following</p>
-
             {
                 showModal && (
                     <ModalSmall onClose={() => setShowModal(false)}>

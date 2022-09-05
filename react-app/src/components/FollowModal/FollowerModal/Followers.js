@@ -7,45 +7,57 @@ const Followers = ({ user, followers }) => {
     const dispatch = useDispatch()
     //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
-    const allFollows = useSelector(state => state.follow)
-    let loggedUserFollows;
-    // let followers = allFollows?.followers
+    const loggedUserFollows = useSelector(state => state?.follow?.loggedUser?.Followers)
 
-    if (allFollows) {
-        loggedUserFollows = allFollows?.loggedUser?.Followers
-    }
+    console.log(loggedUserFollows)
+
+    const followers2 = useSelector(state => state.follow.followers)
+
+    console.log(followers2)
+
+    const [followBtn, setFollowBtn] = useState()
 
     const isFollowing = (follow) => {
-        for (let i = 0; i < loggedUserFollows?.length; i++) {
-            let loggedUserFollow = loggedUserFollows[i];
-            if (follow?.follow?.user_id === loggedUserFollow?.follower_info?.id) {
-                return (
-                    <div className='follower-follow-btn'>
-                        <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
-                    </div>
-                )
+
+        if (loggedUserFollows) {
+            for (let i = 0; i < loggedUserFollows?.length; i++) {
+                let loggedUserFollow = loggedUserFollows[i];
+
+
+                console.log(follow?.follower_info?.id)
+                console.log(loggedUserFollow)
+                console.log(loggedUserFollow?.follower_info?.id)
+
+                if (follow?.follower_info?.id === loggedUserFollow?.follower_info?.id) {
+                    return (
+                        <div className='follower-follow-btn'>
+                            <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
+                        </div>
+                    )
+                }
             }
+            return (
+                <div className='follower-follow-btn'>
+                    <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
+                </div>
+            )
+
+
         }
-        return (
-            <div className='follower-follow-btn'>
-                <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
-            </div>
-        )
     }
-
-
-    // useEffect(() => {
-    //     if (user) {
-    //         dispatch(getFollowersBackend(user?.id))
-    //     }
-    // }, [dispatch, user])
-
 
     useEffect(() => {
         if (loggedUser) {
             dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
         }
     }, [dispatch, loggedUser])
+
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getFollowersBackend(user?.id))
+        }
+    }, [dispatch, user])
 
 
     const handleClickFollow = async (e) => {
@@ -70,8 +82,8 @@ const Followers = ({ user, followers }) => {
                 <h3 className='following-header'>Followers</h3>
                 <div className='following-info-container'>
 
-                    {followers && (
-                        Object.values(followers)?.map((follow, index) => {
+                    {followers2 && (
+                        Object.values(followers2)?.map((follow, index) => {
                             return (
                                 <div className='each-follower-box' key={index}>
                                     <div className='follower-profile-image'>
@@ -84,6 +96,13 @@ const Followers = ({ user, followers }) => {
 
                                     {isFollowing(follow)}
 
+                                    {/*
+if the follow state is true,  && the logged user is not following then render a follow button
+
+after clicked, the opposite button must appear
+
+follow state should update
+ */}
                                 </div>
                             )
                         }))}

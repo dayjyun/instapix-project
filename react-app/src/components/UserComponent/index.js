@@ -15,12 +15,6 @@ function User() {
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
   const follows = useSelector(state => state.follow)
-  console.log(follows)
-
-  // const loggedUserFollows = Object.values(follows?.loggedUser)
-  // const following = Object.values(follows?.follows)
-  // const followers = Object.values(follows?.followers)
-
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
@@ -63,10 +57,8 @@ function User() {
                   <div className='post-count pointer'>
                     <FollowModal user={user} following={follows?.follows} />
                   </div>
-
                 )}
               </div>
-
 
               <div className='user-name-bio' >
                 <p><span className='bold'>{user?.first_name}</span></p>

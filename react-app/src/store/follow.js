@@ -94,7 +94,6 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
     });
     if (response.ok) {
         const parsedRes = await response.json();
-        console.log(parsedRes)
         dispatch(deleteFollow(parsedRes))
     }
 }
@@ -114,6 +113,7 @@ const followReducer = (state = initialState, action) => {
             const copy = followState.follows;
             copy[action.payload.follow.id] = action.payload;
             followState.follows = copy;
+
             return followState;
 
         case GET_LOGGED_USER_FOLLOWING:
