@@ -7,18 +7,20 @@ const Following = ({ user }) => {
     const dispatch = useDispatch()
     //GET LOGGED USER ID
     const loggedUser = useSelector(state => state.session.user)
-    const follows = Object.values(useSelector(state => state.follow))
-    let loggedUserFollows = follows.pop()
-    loggedUserFollows = loggedUserFollows?.Followers
+    const allFollows = useSelector(state => state.follow)
+    let loggedUserFollows;
+    let follows = allFollows?.follows
 
+    if (allFollows) {
+        loggedUserFollows = allFollows?.loggedUser?.Followers
+    }
 
 
     const isFollowing = (follow) => {
-
         for (let i = 0; i < loggedUserFollows?.length; i++) {
             let loggedUserFollow = loggedUserFollows[i];
 
-            if (follow.follow.user_id === loggedUserFollow?.follower_info?.id) {
+            if (follow?.follow?.follows_id === loggedUserFollow?.follower_info?.id) {
                 return (
                     <div className='follower-follow-btn'>
                         <button id={follow?.follow?.follows_id} onClick={handleClickUnfollow}>Unfollow</button>
@@ -69,7 +71,7 @@ const Following = ({ user }) => {
                 <h3 className='following-header'>Following</h3>
                 <div className='following-info-container'>
                     {follows && (
-                        follows?.map((follow, index) => {
+                        Object.values(follows)?.map((follow, index) => {
                             return (
                                 <div className='each-follower-box' key={index}>
                                     <div className='follower-profile-image'>

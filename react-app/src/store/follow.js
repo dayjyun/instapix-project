@@ -100,6 +100,21 @@ const initialState = { loggedUser: null, follows: null, followers: null }
 ///REDUCERS
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
+        case UNFOLLOW:
+            console.log(action.payload)
+            const unfollowState = { ...state }
+            // for (const key in unfollowState) {
+            //     if (key === 'follows') {
+            //         delete key
+            //     }
+            // }
+
+            console.log(unfollowState)
+            delete unfollowState['follows'][action.payload.follow.id]
+            console.log(unfollowState)
+
+            return unfollowState;
+
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }
             getLoggedUserFollowingState.loggedUser = action.payload
@@ -135,10 +150,7 @@ const followReducer = (state = initialState, action) => {
             followState.follows = test
             return followState
 
-        // case UNFOLLOW:
-        //     const unfollowState = { ...state }
-        //     delete unfollowState.follows[action.payload.id]
-        //     return unfollowState;
+
 
         default:
             return state;
