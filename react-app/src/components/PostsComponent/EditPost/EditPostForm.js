@@ -5,7 +5,6 @@ import "./EditPostForm.css";
 
 function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
   const dispatch = useDispatch();
-  // const posts = Object.values(useSelector((state) => state.posts));
   const userInfo = Object.values(useSelector((state) => state.users))[0];
   const [caption, setCaption] = useState(post.caption);
   const curr_img = post.post_url;
@@ -36,11 +35,11 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
         <div className="edit-post-container">
           <div className="edit-post-container-top">
             <div>
-              <button onClick={handleCancelBtn}>Cancel</button>
+              <button className="edit-post-button ep-cancel" onClick={handleCancelBtn}>Cancel</button>
             </div>
             <h3>Edit info</h3>
             <div>
-              <button type="submit">Done</button>
+              <button className="edit-post-button ep-done" type="submit">Done</button>
             </div>
           </div>
           <div className="edit-post-content">

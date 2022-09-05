@@ -10,6 +10,16 @@
   padding: 0 1em;
 }
 
+.edit-post-button {
+  border: none;
+  background-color: transparent;
+}
+
+.ep-done {
+  color: #0095F6;
+  font-weight: bold;
+}
+
 .edit-post-content {
   display: flex;
   flex-direction: row;

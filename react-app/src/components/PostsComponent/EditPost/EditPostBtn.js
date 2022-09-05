@@ -8,7 +8,7 @@ function EditPostBtn({post}) {
 
   return (
     <>
-      <button className="edit-post-button" onClick={() => setShowMenuButtons(true)}>...</button>
+      <button className="edit-post-menu-button" onClick={() => setShowMenuButtons(true)}>...</button>
       {showMenuButtons && (
         <Modal onClose={() => setShowMenuButtons(false)}>
           <PostMenu post={post} setShowMenuButtons={setShowMenuButtons}/>
