@@ -20,6 +20,14 @@
   font-weight: 600;
 }
 
+.ep-done:active {
+  color: #8accf8;
+}
+
+.ep-cancel:active {
+  color: rgb(128, 128, 128)
+}
+
 .edit-post-content {
   display: flex;
   flex-direction: row;
@@ -30,6 +38,7 @@
 .edit-post-image-content {
   background-repeat: no-repeat;
   background-size: contain;
+  border-top: 1px solid lightgray;
   /* padding: 0.5em; */
 }
 
@@ -40,6 +49,8 @@
   height: 25rem;
   background-repeat: no-repeat;
   display: block;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
 
 .edit-post-user-info {
@@ -69,6 +80,6 @@
   height: 15.2vh;
   padding: 0 1em;
   font-size: 16px;
-  /* border-color: darkgray; */
   border: none;
+  outline: none;
 }

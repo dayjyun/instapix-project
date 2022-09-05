@@ -57,7 +57,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
               <div className="edit-post-image-caption">
                 <label></label>
                 <textarea
-                  maxLength="2000"
+                  maxLength="2200"
                   className="edit-post-text-area"
                   type="text"
                   value={caption}
