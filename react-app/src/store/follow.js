@@ -101,19 +101,18 @@ const initialState = { loggedUser: null, follows: null, followers: null }
 const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case UNFOLLOW:
-            console.log(action.payload)
             const unfollowState = { ...state }
-            // for (const key in unfollowState) {
-            //     if (key === 'follows') {
-            //         delete key
-            //     }
-            // }
-
-            console.log(unfollowState)
             delete unfollowState['follows'][action.payload.follow.id]
-            console.log(unfollowState)
 
             return unfollowState;
+
+        case FOLLOW:
+            const followState = { ...state }
+            const test = {}
+            test[action.payload.follow.id] = action.payload
+
+            followState.follows = test
+            return followState
 
         case GET_LOGGED_USER_FOLLOWING:
             const getLoggedUserFollowingState = { ...state }
@@ -141,15 +140,6 @@ const followReducer = (state = initialState, action) => {
 
             getFollowersState['followers'] = follower
             return getFollowersState;
-
-        case FOLLOW:
-            const followState = { ...state }
-            const test = {}
-            test[action.payload.follow.id] = action.payload
-
-            followState.follows = test
-            return followState
-
 
 
         default:
