@@ -24,8 +24,6 @@ const FollowButton = ({ user, follow, loggedUserFollows }) => {
                     return
                 }
             }
-            console.log(followButton)
-            // setFollowButton(true)
         }
         if (!yes) {
             setFollowButton(true)
