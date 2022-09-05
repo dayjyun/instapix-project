@@ -15,7 +15,7 @@ function GetPost({ post }) {
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
 
-  console.log("HERE", userInfo);
+  console.log("HERE", posts);
 
   //   posts.user_id = User.id
 
@@ -32,7 +32,7 @@ function GetPost({ post }) {
   let editPostBtn;
 
   if (currUser?.id == +userId) {
-    editPostBtn = <EditPostBtn />;
+    editPostBtn = <EditPostBtn post={post}/>;
   }
 
   return (

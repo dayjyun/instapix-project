@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { editPost } from "../../../store/posts";
 import "./EditPostForm.css";
 
-function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
+function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
   const dispatch = useDispatch();
   const { postId } = useParams();
   // const currUser = useSelector((state) => state.session.user);
@@ -20,7 +20,7 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost }) {
 
     dispatch(
       editPost({
-        id: postId,
+        id: post.id,
         caption
       })
     ).then(() => {

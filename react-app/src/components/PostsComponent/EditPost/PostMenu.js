@@ -7,16 +7,15 @@ import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
 import "./PostMenu.css";
 
-function PostMenu({ setShowMenuButtons }) {
+function PostMenu({ setShowMenuButtons, post }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const currUser = useSelector((state) => state.session.user);
-  const { postId } = useParams();
   const [showEditPost, setShowEditPost] = useState(false);
-  console.log(postId);
+
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
-    await dispatch(deletePost(+postId));
+    await dispatch(deletePost(+post.id));
     alert("Post successfully deleted");
     history.push(`/users/${currUser?.id}`);
   };
