@@ -92,6 +92,7 @@
     border-bottom: 1px solid lightgray;
     /* margin: 5px; */
     font-family: 'Arimo', sans-serif;
+    /* cursor: pointer; */
 }
 
 .post-caption-container {
@@ -122,6 +123,7 @@
 .profile-pic-username {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .post-user-profile-pic {
@@ -162,6 +164,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    cursor: pointer;
 }
 
 .profile-caption-pic {
