@@ -8,7 +8,7 @@ function GetPostModal({ post }) {
 
   return (
     <div className="explore-post-container">
-      <button className="explore-post-button"
+      <button className="explore-post-button-wrap"
         style={{ backgroundColor: "transparent", border: "none" }}
         onClick={() => setShowModal(true)}
       >

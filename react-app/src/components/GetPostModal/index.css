@@ -1,29 +1,28 @@
-.explore-post-button {
+.explore-post-button-wrap {
   position: relative;
   overflow: hidden;
 }
 
-.explore-post-button > img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1/1;
+.explore-post-button-wrap > img {
+  /* display: block; */
+  /* aspect-ratio: 1/1; */
   object-fit: cover;
   object-position: center;
 }
 
-.explore-post-button:hover > img.explore-post-image {
+.explore-post-button-wrap:hover > img.explore-post-image {
   filter: brightness(70%);
 }
 
-.explore-post-button > .explore-post-text {
+.explore-post-button-wrap > .explore-post-text {
   opacity: 0;
 }
 
-.explore-post-button:hover > .explore-post-text {
+.explore-post-button-wrap:hover > .explore-post-text {
   opacity: 1;
 }
 
-.explore-post-button > div {
+.explore-post-button-wrap > div {
   position: absolute;
   inset: 0;
   padding: 1rem;
@@ -38,7 +37,6 @@
   justify-content: center;
   align-items: center;
   align-self: center;
-  z-index: 1;
-  /* color: transparent; */
+  z-index: auto;
   color: white;
 }
