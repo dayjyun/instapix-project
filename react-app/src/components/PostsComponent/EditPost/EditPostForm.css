@@ -50,14 +50,11 @@
   height: 25rem;
   background-repeat: no-repeat;
   display: block;
-  /* border-top: 1px solid lightgray; */
-  /* border-right: 1px solid lightgray; */
 }
 
 .edit-post-user-info {
   display: flex;
   align-items: center;
-  /* border-top: 1px solid lightgray; */
   padding: 0.5em 1em;
 
 }
@@ -88,5 +85,4 @@
   font-family: 'Arimo', sans-serif;;
 }
 
-/* Image is bleeding out of container.  */
 /* If screen is smaller, only make image show  */

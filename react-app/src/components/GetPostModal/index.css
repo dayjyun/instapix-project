@@ -31,10 +31,19 @@
 }
 
 .explore-post-text {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  z-index: auto;
+  display: flex;
   color: white;
+}
+
+.explore-post-text-likes, .explore-post-text-comments {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 .6rem;
+}
+
+.ep-likes,
+.ep-comments {
+  display: flex;
+  padding: .4rem;
 }
