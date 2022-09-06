@@ -21,12 +21,6 @@ function ExplorerPosts() {
             <div className="explore-post-card">
               <GetPostModal post={post} />
             </div>
-            {/* <div className="explore-post-text">
-              <i className="fa-sharp fa-solid fa-heart"></i>
-              <p className="ept-likes">{post?.likes}</p>
-              <i className="fa-sharp fa-solid fa-comment"></i>
-              <p className="ept-comments">{post?.num_comments}</p>
-            </div> */}
           </li>
         ))}
       </div>

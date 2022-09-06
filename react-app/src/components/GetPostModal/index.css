@@ -4,8 +4,6 @@
 }
 
 .explore-post-button-wrap > img {
-  /* display: block; */
-  /* aspect-ratio: 1/1; */
   object-fit: cover;
   object-position: center;
 }
