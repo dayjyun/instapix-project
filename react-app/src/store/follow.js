@@ -130,10 +130,6 @@ const followReducer = (state = initialState, action) => {
             getLoggedUserFollowingState['loggedUser'] = user
             return getLoggedUserFollowingState;
 
-        // const getLoggedUserFollowingState = { ...state }
-        // getLoggedUserFollowingState.loggedUser = action.payload
-        // return getLoggedUserFollowingState;
-
         case GET_FOLLOWING:
             const getFollowingState = { ...state }
             let follows = {}

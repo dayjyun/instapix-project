@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { postFollowBackend, deleteFollowBackend, getLoggedUserFollowingBackend } from "../../../store/follow";
 import { useState, useEffect } from 'react';
-
+import "../FollowModal.css"
 
 const FollowButton = ({ user, follow }) => {
     const dispatch = useDispatch()
@@ -56,13 +56,13 @@ const FollowButton = ({ user, follow }) => {
             {followButton && (
                 <>
                     <div className='follower-follow-btn'>
-                        <button id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
+                        <button className='follow-button-styling' id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
                     </div>
                 </>
             )}
             {!followButton && (
                 <div className='follower-follow-btn'>
-                    <button id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
+                    <button className='follow-button-styling' id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
                 </div>
             )}
         </>

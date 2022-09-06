@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
-import './UserComponent.css'
-import { useDispatch, useSelector } from 'react-redux';
 import { getOneUser } from '../../store/users'
 import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend } from '../../store/follow'
+import UserGetPostModal from '../GetPostModal/usersGetPost';
+import './UserComponent.css'
+
 
 function User() {
   const { userId } = useParams();
@@ -15,6 +17,7 @@ function User() {
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
   const follows = useSelector(state => state.follow)
+
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
@@ -61,29 +64,37 @@ function User() {
               </div>
 
               <div className='user-name-bio' >
-                <p><span className='bold'>{user?.first_name}</span></p>
-                <p>{user?.bio}</p>
+                <p className='username-styling'><span className='bold'>{user?.first_name}</span></p>
+                <p className='username-styling'>{user?.bio}</p>
               </div>
 
             </div>
           </div>
 
           <hr className="solid"></hr>
-
           <div className='user-posts-collection'>
             {user?.posts?.map(post => {
               return (
-                <div className='user-post-card'>
-                  <img src={post?.post_url} className='user-img-card' />
-                </div>
+                <UserGetPostModal post={post} />
+                // <>
+                //   <div className='user-post-card'>
+                //     <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
+
+                //     <div className='likes-comments-stats'>
+                //       <p className='like-comment-p'>
+                //         <i class="fa-solid fa-heart icon-styling"></i>
+                //         {post.likes}
+                //         <i class="fa-solid fa-comment icon-styling-2"></i>{post.num_comments}</p>
+                //     </div>
+                //   </div>
+
+                // </>
               )
             })}
           </div>
         </div>
       )}
     </>
-
-
   );
 }
 export default User;

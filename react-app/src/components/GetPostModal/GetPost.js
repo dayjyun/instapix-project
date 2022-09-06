@@ -33,7 +33,7 @@ function GetPost({ post }) {
   let editPostBtn;
 
   if (currUser?.id == +userId) {
-    editPostBtn = <EditPostBtn post={post}/>;
+    editPostBtn = <EditPostBtn post={post} />;
   }
 
   return (
@@ -56,12 +56,12 @@ function GetPost({ post }) {
           {currUser?.id === post.user_id ? editPostBtn : "menu"}
         </div>
         <div className="post-caption-container">
-            <img
-              onClick={() => userProfile(post?.user_id)}
-              className="comment-profile-pic"
-              src={getUser(post?.user_id)?.profile_image}
-              alt="preview"
-            ></img>
+          <img
+            onClick={() => userProfile(post?.user_id)}
+            className="comment-profile-pic"
+            src={getUser(post?.user_id)?.profile_image}
+            alt="preview"
+          ></img>
           <div className="post-username-text" onClick={() => userProfile(post?.user_id)}>
             {getUser(post?.user_id)?.username}
           </div>

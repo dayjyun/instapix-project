@@ -12,6 +12,16 @@
     margin-left: -.75%
 }
 
+button {
+    display: block;
+    background-color: white;
+    border: .5px solid lightgray;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 7px 10px;
+    font-family: 'Arimo', sans-serif;
+}
+
 button:hover {
     cursor: pointer;
 }
@@ -19,7 +29,7 @@ button:hover {
 h2 {
     font-family: 'Arimo', sans-serif;
     font-weight: 300;
-    font-size: 25px;
+    font-size: 28px;
     margin: 0;
 }
 
