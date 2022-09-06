@@ -18,18 +18,10 @@ function User() {
   user = user[0]
   const follows = useSelector(state => state.follow)
 
-  console.log(parseInt(userId))
 
   useEffect(() => {
-    console.log(parseInt(userId))
-
     dispatch(getOneUser(parseInt(userId)))
   }, [dispatch, userId])
-
-
-
-
-
 
   useEffect(() => {
     dispatch(getLoggedUserFollowingBackend(loggedUser?.id))

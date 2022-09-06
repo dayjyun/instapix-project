@@ -4,6 +4,7 @@ import GetPost from "./GetPost";
 import "./index.css";
 import "./GetPost.css";
 
+
 function GetPostModal({ post }) {
   const [showModal, setShowModal] = useState(false);
 

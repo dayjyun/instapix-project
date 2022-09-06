@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState } from "react";
 import { PostModal } from "../../context/Modal";
 import GetPost from "./GetPost";
-import { getOneUser } from "../../store/users";
 import "./index.css";
 import "./GetPost.css";
 import '../UserComponent/UserComponent.css'
 
+
 function UserGetPostModal({ post }) {
-  const dispatch = useDispatch()
   const [showModal, setShowModal] = useState(false);
-
-  const user = useSelector(state => state.users)
-
-  useEffect(() => {
-    dispatch(getOneUser(user?.id))
-  })
+  console.log(showModal)
 
   return (
     <>
