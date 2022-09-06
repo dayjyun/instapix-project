@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { PostModal } from "../../context/Modal";
 import GetPost from "./GetPost";
 import "./index.css";
+import "./GetPost.css";
 
 function GetPostModal({ post }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="explore-post-container">
+    <>
       <button className="explore-post-button-wrap"
         style={{ backgroundColor: "transparent", border: "none" }}
         onClick={() => setShowModal(true)}
@@ -26,7 +27,7 @@ function GetPostModal({ post }) {
           <GetPost post={post} />
         </PostModal>
       )}
-    </div>
+    </>
   );
 }
 
