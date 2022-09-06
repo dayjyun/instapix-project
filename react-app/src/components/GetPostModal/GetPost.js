@@ -7,13 +7,10 @@ import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
 
 function GetPost({ post }) {
-  const posts = useSelector((state) => Object.values(state.posts));
+  const history = useHistory();
+  const dispatch = useDispatch();
   const allUsers = Object.values(useSelector(state => state.users));
   const currUser = useSelector((state) => state.session.user);
-  const userId = posts.map((post) => post?.user_id)[0];
-
-  const history = useHistory()
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(postActions.getPost(post?.id));
@@ -32,7 +29,7 @@ function GetPost({ post }) {
 
   let editPostBtn;
 
-  if (currUser?.id == +userId) {
+  if (currUser?.id == post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
   }
 
@@ -54,6 +51,7 @@ function GetPost({ post }) {
             </div>
           </div>
           {currUser?.id === post.user_id ? editPostBtn : "menu"}
+          {/* {editPostBtn} */}
         </div>
         <div className="post-caption-container">
           <img
