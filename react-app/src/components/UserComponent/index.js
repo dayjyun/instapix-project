@@ -61,8 +61,8 @@ function User() {
               </div>
 
               <div className='user-name-bio' >
-                <p><span className='bold'>{user?.first_name}</span></p>
-                <p>{user?.bio}</p>
+                <p className='username-styling'><span className='bold'>{user?.first_name}</span></p>
+                <p className='username-styling'>{user?.bio}</p>
               </div>
 
             </div>
@@ -73,9 +73,18 @@ function User() {
           <div className='user-posts-collection'>
             {user?.posts?.map(post => {
               return (
-                <div className='user-post-card'>
-                  <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
-                </div>
+                <>
+                  <div className='user-post-card'>
+                    <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
+                  </div>
+
+                  <div className='likes-comments-stats'>
+                    <p className='like-comment-p'>
+                      <i class="fa-solid fa-heart icon-styling"></i>
+                      {post.likes}
+                      <i class="fa-solid fa-comment icon-styling-2"></i>{post.num_comments}</p>
+                  </div>
+                </>
               )
             })}
           </div>
