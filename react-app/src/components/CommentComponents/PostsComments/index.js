@@ -18,13 +18,11 @@ const PostsComments = ({ post }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(postActions.loadAllPosts())
         dispatch(commentActions.loadPostComments(post?.id))
     }, [dispatch])
 
 
     const getCreatedDate = (datestr) => {
-        // const now = new Date()
         const fullDate = new Date(datestr).toDateString()
         const date = fullDate.slice(4)
         return date
@@ -34,7 +32,6 @@ const PostsComments = ({ post }) => {
         history.push(`/users/${userId}`)
         history.go(0)
     }
-
 
 
     return (
@@ -70,6 +67,14 @@ const PostsComments = ({ post }) => {
                     ))}
                 </ul>
                 <div>
+                    <div className="likes-comment-container">
+                        <div className="heart-comment-bubble">
+                            <div><i className="fa-regular fa-heart heart-likes"></i></div>
+                            <div><i className="fa-regular fa-comment comment-bubble"></i></div>
+                        </div>
+                        <div className="post-likes">{post?.likes} likes</div>
+                        <div className="post-date">{getCreatedDate(post?.created_at)}</div>
+                    </div>
                     <CreateComment post={post} />
                 </div>
             </div>
