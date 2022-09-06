@@ -26,6 +26,7 @@
   gap: 1.5em;
   height: 35vh;
   width: 35vh;
+  /* padding: 8em 13em; */
 }
 .explore-post-card {
   height: 35vh;
@@ -53,4 +54,20 @@
   border: none;
   outline: none;
   background-color: white;
+}
+
+.explore-post-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: auto;
+}
+
+.explore-post-text:hover {
+  color: white;
+}
+
+.ept-likes,
+.ept-comments {
+  padding: 0 1em;
 }

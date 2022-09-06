@@ -38,7 +38,7 @@ function PostComponent() {
               <div className="post-username">
                 <h3>{userId}</h3>
               </div>
-              {currUser?.id === post.user_id ? editPostBtn : ""}
+              {editPostBtn}
             </div>
             <div className="post-page-user-details">
               <div>{post?.caption}</div>
