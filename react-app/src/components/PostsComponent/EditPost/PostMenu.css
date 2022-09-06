@@ -20,9 +20,9 @@
   vertical-align: middle;
   width: 100%;
 }
-.pmb:hover {
+
+.pmb:active {
   background-color: #e6e6e6;
-  border-radius: 1rem;
 }
 
 .pmb.delete {

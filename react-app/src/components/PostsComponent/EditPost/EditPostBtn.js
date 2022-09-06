@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "../../../context/Modal";
+import { Modal, ModalSmall } from "../../../context/Modal";
 import PostMenu from "./PostMenu";
 import './EditPostBtn.css'
 
