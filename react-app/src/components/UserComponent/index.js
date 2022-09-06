@@ -78,12 +78,12 @@ function User() {
                     <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
                   </div>
 
-                  <div className='likes-comments-stats'>
-                    <p className='like-comment-p'>
-                      <i class="fa-solid fa-heart icon-styling"></i>
-                      {post.likes}
-                      <i class="fa-solid fa-comment icon-styling-2"></i>{post.num_comments}</p>
-                  </div>
+                  {/* <div className='likes-comments-stats'> */}
+                  <p className='like-comment-p'>
+                    <i class="fa-solid fa-heart icon-styling"></i>
+                    {post.likes}
+                    <i class="fa-solid fa-comment icon-styling-2"></i>{post.num_comments}</p>
+                  {/* </div> */}
                 </>
               )
             })}

@@ -84,9 +84,11 @@
 }
 
 .like-comment-p {
-    padding: 40% 30%;
+    /* padding: 40% 30%; */
     font-size: 18px;
     /* visibility: hidden; */
+    position: absolute;
+    background-color: red;
     z-index: 30;
 }
 
