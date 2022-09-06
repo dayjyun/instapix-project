@@ -149,10 +149,9 @@
 #edit-comment-modal-content {
   position: absolute;
   background-color: white;
-  border-radius: 1em;
+  border-radius: 0.5em;
   overflow: auto;
-  height: 3em;
-  padding: 0 3px;
+  height: 3.5em;
   width: 300px;
   display: flex;
   justify-content: center;

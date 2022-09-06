@@ -40,10 +40,10 @@
 }
 
 .image-content {
-    border-top: 30px solid black;
-    border-bottom: 30px solid black;
+    /* border-top: 30px solid black;
+    border-bottom: 30px solid black; */
     width: 100%;
-    height: 91%;
+    height: 100%;
     display: grid;
     background-repeat: no-repeat;
     background-size: contain;
