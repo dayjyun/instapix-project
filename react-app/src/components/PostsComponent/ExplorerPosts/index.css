@@ -57,22 +57,23 @@
 }
 
 .explore-post-card:hover {
-  filter: brightness(70%);
-  color: white;
+  /* filter: brightness(70%); */
+  /* color: white; */
 }
 
-.explore-post-text {
+/* .explore-post-text {
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: auto;
-}
+  color: red;
+} */
 
-.explore-post-text:hover {
+/* .explore-post-text:hover {
   color: white;
-}
+} */
 
-.ept-likes,
+/* .ept-likes,
 .ept-comments {
   padding: 0 1em;
-}
+} */
