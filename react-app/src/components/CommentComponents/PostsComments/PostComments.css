@@ -115,13 +115,23 @@
     flex-direction: row;
 }
 
-.heart-likes {
+.heart-likes-hollow {
     margin: 6px 6px 6px 4px;
     font-size: 20px;
 }
 
-.heart-likes:hover {
+.heart-likes-hollow:hover {
     color: rgb(0, 0, 0, 0.6);
+}
+
+.heart-likes-solid {
+    margin: 6px 6px 6px 4px;
+    font-size: 20px;
+    color: red;
+}
+
+.heart-likes-solid:hover {
+    color: rgb(255, 0, 0, 0.7)
 }
 
 .comment-bubble {

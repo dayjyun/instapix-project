@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import * as userActions from '../../../store/users';
+import * as likeActions from '../../../store/likes';
 import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
@@ -12,14 +12,21 @@ const PostsComments = ({ post }) => {
     // const { postId } = useParams()
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments))
+    const likes = useSelector(state => Object.values(state.likes))
     const [editing, setEditing] = useState(false);
+    const [liked, setLiked] = useState(false);
+
+    console.log('LIKES',likes)
+    console.log('POST',post);
 
     const history = useHistory();
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    useEffect(async () => {
+        await currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
-    }, [dispatch])
+        dispatch(likeActions.fetchLike(post?.id))
+    }, [dispatch, post])
 
 
     const getCreatedDate = (datestr) => {
@@ -32,6 +39,15 @@ const PostsComments = ({ post }) => {
         history.push(`/users/${userId}`)
         history.go(0)
     }
+
+    const currUserLiked = () => {
+        const userIds = likes.map(like => like.user_id);
+        setLiked(userIds.includes(user?.id))
+    }
+
+    let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
+
+    let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
 
 
     return (
@@ -69,7 +85,7 @@ const PostsComments = ({ post }) => {
                 <div>
                     <div className="likes-comment-container">
                         <div className="heart-comment-bubble">
-                            <div><i className="fa-regular fa-heart heart-likes"></i></div>
+                            <div>{liked ? postLiked : postNotLiked}</div>
                             <div><i className="fa-regular fa-comment comment-bubble"></i></div>
                         </div>
                         <div className="post-likes">{post?.likes} likes</div>
