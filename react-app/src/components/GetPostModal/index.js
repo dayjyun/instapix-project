@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PostModal } from "../../context/Modal";
 import GetPost from "./GetPost";
-import "./GetPost.css";
+import "./index.css";
 
 function GetPostModal({ post }) {
   const [showModal, setShowModal] = useState(false);
