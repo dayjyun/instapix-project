@@ -4,14 +4,14 @@ import EditComment from "./EditComment";
 import './EditComment.css'
 
 function EditCommentModal({comment}) {
-  const [showModal, setShowModal] = useState(false);
+//   const [showModal, setShowModal] = useState(false);
   const [showMenuButtons, setShowMenuButtons] = useState(false);
 
 
   return (
     <>
-      <button className="edit-comment-modal" onClick={() => setShowModal(true)}>...</button>
-      {showModal && (
+      <button className="edit-comment-modal" onClick={() => setShowMenuButtons(true)}>...</button>
+      {showMenuButtons && (
         <ModalSmall onClose={() => setShowMenuButtons(false)}>
           <EditComment setShowMenuButtons={setShowMenuButtons} comment={comment}/>
         </ModalSmall>

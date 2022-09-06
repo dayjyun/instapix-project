@@ -39,7 +39,7 @@ const EditCommentForm = ({setShowEditPost, setShowMenuButtons, comment}) => {
                         <label htmlFor='title'>Body</label>
                         <input type='text' name='body' value={body} placeholder={comment?.body} onChange={(e) => setBody(e.target.value)} />
                     </div>
-                    <div >
+                    <div>
                         <button>Done</button>
                     </div>
                 </form>

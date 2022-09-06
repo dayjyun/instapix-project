@@ -11,9 +11,9 @@ function EditComment({ setShowMenuButtons, comment }) {
   const history = useHistory();
   const currUser = useSelector((state) => state.session.user);
   const commentId = comment?.id;
-  const [showEditPost, setShowEditPost] = useState(false);
+  const [showEditComment, setShowEditComment] = useState(false);
 
-  const handleDeletePostBtn = async (e) => {
+  const handleDeleteCommentBtn = async (e) => {
     e.preventDefault();
     await dispatch(removeComment(commentId));
     alert("Comment successfully deleted");
@@ -21,29 +21,31 @@ function EditComment({ setShowMenuButtons, comment }) {
   };
 
   const handleOnClose = () => {
-    setShowEditPost(false);
+    setShowEditComment(false);
     setShowMenuButtons(false);
   };
 
   const handleCancelBtn = (e) => {
     e.preventDefault();
+    setShowEditComment(false);
     setShowMenuButtons(false);
+
   };
 
   return (
     <div className="post-menu-buttons-container">
-      <button className="pmb delete" onClick={handleDeletePostBtn}>
+      <button className="pmb delete" onClick={handleDeleteCommentBtn}>
         Delete
       </button>
-      <button className="pmb edit" onClick={() => setShowEditPost(true)}>
+      <button className="pmb edit" onClick={() => setShowEditComment(true)}>
         Edit
       </button>
-      {showEditPost && (
+      {showEditComment && (
           <Modal onClose={handleOnClose}>
             {/* <EditModal onClose={handleOnClose}> */}
             <EditCommentForm
               setShowMenuButtons={setShowMenuButtons}
-              setShowEditPost={setShowEditPost}
+              setShowEditComment={setShowEditComment}
               comment={comment}
             />
             {/* </EditModal> */}
