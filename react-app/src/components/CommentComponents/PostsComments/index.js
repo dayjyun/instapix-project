@@ -10,15 +10,10 @@ import './PostComments.css'
 const PostsComments = ({ post }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments))
-    const likes = useSelector(state => Object.values(state.likes))
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
+    const likes = useSelector(state => Object.values(state.likes))
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
-    // const likeBtn = useRef(null);
-
-
-    // console.log('LIKES',post.real_likes)
-    // console.log('POST',post);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -27,8 +22,10 @@ const PostsComments = ({ post }) => {
         await currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
         dispatch(likeActions.fetchLike(post?.id))
-    }, [dispatch, post])
+    }, [dispatch, post, likes.length])
 
+    console.log('REALLIKES>>>>>>>>',post.real_likes);
+    console.log('LIKESSTATE>>>>>>>>',likes);
 
     const getCreatedDate = (datestr) => {
         const fullDate = new Date(datestr).toDateString()
@@ -48,6 +45,7 @@ const PostsComments = ({ post }) => {
     const likePost = async () => {
         if (likesUserIds?.includes(user?.id)) {
             await dispatch(likeActions.unlike(post?.id))
+
         } else {
             await dispatch(likeActions.like(post?.id))
         }
@@ -94,7 +92,7 @@ const PostsComments = ({ post }) => {
                         <div className="post-likes">{post?.likes} likes</div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
-                    <CreateComment  inputEl={inputEl} post={post} />
+                    <CreateComment inputEl={inputEl} post={post} />
                 </div>
             </div>
         </>
