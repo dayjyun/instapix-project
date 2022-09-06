@@ -22,7 +22,8 @@ export const fetchLike = postId => async dispatch => {
 
     if (res.ok) {
         const parsedRes = await res.json()
-        await dispatch(getLike(parsedRes.Likes))
+        await dispatch(getLike(parsedRes))
+        // await dispatch(getLike(parsedRes.Likes))
         return res
     }
 }
@@ -58,8 +59,9 @@ export const unlike = postId => async dispatch => {
 const likesReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_LIKE:
-            const setLikeState = { ...state }
-            action.payload?.forEach(like => {
+            // const setLikeState = { ...state }
+            const setLikeState = {}
+            action.payload?.likes?.forEach(like => {
                 setLikeState[like.id] = like
             });
             return setLikeState
