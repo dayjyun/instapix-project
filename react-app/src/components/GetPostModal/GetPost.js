@@ -12,7 +12,6 @@ function GetPost({ post }) {
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
 
-  // console.log("HERE", allUsers);
   const history = useHistory()
   const dispatch = useDispatch();
 
