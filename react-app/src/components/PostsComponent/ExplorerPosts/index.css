@@ -55,24 +55,3 @@
   outline: none;
   background-color: white;
 }
-
-.explore-post-card:hover {
-  filter: brightness(70%);
-  color: white;
-}
-
-.explore-post-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: auto;
-}
-
-.explore-post-text:hover {
-  color: white;
-}
-
-.ept-likes,
-.ept-comments {
-  padding: 0 1em;
-}
