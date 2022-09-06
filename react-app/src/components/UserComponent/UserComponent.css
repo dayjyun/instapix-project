@@ -69,39 +69,24 @@
 .likes-comments-stats {
     width: 16em;
     height: 16em;
-    z-index: 30;
+    z-index: 2;
     position: absolute;
     text-align: center;
     color: white;
-    /* opacity: 0; */
-    /* visibility: hidden; */
+    opacity: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, .4)
 }
 
 .likes-comments-stats:hover {
     opacity: 1;
-    /* visibility: visible; */
 }
 
 .like-comment-p {
-    /* padding: 40% 30%; */
     font-size: 18px;
-    /* visibility: hidden; */
-    position: absolute;
-    background-color: red;
-    z-index: 30;
+    padding-top: 40%;
+
 }
-
-
-
-/* .like-comment-p:hover .likes-comments-stats {
-    padding: 40% 30%;
-    font-size: 18px;
-    visibility: visible;
-    opacity: 1;
-    z-index: 30;
-
-} */
 
 
 .icon-styling {
@@ -122,18 +107,23 @@
     width: 16em;
     height: 16em;
     z-index: 3;
+    position: relative;
 }
 
-.user-post-card:hover {
+/* .user-post-card:hover {
     filter: grayscale(.2) brightness(80%);
-}
+
+    .like-comment-p{
+
+    }
+} */
 
 .user-img-card {
     width: 100%;
     height: 100%;
     object-fit: cover;
     overflow: hidden;
-    z-index: 3;
+    z-index: 1;
 
 }
 
