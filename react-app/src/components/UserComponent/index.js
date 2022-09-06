@@ -74,7 +74,7 @@ function User() {
             {user?.posts?.map(post => {
               return (
                 <div className='user-post-card'>
-                  <img src={post?.post_url} className='user-img-card' />
+                  <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
                 </div>
               )
             })}
