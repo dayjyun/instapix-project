@@ -4,6 +4,8 @@
 }
 
 .explore-post-button-wrap > img {
+  /* display: block; */
+  /* aspect-ratio: 1/1; */
   object-fit: cover;
   object-position: center;
 }
@@ -31,19 +33,10 @@
 }
 
 .explore-post-text {
-  display: flex;
-  color: white;
-}
-
-.explore-post-text-likes, .explore-post-text-comments {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  justify-content: center;
   align-items: center;
-  padding: 0 .6rem;
-}
-
-.ep-likes,
-.ep-comments {
-  display: flex;
-  padding: .4rem;
+  align-self: center;
+  z-index: auto;
+  color: white;
 }

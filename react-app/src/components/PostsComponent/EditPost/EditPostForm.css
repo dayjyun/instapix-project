@@ -1,6 +1,7 @@
 .edit-post-container {
   grid-template-rows: 8% 92%;
   border-radius: 1em;
+  border: 2px solid red;
   padding: 0 1em;
 }
 
@@ -9,7 +10,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 1em;
-  border-bottom: 1px solid lightgray;
 }
 
 .edit-post-form-button {
@@ -34,13 +34,12 @@
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-
 }
 
 .edit-post-image-content {
   background-repeat: no-repeat;
   background-size: contain;
-  border-right: 1px solid lightgray;
+  border-top: 1px solid lightgray;
 }
 
 .edit-post-image {
@@ -50,13 +49,15 @@
   height: 25rem;
   background-repeat: no-repeat;
   display: block;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
 
 .edit-post-user-info {
   display: flex;
   align-items: center;
+  border-top: 1px solid lightgray;
   padding: 0.5em 1em;
-
 }
 
 .edit-post-image-caption {
@@ -82,7 +83,7 @@
   border: none;
   outline: none;
   box-sizing: border-box;
-  font-family: 'Arimo', sans-serif;;
 }
 
+/* Image is bleeding out of container.  */
 /* If screen is smaller, only make image show  */
