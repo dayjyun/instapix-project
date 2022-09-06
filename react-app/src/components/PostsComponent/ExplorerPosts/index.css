@@ -56,11 +56,6 @@
   background-color: white;
 }
 
-.explore-post-card:hover {
-  filter: brightness(70%);
-  color: white;
-}
-
 .explore-post-text {
   display: flex;
   justify-content: center;
