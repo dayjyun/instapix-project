@@ -4,11 +4,10 @@ import { useParams, useHistory } from "react-router-dom";
 import * as commentActions from '../../../store/comments';
 import './EditComment.css'
 
-const EditCommentForm = ({setShowEditPost, setShowMenuButtons, comment}) => {
+const EditCommentForm = ({setShowEditComment, setShowMenuButtons, comment}) => {
     // const { commentId } = useParams()
     // const comment = useSelector((state) => state.comments[commentId]);
     const [body, setBody] = useState('');
-
 
     // const history = useHistory();
     const dispatch = useDispatch();
@@ -20,31 +19,18 @@ const EditCommentForm = ({setShowEditPost, setShowMenuButtons, comment}) => {
             body
         }, comment?.id))
         .then(() => {
-          setShowEditPost(false);
+          setShowEditComment(false);
           setShowMenuButtons(false);
         });
       };
 
-    //   const handleCancelBtn = (e) => {
-    //     e.preventDefault();
-    //     setShowEditPost(false);
-    //     setShowMenuButtons(false);
-    //   };
-
     return (
-        <>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div className='input-container'>
-                        <label htmlFor='title'>Body</label>
-                        <input type='text' name='body' value={body} placeholder={comment?.body} onChange={(e) => setBody(e.target.value)} />
-                    </div>
-                    <div>
-                        <button>Done</button>
-                    </div>
-                </form>
-            </div>
-        </>
+            <form onSubmit={handleSubmit} className='edit-comment-form'>
+                <div className='input-container'>
+                    <input className='comment-body-input' type='text' name='body' value={body} placeholder={comment?.body} onChange={(e) => setBody(e.target.value)} />
+                    <button>Done</button>
+                </div>
+            </form>
     );
 };
 

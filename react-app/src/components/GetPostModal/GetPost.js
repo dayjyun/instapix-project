@@ -12,7 +12,7 @@ function GetPost({ post }) {
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
 
-  console.log("HERE", allUsers);
+  // console.log("HERE", allUsers);
   const history = useHistory()
   const dispatch = useDispatch();
 
@@ -26,9 +26,7 @@ function GetPost({ post }) {
     return user;
   };
 
-  const userProfile = (e, userId) => {
-    e.preventDefault()
-
+  const userProfile = (userId) => {
     history.push(`/users/${userId}`)
     history.go(0)
   }
@@ -46,7 +44,7 @@ function GetPost({ post }) {
       </div>
       <div className="caption-comment-container">
         <div className="user-info-container">
-          <div className="profile-pic-username" onClick={(e) => userProfile(e, post?.user_id)}>
+          <div className="profile-pic-username" onClick={() => userProfile(post?.user_id)}>
             <img
               className="comment-profile-pic"
               src={getUser(post?.user_id)?.profile_image}
