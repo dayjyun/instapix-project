@@ -53,7 +53,7 @@ function GetPost({ post }) {
               {getUser(post?.user_id)?.username}
             </div>
           </div>
-          {currUser?.id === post.user_id ? editPostBtn : ""}
+          {currUser?.id === post.user_id ? editPostBtn : "menu"}
         </div>
         <div className="post-caption-container">
             <img
