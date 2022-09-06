@@ -11,6 +11,7 @@ function GetPost({ post }) {
   const allUsers = Object.values(useSelector(state => state.users));
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
+  // const likes = useSelector(state => Object.values(state.likes));
 
   const history = useHistory()
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ function GetPost({ post }) {
           </div>
         </div>
         <div className="post-modal-comments">
-          <PostsComments post={post} />
+          <PostsComments  post={post} />
         </div>
       </div>
     </div>

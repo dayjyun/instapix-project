@@ -9,9 +9,9 @@ import './PostComments.css'
 
 const PostsComments = ({ post }) => {
     const user = useSelector(state => state.session.user)
-    const comments = useSelector((state) => Object.values(state.comments))
+    const comments = useSelector((state) => Object.values(state.comments));
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
-    const likes = useSelector(state => Object.values(state.likes))
+    const likes = useSelector(state => Object.values(state.likes));
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
 
@@ -22,7 +22,7 @@ const PostsComments = ({ post }) => {
         await currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
         dispatch(likeActions.fetchLike(post?.id))
-    }, [dispatch, post, likes.length])
+    }, [dispatch, post])
 
     console.log('REALLIKES>>>>>>>>',post.real_likes);
     console.log('LIKESSTATE>>>>>>>>',likes);
