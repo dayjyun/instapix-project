@@ -35,11 +35,18 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
         <div className="edit-post-container">
           <div className="edit-post-container-top">
             <div>
-              <button className="edit-post-form-button ep-cancel" onClick={handleCancelBtn}>Cancel</button>
+              <button
+                className="edit-post-form-button ep-cancel"
+                onClick={handleCancelBtn}
+              >
+                Cancel
+              </button>
             </div>
             <h3>Edit info</h3>
             <div>
-              <button className="edit-post-form-button ep-done" type="submit">Done</button>
+              <button className="edit-post-form-button ep-done" type="submit">
+                Done
+              </button>
             </div>
           </div>
           <div className="edit-post-content">
