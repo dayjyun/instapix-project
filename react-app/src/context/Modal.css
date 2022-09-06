@@ -122,3 +122,38 @@
   border: none;
   background-color: transparent;
 }
+
+/* edit comment form modal */
+#edit-comment-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 300px; */
+}
+
+#edit-comment-modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#edit-comment-modal-content {
+  position: absolute;
+  background-color: white;
+  border-radius: 0.5em;
+  overflow: auto;
+  height: 3.5em;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

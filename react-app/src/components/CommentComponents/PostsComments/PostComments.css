@@ -38,11 +38,13 @@
     width: 2em;
     object-fit: cover;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 .comment-username {
     font-weight: bold;
     margin: 0 5px;
+    cursor: pointer;
 }
 
 .comment-date {
