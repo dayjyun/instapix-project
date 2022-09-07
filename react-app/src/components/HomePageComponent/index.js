@@ -127,25 +127,26 @@ const HomePageComponent = () => {
         }
     }
 
-    const ProfileImageTagSmallCard = (follow) => {
-        if (follow?.follower_info?.profile_image) {
+    const ProfileImageTagSmallCard = (post) => {
+        if (post?.User?.profile_image) {
             return (
                 <button className="profile-button-large-2" onClick={e => {
                     e.preventDefault()
-                    history.push(`/users/${follow?.follower_info.id}`)
+                    history.push(`/users/${post?.User?.id}`)
                 }}>
-                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={follow?.follower_info?.profile_image} alt='preview'></img>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={post?.User?.profile_image} alt='preview'></img>
                 </button>
             )
         } else {
             return (
                 <button style={{ marginTop: '-.1em' }} onClick={e => {
                     e.preventDefault()
-                    history.push(`/users/${follow?.follower_info?.id}`)
+                    history.push(`/users/${post?.User?.id}`)
                 }} className='fa-regular fa-user-circle fa-xl'></button>
             )
         }
     }
+
 
     const onLogin = async (e) => {
         e.preventDefault();
@@ -243,15 +244,15 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            {following2 && (Object.values(following2)?.map(follow => {
+                            {posts && (Object.values(posts)?.map(post => {
                                 const randomPost = posts[Math.floor(Math.random() * posts?.length)]
                                 return (
-                                    <div key={follow.id} className="feed-post-container">
+                                    <div key={post.id} className="feed-post-container">
                                         <div className="feed-username-container">
-                                            {ProfileImageTagSmallCard(follow)}
-                                            <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
+                                            {ProfileImageTagSmallCard(post)}
+                                            <a href={`/users/${post?.User?.id}`}>{post?.User?.username}</a>
                                             <div>
-                                                <PostCardModal follower={follow} randomPost={randomPost} />
+                                                {/* <PostCardModal follower={follow} randomPost={randomPost} /> */}
                                             </div>
                                         </div>
                                         <div className="feed-post-image">
