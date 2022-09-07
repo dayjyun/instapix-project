@@ -42,7 +42,9 @@ export default function userReducer(state = newState, action) {
         // case GET_USER:
         //     return { ...state, [action.data.id]: action.data }
         case GET_USER:
-            return { ...state, [action.payload.id]: action.payload }
+            // return { ...state, [action.payload.id]: action.payload }
+            return { [action.payload.id]: action.payload }
+
         case LOAD_USERS:
             // console.log(action);
             const allUserState = { ...state }

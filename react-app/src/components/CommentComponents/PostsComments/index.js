@@ -7,6 +7,7 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 
+
 const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments));
@@ -19,9 +20,9 @@ const PostsComments = ({ post, setCurrPost }) => {
     const dispatch = useDispatch();
 
     useEffect(async () => {
-            await currUserLiked()
-            dispatch(commentActions.loadPostComments(post?.id))
-            dispatch(likeActions.fetchLike(post?.id))
+        await currUserLiked()
+        dispatch(commentActions.loadPostComments(post?.id))
+        dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])
 
     const getCreatedDate = (datestr) => {
@@ -75,7 +76,7 @@ const PostsComments = ({ post, setCurrPost }) => {
                                     {comment?.body}
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
-                                            <EditCommentModal comment={comment}/>
+                                            <EditCommentModal comment={comment} />
                                         </div>
                                     }
                                 </div>
@@ -89,11 +90,11 @@ const PostsComments = ({ post, setCurrPost }) => {
                             <div onClick={async () => await likePost()
                                 .then(async () => setLiked(!liked))
                                 .then(async () => await setCurrPost(post))}>
-                                    {liked ? postLiked : postNotLiked}
+                                {liked ? postLiked : postNotLiked}
                             </div>
                             <div
                                 onClick={() => inputEl.current.focus()}>
-                                    <i className="fa-regular fa-comment comment-bubble"></i>
+                                <i className="fa-regular fa-comment comment-bubble"></i>
                             </div>
                         </div>
                         <div className="post-likes">{likes?.length} likes</div>

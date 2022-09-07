@@ -207,10 +207,13 @@ const HomePageComponent = () => {
                             <div className="user-pics-container">
                                 {i?.map(i => (
                                     <div className="user-pics">
-                                        <button onClick={e => {
-                                            e.preventDefault()
-                                            history.push(`/users/${allUsers[i]?.id}`)
-                                        }}>
+                                        <button onClick={
+                                            e => {
+                                                e.preventDefault()
+                                                history.push(`/users/${allUsers[i]?.id}`)
+                                                // history.go()
+                                            }
+                                        }>
                                             <img className="users-img-circle-container" src={allUsers[i]?.profile_image}>
                                             </img>
                                         </button>

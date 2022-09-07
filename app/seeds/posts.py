@@ -18,9 +18,9 @@ def seed_posts():
     post7 = Post(
         user_id=3, caption='my dog sleeping--he\'s really lazy? #instapix', post_url='https://images3.memedroid.com/images/UPLOADED96/5dff7350eefc0.jpeg')
     post8 = Post(
-        user_id=4, caption="Life is better when you're laughing.", post_url='http://autofish.net/mirrors/images/animals/cats/cat_corner.jpg')
+        user_id=4, caption="Life is better when you're laughing.", post_url='https://autofish.net/mirrors/images/animals/cats/cat_corner.jpg')
     post9 = Post(
-        user_id=5, caption="With great girlfriend comes great expenses.", post_url='http://bluefaqs.com/wp-content/uploads/2010/06/Up.jpg')
+        user_id=5, caption="With great girlfriend comes great expenses.", post_url='https://bluefaqs.com/wp-content/uploads/2010/06/Up.jpg')
     post10 = Post(
         user_id=1, caption="People say 'go big or go home' like going home is a bad thing. Heck yeah, I want to go home, and I'll have a nap when I get there.", post_url='https://images4.fanpop.com/image/photos/21300000/wallpaper-random-21343049-1280-800.jpg')
     post11 = Post(
@@ -38,7 +38,7 @@ def seed_posts():
     post17 = Post(
         user_id=3, caption="I know looks aren't everything, but I have them just in case.", post_url='https://getwallpapers.com/wallpaper/full/4/6/5/733314-random-funny-wallpapers-2048x1536-smartphone.jpg')
     post18 = Post(
-        user_id=4, caption="Doing nothing is hard, you never know when you're done.", post_url='http://1.bp.blogspot.com/_EAViqbzwc_s/TJ3wMeIOSZI/AAAAAAAABNM/0U9mcf2AYeA/s1600/Random%2Bwallpapers%2B(6).jpg')
+        user_id=4, caption="Doing nothing is hard, you never know when you're done.", post_url='https://1.bp.blogspot.com/_EAViqbzwc_s/TJ3wMeIOSZI/AAAAAAAABNM/0U9mcf2AYeA/s1600/Random%2Bwallpapers%2B(6).jpg')
     post19 = Post(
         user_id=5, caption='This is the most magical pic of your life.', post_url='https://1.bp.blogspot.com/-Xso1CCZ-iGI/Vs34mYqxnVI/AAAAAAAEVm4/xIhgP5vUbW4/s1600/Random%2Bhumor%2B00409.jpg')
 
