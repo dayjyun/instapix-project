@@ -11,7 +11,7 @@ function GetPost({ post }) {
   const dispatch = useDispatch();
   const allUsers = Object.values(useSelector((state) => state.users));
   const currUser = useSelector((state) => state.session.user);
-  const [copyText, setCopyText] = useState("");
+  const [copyText, setCopyText] = useState("google.com");
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -77,7 +77,7 @@ function GetPost({ post }) {
             onClick={() => userProfile(post?.user_id)}
             className="comment-profile-pic"
             src={getUser(post?.user_id)?.profile_image}
-            value={copyText}
+            // value={copyText}
             alt="preview"
           ></img>
           <div
