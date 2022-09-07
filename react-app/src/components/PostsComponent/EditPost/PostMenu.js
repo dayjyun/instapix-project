@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { EditModal } from "../../../context/Modal";
 import { Modal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
