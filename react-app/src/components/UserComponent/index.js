@@ -1,38 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
-import './UserComponent.css'
-import { useDispatch, useSelector } from 'react-redux';
 import { getOneUser } from '../../store/users'
+import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend } from '../../store/follow'
+import UserGetPostModal from '../GetPostModal/usersGetPost';
+import './UserComponent.css'
+
 
 function User() {
-  // const [user, setUser] = useState({});
   const { userId } = useParams();
   const dispatch = useDispatch()
+  //GET LOGGED USER ID
+  const loggedUser = useSelector(state => state.session.user)
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
+  const follows = useSelector(state => state.follow)
 
-  // useEffect(() => {
-  //   if (!userId) {
-  //     return;
-  //   }
-  //   (async () => {
-  //     const response = await fetch(`/api/users/${userId}`);
-  //     const user = await response.json();
-  //     setUser(user);
-  //   })();
-  // }, [userId]);
 
+  console.log(user)
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
   }, [dispatch, userId])
 
-  // console.log(user)
-  // if (!user) {
-  //   return null;
-  // }
+  useEffect(() => {
+    dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
+  }, [dispatch, loggedUser])
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getFollowersBackend(user?.id))
+      dispatch(getFollowingBackend(user?.id))
+    }
+  }, [dispatch, user])
+
 
   return (
     <>
@@ -49,40 +52,40 @@ function User() {
               <div className='user-stat-box'>
                 <div className='post-count'><p><span className='bold'>{user?.num_posts}</span> posts</p></div>
 
-                <div className='post-count pointer'>
-                  <FollowerModal userId={userId} />
-                </div>
+                {follows?.followers && (
+                  <div className='post-count pointer'>
+                    <FollowerModal user={user} />
+                  </div>
+                )}
 
-                <div className='post-count pointer'>
-                  <FollowModal user={user} />
-                </div>
+                {follows?.follows && (
+                  <div className='post-count pointer'>
+                    <FollowModal user={user} following={follows?.follows} />
+                  </div>
+                )}
               </div>
 
-
               <div className='user-name-bio' >
-                <p><span className='bold'>{user?.first_name}</span></p>
-                <p>{user?.bio}</p>
+                <p className='username-styling'><span className='bold'>{user?.first_name}</span></p>
+                <p className='username-styling'>{user?.bio}</p>
               </div>
 
             </div>
           </div>
 
           <hr className="solid"></hr>
-
           <div className='user-posts-collection'>
             {user?.posts?.map(post => {
               return (
-                <div className='user-post-card'>
-                  <img src={post?.post_url} className='user-img-card' />
-                </div>
+                // <div className="explore-post-card">
+                <UserGetPostModal post={post} />
+                // </div>
               )
             })}
           </div>
         </div>
       )}
     </>
-
-
   );
 }
 export default User;

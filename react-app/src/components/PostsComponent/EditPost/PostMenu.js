@@ -6,18 +6,21 @@ import { Modal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
 import "./PostMenu.css";
+import { createBrowserHistory } from "history";
 
 function PostMenu({ setShowMenuButtons, post }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
+  const history = createBrowserHistory();
   const currUser = useSelector((state) => state.session.user);
   const [showEditPost, setShowEditPost] = useState(false);
 
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
-    await dispatch(deletePost(+post.id));
+    await dispatch(deletePost(+post?.id));
     alert("Post successfully deleted");
-    history.push(`/users/${currUser?.id}`);
+    // history.push(`/users/${currUser?.id}`);
+    history.go(0)
   };
 
   const handleOnClose = () => {
@@ -42,13 +45,11 @@ function PostMenu({ setShowMenuButtons, post }) {
 
         {showEditPost && (
           <Modal onClose={handleOnClose}>
-            {/* <EditModal onClose={handleOnClose}> */}
             <EditPostForm
               post={post}
               setShowMenuButtons={setShowMenuButtons}
               setShowEditPost={setShowEditPost}
             />
-            {/* </EditModal> */}
           </Modal>
         )}
         <button className="pmb cancel" onClick={handleCancelBtn}>

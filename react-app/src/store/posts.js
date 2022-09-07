@@ -1,9 +1,29 @@
 const GET_ALL_POSTS = "posts/getAllPosts";
 const GET_FOLLOWING_POSTS = "posts/getFollowingPosts";
 const GET_POST = "posts/getPost";
+const POSTS_BY_USERID = 'posts/getPostsByUser'
 const CREATE_POST = "posts/createPost";
 const EDIT_POST = "posts/editPost";
 const DELETE_POST = "posts/deletePost";
+
+//Get all post by userId
+const getPostsByUser = posts => {
+  return {
+    type: POSTS_BY_USERID,
+    payload: posts
+  }
+}
+
+export const fetchPostByUserId = userId => async dispatch => {
+  const res = await fetch(`/api/users/${userId}/posts`);
+
+  if (res.ok) {
+    const parsedRes = await res.json();
+    dispatch(getPostsByUser(parsedRes))
+    return res;
+  }
+}
+
 
 // Get all posts
 const loadPosts = (data) => {
@@ -134,7 +154,12 @@ export default function postsReducer(state = initialState, action) {
         newAllPostsState[post.id] = post;
       });
       return newAllPostsState;
-
+    case POSTS_BY_USERID:
+      const postByUserIdState = { ...state }
+      action.payload.forEach(post => {
+        postByUserIdState[post.id] = post
+      })
+      return postByUserIdState
     case GET_FOLLOWING_POSTS:
       const newFollowingPostsState = { ...state };
       action.list.Posts.forEach((post) => {
@@ -143,7 +168,6 @@ export default function postsReducer(state = initialState, action) {
       return newFollowingPostsState;
 
     case GET_POST:
-      // console.log(action)
       return {
         ...state,
         [action.post.id]: action.post

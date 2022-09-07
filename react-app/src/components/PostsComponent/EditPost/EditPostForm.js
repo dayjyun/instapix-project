@@ -5,11 +5,10 @@ import "./EditPostForm.css";
 
 function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
   const dispatch = useDispatch();
-  const posts = Object.values(useSelector((state) => state.posts));
-  const userInfo = Object.values(useSelector((state) => state.users))[0];
-  const [caption, setCaption] = useState("");
+  const userInfo = Object.values(useSelector((state) => state?.users))[0];
+  const [caption, setCaption] = useState(post?.caption);
   const curr_img = post.post_url;
-  console.log(post.post_url);
+
   const handlePostFormSubmit = (e) => {
     e.preventDefault();
 
@@ -36,11 +35,18 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
         <div className="edit-post-container">
           <div className="edit-post-container-top">
             <div>
-              <button onClick={handleCancelBtn}>Cancel</button>
+              <button
+                className="edit-post-form-button ep-cancel"
+                onClick={handleCancelBtn}
+              >
+                Cancel
+              </button>
             </div>
             <h3>Edit info</h3>
             <div>
-              <button type="submit">Done</button>
+              <button className="edit-post-form-button ep-done" type="submit">
+                Done
+              </button>
             </div>
           </div>
           <div className="edit-post-content">
@@ -56,9 +62,9 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
                 <h3>{userInfo?.username}</h3>
               </div>
               <div className="edit-post-image-caption">
-                <label>Caption:</label>
+                <label></label>
                 <textarea
-                  maxLength="2000"
+                  maxLength="2200"
                   className="edit-post-text-area"
                   type="text"
                   value={caption}

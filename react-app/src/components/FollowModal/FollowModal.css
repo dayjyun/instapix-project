@@ -1,5 +1,5 @@
 .following-info-container {
-    padding: 2%;
+    padding: 1% 4% 4% 3%;
 }
 
 .following-header {
@@ -38,7 +38,16 @@
 
 .follower-follow-btn {
     width: 30%;
+    background-color: white;
+    /* display: block; */
 }
+
+.follow-button-styling {
+    width: auto;
+    padding: 7px 10px;
+
+}
+
 
 .p-bolded {
     font-weight: 600;

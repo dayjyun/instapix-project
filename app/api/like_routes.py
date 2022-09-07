@@ -18,6 +18,7 @@ def get_likes_by_post(post_id):
         return jsonify({'message': 'There are no likes', 'status_code': 404}), 404
 
 
+
 # LIKE A POST
 # add if exists
 @like_routes.route('/posts/<int:post_id>/likes', methods=['POST'])

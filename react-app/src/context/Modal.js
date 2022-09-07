@@ -33,6 +33,19 @@ export function Modal({ onClose, children }) {
   );
 }
 
+export function PostCardMenuModal({ onClose, children }) {
+  const modalNode = useContext(ModalContext);
+  if (!modalNode) return null;
+
+  return ReactDOM.createPortal(
+    <div id="postcard-modal">
+      <div id="postcard-modal-background" onClick={onClose} />
+      <div id="postcard-modal-content">{children}</div>
+    </div>,
+    modalNode
+  );
+}
+
 export function PostModal({ onClose, children }) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
@@ -67,6 +80,19 @@ export function ModalSmall({ onClose, children }) {
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content-small">{children}</div>
+    </div>,
+    modalNode
+  );
+}
+
+export function EditCommentModal({ onClose, children }) {
+  const modalNode = useContext(ModalContext);
+  if (!modalNode) return null;
+
+  return ReactDOM.createPortal(
+    <div id="edit-comment-modal">
+      <div id="edit-comment-modal-background" onClick={onClose} />
+      <div id="edit-comment-modal-content">{children}</div>
     </div>,
     modalNode
   );
