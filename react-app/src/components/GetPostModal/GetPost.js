@@ -5,6 +5,7 @@ import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 function GetPost({ post }) {
   const posts = useSelector((state) => Object.values(state.posts));
@@ -12,6 +13,8 @@ function GetPost({ post }) {
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
   // const likes = useSelector(state => Object.values(state.likes));
+
+  // const [currPost, setCurrPost] = useState(null)
 
   const history = useHistory()
   const dispatch = useDispatch();
