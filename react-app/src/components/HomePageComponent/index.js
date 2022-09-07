@@ -8,6 +8,8 @@ import './HomePageComponent.css'
 import PostCardButtons from "./PostCardModal/PostCardButtons"
 import PostCardModal from "./PostCardModal"
 import * as postActions from '../../store/posts'
+import * as likeActions from '../../store/likes'
+import testingtesting from "./testing"
 
 const uniqueIndex = () => {
     const indexes = []
@@ -29,13 +31,16 @@ const HomePageComponent = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
-    const [likeBtn, setLikeBtn] = useState(true)
+    const [likeClass, setLikeClass] = useState('fa-regular fa-heart fa-xl')
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
     const allPost = Object.values(useSelector(state => state.posts))
+    const likes = Object.values(useSelector(state => state.likes))
     let following = useSelector(state => state.follow)
     let following2 = following?.follows
+
+
 
     const filteredPost = (userId) => {
         const post = allPost?.filter(post => {
@@ -59,6 +64,7 @@ const HomePageComponent = () => {
         dispatch(userActions.getAllUsers())
         dispatch(followingActions.getFollowingBackend(sessionUser?.id))
         dispatch(postActions.loadAllPosts())
+        dispatch(likeActions.fetchAllLikes())
     }, [dispatch])
 
     const reset = () => {
@@ -155,15 +161,13 @@ const HomePageComponent = () => {
             })
     }
 
-    const handleLikeButton = e => {
+    const likeBtnOnSubmit = (e) => {
         e.preventDefault()
-        if (likeBtn) {
-
+        if (likeClass === 'fa-regular fa-heart fa-xl') {
+            setLikeClass('fa-solid fa-heart fa-xl')
         } else {
-
+            setLikeClass('fa-regular fa-heart fa-xl')
         }
-
-        setLikeBtn(!likeBtn)
     }
 
     const onSubmit = async (e) => {
@@ -179,6 +183,16 @@ const HomePageComponent = () => {
                 }
             })
     };
+
+    const likePost = async (post, user, likesUserIds) => {
+        if (likesUserIds?.includes(user?.id)) {
+            await dispatch(likeActions.unlike(post?.id))
+
+        } else {
+            await dispatch(likeActions.like(post?.id))
+        }
+    };
+
 
 
     if (sessionUser) {
@@ -214,9 +228,8 @@ const HomePageComponent = () => {
                         <div className="feed-section">
                             {following2 && (Object.values(following2)?.map(follow => {
                                 const randomPost = filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]
-                                console.log(randomPost)
                                 return (
-                                    <div className="feed-post-container">
+                                    <div key={follow.id} className="feed-post-container">
                                         <div className="feed-username-container">
                                             {ProfileImageTagSmallCard(follow)}
                                             <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
@@ -228,9 +241,12 @@ const HomePageComponent = () => {
                                             <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
                                         </div>
                                         <div className="feed-like-container">
-                                            <button className="fa-regular fa-heart fa-xl"></button>
+                                            {/* not yet working */}
+                                            <div className={likeClass}></div>
                                         </div>
-
+                                        <div>
+                                            <testingtesting />
+                                        </div>
                                     </div>
                                 )
                             }))}
