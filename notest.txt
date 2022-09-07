@@ -1,0 +1,5 @@
+removed package-lock.json from inside of app folder
+
+deleted instapix-project folder inside of app folder
+add dev.db in .gitignore
+removed Pipfile.lock from .gitignore
