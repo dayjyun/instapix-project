@@ -5,7 +5,6 @@ import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
 
 function GetPost({ post }) {
   const history = useHistory();
