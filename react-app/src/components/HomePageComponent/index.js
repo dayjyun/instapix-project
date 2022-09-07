@@ -212,8 +212,8 @@ const HomePageComponent = () => {
                                                 <PostCardModal follower={follow} randomPost={randomPost} />
                                             </div>
                                         </div>
-                                        <div style={{ backgroundImage: `url(${randomPost?.post_url})` }} className="feed-post-image">
-
+                                        <div className="feed-post-image">
+                                            <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
                                         </div>
                                     </div>
                                 )
