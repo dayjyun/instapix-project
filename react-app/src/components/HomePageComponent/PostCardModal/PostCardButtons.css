@@ -19,3 +19,13 @@
     font-size: 22px;
     font-weight: 500
 }
+
+.feed-post-image {
+    width: 100%;
+    height: 100%;
+}
+
+.feed-post-image image {
+    width: 100%;
+    height: 100%;
+}

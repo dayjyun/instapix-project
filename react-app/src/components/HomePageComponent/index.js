@@ -200,20 +200,24 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            {following2 && (Object.values(following2)?.map(follow => (
-                                <div className="feed-post-container">
-                                    <div className="feed-username-container">
-                                        {ProfileImageTagSmallCard(follow)}
-                                        <p>{follow?.follower_info.username}</p>
-                                        <div>
-                                            <PostCardModal follower={follow} randomPost={filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]} />
+                            {following2 && (Object.values(following2)?.map(follow => {
+                                const randomPost = filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]
+                                console.log(randomPost)
+                                return (
+                                    <div className="feed-post-container">
+                                        <div className="feed-username-container">
+                                            {ProfileImageTagSmallCard(follow)}
+                                            <p>{follow?.follower_info.username}</p>
+                                            <div>
+                                                <PostCardModal follower={follow} randomPost={randomPost} />
+                                            </div>
+                                        </div>
+                                        <div className="feed-post-image">
+                                            <img src={randomPost?.post_url}></img>
                                         </div>
                                     </div>
-                                    <div>
-                                        
-                                    </div>
-                                </div>
-                            )))}
+                                )
+                            }))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
