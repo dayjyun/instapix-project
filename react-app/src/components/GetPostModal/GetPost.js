@@ -31,6 +31,8 @@ function GetPost({ post }) {
 
   if (currUser?.id == post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
+  } else {
+    editPostBtn = "menu"
   }
 
   return (
@@ -50,8 +52,8 @@ function GetPost({ post }) {
               {getUser(post?.user_id)?.username}
             </div>
           </div>
-          {currUser?.id === post.user_id ? editPostBtn : "menu"}
-          {/* {editPostBtn} */}
+          {/* {currUser?.id === post.user_id ? editPostBtn : "menu"} */}
+          {editPostBtn}
         </div>
         <div className="post-caption-container">
           <img

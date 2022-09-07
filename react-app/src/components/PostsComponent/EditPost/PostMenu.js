@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, Redirect, useHistory, useParams } from "react-router-dom";
 import { EditModal } from "../../../context/Modal";
 import { Modal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
 import "./PostMenu.css";
+import { createBrowserHistory } from "history";
 
 function PostMenu({ setShowMenuButtons, post }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
+  const history = createBrowserHistory();
   const currUser = useSelector((state) => state.session.user);
   const [showEditPost, setShowEditPost] = useState(false);
 
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
-    await dispatch(deletePost(+post.id));
+    await dispatch(deletePost(+post?.id));
     alert("Post successfully deleted");
-    history.push(`/users/${currUser?.id}`);
+    // history.push(`/users/${currUser?.id}`);
+    history.go(0)
   };
 
   const handleOnClose = () => {
