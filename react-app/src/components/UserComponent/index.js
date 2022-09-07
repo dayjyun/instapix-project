@@ -19,6 +19,8 @@ function User() {
   const follows = useSelector(state => state.follow)
 
 
+  console.log(user)
+
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
   }, [dispatch, userId])
@@ -75,20 +77,9 @@ function User() {
           <div className='user-posts-collection'>
             {user?.posts?.map(post => {
               return (
+                // <div className="explore-post-card">
                 <UserGetPostModal post={post} />
-                // <>
-                //   <div className='user-post-card'>
-                //     <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
-
-                //     <div className='likes-comments-stats'>
-                //       <p className='like-comment-p'>
-                //         <i class="fa-solid fa-heart icon-styling"></i>
-                //         {post.likes}
-                //         <i class="fa-solid fa-comment icon-styling-2"></i>{post.num_comments}</p>
-                //     </div>
-                //   </div>
-
-                // </>
+                // </div>
               )
             })}
           </div>

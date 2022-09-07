@@ -24,8 +24,9 @@ function GetPost({ post }) {
   };
 
   useEffect(() => {
-    dispatch(postActions.getPost(post?.id));
-    dispatch(userActions.getAllUsers());
+    // if not post {
+      dispatch(postActions.getPost(post?.id));
+      dispatch(userActions.getAllUsers());
   }, [dispatch]);
 
   const getUser = (id) => {
@@ -91,7 +92,7 @@ function GetPost({ post }) {
           </div>
         </div>
         <div className="post-modal-comments">
-          <PostsComments post={post} />
+          <PostsComments  post={post} />
         </div>
       </div>
     </div>

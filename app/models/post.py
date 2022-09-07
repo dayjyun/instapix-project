@@ -67,6 +67,7 @@ class Post(db.Model):
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
             "Comments": [comments.comment_content() for comments in self.comments],
+            "real_likes": [like.to_dict() for like in self.likes]
             # "user": self.users.follow_info()
         }
 
