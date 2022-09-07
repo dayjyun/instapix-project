@@ -7,11 +7,10 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 
-const PostsComments = ({ post }) => {
+const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments));
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
-    const likes = useSelector(state => Object.values(state.likes));
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
 
@@ -23,11 +22,6 @@ const PostsComments = ({ post }) => {
             dispatch(commentActions.loadPostComments(post?.id))
             dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])
-
-    // console.log('POST>>>>>>>', post);
-
-    // console.log('REALLIKES>>>>>>>>',post.real_likes);
-    // console.log('LIKESSTATE>>>>>>>>',likes);
 
     const getCreatedDate = (datestr) => {
         const fullDate = new Date(datestr).toDateString()
@@ -88,7 +82,7 @@ const PostsComments = ({ post }) => {
                 <div>
                     <div className="likes-comment-container">
                         <div className="heart-comment-bubble">
-                            <div onClick={() => likePost().then(setLiked(!liked))}>{liked ? postLiked : postNotLiked}</div>
+                            <div onClick={() => likePost().then(setLiked(!liked)).then(setCurrPost(post))}>{liked ? postLiked : postNotLiked}</div>
                             <div onClick={() => inputEl.current.focus()}><i className="fa-regular fa-comment comment-bubble"></i></div>
                         </div>
                         <div className="post-likes">{post?.likes} likes</div>
