@@ -9,15 +9,11 @@ import './PostComments.css'
 
 const PostsComments = ({ post }) => {
     const user = useSelector(state => state.session.user)
-    const comments = useSelector((state) => Object.values(state.comments))
-    const likes = useSelector(state => Object.values(state.likes))
-    const [editing, setEditing] = useState(false);
+    const comments = useSelector((state) => Object.values(state.comments));
+    const likesUserIds = post?.real_likes?.map(like => like?.user_id);
+    const likes = useSelector(state => Object.values(state.likes));
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
-
-
-    console.log('LIKES',likes)
-    console.log('POST',post);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -28,6 +24,8 @@ const PostsComments = ({ post }) => {
         dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])
 
+    console.log('REALLIKES>>>>>>>>',post.real_likes);
+    console.log('LIKESSTATE>>>>>>>>',likes);
 
     const getCreatedDate = (datestr) => {
         const fullDate = new Date(datestr).toDateString()
@@ -41,9 +39,17 @@ const PostsComments = ({ post }) => {
     }
 
     const currUserLiked = () => {
-        const userIds = likes.map(like => like.user_id);
-        setLiked(userIds.includes(user?.id))
+        setLiked(likesUserIds?.includes(user?.id))
     }
+
+    const likePost = async () => {
+        if (likesUserIds?.includes(user?.id)) {
+            await dispatch(likeActions.unlike(post?.id))
+
+        } else {
+            await dispatch(likeActions.like(post?.id))
+        }
+    };
 
     let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
     let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
@@ -80,13 +86,13 @@ const PostsComments = ({ post }) => {
                 <div>
                     <div className="likes-comment-container">
                         <div className="heart-comment-bubble">
-                            <div>{liked ? postLiked : postNotLiked}</div>
+                            <div onClick={() => likePost().then(setLiked(!liked))}>{liked ? postLiked : postNotLiked}</div>
                             <div onClick={() => inputEl.current.focus()}><i className="fa-regular fa-comment comment-bubble"></i></div>
                         </div>
                         <div className="post-likes">{post?.likes} likes</div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
-                    <CreateComment  inputEl={inputEl} post={post} />
+                    <CreateComment inputEl={inputEl} post={post} />
                 </div>
             </div>
         </>
