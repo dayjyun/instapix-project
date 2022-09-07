@@ -23,7 +23,7 @@ function GetPostModal({ post }) {
             <p className="ep-likes">{post?.likes}</p>
           </div>
           <div className="explore-post-text-comments">
-            <i className="fa-sharp fa-solid fa-comment"></i>
+            <i className="fa-sharp fa-solid fa-comment fa-flip-horizontal"></i>
             <p className="ep-comments">{post?.num_comments}</p>
           </div>
         </div>
