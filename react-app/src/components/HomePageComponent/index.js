@@ -29,6 +29,7 @@ const HomePageComponent = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
+    const [likeBtn, setLikeBtn] = useState(true)
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
@@ -154,6 +155,17 @@ const HomePageComponent = () => {
             })
     }
 
+    const handleLikeButton = e => {
+        e.preventDefault()
+        if (likeBtn) {
+
+        } else {
+
+        }
+
+        setLikeBtn(!likeBtn)
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
@@ -215,6 +227,10 @@ const HomePageComponent = () => {
                                         <div className="feed-post-image">
                                             <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
                                         </div>
+                                        <div className="feed-like-container">
+                                            <button className="fa-regular fa-heart fa-xl"></button>
+                                        </div>
+
                                     </div>
                                 )
                             }))}

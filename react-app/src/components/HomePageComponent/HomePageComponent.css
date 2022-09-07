@@ -286,8 +286,8 @@
 
 .feed-post-container {
     display: grid;
-    grid-template-rows: 10% 40% 10% 10% 10% 10%;
-    width: 29em;
+    /* grid-template-rows: 10% 40% 10% 10% 10% 10%; */
+    grid-template-rows: 3.5em 28em 3em;
     height: 50em;
     border: 3px solid black;
     margin-bottom: 1em;
@@ -394,5 +394,9 @@
 .feed-image {
     width: 100%;
     height: 100%;
-    margin-top: -1.5em;
+}
+
+.feed-like-container {
+    display: flex;
+    align-items: center;
 }
