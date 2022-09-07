@@ -23,22 +23,16 @@ def get_all_posts():
 @post_routes.route('/')
 @login_required
 def get_posts():
-
-    print('---')
-    print('test')
-
-    print('---')
-
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())
-    all_my_posts = Post.query.filter(
-        Post.user_id == current_user.id).order_by(Post.created_at.desc())
+    # all_my_posts = Post.query.filter(
+    #     Post.user_id == current_user.id).order_by(Post.created_at.desc())
 
     followed_posts = [post.feed_to_dict() for post in all_followed_posts]
-    my_posts = [post.feed_to_dict() for post in all_my_posts]
+    # my_posts = [post.feed_to_dict() for post in all_my_posts]
 
-    all_post = followed_posts + my_posts
+    all_post = followed_posts
 
     for post in all_post:
         user = User.query.get(post['user_id'])

@@ -252,7 +252,8 @@ const HomePageComponent = () => {
                                             {ProfileImageTagSmallCard(post)}
                                             <a href={`/users/${post?.User?.id}`}>{post?.User?.username}</a>
                                             <div>
-                                                {/* <PostCardModal follower={follow} randomPost={randomPost} /> */}
+                                                <PostCardModal
+                                                    post={post} randomPost={randomPost} />
                                             </div>
                                         </div>
                                         <div className="feed-post-image">

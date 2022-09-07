@@ -89,6 +89,7 @@ export const postFollowBackend = (input) => async (dispatch) => {
 }
 //DELETE: a follow (unfollow)
 export const deleteFollowBackend = (userId) => async (dispatch) => {
+    console.log(userId)
     const response = await fetch(`/api/follows/users/${userId}/delete`, {
         method: 'DELETE'
     });

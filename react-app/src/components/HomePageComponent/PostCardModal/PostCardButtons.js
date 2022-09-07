@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 // import * as sessionActions from '../../../store/session'
 
 
-const PostCardButtons = ({ follower, closeModal, randomPost }) => {
+const PostCardButtons = ({ post, closeModal, randomPost }) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const [follow, setFollow] = useState('Unfollow')
@@ -14,7 +14,8 @@ const PostCardButtons = ({ follower, closeModal, randomPost }) => {
 
     const handleUnfollow = e => {
         e.preventDefault()
-        dispatch(deleteFollowBackend(follower?.follower_info?.id))
+
+        dispatch(deleteFollowBackend(post?.User?.id))
         closeModal()
     }
 
