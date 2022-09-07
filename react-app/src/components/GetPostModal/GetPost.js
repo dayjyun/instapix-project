@@ -24,7 +24,6 @@ function GetPost({ post }) {
   };
 
   useEffect(() => {
-    // if not post {
       dispatch(postActions.getPost(post?.id));
       dispatch(userActions.getAllUsers());
   }, [dispatch]);
