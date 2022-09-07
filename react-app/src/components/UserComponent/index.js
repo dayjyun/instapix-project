@@ -7,6 +7,7 @@ import { getOneUser } from '../../store/users'
 import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend } from '../../store/follow'
 import UserGetPostModal from '../GetPostModal/usersGetPost';
 import './UserComponent.css'
+import { loadAllPosts } from '../../store/posts';
 
 
 function User() {
@@ -17,9 +18,8 @@ function User() {
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
   const follows = useSelector(state => state.follow)
-
-
-  console.log(user)
+  const posts = useSelector(state => Object.values(state.posts))
+  const usersPosts = posts.filter(post => post.user_id === user.id)
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
@@ -36,6 +36,9 @@ function User() {
     }
   }, [dispatch, user])
 
+  useEffect(() => {
+    dispatch(loadAllPosts())
+  }, [dispatch])
 
   return (
     <>
@@ -75,11 +78,9 @@ function User() {
 
           <hr className="solid"></hr>
           <div className='user-posts-collection'>
-            {user?.posts?.map(post => {
+            {usersPosts?.map(post => {
               return (
-                // <div className="explore-post-card">
                 <UserGetPostModal post={post} />
-                // </div>
               )
             })}
           </div>

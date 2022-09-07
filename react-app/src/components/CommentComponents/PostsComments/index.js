@@ -19,13 +19,15 @@ const PostsComments = ({ post }) => {
     const dispatch = useDispatch();
 
     useEffect(async () => {
-        await currUserLiked()
-        dispatch(commentActions.loadPostComments(post?.id))
-        dispatch(likeActions.fetchLike(post?.id))
+            await currUserLiked()
+            dispatch(commentActions.loadPostComments(post?.id))
+            dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])
 
-    console.log('REALLIKES>>>>>>>>',post.real_likes);
-    console.log('LIKESSTATE>>>>>>>>',likes);
+    // console.log('POST>>>>>>>', post);
+
+    // console.log('REALLIKES>>>>>>>>',post.real_likes);
+    // console.log('LIKESSTATE>>>>>>>>',likes);
 
     const getCreatedDate = (datestr) => {
         const fullDate = new Date(datestr).toDateString()
