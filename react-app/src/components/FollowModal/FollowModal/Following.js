@@ -1,69 +1,21 @@
 import { useEffect } from 'react';
-import { getFollowingBackend, postFollowBackend, getLoggedUserFollowingBackend, deleteFollowBackend } from '../../../store/follow';
+import { getFollowersBackend } from '../../../store/follow';
 import { useDispatch, useSelector } from "react-redux";
+import FollowButton from './FollowButton';
+
 import '../FollowModal.css'
 
 const Following = ({ user }) => {
     const dispatch = useDispatch()
-    //GET LOGGED USER ID
-    const loggedUser = useSelector(state => state.session.user)
-    const allFollows = useSelector(state => state.follow)
-    let loggedUserFollows;
-    let follows = allFollows?.follows
 
-    if (allFollows) {
-        loggedUserFollows = allFollows?.loggedUser?.Followers
-    }
-
-
-    const isFollowing = (follow) => {
-        for (let i = 0; i < loggedUserFollows?.length; i++) {
-            let loggedUserFollow = loggedUserFollows[i];
-
-            if (follow?.follow?.follows_id === loggedUserFollow?.follower_info?.id) {
-                return (
-                    <div className='follower-follow-btn'>
-                        <button id={follow?.follow?.follows_id} onClick={handleClickUnfollow}>Unfollow</button>
-                    </div>
-                )
-            }
-        }
-        return (
-            <div className='follower-follow-btn'>
-                <button id={follow?.follow?.follows_id} onClick={handleClickFollow}>Follow</button>
-            </div>
-        )
-    }
-
-    useEffect(() => {
-        if (loggedUser) {
-            dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
-        }
-    }, [dispatch, loggedUser])
-
-
+    const follows = useSelector(state => state.follow.follows)
 
     useEffect(() => {
         if (user) {
-            dispatch(getFollowingBackend(user?.id))
+            dispatch(getFollowersBackend(user?.id))
         }
     }, [dispatch, user])
 
-
-    const handleClickFollow = async (e) => {
-        e.preventDefault();
-
-        const input = {
-            user_id: user?.id,
-            follows_id: e.target.id
-        }
-        await dispatch(postFollowBackend(input));
-    }
-
-    const handleClickUnfollow = async (e) => {
-        e.preventDefault();
-        await dispatch(deleteFollowBackend(e.target.id));
-    }
 
     return (
         <>
@@ -82,7 +34,7 @@ const Following = ({ user }) => {
                                         <p className='p-styling'>{follow?.follower_info?.first_name}</p>
                                     </div>
 
-                                    {isFollowing(follow)}
+                                    <FollowButton user={user} follow={follow} />
 
                                 </div>
                             )

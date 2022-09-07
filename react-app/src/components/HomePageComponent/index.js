@@ -5,6 +5,11 @@ import { login } from '../../store/session'
 import * as userActions from '../../store/users'
 import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
+import PostCardButtons from "./PostCardModal/PostCardButtons"
+import PostCardModal from "./PostCardModal"
+import * as postActions from '../../store/posts'
+import * as likeActions from '../../store/likes'
+import testingtesting from "./testing"
 
 const uniqueIndex = () => {
     const indexes = []
@@ -26,10 +31,23 @@ const HomePageComponent = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
+    const [likeClass, setLikeClass] = useState('fa-regular fa-heart fa-xl')
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-    const following = Object.values(useSelector(state => state.follow))
+    const allPost = Object.values(useSelector(state => state.posts))
+    const likes = Object.values(useSelector(state => state.likes))
+    let following = useSelector(state => state.follow)
+    let following2 = following?.follows
+
+
+
+    const filteredPost = (userId) => {
+        const post = allPost?.filter(post => {
+            return post?.user_id === userId
+        })
+        return post
+    }
 
     useEffect(() => {
         i = uniqueIndex()
@@ -45,6 +63,8 @@ const HomePageComponent = () => {
     useEffect(() => {
         dispatch(userActions.getAllUsers())
         dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+        dispatch(postActions.loadAllPosts())
+        dispatch(likeActions.fetchAllLikes())
     }, [dispatch])
 
     const reset = () => {
@@ -93,6 +113,26 @@ const HomePageComponent = () => {
         }
     }
 
+    const ProfileImageTagSmallCard = (follow) => {
+        if (follow?.follower_info?.profile_image) {
+            return (
+                <button className="profile-button-large-2" onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${follow?.follower_info.id}`)
+                }}>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={follow?.follower_info?.profile_image} alt='preview'></img>
+                </button>
+            )
+        } else {
+            return (
+                <button style={{ marginTop: '-.1em' }} onClick={e => {
+                    e.preventDefault()
+                    history.push(`/users/${follow?.follower_info?.id}`)
+                }} className='fa-regular fa-user-circle fa-xl'></button>
+            )
+        }
+    }
+
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
@@ -121,6 +161,15 @@ const HomePageComponent = () => {
             })
     }
 
+    const likeBtnOnSubmit = (e) => {
+        e.preventDefault()
+        if (likeClass === 'fa-regular fa-heart fa-xl') {
+            setLikeClass('fa-solid fa-heart fa-xl')
+        } else {
+            setLikeClass('fa-regular fa-heart fa-xl')
+        }
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
@@ -135,6 +184,16 @@ const HomePageComponent = () => {
             })
     };
 
+    const likePost = async (post, user, likesUserIds) => {
+        if (likesUserIds?.includes(user?.id)) {
+            await dispatch(likeActions.unlike(post?.id))
+
+        } else {
+            await dispatch(likeActions.like(post?.id))
+        }
+    };
+
+
 
     if (sessionUser) {
         return (
@@ -148,10 +207,13 @@ const HomePageComponent = () => {
                             <div className="user-pics-container">
                                 {i?.map(i => (
                                     <div className="user-pics">
-                                        <button onClick={e => {
-                                            e.preventDefault()
-                                            history.push(`/users/${allUsers[i]?.id}`)
-                                        }}>
+                                        <button onClick={
+                                            e => {
+                                                e.preventDefault()
+                                                history.push(`/users/${allUsers[i]?.id}`)
+                                                // history.go()
+                                            }
+                                        }>
                                             <img className="users-img-circle-container" src={allUsers[i]?.profile_image}>
                                             </img>
                                         </button>
@@ -167,15 +229,30 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                         <div className="feed-section">
-                            {following?.map(follow => (
-                                <div className="feed-post-container">
-                                    <div className="feed-username-container">
-                                        <button className="">
-                                            {/* <img src={follow?} */}
-                                        </button>
+                            {following2 && (Object.values(following2)?.map(follow => {
+                                const randomPost = filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]
+                                return (
+                                    <div key={follow.id} className="feed-post-container">
+                                        <div className="feed-username-container">
+                                            {ProfileImageTagSmallCard(follow)}
+                                            <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
+                                            <div>
+                                                <PostCardModal follower={follow} randomPost={randomPost} />
+                                            </div>
+                                        </div>
+                                        <div className="feed-post-image">
+                                            <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
+                                        </div>
+                                        <div className="feed-like-container">
+                                            {/* not yet working */}
+                                            <div className={likeClass}></div>
+                                        </div>
+                                        <div>
+                                            <testingtesting />
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            }))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>

@@ -17,7 +17,11 @@ COPY . .
 
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
+<<<<<<< HEAD
 COPY /react-app/build/* /app/static/
+=======
+COPY /react-app/build/* app/static/
+>>>>>>> d20d3e58286c3831ac4382c1ff884b6e1db67f9e
 # Run the next two python install commands with PIP
 # install -r requirements.txt
 # install psycopg2

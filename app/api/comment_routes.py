@@ -80,7 +80,7 @@ def delete_comment(comment_id):
 
 
 
-#FETCH TEMPLATE
+# FETCH TEMPLATE
 # fetch('/api/users', {
 #   method: 'POST',
 #   headers: {

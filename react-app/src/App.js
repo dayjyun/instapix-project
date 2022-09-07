@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -10,9 +9,7 @@ import { authenticate } from "./store/session";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-// import FollowModal from "./components/FollowModal/FollowerModal";
 import PostComponent from "./components/PostsComponent";
-import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
@@ -37,9 +34,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        {/* <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route> */}
+
         <Route path="/sign-up" exact={true}>
           <SignUpUserForm />
         </Route>
@@ -51,11 +46,6 @@ function App() {
         </Route>
         <Route exact path="/">
           <HomePageComponent />
-          {/* <div>
-            <div className="new-post-button">
-              <GetPostModal />
-            </div>
-          </div> */}
         </Route>
         <Route exact path="/posts/:postId">
           <PostComponent />
@@ -69,12 +59,11 @@ function App() {
         <Route path="/comments/:commentId" exact={true}>
           <CommentDetails />
         </Route>
-        {/* EDIT COMMENT BROKEN */}
+
         <Route path="/comments/:commentId/edit" exact={true}>
           <EditComment />
         </Route>
         <ProtectedRoute path="/users/:userId" exact={true}>
-          {/* <FollowingModal /> */}
           <User />
         </ProtectedRoute>
       </Switch>
