@@ -25,6 +25,14 @@ def seed_follows():
         user_id=3, follows_id=2)
     follow11 = Follow(
         user_id=4, follows_id=2)
+    follow12 = Follow(
+        user_id=1, follows_id=3)
+    follow13 = Follow(
+        user_id=1, follows_id=5)
+    follow14 = Follow(
+        user_id=1, follows_id=6)
+    follow15 = Follow(
+        user_id=1, follows_id=7)
     db.session.add(follow1)
     db.session.add(follow2)
     db.session.add(follow3)
@@ -36,6 +44,10 @@ def seed_follows():
     db.session.add(follow9)
     db.session.add(follow10)
     db.session.add(follow11)
+    db.session.add(follow12)
+    db.session.add(follow13)
+    db.session.add(follow14)
+    db.session.add(follow15)
     db.session.commit()
 
 

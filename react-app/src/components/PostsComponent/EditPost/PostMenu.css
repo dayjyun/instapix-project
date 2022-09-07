@@ -20,9 +20,18 @@
   vertical-align: middle;
   width: 100%;
 }
-.pmb:hover {
+
+.pmb.delete:active {
   background-color: #e6e6e6;
-  border-radius: 1rem;
+  border-radius: 1rem 1rem 0 0;
+}
+.pmb.edit:active {
+  background-color: #e6e6e6;
+}
+
+.pmb.pmb.cancel:active {
+  background-color: #e6e6e6;
+  border-radius: 0 0 1rem 1rem;
 }
 
 .pmb.delete {
@@ -30,7 +39,7 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
   font-weight: bold;
 }
 
@@ -44,7 +53,7 @@
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
-  border-top: 1px solid gray;
+  border-top: 1px solid lightgray;
 }
 
 .edit-post-modal {

@@ -1,0 +1,49 @@
+.explore-post-button-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.explore-post-button-wrap > img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.explore-post-button-wrap:hover > img.explore-post-image {
+  filter: brightness(70%);
+}
+
+.explore-post-button-wrap > .explore-post-text {
+  opacity: 0;
+}
+
+.explore-post-button-wrap:hover > .explore-post-text {
+  opacity: 1;
+}
+
+.explore-post-button-wrap > div {
+  position: absolute;
+  inset: 0;
+  padding: 1rem;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.explore-post-text {
+  display: flex;
+  color: white;
+}
+
+.explore-post-text-likes, .explore-post-text-comments {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 .6rem;
+}
+
+.ep-likes,
+.ep-comments {
+  display: flex;
+  padding: .4rem;
+}

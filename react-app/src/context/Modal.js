@@ -85,6 +85,19 @@ export function ModalSmall({ onClose, children }) {
   );
 }
 
+export function EditCommentModal({ onClose, children }) {
+  const modalNode = useContext(ModalContext);
+  if (!modalNode) return null;
+
+  return ReactDOM.createPortal(
+    <div id="edit-comment-modal">
+      <div id="edit-comment-modal-background" onClick={onClose} />
+      <div id="edit-comment-modal-content">{children}</div>
+    </div>,
+    modalNode
+  );
+}
+
 export function EditPostModal({ onClose, children }) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;

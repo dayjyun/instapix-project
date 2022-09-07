@@ -207,13 +207,13 @@ const HomePageComponent = () => {
                                     <div className="feed-post-container">
                                         <div className="feed-username-container">
                                             {ProfileImageTagSmallCard(follow)}
-                                            <p>{follow?.follower_info.username}</p>
+                                            <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
                                             <div>
                                                 <PostCardModal follower={follow} randomPost={randomPost} />
                                             </div>
                                         </div>
-                                        <div className="feed-post-image">
-                                            <img src={randomPost?.post_url}></img>
+                                        <div style={{ backgroundImage: `url(${randomPost?.post_url})` }} className="feed-post-image">
+
                                         </div>
                                     </div>
                                 )

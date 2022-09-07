@@ -1,38 +1,54 @@
 import React, { useEffect, useState } from "react";
-import * as sessionActions from "../../store/session";
 import * as postActions from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
-import CreateComment from "../CommentComponents/CreateComment";
 import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
+import { useHistory } from "react-router-dom";
 
 function GetPost({ post }) {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const posts = useSelector((state) => Object.values(state.posts));
-  //   const user = useSelector((state) => Object.values(state.users))[0];
-  const userInfo = Object.values(useSelector((state) => state.users));
+  const allUsers = Object.values(useSelector((state) => state.users));
   const currUser = useSelector((state) => state.session.user);
-  const userId = posts.map((post) => post?.user_id)[0];
+  const [copyText, setCopyText] = useState("google.com");
 
-  console.log("HERE", posts);
+  const inputHandler = (e) => {
+    e.preventDefault();
+    setCopyText(e.target.value);
+  };
 
-  //   posts.user_id = User.id
+  const copy = async () => {
+    await navigator.clipboard.writeText(copyText);
+    alert("Text copied");
+  };
 
   useEffect(() => {
-    dispatch(postActions.getPost(post?.id));
-    dispatch(userActions.getOneUser(post?.user_id));
+    // if not post {
+      dispatch(postActions.getPost(post?.id));
+      dispatch(userActions.getAllUsers());
   }, [dispatch]);
 
   const getUser = (id) => {
-    let user = userInfo.find((user) => user.id === id);
+    let user = allUsers.find((user) => user.id === id);
     return user;
+  };
+
+  const userProfile = (userId) => {
+    history.push(`/users/${userId}`);
+    history.go(0);
   };
 
   let editPostBtn;
 
-  if (currUser?.id == +userId) {
-    editPostBtn = <EditPostBtn post={post}/>;
+  if (currUser?.id == post.user_id) {
+    editPostBtn = <EditPostBtn post={post} />;
+  } else {
+    editPostBtn = (
+      <button onClick={copy} onChange={inputHandler}>
+        Post
+      </button>
+    );
   }
 
   return (
@@ -42,7 +58,10 @@ function GetPost({ post }) {
       </div>
       <div className="caption-comment-container">
         <div className="user-info-container">
-          <div className="profile-pic-username">
+          <div
+            className="profile-pic-username"
+            onClick={() => userProfile(post?.user_id)}
+          >
             <img
               className="comment-profile-pic"
               src={getUser(post?.user_id)?.profile_image}
@@ -52,18 +71,20 @@ function GetPost({ post }) {
               {getUser(post?.user_id)?.username}
             </div>
           </div>
-          {/* {currUser?.id === post.user_id && editPostBtn} */}
-          {currUser?.id === post.user_id ? editPostBtn : ""}
+          {editPostBtn}
         </div>
         <div className="post-caption-container">
-          <div className="profile-pic-mini">
-            <img
-              className="comment-profile-pic"
-              src={getUser(post?.user_id)?.profile_image}
-              alt="preview"
-            ></img>
-          </div>
-          <div className="post-username-text">
+          <img
+            onClick={() => userProfile(post?.user_id)}
+            className="comment-profile-pic"
+            src={getUser(post?.user_id)?.profile_image}
+            // value={copyText}
+            alt="preview"
+          ></img>
+          <div
+            className="post-username-text"
+            onClick={() => userProfile(post?.user_id)}
+          >
             {getUser(post?.user_id)?.username}
           </div>
           <div className="caption-text">
@@ -71,13 +92,11 @@ function GetPost({ post }) {
           </div>
         </div>
         <div className="post-modal-comments">
-          <PostsComments post={post} />
+          <PostsComments  post={post} />
         </div>
-        {/* Create Comment Modal??? */}
       </div>
     </div>
   );
 }
 
 export default GetPost;
-
