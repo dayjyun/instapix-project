@@ -10,7 +10,7 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
 
 #** get all posts on database **#
-@post_routes.route('/explorer')
+@post_routes.route('/explore')
 @login_required
 def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
