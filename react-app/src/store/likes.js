@@ -1,6 +1,12 @@
 const GET_LIKE = 'likes/getLike';
+const ALL_LIKES = 'likes/getAll'
 const CREATE_LIKE = 'likes/createLike'
 const DELETE_LIKE = 'likes/deleteLike';
+
+const getAll = (likes) => ({
+    type: ALL_LIKES,
+    payload: likes
+})
 
 export const getLike = like => ({
     type: GET_LIKE,
@@ -24,6 +30,16 @@ export const fetchLike = postId => async dispatch => {
         const parsedRes = await res.json()
         await dispatch(getLike(parsedRes))
         // await dispatch(getLike(parsedRes.Likes))
+        return res
+    }
+}
+
+export const fetchAllLikes = () => async dispatch => {
+    const res = await fetch('/api/likes')
+
+    if (res.ok) {
+        const parsedRes = await res.json()
+        await dispatch(getAll(parsedRes))
         return res
     }
 }
@@ -73,6 +89,12 @@ const likesReducer = (state = {}, action) => {
             const newLikeState = { ...state }
             newLikeState[action.payload.id] = action.payload
             return newLikeState
+        case ALL_LIKES:
+            const allLikesState = {}
+            action.payload.likes?.forEach(like => {
+                allLikesState[like.id] = like
+            })
+            return allLikesState
         default:
             return state
     }

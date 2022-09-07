@@ -399,4 +399,5 @@
 .feed-like-container {
     display: flex;
     align-items: center;
+    padding-left: .6em;
 }
