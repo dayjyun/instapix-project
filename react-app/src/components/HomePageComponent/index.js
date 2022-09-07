@@ -41,8 +41,10 @@ const HomePageComponent = () => {
     let following = useSelector(state => state.follow)
     let following2 = following?.follows
 
-    // console.log(allPost)
-    // console.log(following.loggedUser)
+    console.log(posts)
+    // console.log(following)
+    // console.log('-------------------');
+    // console.log(following2)
 
 
     useEffect(() => {
