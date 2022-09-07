@@ -51,7 +51,7 @@ const followingPosts = (list) => {
 };
 
 export const getFollowingPosts = () => async (dispatch) => {
-  const allFollowingPosts = await fetch("/api/posts");
+  const allFollowingPosts = await fetch("/api/posts/");
 
   if (allFollowingPosts.ok) {
     const resAllPosts = await allFollowingPosts.json();
@@ -162,7 +162,7 @@ export default function postsReducer(state = initialState, action) {
       return postByUserIdState
     case GET_FOLLOWING_POSTS:
       const newFollowingPostsState = { ...state };
-      action.list.Posts.forEach((post) => {
+      action.list.forEach((post) => {
         newFollowingPostsState[post.id] = post;
       });
       return newFollowingPostsState;

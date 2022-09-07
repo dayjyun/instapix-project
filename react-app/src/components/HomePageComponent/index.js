@@ -36,13 +36,13 @@ const HomePageComponent = () => {
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-    const allPost = Object.values(useSelector(state => state.posts))
+    const posts = Object.values(useSelector(state => state.posts))
     const likes = Object.values(useSelector(state => state.likes))
     let following = useSelector(state => state.follow)
     let following2 = following?.follows
 
-    console.log(allPost)
-    console.log(following.loggedUser)
+    // console.log(allPost)
+    // console.log(following.loggedUser)
 
 
     useEffect(() => {
@@ -51,14 +51,14 @@ const HomePageComponent = () => {
 
 
 
-    const filteredPost = (userId) => {
-        const post = allPost?.filter(post => {
-            console.log(post?.user_id, userId)
-            return post?.user_id === userId
-        })
-        console.log(post)
-        return post
-    }
+    // const filteredPost = (userId) => {
+    //     const post = allPost?.filter(post => {
+    //         // console.log(post?.user_id, userId)
+    //         return post?.user_id === userId
+    //     })
+    //     // console.log(post)
+    //     return post
+    // }
 
     useEffect(() => {
         i = uniqueIndex()
@@ -75,7 +75,7 @@ const HomePageComponent = () => {
         dispatch(userActions.getAllUsers())
         dispatch(followingActions.getFollowingBackend(sessionUser?.id))
         dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser?.id))
-        dispatch(postActions.loadAllPosts())
+        // dispatch(postActions.loadAllPosts())
         dispatch(likeActions.fetchAllLikes())
     }, [dispatch])
 
@@ -242,7 +242,7 @@ const HomePageComponent = () => {
                         </div>
                         <div className="feed-section">
                             {following2 && (Object.values(following2)?.map(follow => {
-                                const randomPost = filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]
+                                const randomPost = posts[Math.floor(Math.random() * posts?.length)]
                                 return (
                                     <div key={follow.id} className="feed-post-container">
                                         <div className="feed-username-container">
@@ -260,7 +260,7 @@ const HomePageComponent = () => {
                                             <div className={likeClass}></div>
                                         </div>
                                         <div>
-                                            <testingtesting />
+                                            {/* <testingtesting /> */}
                                         </div>
                                     </div>
                                 )
