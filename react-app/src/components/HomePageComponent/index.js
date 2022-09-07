@@ -49,7 +49,7 @@ const HomePageComponent = () => {
 
     useEffect(() => {
         dispatch(getFollowingPosts())
-    }, [dispatch])
+    }, [dispatch, following])
 
 
 
@@ -75,7 +75,7 @@ const HomePageComponent = () => {
 
     useEffect(() => {
         dispatch(userActions.getAllUsers())
-        dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+        // dispatch(followingActions.getFollowingBackend(sessionUser?.id))
         dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser?.id))
         // dispatch(postActions.loadAllPosts())
         dispatch(likeActions.fetchAllLikes())
@@ -257,7 +257,7 @@ const HomePageComponent = () => {
                                             </div>
                                         </div>
                                         <div className="feed-post-image">
-                                            <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
+                                            <img className="feed-image" src={post?.post_url} alt="Post has no image"></img>
                                         </div>
                                         <div className="feed-like-container">
                                             {/* not yet working */}

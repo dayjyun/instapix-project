@@ -12,10 +12,9 @@ const PostCardButtons = ({ post, closeModal, randomPost }) => {
     const currUser = useSelector(state => state.session.user)
     console.log(randomPost)
 
-    const handleUnfollow = e => {
+    const handleUnfollow = async (e) => {
         e.preventDefault()
-
-        dispatch(deleteFollowBackend(post?.User?.id))
+        await dispatch(deleteFollowBackend(post?.User?.id))
         closeModal()
     }
 
@@ -27,7 +26,7 @@ const PostCardButtons = ({ post, closeModal, randomPost }) => {
     return (
         <>
             <div className='postcard-button-container'>
-                <button onClick={handleUnfollow} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>{follow}</button>
+                <button onClick={async (e) => await handleUnfollow(e)} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>{follow}</button>
             </div>
             <div className='postcard-button-container'>
                 <button onClick={handleGoToPost} style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
