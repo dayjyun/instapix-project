@@ -12,7 +12,7 @@ function GetPost({ post }) {
   const allUsers = Object.values(useSelector(state => state.users));
   const currUser = useSelector((state) => state.session.user);
   const userId = posts.map((post) => post?.user_id)[0];
-  // const likes = useSelector(state => Object.values(state.likes));
+  const likes = useSelector(state => Object.values(state.likes));
 
   // const [currPost, setCurrPost] = useState(null)
 
@@ -20,8 +20,9 @@ function GetPost({ post }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(postActions.getPost(post?.id));
-    dispatch(userActions.getAllUsers());
+    // if not post {
+      dispatch(postActions.getPost(post?.id));
+      dispatch(userActions.getAllUsers());
   }, [dispatch]);
 
   const getUser = (id) => {
