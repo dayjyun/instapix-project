@@ -1,21 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as postActions from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
 
 function GetPost({ post }) {
-  const posts = useSelector((state) => Object.values(state.posts));
-  const allUsers = Object.values(useSelector(state => state.users));
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const allUsers = Object.values(useSelector((state) => state.users));
   const currUser = useSelector((state) => state.session.user);
-  const userId = posts.map((post) => post?.user_id)[0];
-  const likes = useSelector(state => Object.values(state.likes));
+  const [copyText, setCopyText] = useState("google.com");
 
   const history = useHistory()
   const dispatch = useDispatch();
+  const inputHandler = (e) => {
+    e.preventDefault();
+    setCopyText(e.target.value);
+  };
+
+  const copy = async () => {
+    await navigator.clipboard.writeText(copyText);
+    alert("Text copied");
+  };
 
   useEffect(() => {
       dispatch(postActions.getPost(post?.id));
@@ -28,14 +36,20 @@ function GetPost({ post }) {
   };
 
   const userProfile = (userId) => {
-    history.push(`/users/${userId}`)
-    history.go(0)
-  }
+    history.push(`/users/${userId}`);
+    history.go(0);
+  };
 
   let editPostBtn;
 
-  if (currUser?.id == +userId) {
+  if (currUser?.id == post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
+  } else {
+    editPostBtn = (
+      <button onClick={copy} onChange={inputHandler}>
+        Post
+      </button>
+    );
   }
 
   return (
@@ -45,7 +59,10 @@ function GetPost({ post }) {
       </div>
       <div className="caption-comment-container">
         <div className="user-info-container">
-          <div className="profile-pic-username" onClick={() => userProfile(post?.user_id)}>
+          <div
+            className="profile-pic-username"
+            onClick={() => userProfile(post?.user_id)}
+          >
             <img
               className="comment-profile-pic"
               src={getUser(post?.user_id)?.profile_image}
@@ -55,16 +72,20 @@ function GetPost({ post }) {
               {getUser(post?.user_id)?.username}
             </div>
           </div>
-          {currUser?.id === post.user_id ? editPostBtn : ""}
+          {editPostBtn}
         </div>
         <div className="post-caption-container">
           <img
             onClick={() => userProfile(post?.user_id)}
             className="comment-profile-pic"
             src={getUser(post?.user_id)?.profile_image}
+            // value={copyText}
             alt="preview"
           ></img>
-          <div className="post-username-text" onClick={() => userProfile(post?.user_id)}>
+          <div
+            className="post-username-text"
+            onClick={() => userProfile(post?.user_id)}
+          >
             {getUser(post?.user_id)?.username}
           </div>
           <div className="caption-text">
