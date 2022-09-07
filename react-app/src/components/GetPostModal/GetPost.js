@@ -14,8 +14,6 @@ function GetPost({ post }) {
   const userId = posts.map((post) => post?.user_id)[0];
   const likes = useSelector(state => Object.values(state.likes));
 
-  // const [currPost, setCurrPost] = useState(null)
-
   const history = useHistory()
   const dispatch = useDispatch();
 
