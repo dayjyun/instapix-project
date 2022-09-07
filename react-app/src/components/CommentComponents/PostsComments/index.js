@@ -10,6 +10,7 @@ import './PostComments.css'
 const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments));
+    const likes = useSelector(state => Object.values(state.likes))
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
@@ -25,7 +26,10 @@ const PostsComments = ({ post, setCurrPost }) => {
 
     const getCreatedDate = (datestr) => {
         const fullDate = new Date(datestr).toDateString()
-        const date = fullDate.slice(4)
+        let date = fullDate.slice(4)
+        if (date[4] === '0') {
+            date = date.slice(0, 4) + date.slice(5);
+        };
         return date
     }
 
@@ -82,10 +86,17 @@ const PostsComments = ({ post, setCurrPost }) => {
                 <div>
                     <div className="likes-comment-container">
                         <div className="heart-comment-bubble">
-                            <div onClick={() => likePost().then(setLiked(!liked)).then(setCurrPost(post))}>{liked ? postLiked : postNotLiked}</div>
-                            <div onClick={() => inputEl.current.focus()}><i className="fa-regular fa-comment comment-bubble"></i></div>
+                            <div onClick={async () => await likePost()
+                                .then(async () => setLiked(!liked))
+                                .then(async () => await setCurrPost(post))}>
+                                    {liked ? postLiked : postNotLiked}
+                            </div>
+                            <div
+                                onClick={() => inputEl.current.focus()}>
+                                    <i className="fa-regular fa-comment comment-bubble"></i>
+                            </div>
                         </div>
-                        <div className="post-likes">{post?.likes} likes</div>
+                        <div className="post-likes">{likes?.length} likes</div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
                     <CreateComment inputEl={inputEl} post={post} />
