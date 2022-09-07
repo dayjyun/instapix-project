@@ -13,8 +13,6 @@ function GetPost({ post }) {
   const currUser = useSelector((state) => state.session.user);
   const [copyText, setCopyText] = useState("google.com");
 
-  const history = useHistory()
-  const dispatch = useDispatch();
   const inputHandler = (e) => {
     e.preventDefault();
     setCopyText(e.target.value);
