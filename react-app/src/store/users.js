@@ -26,7 +26,6 @@ export const getAllUsers = () => async (dispatch) => {
 };
 
 export const getOneUser = (userId) => async (dispatch) => {
-    console.log(userId)
     const res = await fetch(`/api/users/${userId}`);
 
     if (res.ok) {
