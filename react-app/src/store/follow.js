@@ -98,6 +98,8 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
     }
 }
 
+
+
 //INITIAL STATE
 const initialState = { loggedUser: null, follows: null, followers: null }
 // loggedUser = currently logged in users follows

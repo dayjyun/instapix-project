@@ -10,6 +10,7 @@ import PostCardModal from "./PostCardModal"
 import * as postActions from '../../store/posts'
 import * as likeActions from '../../store/likes'
 import testingtesting from "./testing"
+import { getFollowingPosts } from "../../store/posts"
 
 const uniqueIndex = () => {
     const indexes = []
@@ -40,12 +41,22 @@ const HomePageComponent = () => {
     let following = useSelector(state => state.follow)
     let following2 = following?.follows
 
+    console.log(allPost)
+    console.log(following.loggedUser)
+
+
+    useEffect(() => {
+        dispatch(getFollowingPosts())
+    }, [dispatch])
+
 
 
     const filteredPost = (userId) => {
         const post = allPost?.filter(post => {
+            console.log(post?.user_id, userId)
             return post?.user_id === userId
         })
+        console.log(post)
         return post
     }
 
@@ -63,6 +74,7 @@ const HomePageComponent = () => {
     useEffect(() => {
         dispatch(userActions.getAllUsers())
         dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+        dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser?.id))
         dispatch(postActions.loadAllPosts())
         dispatch(likeActions.fetchAllLikes())
     }, [dispatch])

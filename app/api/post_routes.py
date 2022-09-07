@@ -23,6 +23,12 @@ def get_all_posts():
 @post_routes.route('/')
 @login_required
 def get_posts():
+
+    print('---')
+    print('test')
+
+    print('---')
+
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())

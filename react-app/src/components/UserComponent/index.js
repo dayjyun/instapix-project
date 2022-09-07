@@ -19,7 +19,7 @@ function User() {
   user = user[0]
   const follows = useSelector(state => state.follow)
   const posts = useSelector(state => Object.values(state.posts))
-  const usersPosts = posts.filter(post => post.user_id === user.id)
+  const usersPosts = posts.filter(post => post?.user_id === user?.id)
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
