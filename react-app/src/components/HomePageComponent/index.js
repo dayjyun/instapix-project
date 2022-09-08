@@ -259,7 +259,13 @@ const HomePageComponent = () => {
                                         <div className="feed-like-container">
                                             {/* not yet working */}
                                             <div className={likeClass}></div>
+                                            <div >'COMMENT'</div>
                                         </div>
+                                        <div className="like-count-box">1000 likes</div>
+                                        <div className="post-details-box">username and caption</div>
+                                        <div className="load-comments-button">View all comments #</div>
+                                        <div className="post-date-time">date posted</div>
+                                        {/* Create comment component */}
                                         <div>
                                             {/* <testingtesting /> */}
                                         </div>
