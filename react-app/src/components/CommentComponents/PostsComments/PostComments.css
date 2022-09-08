@@ -51,7 +51,7 @@
 .comment-date {
     display: flex;
     align-items: center;
-    margin: 5px 0;
+    margin: 5px 5px 5px 0;
     font-size: 9px;
     color: rgb(0, 0, 0, 0.6);
 }
@@ -89,10 +89,8 @@
 
 .edit-comment-container {
     padding-left: 0;
-}
-
-.edit-comment-container:hover + .edit-comment-btn {
-    display: block;
+    display: flex;
+    text-align: center;
 }
 
 .comment-body {
@@ -101,10 +99,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .comment-body-input {
-    margin: 5px 5px;
+    /* margin: 5px 5px; */
 }
 
 .likes-comment-container {

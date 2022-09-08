@@ -5,11 +5,8 @@ import * as commentActions from '../../../store/comments';
 import './EditComment.css'
 
 const EditCommentForm = ({setShowEditComment, setShowMenuButtons, comment}) => {
-    // const { commentId } = useParams()
-    // const comment = useSelector((state) => state.comments[commentId]);
-    const [body, setBody] = useState('');
+    const [body, setBody] = useState(comment?.body);
 
-    // const history = useHistory();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -27,7 +24,7 @@ const EditCommentForm = ({setShowEditComment, setShowMenuButtons, comment}) => {
     return (
             <form onSubmit={handleSubmit} className='edit-comment-form'>
                 <div className='input-container'>
-                    <input className='comment-body-input' type='text' name='body' value={body} placeholder={comment?.body} onChange={(e) => setBody(e.target.value)} />
+                    <input className='comment-body-input' type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
                     <button>Done</button>
                 </div>
             </form>
