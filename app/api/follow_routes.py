@@ -20,7 +20,7 @@ def get_follows_for_user(user_id):
         formatted_data.append(data)
 
     if user:
-        return {'Followers': [follow for follow in formatted_data]}
+        return jsonify({'Followers': [follow for follow in formatted_data]}), 200
     else:
         return jsonify(message='User could not be found.', status_code=404)
 
@@ -42,7 +42,7 @@ def get_users_follows(user_id):
         formatted_data.append(data)
 
     if user:
-        return {'Followers': [follow for follow in formatted_data]}
+        return jsonify({'Followers': [follow for follow in formatted_data]}), 200
     else:
         return jsonify(message='User could not be found.', status_code=404)
 
@@ -73,7 +73,7 @@ def follow_user(user_id):
         user_info = User.query.filter(new_follow.follows_id == User.id).first()
         data = {"follow": new_follow.to_dict_follows(), "follower_info": user_info.follow_info()}
         print(data)
-        return data
+        return jsonify(data), 200
 
     else:
         return jsonify(message='User could not be found.', status_code=404), 404
@@ -100,7 +100,8 @@ def unfollow_user(user_id):
 
                 db.session.delete(my_follow)
                 db.session.commit()
-                return data
+                return jsonify(data), 200
+
 
         return jsonify(message='You cannot unfollow someone you do not follow.', status_code=404), 404
 

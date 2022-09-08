@@ -10,7 +10,7 @@ post_routes = Blueprint('posts', __name__, url_prefix='/posts')
 
 
 #** get all posts on database **#
-@post_routes.route('/explorer')
+@post_routes.route('/explore')
 @login_required
 def get_all_posts():
     all_posts_query = Post.query.order_by(Post.created_at.desc())
@@ -62,7 +62,6 @@ def post_details(post_id):
 @post_routes.route('/form', methods=["POST"])
 @login_required
 def create_post():
-
     data = request.json
     new_post = Post(
         user_id=current_user.id,
@@ -89,7 +88,7 @@ def get_post_comments(post_id):
 
     return jsonify(message='Post not found'), 404
     # TODO should return user_name, profile_picture, user.id
-    # remove bio, first_name, last_name, nums, email
+    # remove bio, first_name, last_name, nums, email, posts
 
 
 # create a comment providing user_id, post_id, and body

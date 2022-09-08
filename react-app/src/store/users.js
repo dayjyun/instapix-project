@@ -16,7 +16,7 @@ const getUser = (user) => {
 }
 
 export const getAllUsers = () => async (dispatch) => {
-    const res = await fetch('/api/users')
+    const res = await fetch('/api/users/')
 
     if (res.ok) {
         const users = await res.json();
@@ -26,7 +26,6 @@ export const getAllUsers = () => async (dispatch) => {
 };
 
 export const getOneUser = (userId) => async (dispatch) => {
-    console.log(userId)
     const res = await fetch(`/api/users/${userId}`);
 
     if (res.ok) {
@@ -43,7 +42,9 @@ export default function userReducer(state = newState, action) {
         // case GET_USER:
         //     return { ...state, [action.data.id]: action.data }
         case GET_USER:
-            return { ...state, [action.payload.id]: action.payload }
+            // return { ...state, [action.payload.id]: action.payload }
+            return { [action.payload.id]: action.payload }
+
         case LOAD_USERS:
             // console.log(action);
             const allUserState = { ...state }

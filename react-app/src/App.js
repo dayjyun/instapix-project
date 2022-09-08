@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -10,9 +9,7 @@ import { authenticate } from "./store/session";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-// import FollowModal from "./components/FollowModal/FollowerModal";
 import PostComponent from "./components/PostsComponent";
-import GetPostModal from "./components/GetPostModal";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
@@ -37,46 +34,37 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        {/* <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route> */}
-        <Route path="/sign-up" exact={true}>
+        <Route path="/sign-up">
           <SignUpUserForm />
         </Route>
         <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
-        <Route exact path="/posts">
-          <FollowingPosts />
-        </Route>
-        <Route exact path="/">
-          <HomePageComponent />
-          {/* <div>
-            <div className="new-post-button">
-              <GetPostModal />
-            </div>
-          </div> */}
+        <Route path="/posts/:postId/comments">
+          <PostsComments />
         </Route>
         <Route exact path="/posts/:postId">
           <PostComponent />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <Route path="/posts/:postId/comments" exact={true}>
-          <PostsComments />
+        <Route exact path="/posts">
+          <FollowingPosts />
         </Route>
-        <Route path="/comments/:commentId" exact={true}>
-          <CommentDetails />
-        </Route>
-        {/* EDIT COMMENT BROKEN */}
-        <Route path="/comments/:commentId/edit" exact={true}>
+        <Route path="/comments/:commentId/edit">
           <EditComment />
         </Route>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          {/* <FollowingModal /> */}
+        <Route path="/comments/:commentId">
+          <CommentDetails />
+        </Route>
+
+        <ProtectedRoute path="/users/:userId">
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path="/users">
+          <UsersList />
+        </ProtectedRoute>
+        <Route exact path="/">
+          <HomePageComponent />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

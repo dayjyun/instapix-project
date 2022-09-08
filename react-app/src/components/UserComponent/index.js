@@ -7,6 +7,7 @@ import { getOneUser } from '../../store/users'
 import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend } from '../../store/follow'
 import UserGetPostModal from '../GetPostModal/usersGetPost';
 import './UserComponent.css'
+import { loadAllPosts } from '../../store/posts';
 
 
 function User() {
@@ -17,7 +18,8 @@ function User() {
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
   const follows = useSelector(state => state.follow)
-
+  const posts = useSelector(state => Object.values(state.posts))
+  const usersPosts = posts.filter(post => post?.user_id === user?.id)
 
   useEffect(() => {
     dispatch(getOneUser(parseInt(userId)))
@@ -34,6 +36,9 @@ function User() {
     }
   }, [dispatch, user])
 
+  useEffect(() => {
+    dispatch(loadAllPosts())
+  }, [dispatch])
 
   return (
     <>
@@ -73,22 +78,9 @@ function User() {
 
           <hr className="solid"></hr>
           <div className='user-posts-collection'>
-            {user?.posts?.map(post => {
+            {usersPosts?.map(post => {
               return (
                 <UserGetPostModal post={post} />
-                // <>
-                //   <div className='user-post-card'>
-                //     <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
-
-                //     <div className='likes-comments-stats'>
-                //       <p className='like-comment-p'>
-                //         <i class="fa-solid fa-heart icon-styling"></i>
-                //         {post.likes}
-                //         <i class="fa-solid fa-comment icon-styling-2"></i>{post.num_comments}</p>
-                //     </div>
-                //   </div>
-
-                // </>
               )
             })}
           </div>

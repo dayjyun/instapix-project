@@ -7,17 +7,14 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 
-const PostsComments = ({ post }) => {
+
+const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
-    const comments = useSelector((state) => Object.values(state.comments))
+    const comments = useSelector((state) => Object.values(state.comments));
     const likes = useSelector(state => Object.values(state.likes))
-    const [editing, setEditing] = useState(false);
+    const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
-
-
-    console.log('LIKES',likes)
-    console.log('POST',post);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -28,10 +25,12 @@ const PostsComments = ({ post }) => {
         dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])
 
-
     const getCreatedDate = (datestr) => {
         const fullDate = new Date(datestr).toDateString()
-        const date = fullDate.slice(4)
+        let date = fullDate.slice(4)
+        if (date[4] === '0') {
+            date = date.slice(0, 4) + date.slice(5);
+        };
         return date
     }
 
@@ -41,9 +40,17 @@ const PostsComments = ({ post }) => {
     }
 
     const currUserLiked = () => {
-        const userIds = likes.map(like => like.user_id);
-        setLiked(userIds.includes(user?.id))
+        setLiked(likesUserIds?.includes(user?.id))
     }
+
+    const likePost = async () => {
+        if (likesUserIds?.includes(user?.id)) {
+            await dispatch(likeActions.unlike(post?.id))
+
+        } else {
+            await dispatch(likeActions.like(post?.id))
+        }
+    };
 
     let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
     let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
@@ -69,7 +76,7 @@ const PostsComments = ({ post }) => {
                                     {comment?.body}
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
-                                            <EditCommentModal comment={comment}/>
+                                            <EditCommentModal comment={comment} />
                                         </div>
                                     }
                                 </div>
@@ -80,13 +87,20 @@ const PostsComments = ({ post }) => {
                 <div>
                     <div className="likes-comment-container">
                         <div className="heart-comment-bubble">
-                            <div>{liked ? postLiked : postNotLiked}</div>
-                            <div onClick={() => inputEl.current.focus()}><i className="fa-regular fa-comment comment-bubble"></i></div>
+                            <div onClick={async () => await likePost()
+                                .then(async () => setLiked(!liked))
+                                .then(async () => await setCurrPost(post))}>
+                                {liked ? postLiked : postNotLiked}
+                            </div>
+                            <div
+                                onClick={() => inputEl.current.focus()}>
+                                <i className="fa-regular fa-comment comment-bubble"></i>
+                            </div>
                         </div>
-                        <div className="post-likes">{post?.likes} likes</div>
+                        <div className="post-likes">{likes?.length} likes</div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
-                    <CreateComment  inputEl={inputEl} post={post} />
+                    <CreateComment inputEl={inputEl} post={post} />
                 </div>
             </div>
         </>

@@ -6,17 +6,27 @@ from flask_login import login_required, current_user
 like_routes = Blueprint('likes', __name__)
 
 
+# GET ALL LIKES
+
+@like_routes.route('/likes')
+@login_required
+def get_all_likes():
+    likes = Like.query.all()
+    likes = [like.to_dict() for like in likes]
+    return jsonify({'likes': likes})
+
 # GET LIKES BY POST ID
+
+
 @like_routes.route('/posts/<int:post_id>/likes')
 @login_required
 def get_likes_by_post(post_id):
     likes = Like.query.filter(Like.post_id == post_id)
     likes = [like.to_dict() for like in likes]
     if likes:
-        return {'likes': likes}
+        return jsonify({'likes': likes}), 200
     else:
         return jsonify({'message': 'There are no likes', 'status_code': 404}), 404
-
 
 
 # LIKE A POST
