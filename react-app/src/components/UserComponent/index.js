@@ -20,6 +20,7 @@ function User() {
   const follows = useSelector(state => state?.follow)
   const posts = useSelector(state => Object.values(state.posts))
   const usersPosts = posts.filter(post => post?.user_id === user?.id)
+
   const [onMyPage, setOnMyPage] = useState('');
   const [alreadyFollowing, setAlreadyFollowing] = useState(false)
 
