@@ -6,6 +6,7 @@ import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
+import LikesModal from "../../LikesModal";
 
 
 const PostsComments = ({ post, setCurrPost }) => {
@@ -101,7 +102,10 @@ const PostsComments = ({ post, setCurrPost }) => {
                                 <i className="fa-regular fa-comment comment-bubble"></i>
                             </div>
                         </div>
-                        <div className="post-likes">{likes?.length} likes</div>
+                        <div className="post-likes">
+                            {/* {likes?.length} likes */}
+                            <LikesModal likes={likes}/>
+                            </div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
                     <CreateComment inputEl={inputEl} post={post} />

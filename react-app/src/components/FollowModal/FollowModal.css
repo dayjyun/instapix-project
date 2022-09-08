@@ -60,3 +60,8 @@
     color: rgb(145, 145, 145);
     font-size: 13.8px;
 }
+
+.likes-info-container {
+    padding: 1% 4% 4% 12%;
+    justify-content: center;
+}
