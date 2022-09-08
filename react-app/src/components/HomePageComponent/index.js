@@ -11,6 +11,7 @@ import * as postActions from '../../store/posts'
 import * as likeActions from '../../store/likes'
 import testingtesting from "./testing"
 import { getFollowingPosts } from "../../store/posts"
+import LikeCommentComponent from "../LikeCommentComponent"
 
 const uniqueIndex = () => {
     const indexes = []
@@ -218,7 +219,7 @@ const HomePageComponent = () => {
                             </div>
                             <div className="user-pics-container">
                                 {i?.map(i => (
-                                    <div className="user-pics">
+                                    <div key={i} className="user-pics">
                                         <button onClick={
                                             e => {
                                                 e.preventDefault()
@@ -234,7 +235,7 @@ const HomePageComponent = () => {
                             </div>
                             <div className="user-pics-container">
                                 {i?.map(i => (
-                                    <div className="username">
+                                    <div key={i} className="username">
                                         <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
                                     </div>
                                 ))}
@@ -244,7 +245,7 @@ const HomePageComponent = () => {
                             {posts && (Object.values(posts)?.map(post => {
                                 const randomPost = posts[Math.floor(Math.random() * posts?.length)]
                                 return (
-                                    <div key={post.id} className="feed-post-container">
+                                    <div key={post?.id} className="feed-post-container">
                                         <div className="feed-username-container">
                                             {ProfileImageTagSmallCard(post)}
                                             <a href={`/users/${post?.User?.id}`}>{post?.User?.username}</a>
@@ -290,7 +291,7 @@ const HomePageComponent = () => {
                         <p className="suggestions-for-u">Suggestions For You</p>
                         <div className="suggestions-users-containers">
                             {i2?.map(i => (
-                                <div className="suggestions-user-card">
+                                <div key={i} className="suggestions-user-card">
                                     {ProfileImageTagSmall(allUsers, i)}
                                     <div className="suggestions-username-name">
                                         <a className="suggestions-username" href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
