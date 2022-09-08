@@ -20,7 +20,12 @@
 
 .comment-body-input {
     border: none;
-    width: 100%;
+    width: 21.5rem;
+    height: 1rem;
+    font-family: 'Arimo', sans-serif;
+    resize: none;
+    /* line-break: normal;
+    overflow: scroll; */
 }
 
 .comment-body-input:focus {

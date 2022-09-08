@@ -28,9 +28,9 @@ const CreateComment = ({inputEl, post}) => {
                         ))}
                     </ul> */}
                     <div className='comment-input-container'>
-                        <div>
-                        <input ref={inputEl} className='comment-body-input' type='text' name='body' value={body} placeholder='Add a comment...' onChange={(e) => setBody(e.target.value)} />
-                        </div>
+                        {/* <div> */}
+                        <textarea ref={inputEl} className='comment-body-input' type='text' name='body' value={body} placeholder='Add a comment...' onChange={(e) => setBody(e.target.value)} />
+                        {/* </div> */}
                         <div>
                         <button className="comment-submit-btn">Post</button>
                         </div>
