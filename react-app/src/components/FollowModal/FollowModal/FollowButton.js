@@ -42,13 +42,13 @@ const FollowButton = ({ user, follow }) => {
             user_id: user?.id,
             follows_id: parseInt(follow?.follower_info?.id)
         }
-        await dispatch(postFollowBackend(input));
+        await dispatch(postFollowBackend(input, user?.id));
     }
 
 
     const handleClickUnfollow = async (e) => {
         e.preventDefault();
-        await dispatch(deleteFollowBackend(e.target.id));
+        await dispatch(deleteFollowBackend(e.target.id, loggedUser?.id));
     }
 
     return (
