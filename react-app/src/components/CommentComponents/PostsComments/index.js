@@ -55,6 +55,10 @@ const PostsComments = ({ post, setCurrPost }) => {
     let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
     let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
 
+    comments?.sort((a, b) => {
+        return b.id - a.id;
+    })
+
     return (
         <>
             <div className="post-comments-container">
