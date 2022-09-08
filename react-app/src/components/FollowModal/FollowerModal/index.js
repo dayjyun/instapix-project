@@ -6,7 +6,6 @@ import '../../UserComponent/UserComponent.css'
 function FollowerModal({ user, followers }) {
     const [showModal, setShowModal] = useState(false);
 
-
     return (
         <>
             <p onClick={() => setShowModal(true)} ><span className='bold'>{Object.values(followers).length}</span> followers</p>

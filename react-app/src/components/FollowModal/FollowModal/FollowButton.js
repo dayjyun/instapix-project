@@ -7,10 +7,16 @@ const FollowButton = ({ user, follow }) => {
     const dispatch = useDispatch()
 
     const [followButton, setFollowButton] = useState()
+    const [myBtn, setMyBtn] = useState('')
 
     const loggedUser = useSelector(state => state.session.user)
     const loggedUserFollows = Object.values(useSelector(state => state?.follow?.loggedUser))
 
+    useEffect(() => {
+        if (loggedUser?.id === follow?.follower_info?.id) {
+            setMyBtn(true)
+        }
+    }, [loggedUser, follow])
 
     useEffect(() => {
         dispatch(getLoggedUserFollowingBackend(loggedUser?.id))
@@ -53,14 +59,14 @@ const FollowButton = ({ user, follow }) => {
 
     return (
         <>
-            {followButton && (
+            {followButton && !myBtn && (
                 <>
                     <div className='follower-follow-btn'>
                         <button className='follow-button-styling' id={follow?.follower_info?.id} onClick={handleClickFollow}>Follow</button>
                     </div>
                 </>
             )}
-            {!followButton && (
+            {!followButton && !myBtn && (
                 <div className='follower-follow-btn'>
                     <button className='follow-button-styling' id={follow?.follower_info?.id} onClick={handleClickUnfollow}>Unfollow</button>
                 </div>
