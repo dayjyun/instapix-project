@@ -1,4 +1,4 @@
-# Flask React Project
+<!-- # Flask React Project
 
 This is the starter for the Flask React project.
 
@@ -43,7 +43,7 @@ This is the starter for the Flask React project.
 <br>
 
 ## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations.
 
 1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
 
@@ -85,4 +85,69 @@ each of the following variables:
 | `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
 
 
-# instagram-project
+# instagram-project -->
+
+# Instapix Project
+
+The Instapix Project is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
+
+Sign-up, login, or try out our Demo user. The repo is your playground.
+Once inside, you'll be able to upload images and see works submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world.
+
+To run the file
+
+1.
+
+Or simply checkout the website!
+
+## [Instapix Project](https://instapix-project.herokuapp.com/)
+
+
+# Tech
+
+Tech used (elaborate)
+
+- Python
+- Flask
+- SQLAlchemy
+- Jinja
+- Alembic
+- JavaScript
+- React-Redux
+- Postgress
+
+
+## **Snapshots**
+## Landing Page
+![Landing Page](./images/landing_page.png)
+
+## Feed
+
+## Explore
+
+## Profile
+
+Here are the things you can do:
+
+- Posts
+   - Create posts
+   - Add captions and hashtags to your posts
+   - Update your post's caption
+   - Delete your post
+
+- Follow
+   - Follow users to connect with their posts
+   - Un-follow users you no longer desire to follow
+   - Users can follow you to connect with your posts
+
+- Feed
+   - Browse through posts created by people you follow
+   - Like and comment on other people's posts
+
+- Explore
+   - Browse through the wide collection stored in the website
+
+
+# Future Features
+
+But wait, it gets even better!
