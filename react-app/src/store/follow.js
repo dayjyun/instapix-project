@@ -113,11 +113,23 @@ const followReducer = (state = initialState, action) => {
             const copy = followState.follows;
             const copy2 = followState.loggedUser;
 
-            copy[action.payload.follow.id] = action.payload;
+            const followArr = Object.values(copy)
+
+            let dontAdd = false
+            for (let i = 0; i < followArr.length; i++) {
+                console.log(followArr[i].follower_info.id, action.payload.follower_info.id)
+                if (followArr[i].follower_info.id === action.payload.follower_info.id) {
+                    dontAdd = true
+                }
+            }
+            if (!dontAdd) {
+                copy[action.payload.follow.id] = action.payload;
+            }
+
             copy2[action.payload.follow.id] = action.payload;
 
             followState.follows = copy;
-            followState.loggedUser = copy2
+            followState.loggedUser = copy2;
             return followState;
 
         case GET_LOGGED_USER_FOLLOWING:
