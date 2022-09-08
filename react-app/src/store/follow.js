@@ -173,16 +173,11 @@ const followReducer = (state = initialState, action) => {
             if (action.payload.follow.user_id === action.loggedUserId) {
                 delete unfollowState['follows'][action.payload.follow.id]
             }
-
-
             if (action.blueBtnUnfollow) {
                 delete unfollowState['followers'][action.payload.follow.id]
             }
-
             delete unfollowState['loggedUser'][action.payload.follow.id]
-
             return unfollowState;
-
 
         default:
             return state;

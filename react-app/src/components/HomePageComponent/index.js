@@ -38,8 +38,7 @@ const HomePageComponent = () => {
     const allPost = Object.values(useSelector(state => state.posts))
     const likes = Object.values(useSelector(state => state.likes))
     let following = useSelector(state => state.follow)
-    let following2 = following?.follows
-
+    let following2 = following?.loggedUser
 
 
     const filteredPost = (userId) => {
