@@ -91,8 +91,8 @@ each of the following variables:
 
 The Instapix Project is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
 
-Sign-up, login, or try out our Demo user. The repo is your playground.
-Once inside, you'll be able to upload images and see works submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world.
+With Instapix, you can sign-up, login, or sign in as a guest to try out all the features. The repo is your adventure!
+Once inside, you'll be able to upload images and interact with posts submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world.
 
 To run the file
 
@@ -105,7 +105,7 @@ Or simply checkout the website!
 
 # Tech
 
-Tech used (elaborate)
+Great achievements take time and a strong foundation to construct an operating website. Here are the programs used:
 
 - Python
 - Flask
@@ -126,6 +126,8 @@ Tech used (elaborate)
 ## Explore
 
 ## Profile
+
+# Features
 
 Here are the things you can do:
 
