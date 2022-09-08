@@ -1,10 +1,16 @@
 const GET_LIKE = 'likes/getLike';
 const ALL_LIKES = 'likes/getAll'
+const POST_LIKES = 'likes/allLikesForPost'
 const CREATE_LIKE = 'likes/createLike'
 const DELETE_LIKE = 'likes/deleteLike';
 
 const getAll = (likes) => ({
     type: ALL_LIKES,
+    payload: likes
+})
+
+const allLikesForPost = likes => ({
+    type: POST_LIKES,
     payload: likes
 })
 
@@ -23,6 +29,17 @@ export const createLike = (like) => ({
     payload: like
 })
 
+export const fetchLikeForPost = postId => async dispatch => {
+    const res = await fetch(`/api/posts/${postId}/likes`)
+
+
+    const parsedRes = await res.json()
+    await dispatch(allLikesForPost(parsedRes))
+    // await dispatch(getLike(parsedRes.Likes))
+    return res
+
+}
+
 export const fetchLike = postId => async dispatch => {
     const res = await fetch(`/api/posts/${postId}/likes`)
 
@@ -37,11 +54,11 @@ export const fetchLike = postId => async dispatch => {
 export const fetchAllLikes = () => async dispatch => {
     const res = await fetch('/api/likes')
 
-    if (res.ok) {
-        const parsedRes = await res.json()
-        await dispatch(getAll(parsedRes))
-        return res
-    }
+
+    const parsedRes = await res.json()
+    await dispatch(getAll(parsedRes))
+    return res
+
 }
 
 export const like = postId => async dispatch => {
@@ -52,11 +69,11 @@ export const like = postId => async dispatch => {
         }
     })
 
-    if (res.ok) {
-        const parsedRes = await res.json()
-        dispatch(createLike(parsedRes))
-        return res;
-    }
+
+    const parsedRes = await res.json()
+    dispatch(createLike(parsedRes))
+    return res;
+
 }
 
 export const unlike = postId => async dispatch => {
@@ -81,6 +98,12 @@ const likesReducer = (state = {}, action) => {
                 setLikeState[like.id] = like
             });
             return setLikeState
+        case POST_LIKES:
+            const setPostLikes = { ...state }
+            action.payload?.likes?.forEach(like => {
+                setPostLikes[like.id] = like
+            })
+            return setPostLikes
         case DELETE_LIKE:
             const removeLikeState = { ...state }
             delete removeLikeState[action.payload]

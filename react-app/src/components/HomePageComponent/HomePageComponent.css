@@ -279,7 +279,7 @@
 }
 
 .feed-section {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     margin-top: 1em;
     width: 100%;
 }
@@ -287,10 +287,11 @@
 .feed-post-container {
     display: grid;
     /* grid-template-rows: 10% 40% 10% 10% 10% 10%; */
-    grid-template-rows: 3.5em 28em 3em;
+    grid-template-rows: 3.5em 28em 2.5em 1.5em 2.5em;
     height: 50em;
-    border: 3px solid black;
+    border: 1px solid lightgray;
     margin-bottom: 1em;
+    border-radius: 5px;
 }
 
 .feed-username-container {
@@ -314,6 +315,8 @@
     border-radius: 50px;
     border: none;
     background-color: transparent;
+    margin-left: .5em;
+    margin-top: .3em;
     width: 4.5em;
     height: 4.5em;
 }
@@ -378,7 +381,7 @@
 }
 
 .feed-username-container a {
-    padding-top: 1.5em;
+    padding-top: 1.4em;
     padding-left: .7em;
     font-size: 14px;
     font-family: sans-serif;
@@ -400,4 +403,16 @@
     display: flex;
     align-items: center;
     padding-left: .6em;
+}
+
+.feed-total-likes {
+    padding-left: .7em;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.feed-caption {
+    padding-left: .7em;
+    font-size: 15px;
+    font-weight: 600;
 }

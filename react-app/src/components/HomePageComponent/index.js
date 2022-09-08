@@ -37,6 +37,7 @@ const HomePageComponent = () => {
   const [style, setStyle] = useState({})
   const [errors, setErrors] = useState([])
   const [likeClass, setLikeClass] = useState('fa-regular fa-heart fa-xl')
+  const [followText, setFollowText] = useState('Follow')
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = Object.values(useSelector(state => state.users))
@@ -223,8 +224,6 @@ const HomePageComponent = () => {
     }
   };
 
-
-
   if (sessionUser) {
     return (
       <div className='home-page-container'>
@@ -277,10 +276,11 @@ const HomePageComponent = () => {
                     <div className="feed-like-container">
                       {/* not yet working */}
                       <LikeComponent post={post} />
-                      <div >'COMMENT'</div>
                     </div>
                     <TotalLikesComponent post={post} />
-                    <div className="post-details-box">username and caption</div>
+                    <span className='feed-caption'>{post?.User?.username}
+                      <span style={{ fontWeight: '400' }}> {post?.caption}</span>
+                    </span>
                     <div className="load-comments-button">View all comments #</div>
                     <div className="post-date-time">date posted</div>
                     {/* Create comment component */}
@@ -316,7 +316,7 @@ const HomePageComponent = () => {
                   </div>
                   <div className="user-card-follow-btn">
                     {/* not yet working */}
-                    <button>Follow</button>
+                    <button onClick={e => { }}>{followText}</button>
                   </div>
                 </div>
               ))}
