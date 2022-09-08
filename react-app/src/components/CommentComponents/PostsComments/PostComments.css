@@ -4,6 +4,7 @@
     justify-content: space-between;
     height: 100%;
     width: 100%;
+    /* overflow: hidden; */
 }
 
 .comment-card-list {
@@ -11,10 +12,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0;
+    padding: 0 5px 0 0;
     margin: 4px;
     width: fit-content;
     height: 24rem;
+    box-sizing: content-box;
+}
+
+.comment-card-list::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
 }
 
 .comment-card-container {
@@ -103,7 +109,12 @@
 }
 
 .comment-body-input {
-    /* margin: 5px 5px; */
+    margin: 8px 5px 0 5px;
+    height: 1.8rem;
+}
+
+.comment-body-input::-webkit-scrollbar {
+    display: none;
 }
 
 .likes-comment-container {

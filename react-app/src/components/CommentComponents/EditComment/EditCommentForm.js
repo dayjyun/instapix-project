@@ -23,7 +23,7 @@ const EditCommentForm = ({setShowEditComment, setShowMenuButtons, comment}) => {
     return (
             <form onSubmit={handleSubmit} className='edit-comment-form'>
                 <div className='input-container'>
-                    <input className='comment-body-input' type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
+                    <textarea className='comment-body-input' type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
                     <button>Done</button>
                 </div>
             </form>
