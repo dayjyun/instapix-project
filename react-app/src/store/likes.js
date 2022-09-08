@@ -26,12 +26,12 @@ export const createLike = (like) => ({
 export const fetchLike = postId => async dispatch => {
     const res = await fetch(`/api/posts/${postId}/likes`)
 
-    if (res.ok) {
-        const parsedRes = await res.json()
-        await dispatch(getLike(parsedRes))
-        // await dispatch(getLike(parsedRes.Likes))
-        return res
-    }
+
+    const parsedRes = await res.json()
+    await dispatch(getLike(parsedRes))
+    // await dispatch(getLike(parsedRes.Likes))
+    return res
+
 }
 
 export const fetchAllLikes = () => async dispatch => {
