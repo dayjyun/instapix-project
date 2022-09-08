@@ -1,4 +1,4 @@
-import PostComponent from "../components/PostsComponent"
+// import PostComponent from "../components/PostsComponent"
 
 
 //TYPES
@@ -90,6 +90,7 @@ export const postFollowBackend = (input) => async (dispatch) => {
 }
 //DELETE: a follow (unfollow)
 export const deleteFollowBackend = (userId) => async (dispatch) => {
+
     const response = await fetch(`/api/follows/users/${userId}/delete`, {
         method: 'DELETE'
     });
@@ -97,6 +98,12 @@ export const deleteFollowBackend = (userId) => async (dispatch) => {
         const parsedRes = await response.json();
         dispatch(deleteFollow(parsedRes))
     }
+}
+
+const getLoggedUser = async () => {
+    const loggedUser = await fetch('/api/auth/');
+    const parsedUser = await loggedUser.json()
+    return parsedUser
 }
 
 //INITIAL STATE
@@ -167,6 +174,11 @@ const followReducer = (state = initialState, action) => {
 
         case UNFOLLOW:
             const unfollowState = { ...state }
+            const loggedUser = getLoggedUser();
+            console.log(loggedUser)
+
+            // find a way to get the logged user id
+
             console.log(action.payload)
             console.log(unfollowState)
             // if (action.payload.follow.user_id === loggedUser.id){
@@ -174,6 +186,8 @@ const followReducer = (state = initialState, action) => {
             // }
 
             delete unfollowState['follows'][action.payload.follow.id]
+
+
             delete unfollowState['loggedUser'][action.payload.follow.id]
             // delete unfollowState['loggedUser']['Followers']['follow'][action.payload.follow.follows_id]
             // console.log(unfollowState.follows)
