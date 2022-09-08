@@ -17,10 +17,10 @@ def seed_posts():
         user_id=2, caption='went to the local cafe for a coffee, again! Yum! #omg', post_url='https://i0.wp.com/www.teamjimmyjoe.com/wp-content/uploads/2016/08/funny-dog-duck-lips.jpg?resize=600%2C600')
     post7 = Post(
         user_id=3, caption='my dog sleeping--he\'s really lazy? #instapix', post_url='https://images3.memedroid.com/images/UPLOADED96/5dff7350eefc0.jpeg')
-    post8 = Post(
-        user_id=4, caption="Life is better when you're laughing.", post_url='http://autofish.net/mirrors/images/animals/cats/cat_corner.jpg')
-    post9 = Post(
-        user_id=5, caption="With great girlfriend comes great expenses.", post_url='http://bluefaqs.com/wp-content/uploads/2010/06/Up.jpg')
+    # post8 = Post(
+    #     user_id=4, caption="Life is better when you're laughing.", post_url='http://autofish.net/mirrors/images/animals/cats/cat_corner.jpg')
+    # post9 = Post(
+    #     user_id=5, caption="With great girlfriend comes great expenses.", post_url='http://bluefaqs.com/wp-content/uploads/2010/06/Up.jpg')
     post10 = Post(
         user_id=1, caption="People say 'go big or go home' like going home is a bad thing. Heck yeah, I want to go home, and I'll have a nap when I get there.", post_url='https://images4.fanpop.com/image/photos/21300000/wallpaper-random-21343049-1280-800.jpg')
     post11 = Post(
