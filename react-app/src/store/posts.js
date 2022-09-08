@@ -161,7 +161,7 @@ export default function postsReducer(state = initialState, action) {
       })
       return postByUserIdState
     case GET_FOLLOWING_POSTS:
-      const newFollowingPostsState = { ...state };
+      const newFollowingPostsState = {};
       action.list.forEach((post) => {
         newFollowingPostsState[post.id] = post;
       });

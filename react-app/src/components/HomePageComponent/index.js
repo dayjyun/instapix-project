@@ -41,15 +41,12 @@ const HomePageComponent = () => {
     let following = useSelector(state => state.follow)
     let following2 = following?.follows
 
-    console.log(posts)
-    // console.log(following)
-    // console.log('-------------------');
-    // console.log(following2)
+
 
 
     useEffect(() => {
         dispatch(getFollowingPosts())
-    }, [dispatch, following])
+    }, [dispatch, following, sessionUser])
 
 
 
@@ -75,7 +72,7 @@ const HomePageComponent = () => {
 
     useEffect(() => {
         dispatch(userActions.getAllUsers())
-        // dispatch(followingActions.getFollowingBackend(sessionUser?.id))
+        dispatch(followingActions.getFollowingBackend(sessionUser?.id))
         dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser?.id))
         // dispatch(postActions.loadAllPosts())
         dispatch(likeActions.fetchAllLikes())
