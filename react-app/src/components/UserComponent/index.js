@@ -70,12 +70,9 @@ function User() {
       user_id: loggedUser?.id,
       follows_id: user?.id
     }
-    // const selfInput = {
-    //   user_id: user?.id,
-    //   follows_id: loggedUser?.id
-    // }
 
-    await dispatch(postFollowBackend(input, user?.id))
+    const blueBtnFollow = true
+    await dispatch(postFollowBackend(input, user?.id, blueBtnFollow))
       .then(() => {
         setAlreadyFollowing(true)
       });
@@ -83,7 +80,9 @@ function User() {
 
   const handleClickUnfollow = async (e) => {
     e.preventDefault();
-    await dispatch(deleteFollowBackend(user?.id, loggedUser?.id))
+    const blueBtnUnfollow = true
+
+    await dispatch(deleteFollowBackend(user?.id, loggedUser?.id, blueBtnUnfollow))
       .then(() => {
         setAlreadyFollowing(false)
       });

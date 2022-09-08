@@ -30,18 +30,20 @@ export const getFollowers = (follows) => {
     }
 }
 
-export const postFollow = (follow, userId) => {
+export const postFollow = (follow, userId, blueBtnFollow) => {
     return {
         type: FOLLOW,
         payload: follow,
-        userId
+        userId,
+        blueBtnFollow
     }
 }
-export const deleteFollow = (follow, loggedUserId) => {
+export const deleteFollow = (follow, loggedUserId, blueBtnUnfollow) => {
     return {
         type: UNFOLLOW,
         payload: follow,
-        loggedUserId
+        loggedUserId,
+        blueBtnUnfollow
     }
 }
 //THUNKS
@@ -73,7 +75,7 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
 }
 
 //POST: a follow
-export const postFollowBackend = (input, userId) => async (dispatch) => {
+export const postFollowBackend = (input, userId, blueBtnFollow) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${input.follows_id}/post`, {
         method: "POST",
         headers: {
@@ -86,18 +88,18 @@ export const postFollowBackend = (input, userId) => async (dispatch) => {
     })
     if (response.ok) {
         const parsedRes = await response.json();
-        dispatch(postFollow(parsedRes, userId));
+        dispatch(postFollow(parsedRes, userId, blueBtnFollow));
         return parsedRes;
     }
 }
 //DELETE: a follow (unfollow)
-export const deleteFollowBackend = (userId, loggedUser) => async (dispatch) => {
+export const deleteFollowBackend = (userId, loggedUser, blueBtnUnfollow) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/delete`, {
         method: 'DELETE'
     });
     if (response.ok) {
         const parsedRes = await response.json();
-        dispatch(deleteFollow(parsedRes, loggedUser))
+        dispatch(deleteFollow(parsedRes, loggedUser, blueBtnUnfollow))
     }
 }
 
@@ -121,6 +123,11 @@ const followReducer = (state = initialState, action) => {
             if (action.userId === action.payload.follow.user_id) {
                 copy[action.payload.follow.id] = action.payload;
             }
+
+            if (action.blueBtnFollow) {
+                copy3[action.payload.follow.id] = action.payload;
+            }
+
 
             copy2[action.payload.follow.id] = action.payload;
 
@@ -165,10 +172,13 @@ const followReducer = (state = initialState, action) => {
             // if the user is on their own page
             if (action.payload.follow.user_id === action.loggedUserId) {
                 delete unfollowState['follows'][action.payload.follow.id]
-                // if not on own page
-            } else {
-                delete unfollowState['followers'][action.payload.follow.follows_id]
             }
+
+
+            if (action.blueBtnUnfollow) {
+                delete unfollowState['followers'][action.payload.follow.id]
+            }
+
             delete unfollowState['loggedUser'][action.payload.follow.id]
 
             return unfollowState;
