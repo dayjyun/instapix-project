@@ -28,8 +28,8 @@ const PostsComments = ({ post, setCurrPost }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    useEffect(async () => {
-        await currUserLiked()
+    useEffect(() => {
+        currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
         dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])

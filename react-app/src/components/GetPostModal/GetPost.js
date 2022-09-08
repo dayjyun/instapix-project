@@ -42,7 +42,7 @@ function GetPost({ post }) {
 
   let editPostBtn;
 
-  if (currUser?.id == post.user_id) {
+  if (currUser?.id === post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
   } else {
     editPostBtn = (
@@ -55,7 +55,7 @@ function GetPost({ post }) {
   return (
     <div className="post-modal-container">
       <div className="image-content-container">
-        <img className="image-content" src={post?.post_url}></img>
+        <img className="image-content" src={post?.post_url} alt='users pic'></img>
       </div>
       <div className="caption-comment-container">
         <div className="user-info-container">

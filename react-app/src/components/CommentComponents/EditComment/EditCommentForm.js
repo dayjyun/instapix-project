@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import * as commentActions from '../../../store/comments';
 import './EditComment.css'
 
