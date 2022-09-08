@@ -1,5 +1,6 @@
 import PostComponent from "../components/PostsComponent"
 
+
 //TYPES
 const GET_LOGGED_USER_FOLLOWING = 'user/GET_LOGGED_USER_FOLLOWING'
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
@@ -112,22 +113,24 @@ const followReducer = (state = initialState, action) => {
             const followState = { ...state };
             const copy = followState.follows;
             const copy2 = followState.loggedUser;
+            const copy3 = followState.followers;
 
-            const followArr = Object.values(copy)
+            const followArr = Object.values(copy3)
 
             let dontAdd = false
             for (let i = 0; i < followArr.length; i++) {
-                console.log(followArr[i].follower_info.id, action.payload.follower_info.id)
+                // console.log(followArr[i].follower_info.id, action.payload.follower_info.id)
                 if (followArr[i].follower_info.id === action.payload.follower_info.id) {
                     dontAdd = true
                 }
             }
             if (!dontAdd) {
-                copy[action.payload.follow.id] = action.payload;
+                copy3[action.payload.follow.id] = action.payload;
             }
 
             copy2[action.payload.follow.id] = action.payload;
 
+            followState.followers = copy3
             followState.follows = copy;
             followState.loggedUser = copy2;
             return followState;
@@ -161,17 +164,14 @@ const followReducer = (state = initialState, action) => {
             getFollowersState['followers'] = follower
             return getFollowersState;
 
-        // case FOLLOW:
-        //     const followStateCopy = {};
-        //     followStateCopy[action.payload.id] = action.payload;
-
-        //     // console.log(followState)
-        //     return followStateCopy
-
 
         case UNFOLLOW:
             const unfollowState = { ...state }
-            // console.log(action.payload)
+            console.log(action.payload)
+            console.log(unfollowState)
+            // if (action.payload.follow.user_id === loggedUser.id){
+
+            // }
 
             delete unfollowState['follows'][action.payload.follow.id]
             delete unfollowState['loggedUser'][action.payload.follow.id]

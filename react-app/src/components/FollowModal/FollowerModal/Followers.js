@@ -10,7 +10,7 @@ const Followers = ({ user }) => {
     const followers = useSelector(state => state.follow.followers)
 
 
-    console.log(followers)
+    // console.log(followers)
 
     useEffect(() => {
         if (user) {
