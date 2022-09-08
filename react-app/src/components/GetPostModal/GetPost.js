@@ -5,6 +5,7 @@ import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
+import {getCreatedDate} from '../CommentComponents/PostsComments';
 
 function GetPost({ post }) {
   const history = useHistory();
@@ -86,10 +87,11 @@ function GetPost({ post }) {
             onClick={() => userProfile(post?.user_id)}
           >
             {getUser(post?.user_id)?.username}
+            <div className="posted-date">{getCreatedDate(post?.created_at)}</div>
           </div>
-          <div className="caption-text">
-            <div className="caption-container">{post?.caption}</div>
-          </div>
+          {/* <div className="caption-text"> */}
+          <div className="caption-container">{post?.caption}</div>
+          {/* </div> */}
         </div>
         <div className="post-modal-comments">
           <PostsComments  post={post} setCurrPost={setCurrPost} />

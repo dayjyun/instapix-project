@@ -52,7 +52,7 @@
     display: flex;
     align-items: center;
     margin: 5px 0;
-    font-size: 10px;
+    font-size: 9px;
     color: rgb(0, 0, 0, 0.6);
 }
 
@@ -124,6 +124,7 @@
 
 .heart-likes-hollow:hover {
     color: rgb(0, 0, 0, 0.6);
+    cursor: pointer;
 }
 
 .heart-likes-solid {
@@ -133,7 +134,8 @@
 }
 
 .heart-likes-solid:hover {
-    color: rgb(255, 0, 0, 0.7)
+    color: rgb(255, 0, 0, 0.7);
+    cursor: pointer;
 }
 
 .comment-bubble {
@@ -143,6 +145,7 @@
 
 .comment-bubble:hover {
     color: rgb(0, 0, 0, 0.6);
+    cursor: pointer;
 }
 
 .post-likes {
@@ -151,8 +154,18 @@
     font-family: 'Arimo', sans-serif;
 }
 
+.post-likes:hover {
+    color: rgb(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
 .post-date {
     margin: 6px 4px;
     font-size: 10px;
     font-family: 'Arimo', sans-serif;
+}
+
+.likes-info-container {
+    padding: 1% 4% 4% 12%;
+    justify-content: center;
 }

@@ -61,7 +61,14 @@
     font-size: 13.8px;
 }
 
-.likes-info-container {
-    padding: 1% 4% 4% 12%;
-    justify-content: center;
+.p-bolded:hover {
+    cursor: pointer;
+}
+
+.p-styling:hover {
+    cursor: pointer;
+}
+
+.profile-img-circle-container:hover {
+    cursor: pointer;
 }
