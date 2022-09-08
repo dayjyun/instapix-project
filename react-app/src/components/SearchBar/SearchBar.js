@@ -1,12 +1,14 @@
-import { useState, ustState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import './SearchBar.css'
 
 function SearchBar() {
-  const users = Object.values((state) => useSelector(state.users));
+  const users = Object.values(useSelector((state) => state.users));
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState("");
+
+  console.log(users)
 
   const userResults = users.filter((user) => {
     return user?.username?.toLowerCase().includes(search.toLowerCase());

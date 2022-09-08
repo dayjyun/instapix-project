@@ -2,7 +2,7 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  padding: 0 5px;
+  /* padding: 0 5px; */
 }
 
 .search-bar {
@@ -13,12 +13,13 @@
 }
 
 .search-bar-input {
+  background-color: #efefef;
   border: none;
   border-radius: 5px;
   outline: none;
   font-size: 16px;
-  padding: 5px 8px;
-  width: 400px;
+  padding: 3px 16px;
+  width: 15rem;
   transition: border 200ms;
 }
 
