@@ -38,7 +38,7 @@ def seed_posts():
     post17 = Post(
         user_id=3, caption="I know looks aren't everything, but I have them just in case.", post_url='https://getwallpapers.com/wallpaper/full/4/6/5/733314-random-funny-wallpapers-2048x1536-smartphone.jpg')
     post18 = Post(
-        user_id=4, caption="Doing nothing is hard, you never know when you're done.", post_url='http://1.bp.blogspot.com/_EAViqbzwc_s/TJ3wMeIOSZI/AAAAAAAABNM/0U9mcf2AYeA/s1600/Random%2Bwallpapers%2B(6).jpg')
+        user_id=4, caption="Doing nothing is hard, you never know when you're done.", post_url='https://1.bp.blogspot.com/_EAViqbzwc_s/TJ3wMeIOSZI/AAAAAAAABNM/0U9mcf2AYeA/s1600/Random%2Bwallpapers%2B(6).jpg')
     post19 = Post(
         user_id=5, caption='This is the most magical pic of your life.', post_url='https://1.bp.blogspot.com/-Xso1CCZ-iGI/Vs34mYqxnVI/AAAAAAAEVm4/xIhgP5vUbW4/s1600/Random%2Bhumor%2B00409.jpg')
 

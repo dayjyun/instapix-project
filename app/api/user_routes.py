@@ -3,12 +3,12 @@ from flask_login import login_required, current_user
 from app.api.follow_routes import get_follows_for_user
 from app.models import User, Post
 
-user_routes = Blueprint('users', __name__)
+user_routes = Blueprint('users', __name__, url_prefix='/users')
 
 
 # ** Get all users in the database
 @user_routes.route('/')
-# @login_required
+@login_required
 def users():
     users = User.query.all()
     return {'users': [user.all_users_to_dict() for user in users]}

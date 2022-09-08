@@ -14,7 +14,7 @@ def seed_users():
     rick = User(
         username='rickjames', email='rick@aa.io', password='password', first_name='Rick', last_name='James', bio='This is about me', profile_image='https://allthatsinteresting.com/wordpress/wp-content/uploads/2021/08/portrait-of-rick-james.jpg')
     skimby = User(
-        username='skimbysally', email='a@aa.io', password='password', first_name='Sally', last_name='Skimby', bio='This is about me', profile_image='http://images.goodsmile.info/cgm/images/product/20201202/10469/78051/medium/124b42aafad17eb1c88eef135ee878ad.jpg')
+        username='skimbysally', email='a@aa.io', password='password', first_name='Sally', last_name='Skimby', bio='This is about me', profile_image='https://images.goodsmile.info/cgm/images/product/20201202/10469/78051/medium/124b42aafad17eb1c88eef135ee878ad.jpg')
     jan = User(
         username='wickedjan', email='b@aa.io', password='password', first_name='Jan', last_name='Wicked', bio='This is about me', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
     felipe = User(

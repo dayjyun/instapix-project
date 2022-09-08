@@ -286,8 +286,8 @@
 
 .feed-post-container {
     display: grid;
-    grid-template-rows: 10% 40% 10% 10% 10% 10%;
-    width: 99%;
+    /* grid-template-rows: 10% 40% 10% 10% 10% 10%; */
+    grid-template-rows: 3.5em 28em 3em;
     height: 50em;
     border: 3px solid black;
     margin-bottom: 1em;
@@ -385,3 +385,20 @@
     font-weight: 600;
     color: black;
 }
+
+.feed-post-image {
+    display: flex;
+    justify-content: center;
+}
+
+.feed-image {
+    width: 100%;
+    height: 100%;
+}
+
+.feed-like-container {
+    display: flex;
+    align-items: center;
+    padding-left: .6em;
+}
+

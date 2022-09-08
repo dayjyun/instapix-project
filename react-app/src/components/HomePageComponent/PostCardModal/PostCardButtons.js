@@ -20,7 +20,7 @@ const PostCardButtons = ({ follower, closeModal, randomPost }) => {
 
     const handleGoToPost = e => {
         e.preventDefault()
-        history.push(`/posts/${randomPost.id}`)
+        history.push(`/posts/${randomPost?.id}`)
     }
 
     return (

@@ -1,7 +1,8 @@
 # Start with the python:3.9 image
 FROM python:3.9
 # Set the following enviroment variables
-ENV REACT_APP_BASE_URL=https://instapix-python.herokuapp.com/
+# ENV REACT_APP_BASE_URL=https://instapix-python.herokuapp.com/
+ENV REACT_APP_BASE_URL=https://instapix-project.herokuapp.com/
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
@@ -17,7 +18,7 @@ COPY . .
 
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
-COPY /react-app/build/* app/static/
+COPY /react-app/build/* /app/static/
 # Run the next two python install commands with PIP
 # install -r requirements.txt
 # install psycopg2
@@ -26,4 +27,3 @@ RUN pip install -r requirements.txt && pip install psycopg2
 # closing command to gunicorn app:app
 CMD ["gunicorn", "app:app"]
 ##
-

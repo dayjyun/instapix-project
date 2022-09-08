@@ -14,7 +14,7 @@
     grid-template-columns: repeat(4, 1fr);
     padding-left: 8em;
     width: 10%;
-    padding-top: .4em;
+    padding-top: .8em;
     max-height: 60px;
     /* justify-content: center; */
 }
