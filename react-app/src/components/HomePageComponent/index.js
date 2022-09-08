@@ -24,6 +24,7 @@ const uniqueIndex = () => {
 let i;
 let i2;
 
+let includedPost = []
 
 const HomePageComponent = () => {
     const dispatch = useDispatch()
@@ -230,28 +231,35 @@ const HomePageComponent = () => {
                         </div>
                         <div className="feed-section">
                             {following2 && (Object.values(following2)?.map(follow => {
-                                const randomPost = filteredPost(follow?.follower_info.id)[Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)]
-                                return (
-                                    <div key={follow.id} className="feed-post-container">
-                                        <div className="feed-username-container">
-                                            {ProfileImageTagSmallCard(follow)}
-                                            <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
-                                            <div>
-                                                <PostCardModal follower={follow} randomPost={randomPost} />
+                                // Math.floor(Math.random() * filteredPost(follow?.follower_info.id).length)
+                                const randomPost = filteredPost(follow?.follower_info?.id)[filteredPost(follow?.follower_info?.id).length - 1]
+                                if (randomPost) {
+                                    return (
+                                        <div key={follow.id} className="feed-post-container">
+                                            <div className="feed-username-container">
+                                                {ProfileImageTagSmallCard(follow)}
+                                                <a href={`/users/${follow?.follower_info?.id}`}>{follow?.follower_info.username}</a>
+                                                <div>
+                                                    <PostCardModal follower={follow} randomPost={randomPost} />
+                                                </div>
                                             </div>
+                                            <div className="feed-post-image">
+                                                <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
+                                            </div>
+                                            <div className="feed-like-container">
+                                                {/* not yet working */}
+                                                <div onClick={likeBtnOnSubmit} className={likeClass}></div>
+                                            </div>
+                                            <div>
+                                            </div>
+                                            
                                         </div>
-                                        <div className="feed-post-image">
-                                            <img className="feed-image" src={randomPost?.post_url} alt="Post has no image"></img>
-                                        </div>
-                                        <div className="feed-like-container">
-                                            {/* not yet working */}
-                                            <div className={likeClass}></div>
-                                        </div>
-                                        <div>
-                                            <testingtesting />
-                                        </div>
-                                    </div>
-                                )
+                                    )
+                                }
+
+
+
+
                             }))}
                             <h1>add as much as needed</h1>
                             <h1>add as much as needed</h1>
