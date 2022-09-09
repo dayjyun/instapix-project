@@ -16,12 +16,13 @@ const FeedPostsComponent = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const posts = Object.values(useSelector(state => state.posts))
+    const likes = useSelector(state => state.likes)
+    const comments = useSelector(state => state.comments)
 
-    console.log(posts)
 
     useEffect(() => {
         dispatch(getFollowingPosts())
-    }, [dispatch])
+    }, [dispatch, likes, comments])
 
     const ProfileImageTagSmallCard = (post) => {
         if (post?.User?.profile_image) {
