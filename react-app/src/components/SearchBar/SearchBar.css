@@ -41,14 +41,30 @@
   min-width: 300px;
 }
 
-.search-result-text {
-  width: 100%;
-  padding: 8px;
-  color: #333;
-}
-
 .search-result-link:hover {
   background-color: #f1f0f0;
+}
+
+.search-result-text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: black;
+  font-weight: bold;
+  font-family: 'Arimo', sans-serif;
+}
+
+.search-bar-profile-pic {
+    height: 2em;
+    width: 2em;
+    object-fit: cover;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.search-bar-profile-username {
+    padding-left: .5em;
+
 }
 
 .results-active {

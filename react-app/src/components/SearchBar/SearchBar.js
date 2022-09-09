@@ -21,7 +21,12 @@ function SearchBar() {
         className="search-result-link"
       >
         <div className="search-result-text">
-          <div>{user?.username}</div>
+          <img
+            src={user?.profile_image}
+            className="search-bar-profile-pic"
+            alt='preview'
+           />
+          <div className="search-bar-profile-username">{user?.username}</div>
         </div>
       </Link>
     );
