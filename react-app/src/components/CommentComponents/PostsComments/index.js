@@ -23,7 +23,6 @@ const PostsComments = ({ post }) => {
     const likes = useSelector(state => Object.values(state.likes))
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     const [liked, setLiked] = useState(false);
-    // const [postId, setPostId] = useState[{}]
     const inputEl = useRef(null);
     const [currPost, setCurrPost] = useState(post)
 

@@ -70,11 +70,6 @@ const FeedPostsComponent = () => {
                     </div>
                 )
             }))}
-            <h1>add as much as needed</h1>
-            <h1>add as much as needed</h1>
-            <h1>add as much as needed</h1>
-            <h1>add as much as needed</h1>
-            <h1>add as much as needed</h1>
         </div>
     )
 }
