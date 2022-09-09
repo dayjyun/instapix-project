@@ -13,6 +13,8 @@ import testingtesting from "./testing"
 import { getFollowingPosts } from "../../store/posts"
 import LikeComponent from "./LikeComponent"
 import TotalLikesComponent from "./LikeComponent/TotalLikesComponent"
+import { getCreatedDate } from "../CommentComponents/PostsComments"
+import {FeedPostModalCommentBtn, FeedPostModalViewStr} from "./FeedPostModal"
 
 // import LikeCommentComponent from "../LikeCommentComponent"
 
@@ -42,6 +44,7 @@ const HomePageComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = Object.values(useSelector(state => state.users))
   const posts = Object.values(useSelector(state => state.posts))
+  const [currPostState, setCurrPostState] = useState(posts);
   const likes = Object.values(useSelector(state => state.likes))
   let following = useSelector(state => state.follow)
   // following && console.log(Object.values(following))
@@ -277,18 +280,19 @@ const HomePageComponent = () => {
                     </div>
                     <div className="feed-like-container">
                       {/* not yet working */}
-                      <LikeComponent post={post} />
+                      <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />
                     </div>
-                    <TotalLikesComponent post={post} />
+                    <TotalLikesComponent post={post} setCurrPostState={setCurrPostState}/>
+                    {/* {post?.num_likes} */}
                     <span className='feed-caption'>{post?.User?.username}
                       <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                     </span>
-                    <div className="load-comments-button">View all comments #</div>
-                    <div className="post-date-time">date posted</div>
+                    <div className="load-comments-button"><FeedPostModalViewStr post={post}/></div>
+                    <div className="feed-post-date">{getCreatedDate(post?.created_at)}</div>
                     {/* Create comment component */}
-                    <div>
+                    {/* <div> */}
                       {/* <testingtesting /> */}
-                    </div>
+                    {/* </div> */}
                   </div>
                 )
               }))}

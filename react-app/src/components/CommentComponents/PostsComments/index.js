@@ -7,6 +7,15 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 
+export const getCreatedDate = (datestr) => {
+    const fullDate = new Date(datestr).toDateString()
+    let date = fullDate.slice(4)
+    if (date[4] === '0') {
+        date = date.slice(0, 4) + date.slice(5);
+    };
+    return date
+}
+
 
 const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
@@ -25,14 +34,14 @@ const PostsComments = ({ post, setCurrPost }) => {
         dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch, post])
 
-    const getCreatedDate = (datestr) => {
-        const fullDate = new Date(datestr).toDateString()
-        let date = fullDate.slice(4)
-        if (date[4] === '0') {
-            date = date.slice(0, 4) + date.slice(5);
-        };
-        return date
-    }
+    // const getCreatedDate = (datestr) => {
+    //     const fullDate = new Date(datestr).toDateString()
+    //     let date = fullDate.slice(4)
+    //     if (date[4] === '0') {
+    //         date = date.slice(0, 4) + date.slice(5);
+    //     };
+    //     return date
+    // }
 
     const userProfile = (userId) => {
         history.push(`/users/${userId}`)
