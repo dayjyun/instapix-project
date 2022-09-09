@@ -6,7 +6,16 @@ import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
+import LikesModal from "../../LikesModal";
 
+export const getCreatedDate = (datestr) => {
+    const fullDate = new Date(datestr).toDateString()
+    let date = fullDate.slice(4)
+    if (date[4] === '0') {
+        date = date.slice(0, 4) + date.slice(5);
+    };
+    return date
+}
 
 const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
@@ -19,19 +28,14 @@ const PostsComments = ({ post, setCurrPost }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    useEffect(async () => {
-        await currUserLiked()
+    useEffect(() => {
+        currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
         dispatch(likeActions.fetchLike(post?.id))
-    }, [dispatch, post])
+    }, [dispatch, post?.id, currUserLiked])
 
-    const getCreatedDate = (datestr) => {
-        const fullDate = new Date(datestr).toDateString()
-        let date = fullDate.slice(4)
-        if (date[4] === '0') {
-            date = date.slice(0, 4) + date.slice(5);
-        };
-        return date
+    const currUserLiked = () => {
+        setLiked(likesUserIds?.includes(user?.id))
     }
 
     const userProfile = (userId) => {
@@ -39,9 +43,6 @@ const PostsComments = ({ post, setCurrPost }) => {
         history.go(0)
     }
 
-    const currUserLiked = () => {
-        setLiked(likesUserIds?.includes(user?.id))
-    }
 
     const likePost = async () => {
         if (likesUserIds?.includes(user?.id)) {
@@ -54,6 +55,10 @@ const PostsComments = ({ post, setCurrPost }) => {
 
     let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
     let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
+
+    comments?.sort((a, b) => {
+        return b.id - a.id;
+    })
 
     return (
         <>
@@ -97,7 +102,10 @@ const PostsComments = ({ post, setCurrPost }) => {
                                 <i className="fa-regular fa-comment comment-bubble"></i>
                             </div>
                         </div>
-                        <div className="post-likes">{likes?.length} likes</div>
+                        <div className="post-likes">
+                            {/* {likes?.length} likes */}
+                            <LikesModal likes={likes} />
+                        </div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
                     <CreateComment inputEl={inputEl} post={post} />
