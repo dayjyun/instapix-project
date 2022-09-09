@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { getFollowingBackendHome } from "../../../store/follow"
+// import { getFollowingBackendHome } from "../../../store/follow"
 import { getAllUsers } from "../../../store/users"
 import { useHistory } from "react-router-dom"
 
