@@ -43,7 +43,7 @@ const PostsComments = ({ post }) => {
         dispatch(commentActions.loadPostComments(post.id))
         dispatch(likeActions.fetchLike(post.id))
 
-    }, [dispatch, likesUserIds])
+    }, [dispatch, likesUserIds, post.id, user.id])
 
 
     const userProfile = (userId) => {
