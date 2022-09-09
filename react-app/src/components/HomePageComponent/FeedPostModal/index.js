@@ -23,7 +23,7 @@ function FeedPostModalViewStr({ post }) {
   return (
     <>
       <button
-        className="view-all-comments-btn"
+        className="load-comments-button"
         style={{ backgroundColor: "transparent", border: "none" }}
         onClick={() => setShowModal(true)}
       >{viewStr}

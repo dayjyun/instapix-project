@@ -286,11 +286,11 @@ const HomePageComponent = () => {
                       <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                     </span>
                     <div className="load-comments-button"><FeedPostModalViewStr post={post}/></div>
-                    <div className="post-date-time">{getCreatedDate(post?.created_at)}</div>
+                    <div className="feed-post-date">{getCreatedDate(post?.created_at)}</div>
                     {/* Create comment component */}
-                    <div>
+                    {/* <div> */}
                       {/* <testingtesting /> */}
-                    </div>
+                    {/* </div> */}
                   </div>
                 )
               }))}

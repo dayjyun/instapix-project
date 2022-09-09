@@ -7,14 +7,20 @@ const LikeComponent = ({ post }) => {
     const dispatch = useDispatch()
     const likes = Object.values(useSelector(state => state.likes))
     const sessionUser = useSelector(state => state.session.user)
-    const [liked, setLiked] = useState(false)
+    const [liked, setLiked] = useState(null)
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
-    const like = likes?.filter(like => like?.user_id === sessionUser?.id)
-    console.log(post)
+    // const like = likes?.filter(like => like?.user_id === sessionUser?.id)
+    console.log('LIKEBUTTON LIKE IDS!!!!!!!!!-------------', likesUserIds, sessionUser?.id, liked)
+    console.log('LIKEBUTTON POST!!!!!!!!!-------------', post)
 
-    useEffect(() => {
+    useEffect(async () => {
+        await currUserLiked()
         dispatch(likeActions.fetchLike(post?.id))
     }, [dispatch])
+
+    const currUserLiked = () => {
+        setLiked(likesUserIds?.includes(sessionUser?.id))
+    }
 
     // const likePost = async () => {
     //     if (likesUserIds?.includes(user?.id)) {
@@ -29,7 +35,7 @@ const LikeComponent = ({ post }) => {
     let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
 
     return (
-        <div > {like ? postLiked : postNotLiked}
+        <div > {liked ? postLiked : postNotLiked}
         </div>
     )
 }
