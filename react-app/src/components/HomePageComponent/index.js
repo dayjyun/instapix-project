@@ -10,6 +10,7 @@ import PostCardModal from "./PostCardModal";
 import * as postActions from "../../store/posts";
 import * as likeActions from "../../store/likes";
 import testingtesting from "./testing";
+import Login from "../LoginComponent";
 
 const uniqueIndex = () => {
   const indexes = [];
@@ -355,7 +356,7 @@ const HomePageComponent = () => {
     )
   } else {
     return (
-
+      <Login />
       // <div className="logged-out-container">
       //   <div className="logged-out-content-container">
       //     <img
