@@ -10,9 +10,7 @@ const LikeComponent = ({ post }) => {
     const sessionUser = useSelector(state => state.session.user)
     const [liked, setLiked] = useState(null)
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
-    // const like = likes?.filter(like => like?.user_id === sessionUser?.id)
-    // console.log('LIKEBUTTON LIKE IDS!!!!!!!!!-------------', likesUserIds, sessionUser?.id, liked)
-    // console.log('LIKEBUTTON POST!!!!!!!!!-------------', post)
+
 
 
     useEffect(async () => {
