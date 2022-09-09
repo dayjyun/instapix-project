@@ -14,6 +14,7 @@ import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
 import SignUpUserForm from "./components/SignUpComponent";
+import Login from "./components/LoginComponent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -64,6 +65,10 @@ function App() {
         </ProtectedRoute>
         <Route exact path="/">
           <HomePageComponent />
+        </Route>
+
+        <Route exact path="/skimby">
+          <Login />
         </Route>
       </Switch>
     </BrowserRouter>
