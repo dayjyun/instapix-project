@@ -28,27 +28,35 @@ const uniqueIndex = () => {
 }
 let i;
 let i2;
-
+//
+// const [currPostState, setCurrPostState] = useState(posts);
 
 const HomePageComponent = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [style, setStyle] = useState({})
-  const [errors, setErrors] = useState([])
-  const [likeClass, setLikeClass] = useState('fa-regular fa-heart fa-xl')
-  const [followText, setFollowText] = useState('Follow')
-  const history = useHistory()
+  const [nonFollowers, setNonFollowers] = useState([])
+
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = Object.values(useSelector(state => state.users))
   const posts = Object.values(useSelector(state => state.posts))
-  const [currPostState, setCurrPostState] = useState(posts);
-  const likes = Object.values(useSelector(state => state.likes))
   let following = useSelector(state => state.follow)
   // following && console.log(Object.values(following))
   // let following2 = following?.follows
+  // following && console.log(following)
   following && (following = Object.values(following)?.map(following => following?.follower_info?.id))
-  const usersNotFollowing = allUsers?.filter(user => !following?.includes(user.id))
+  let usersNotFollowing;
+  useEffect(() => {
+    if (allUsers && following && nonFollowers.length === 0) {
+      console.log("users", allUsers, "FOLLOWING", following)
+      usersNotFollowing = allUsers.filter(user => !following?.includes(user.id))
+      setNonFollowers(usersNotFollowing)
+    }
+  }, [allUsers, following])
+  console.log(nonFollowers)
 
   useEffect(() => {
     i = uniqueIndex()
@@ -188,7 +196,7 @@ const HomePageComponent = () => {
                     <div className="feed-like-container">
                       <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />
                     </div>
-                    <TotalLikesComponent post={post} setCurrPostState={setCurrPostState} />
+                    <TotalLikesComponent post={post} />
                     <span className='feed-caption'>{post?.User?.username}
                       <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                     </span>
@@ -214,8 +222,8 @@ const HomePageComponent = () => {
             </div>
             <p className="suggestions-for-u">Suggestions For You</p>
             <div className="suggestions-users-containers">
-              {usersNotFollowing?.map(user => {
-                let followText = 'Follow'
+              {nonFollowers.length > 0 && nonFollowers.map(user => {
+                // let followText = 'Follow'
                 return (
                   <div key={i} className="suggestions-user-card">
                     {ProfileImageTagSmall(user)}
