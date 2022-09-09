@@ -48,7 +48,7 @@
 }
 
 .search-result-text:hover {
-  color: #ff5501;
+  /* color: #ff5501; */
   font-weight: bold;
 }
 
