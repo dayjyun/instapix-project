@@ -21,6 +21,8 @@ function User() {
   user = user[0]
   const posts = Object.values(useSelector(state => state.posts))
   const follows = useSelector(state => state?.follow)
+  const likes = useSelector(state => state.likes)
+  const comments = useSelector(state => state.comments)
 
   const [onMyPage, setOnMyPage] = useState('');
   const [alreadyFollowing, setAlreadyFollowing] = useState(false)
@@ -47,7 +49,7 @@ function User() {
     if (userId) {
       dispatch(getUserPostsBackend(userId))
     }
-  }, [dispatch, userId])
+  }, [dispatch, userId, likes, comments])
 
   useEffect(() => {
     dispatch(getOneUser(userId))
