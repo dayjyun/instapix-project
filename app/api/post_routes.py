@@ -52,6 +52,8 @@ def get_posts():
 def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
     post = [post.post_details() for post in all_posts]
+    user = User.query.get(post[0]['user_id'])
+    post[0]['User'] = user.user_content()
     if post:
         return post[0]
     else:

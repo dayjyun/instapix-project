@@ -65,9 +65,10 @@ class Post(db.Model):
             "post_url": self.post_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            'likes': self.num_likes(),
+            'num_likes': self.num_likes(),
             "Comments": [comments.comment_content() for comments in self.comments],
-            "real_likes": [like.to_dict() for like in self.likes]
+            "real_likes": [like.to_dict() for like in self.likes],
+            # "user": self.users.user_content()
             # "user": self.users.follow_info()
         }
 

@@ -13,6 +13,8 @@ import testingtesting from "./testing"
 import { getFollowingPosts } from "../../store/posts"
 import LikeComponent from "./LikeComponent"
 import TotalLikesComponent from "./LikeComponent/TotalLikesComponent"
+import { getCreatedDate } from "../CommentComponents/PostsComments"
+import {FeedPostModalCommentBtn, FeedPostModalViewStr} from "./FeedPostModal"
 
 // import LikeCommentComponent from "../LikeCommentComponent"
 
@@ -120,6 +122,7 @@ const HomePageComponent = () => {
   }
 
   const ProfileImageTagSmall = (users, i) => {
+    console.log('HTISHTISTHISITSHITSHISHITSI', users[i]);
     if (users[i]?.profile_image) {
       return (
         <div className="profile-button-large" onClick={e => {
@@ -140,6 +143,7 @@ const HomePageComponent = () => {
   }
 
   const ProfileImageTagSmallCard = (post) => {
+    console.log('THIS POST----------------', post);
     if (post?.User?.profile_image) {
       return (
         <div className="profile-button-large-2" onClick={e => {
@@ -275,14 +279,14 @@ const HomePageComponent = () => {
                     </div>
                     <div className="feed-like-container">
                       {/* not yet working */}
-                      <LikeComponent post={post} />
+                      <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />
                     </div>
                     <TotalLikesComponent post={post} />
                     <span className='feed-caption'>{post?.User?.username}
                       <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                     </span>
-                    <div className="load-comments-button">View all comments #</div>
-                    <div className="post-date-time">date posted</div>
+                    <div className="load-comments-button"><FeedPostModalViewStr post={post}/></div>
+                    <div className="post-date-time">{getCreatedDate(post?.created_at)}</div>
                     {/* Create comment component */}
                     <div>
                       {/* <testingtesting /> */}
