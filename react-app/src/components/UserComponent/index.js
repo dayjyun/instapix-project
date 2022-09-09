@@ -95,7 +95,7 @@ function User() {
         <div className='user-container-background'>
           <div className='user-information-container'>
             <div className='user-info-profile'>
-              <img src={user?.profile_image} className='user-profile-pic' />
+              <img src={user?.profile_image} className='user-profile-pic' alt='previewImage' />
             </div>
 
             <div className='user-info-info'>

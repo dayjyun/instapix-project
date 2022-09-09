@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
+// import { useHistory } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { login } from "../../store/session"
 import "../HomePageComponent/HomePageComponent.css";
 
@@ -59,7 +59,7 @@ const Login = () => {
 
     const handleGuestLogin = async (e) => {
         e.preventDefault();
-        const data = await dispatch(login("demo@aa.io", "password"))
+        await dispatch(login("demo@aa.io", "password"))
             .then(() => {
                 reset();
             })

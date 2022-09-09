@@ -1,16 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { postFollowBackend, deleteFollowBackend } from '../../../store/follow'
-import { useState, useEffect } from 'react'
+import { deleteFollowBackend } from '../../../store/follow'
+
 // import * as sessionActions from '../../../store/session'
 
 
 const PostCardButtons = ({ post, closeModal, randomPost }) => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const [follow, setFollow] = useState('Unfollow')
-    const currUser = useSelector(state => state.session.user)
-    console.log(randomPost)
 
     const handleUnfollow = async (e) => {
         e.preventDefault()
@@ -26,7 +23,7 @@ const PostCardButtons = ({ post, closeModal, randomPost }) => {
     return (
         <>
             <div className='postcard-button-container'>
-                <button onClick={async (e) => await handleUnfollow(e)} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>{follow}</button>
+                <button onClick={async (e) => await handleUnfollow(e)} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>Unfollow</button>
             </div>
             <div className='postcard-button-container'>
                 <button onClick={handleGoToPost} style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>

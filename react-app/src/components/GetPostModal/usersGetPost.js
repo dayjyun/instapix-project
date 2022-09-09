@@ -8,12 +8,11 @@ import '../UserComponent/UserComponent.css'
 
 function UserGetPostModal({ post }) {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal)
 
   return (
     <>
       <div className='user-post-card' onClick={() => setShowModal(true)} >
-        <img width='100%' height='100%' src={post?.post_url} className='user-img-card' />
+        <img width='100%' height='100%' src={post?.post_url} className='user-img-card' alt='previewImage' />
 
         <div className='likes-comments-stats'>
           <p className='like-comment-p'>

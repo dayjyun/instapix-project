@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import * as likeActions from "../../../store/likes";
-import * as commentActions from "../../../store/comments";
+import * as likeActions from '../../../store/likes';
+import * as commentActions from '../../../store/comments';
 import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
-import "./PostComments.css";
+import './PostComments.css'
 import LikesModal from "../../LikesModal";
 
 export const getCreatedDate = (datestr) => {
-  const fullDate = new Date(datestr).toDateString();
-  let date = fullDate.slice(4);
-  if (date[4] === "0") {
-    date = date.slice(0, 4) + date.slice(5);
-  }
-  return date;
-};
+    const fullDate = new Date(datestr).toDateString()
+    let date = fullDate.slice(4)
+    if (date[4] === '0') {
+        date = date.slice(0, 4) + date.slice(5);
+    };
+    return date
+}
 
 const PostsComments = ({ post, setCurrPost }) => {
   const user = useSelector((state) => state.session.user);
@@ -29,20 +29,23 @@ const PostsComments = ({ post, setCurrPost }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user) {
+    dispatch(likeActions.fetchAllLikes());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (post && user) {
+      const currUserLiked = () => {
+        setLiked(likesUserIds?.includes(user.id));
+      };
       currUserLiked();
       dispatch(commentActions.loadPostComments(post.id));
       dispatch(likeActions.fetchLike(post.id));
     }
-  }, [dispatch, post]);
+  }, [dispatch, post, user, likesUserIds]);
 
   const userProfile = (userId) => {
     history.push(`/users/${userId}`);
     history.go(0);
-  };
-
-  const currUserLiked = () => {
-    setLiked(likesUserIds?.includes(user?.id));
   };
 
   const likePost = async () => {

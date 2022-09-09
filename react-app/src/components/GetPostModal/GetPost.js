@@ -5,7 +5,7 @@ import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
-import {getCreatedDate} from '../CommentComponents/PostsComments';
+import { getCreatedDate } from '../CommentComponents/PostsComments';
 
 function GetPost({ post }) {
   const history = useHistory();
@@ -26,9 +26,11 @@ function GetPost({ post }) {
   };
 
   useEffect(() => {
-      dispatch(postActions.getPost(post?.id));
+    if (post) {
+      dispatch(postActions.getPost(post.id));
       dispatch(userActions.getAllUsers());
-    }, [dispatch, currPost]);
+    }
+  }, [dispatch, currPost, post.id, post]);
 
   const getUser = (id) => {
     let user = allUsers.find((user) => user.id === id);
@@ -94,7 +96,7 @@ function GetPost({ post }) {
           {/* </div> */}
         </div>
         <div className="post-modal-comments">
-          <PostsComments  post={post} setCurrPost={setCurrPost} />
+          <PostsComments post={post} setCurrPost={setCurrPost} />
         </div>
       </div>
     </div>
