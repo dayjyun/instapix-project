@@ -47,9 +47,8 @@
   color: #333;
 }
 
-.search-result-text:hover {
-  /* color: #ff5501; */
-  font-weight: bold;
+.search-result-link:hover {
+  background-color: #f1f0f0;
 }
 
 .results-active {
