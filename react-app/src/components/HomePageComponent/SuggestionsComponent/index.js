@@ -29,7 +29,7 @@ const SuggestionsComponent = ({ i2 }) => {
     useEffect(() => {
         if (sessionUser) {
             dispatch(getAllUsers())
-            dispatch(getFollowingBackendHome())
+            // dispatch(getFollowingBackendHome())
         }
     }, [dispatch, sessionUser])
 
