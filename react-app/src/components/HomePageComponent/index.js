@@ -5,9 +5,9 @@ import { login } from '../../store/session'
 import * as userActions from '../../store/users'
 import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
-import PostCardButtons from "./PostCardModal/PostCardButtons"
+// import PostCardButtons from "./PostCardModal/PostCardButtons"
 import PostCardModal from "./PostCardModal"
-import * as postActions from '../../store/posts'
+// import * as postActions from '../../store/posts'
 import * as likeActions from '../../store/likes'
 import testingtesting from "./testing"
 import { getFollowingPosts } from "../../store/posts"
@@ -44,15 +44,17 @@ const HomePageComponent = () => {
   const posts = Object.values(useSelector(state => state.posts))
   const likes = Object.values(useSelector(state => state.likes))
   let following = useSelector(state => state.follow)
-  let following2 = following?.follows
-
-
+  // following && console.log(Object.values(following))
+  // let following2 = following?.follows
+  following && (following = Object.values(following)?.map(following => following?.follower_info?.id))
+  const usersNotFollowing = allUsers?.filter(user => !following?.includes(user.id))
 
 
   useEffect(() => {
     dispatch(getFollowingPosts())
-  }, [dispatch, following, sessionUser])
+  }, [dispatch, sessionUser])
 
+  //
 
 
   // const filteredPost = (userId) => {
@@ -77,8 +79,8 @@ const HomePageComponent = () => {
 
   useEffect(() => {
     dispatch(userActions.getAllUsers())
-    dispatch(followingActions.getFollowingBackend(sessionUser?.id))
     dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser?.id))
+    dispatch(followingActions.getFollowingBackendHome(sessionUser?.id))
     // dispatch(postActions.loadAllPosts())
     // dispatch(likeActions.fetchAllLikes())
   }, [dispatch])
@@ -102,38 +104,38 @@ const HomePageComponent = () => {
   const ProfileImageTagLarge = () => {
     if (sessionUser?.profile_image) {
       return (
-        <button className="profile-button-large" onClick={e => {
+        <div className="profile-button-large" onClick={e => {
           e.preventDefault()
           history.push(`/users/${sessionUser?.id}`)
         }}>
           <img style={{ width: '4em', height: '4em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={sessionUser?.profile_image} alt='preview'></img>
-        </button>
-      )
-    } else {
-      return (
-        <button style={{ marginTop: '-.1em' }} onClick={e => {
-          e.preventDefault()
-          history.push(`/users/${sessionUser?.id}`)
-        }} className='fa-regular fa-user-circle fa-xl'></button>
-      )
-    }
-  }
-
-  const ProfileImageTagSmall = (users, i) => {
-    if (users[i]?.profile_image) {
-      return (
-        <div className="profile-button-large" onClick={e => {
-          e.preventDefault()
-          history.push(`/users/${users[i]?.id}`)
-        }}>
-          <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={users[i]?.profile_image} alt='preview'></img>
         </div>
       )
     } else {
       return (
         <div style={{ marginTop: '-.1em' }} onClick={e => {
           e.preventDefault()
-          history.push(`/users/${users[i]?.id}`)
+          history.push(`/users/${sessionUser?.id}`)
+        }} className='fa-regular fa-user-circle fa-xl'></div>
+      )
+    }
+  }
+
+  const ProfileImageTagSmall = (user) => {
+    if (user?.profile_image) {
+      return (
+        <div className="profile-button-large" onClick={e => {
+          e.preventDefault()
+          history.push(`/users/${user?.id}`)
+        }}>
+          <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={user?.profile_image} alt='preview'></img>
+        </div>
+      )
+    } else {
+      return (
+        <div style={{ marginTop: '-.1em' }} onClick={e => {
+          e.preventDefault()
+          history.push(`/users/${user?.id}`)
         }} className='fa-regular fa-user-circle fa-xl'></div>
       )
     }
@@ -223,7 +225,7 @@ const HomePageComponent = () => {
       await dispatch(likeActions.like(post?.id))
     }
   };
-
+  //
   if (sessionUser) {
     return (
       <div className='home-page-container'>
@@ -307,19 +309,21 @@ const HomePageComponent = () => {
             </div>
             <p className="suggestions-for-u">Suggestions For You</p>
             <div className="suggestions-users-containers">
-              {i2?.map(i => (
-                <div key={i} className="suggestions-user-card">
-                  {ProfileImageTagSmall(allUsers, i)}
-                  <div className="suggestions-username-name">
-                    <a className="suggestions-username" href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
-                    <span style={{ fontSize: '14px' }}>Popular</span>
+              {usersNotFollowing?.map(user => {
+                let followText = 'Follow'
+                return (
+                  <div key={i} className="suggestions-user-card">
+                    {ProfileImageTagSmall(user)}
+                    <div className="suggestions-username-name">
+                      <a className="suggestions-username" href={`/users/${user?.id}`}>{user?.username}</a>
+                      <span style={{ fontSize: '14px' }}>Popular</span>
+                    </div>
+                    <div className="user-card-follow-btn">
+                      <span>Follow</span>
+                    </div>
                   </div>
-                  <div className="user-card-follow-btn">
-                    {/* not yet working */}
-                    <button onClick={e => { }}>{followText}</button>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
               <div style={{ marginLeft: '.8em' }}>
                 <p className="copyright">© 2022 INSTAPIX FROM FELIPE SALLY JAN KEVIN HUYDU</p>
               </div>

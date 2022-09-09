@@ -10,7 +10,6 @@ const LikeComponent = ({ post }) => {
     const [liked, setLiked] = useState(false)
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     const like = likes?.filter(like => like?.user_id === sessionUser?.id)
-    console.log(post)
 
     useEffect(() => {
         dispatch(likeActions.fetchLike(post?.id))
