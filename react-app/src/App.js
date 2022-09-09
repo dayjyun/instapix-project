@@ -56,7 +56,6 @@ function App() {
         <Route path="/comments/:commentId">
           <CommentDetails />
         </Route>
-
         <ProtectedRoute path="/users/:userId">
           <User />
         </ProtectedRoute>
