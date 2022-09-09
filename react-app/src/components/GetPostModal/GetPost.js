@@ -138,11 +138,6 @@ function GetPost({ post, user }) {
     alert("Text copied");
   };
 
-  const userProfile = (userId) => {
-    history.push(`/users/${userId}`);
-    history.go(0);
-  };
-
   let editPostBtn;
 
   if (currUser?.id === post.user_id) {
@@ -164,8 +159,9 @@ function GetPost({ post, user }) {
         <div className="user-info-container">
           <div
             className="profile-pic-username"
-            onClick={() => userProfile(post?.user_id)}
-          >
+            onClick={(e) => {
+              e.preventDefault()
+              history.push(`/users/${post?.user_id}`)}}>
             <img
               className="comment-profile-pic"
               src={post?.User?.profile_image}
@@ -179,7 +175,9 @@ function GetPost({ post, user }) {
         </div>
         <div className="post-caption-container">
           <img
-            onClick={() => userProfile(post?.user_id)}
+            onClick={(e) => {
+              e.preventDefault()
+              history.push(`/users/${post?.user_id}`)}}
             className="comment-profile-pic"
             src={post?.User?.profile_image}
             // value={copyText}
@@ -187,8 +185,9 @@ function GetPost({ post, user }) {
           ></img>
           <div
             className="post-username-text"
-            onClick={() => userProfile(post?.user_id)}
-          >
+            onClick={(e) => {
+              e.preventDefault()
+              history.push(`/users/${post?.user_id}`)}}>
             {user?.username}
             <div className="posted-date">{getCreatedDate(post?.created_at)}</div>
           </div>
