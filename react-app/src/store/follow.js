@@ -7,8 +7,14 @@ const GET_FOLLOWING = 'users/GET_FOLLOWS'
 const GET_FOLLOWERS = 'users/GET_FOLLOWERS'
 const FOLLOW = 'users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
+const GET_FOLLOWING_HOME = 'users/GET_FOLLOWING_HOME'
 
-//ACTIONS
+// ACTIONS
+export const getFollowingHome = follow => ({
+    type: GET_FOLLOWING_HOME,
+    payload: follow
+})
+
 export const getLoggedUserFollowing = (follows) => {
     return {
         type: GET_LOGGED_USER_FOLLOWING,
@@ -62,6 +68,15 @@ export const getFollowingBackend = (userId) => async (dispatch) => {
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getFollowing(parsedRes))
+    }
+}
+
+// GET: all users following for home //different state
+export const getFollowingBackendHome = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/follows/users/${userId}/follows`);
+    if (response.ok) {
+        const parsedRes = await response.json();
+        dispatch(getFollowingHome(parsedRes))
     }
 }
 
@@ -154,7 +169,14 @@ const followReducer = (state = initialState, action) => {
             })
             getFollowingState.follows = follows
             return getFollowingState;
-
+        case GET_FOLLOWING_HOME:
+            const getFollowingStateHome = {}
+            // let followsHome = {}
+            action.payload.Followers.forEach(follow => {
+                getFollowingStateHome[follow.follow.id] = follow
+            })
+            // getFollowingStateHome.follows = followsHome
+            return getFollowingStateHome;
         case GET_FOLLOWERS:
             const getFollowersState = { ...state }
             let follower = {}
