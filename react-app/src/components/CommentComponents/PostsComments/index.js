@@ -32,16 +32,7 @@ const PostsComments = ({ post, setCurrPost }) => {
         await currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
         dispatch(likeActions.fetchLike(post?.id))
-    }, [dispatch, post])
-
-    // const getCreatedDate = (datestr) => {
-    //     const fullDate = new Date(datestr).toDateString()
-    //     let date = fullDate.slice(4)
-    //     if (date[4] === '0') {
-    //         date = date.slice(0, 4) + date.slice(5);
-    //     };
-    //     return date
-    // }
+    }, [dispatch, post]);
 
     const userProfile = (userId) => {
         history.push(`/users/${userId}`)
