@@ -13,17 +13,19 @@ const LikeComponent = ({ post }) => {
 
 
     useEffect(async () => {
-        dispatch(likeActions.fetchLike(post?.id))
-        dispatch(getPost(post?.id))
+        if (post) {
+            dispatch(likeActions.fetchLike(post.id))
+            dispatch(getPost(post.id))
+        }
     }, [dispatch])
 
     const likePost = async () => {
         if (liked) {
-            await dispatch(likeActions.unlike(post?.id))
-            await dispatch(getPost(post?.id))
+            await dispatch(likeActions.unlike(post.id))
+            await dispatch(getPost(post.id))
         } else {
-            await dispatch(likeActions.like(post?.id))
-            await dispatch(getPost(post?.id))
+            await dispatch(likeActions.like(post.id))
+            await dispatch(getPost(post.id))
         }
     };
 

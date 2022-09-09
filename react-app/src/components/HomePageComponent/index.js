@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { login } from '../../store/session'
 import * as userActions from '../../store/users'
 import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
 // import PostCardButtons from "./PostCardModal/PostCardButtons"
 import PostCardModal from "./PostCardModal"
 // import * as postActions from '../../store/posts'
-import * as likeActions from '../../store/likes'
-import testingtesting from "./testing"
 import { getFollowingPosts } from "../../store/posts"
 import LikeComponent from "./LikeComponent"
 import TotalLikesComponent from "./LikeComponent/TotalLikesComponent"
@@ -53,23 +50,6 @@ const HomePageComponent = () => {
   following && (following = Object.values(following)?.map(following => following?.follower_info?.id))
   const usersNotFollowing = allUsers?.filter(user => !following?.includes(user.id))
 
-
-  useEffect(() => {
-    dispatch(getFollowingPosts())
-  }, [dispatch, sessionUser])
-
-  //
-
-
-  // const filteredPost = (userId) => {
-  //     const post = allPost?.filter(post => {
-  //         // console.log(post?.user_id, userId)
-  //         return post?.user_id === userId
-  //     })
-  //     // console.log(post)
-  //     return post
-  // }
-
   useEffect(() => {
     i = uniqueIndex()
     i2 = uniqueIndex()
@@ -82,12 +62,13 @@ const HomePageComponent = () => {
   }, [email, password])
 
   useEffect(() => {
-    dispatch(userActions.getAllUsers())
-    dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser?.id))
-    dispatch(followingActions.getFollowingBackendHome(sessionUser?.id))
-    // dispatch(postActions.loadAllPosts())
-    // dispatch(likeActions.fetchAllLikes())
-  }, [dispatch])
+    if (sessionUser) {
+      dispatch(userActions.getAllUsers())
+      dispatch(getFollowingPosts())
+      dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser.id))
+      dispatch(followingActions.getFollowingBackendHome(sessionUser.id))
+    }
+  }, [dispatch, sessionUser])
 
   const reset = () => {
     setEmail("")
@@ -95,15 +76,6 @@ const HomePageComponent = () => {
     setStyle({})
   }
 
-  // const checkLikes = (postId) => {
-  //   likes?.forEach(like => {
-  //     if (like?.user_id === sessionUser?.id && like?.post_id === postId) {
-  //       setLikeClass('fa-solid fa-heart fa-xl')
-  //     } else {
-  //       setLikeClass('fa-regular fa-heart fa-xl')
-  //     }
-  //   })
-  // }
 
   const ProfileImageTagLarge = () => {
     if (sessionUser?.profile_image) {
@@ -165,71 +137,6 @@ const HomePageComponent = () => {
     }
   }
 
-
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password))
-      .then(() => {
-        reset()
-      })
-      .catch(async res => {
-        const data = await res.json()
-        if (data && data.errors) {
-          setErrors(Object.values(data.errors))
-        }
-      })
-  };
-
-  const handleGuestLogin = async e => {
-    e.preventDefault()
-    const data = await dispatch(login('demo@aa.io', 'password'))
-      .then(() => {
-        reset()
-      })
-      .catch(async res => {
-        const data = await res.json()
-        if (data && data.errors) {
-          setErrors(Object.values(data.errors))
-        }
-      })
-  }
-
-  const fetchLikeForPost = postId => {
-    dispatch(likeActions.fetchLike(postId))
-  }
-
-  const likeBtnOnSubmit = (e) => {
-    e.preventDefault()
-    if (likeClass === 'fa-regular fa-heart fa-xl') {
-      setLikeClass('fa-solid fa-heart fa-xl')
-    } else {
-      setLikeClass('fa-regular fa-heart fa-xl')
-    }
-  }
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password))
-      .then(() => {
-        reset()
-      })
-      .catch(async res => {
-        const data = await res.json()
-        if (data && data.errors) {
-          setErrors(Object.values(data.errors))
-        }
-      })
-  };
-
-  const likePost = async (post, user, likesUserIds) => {
-    if (likesUserIds?.includes(user?.id)) {
-      await dispatch(likeActions.unlike(post?.id))
-
-    } else {
-      await dispatch(likeActions.like(post?.id))
-    }
-  };
-  //
   if (sessionUser) {
     return (
       <div className='home-page-container'>
@@ -246,7 +153,6 @@ const HomePageComponent = () => {
                       e => {
                         e.preventDefault()
                         history.push(`/users/${allUsers[i]?.id}`)
-                        // history.go()
                       }
                     }>
                       <img className="users-img-circle-container" src={allUsers[i]?.profile_image}>
@@ -280,20 +186,14 @@ const HomePageComponent = () => {
                       <img className="feed-image" src={post?.post_url} alt="Post has no image"></img>
                     </div>
                     <div className="feed-like-container">
-                      {/* not yet working */}
                       <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />
                     </div>
                     <TotalLikesComponent post={post} setCurrPostState={setCurrPostState} />
-                    {/* {post?.num_likes} */}
                     <span className='feed-caption'>{post?.User?.username}
                       <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                     </span>
                     <div className="load-comments-button"><FeedPostModalViewStr post={post} /></div>
                     <div className="feed-post-date">{getCreatedDate(post?.created_at)}</div>
-                    {/* Create comment component */}
-                    {/* <div> */}
-                    {/* <testingtesting /> */}
-                    {/* </div> */}
                   </div>
                 )
               }))}
@@ -340,76 +240,74 @@ const HomePageComponent = () => {
   } else {
     return (
       <Login />
-      // <div className="logged-out-container">
-      //   <div className="logged-out-content-container">
-      //     <img className="front-page-image" src='https://instagram-clone-files.s3.us-west-1.amazonaws.com/frontpage.png' alt='preview'></img>
-      //     <div className="login-form-container">
-      //       <div className="login-form">
-      //         <h1>Instapix</h1>
-      //         <div className="login-input-container">
-      //           <div className="login-box">
-      //             <div className='email'>
-      //               <p>Email</p>
-      //             </div>
-      //             <div className="password">
-      //               <input
-      //                 type='text'
-      //                 value={email}
-      //                 onChange={e => setEmail(e.target.value)}
-      //                 required
-      //               />
-      //             </div>
-      //           </div>
-      //         </div>
-      //         <div className="login-input-container">
-      //           <div className="login-box">
-      //             <div className='email'>
-      //               <p>Password</p>
-      //             </div>
-      //             <div className="password">
-      //               <input
-      //                 type='password'
-      //                 value={password}
-      //                 onChange={e => setPassword(e.target.value)}
-      //                 required
-      //               />
-      //             </div>
-      //           </div>
-      //         </div>
-      //         <div className="login-input-container">
-      //           <button
-      //             type='submit'
-      //             onSubmit={onSubmit}
-      //             style={style}
-      //             onClick={onLogin}
-      //             className="login-button"
-      //           >Log In</button>
-      //         </div>
-      //         <div className="or-container">
-      //           <p className="or1">______________</p>
-      //           <p className='or'>OR</p>
-      //           <p className="or2">______________</p>
-      //         </div>
-      //         <div className="login-input-container">
-      //           <button
-      //             type='submit'
-      //             style={style}
-      //             onClick={handleGuestLogin}
-      //             className="login-button-guest"
-      //           >Log in as Guest</button>
-      //         </div>
-      //       </div>
-      //       <div className="sign-up-link">
-      //         {/* sign up modal goes here */}
-      //         <p>Don't have an account?
-      //           <a href="/sign-up"> Sign up</a>
-      //         </p>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div >
     )
   }
 }
 
 export default HomePageComponent
+
+
+  // const onLogin = async (e) => {
+  //   e.preventDefault();
+  //   const data = await dispatch(login(email, password))
+  //     .then(() => {
+  //       reset()
+  //     })
+  //     .catch(async res => {
+  //       const data = await res.json()
+  //       if (data && data.errors) {
+  //         setErrors(Object.values(data.errors))
+  //       }
+  //     })
+  // };
+
+  // const handleGuestLogin = async e => {
+  //   e.preventDefault()
+  //   const data = await dispatch(login('demo@aa.io', 'password'))
+  //     .then(() => {
+  //       reset()
+  //     })
+  //     .catch(async res => {
+  //       const data = await res.json()
+  //       if (data && data.errors) {
+  //         setErrors(Object.values(data.errors))
+  //       }
+  //     })
+  // }
+
+  // const fetchLikeForPost = postId => {
+  //   dispatch(likeActions.fetchLike(postId))
+  // }
+
+  // const likeBtnOnSubmit = (e) => {
+  //   e.preventDefault()
+  //   if (likeClass === 'fa-regular fa-heart fa-xl') {
+  //     setLikeClass('fa-solid fa-heart fa-xl')
+  //   } else {
+  //     setLikeClass('fa-regular fa-heart fa-xl')
+  //   }
+  // }
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const data = await dispatch(login(email, password))
+  //     .then(() => {
+  //       reset()
+  //     })
+  //     .catch(async res => {
+  //       const data = await res.json()
+  //       if (data && data.errors) {
+  //         setErrors(Object.values(data.errors))
+  //       }
+  //     })
+  // };
+
+  // const likePost = async (post, user, likesUserIds) => {
+  //   if (likesUserIds?.includes(user?.id)) {
+  //     await dispatch(likeActions.unlike(post?.id))
+
+  //   } else {
+  //     await dispatch(likeActions.like(post?.id))
+  //   }
+  // };
+  //

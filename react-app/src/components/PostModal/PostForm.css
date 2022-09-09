@@ -51,9 +51,9 @@ ul {
 
 .form-container {
   display: grid;
-  grid-template-columns: 30em 20em;
+  grid-template-columns: 60% 40%;
   width: 59.2vw;
-  height: 30em;
+  height: 40vh;
 }
 
 
