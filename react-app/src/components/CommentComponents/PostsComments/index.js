@@ -29,13 +29,6 @@ const PostsComments = ({ post }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    console.log(likes)
-    console.log(likesUserIds)
-
-
-    // useEffect(() => {
-    //     dispatch(likeActions.fetchAllLikes())
-    // }, [dispatch])
 
     useEffect(() => {
         const currUserLiked = () => {
