@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as likeActions from '../../../../store/likes';
+
 const TotalLikesComponent = ({ post }) => {
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     // dispatch(getPost(post?.id))
+    //     dispatch(likeActions.fetchLike(post?.id))
+    // }, [dispatch, post?.num_likes])
+
 
     let likeStr;
 

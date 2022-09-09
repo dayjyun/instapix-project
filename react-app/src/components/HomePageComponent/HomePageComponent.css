@@ -404,7 +404,7 @@
 .feed-like-container {
     display: flex;
     align-items: center;
-    padding-left: .6em;
+    padding-left: .4em;
 }
 
 .feed-total-likes {

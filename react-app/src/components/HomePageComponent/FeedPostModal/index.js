@@ -10,7 +10,6 @@ function FeedPostModalViewStr({ post }) {
   const [showModal, setShowModal] = useState(false);
 
   const posts = useSelector(state => Object.values(state.posts));
-  console.log(post);
 
   let viewStr;
 

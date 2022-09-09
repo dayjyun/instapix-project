@@ -10,32 +10,35 @@ const LikeComponent = ({ post }) => {
     const [liked, setLiked] = useState(null)
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     // const like = likes?.filter(like => like?.user_id === sessionUser?.id)
-    console.log('LIKEBUTTON LIKE IDS!!!!!!!!!-------------', likesUserIds, sessionUser?.id, liked)
-    console.log('LIKEBUTTON POST!!!!!!!!!-------------', post)
+    // console.log('LIKEBUTTON LIKE IDS!!!!!!!!!-------------', likesUserIds, sessionUser?.id, liked)
+    // console.log('LIKEBUTTON POST!!!!!!!!!-------------', post)
+
 
     useEffect(async () => {
         await currUserLiked()
         dispatch(likeActions.fetchLike(post?.id))
+        // dispatch()
     }, [dispatch])
 
     const currUserLiked = () => {
         setLiked(likesUserIds?.includes(sessionUser?.id))
     }
 
-    // const likePost = async () => {
-    //     if (likesUserIds?.includes(user?.id)) {
-    //         await dispatch(likeActions.unlike(post?.id))
-
-    //     } else {
-    //         await dispatch(likeActions.like(post?.id))
-    //     }
-    // };
+    const likePost = async () => {
+        if (liked) {
+            await dispatch(likeActions.unlike(post?.id))
+        } else {
+            await dispatch(likeActions.like(post?.id))
+        }
+    };
 
     let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
     let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
 
     return (
-        <div > {liked ? postLiked : postNotLiked}
+        <div onClick={async () => likePost()
+                .then(async () => setLiked(!liked))}>
+            {liked ? postLiked : postNotLiked}
         </div>
     )
 }

@@ -44,6 +44,7 @@ const HomePageComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = Object.values(useSelector(state => state.users))
   const posts = Object.values(useSelector(state => state.posts))
+  const [currPostState, setCurrPostState] = useState(posts);
   const likes = Object.values(useSelector(state => state.likes))
   let following = useSelector(state => state.follow)
   let following2 = following?.follows
@@ -122,7 +123,6 @@ const HomePageComponent = () => {
   }
 
   const ProfileImageTagSmall = (users, i) => {
-    console.log('HTISHTISTHISITSHITSHISHITSI', users[i]);
     if (users[i]?.profile_image) {
       return (
         <div className="profile-button-large" onClick={e => {
@@ -143,7 +143,6 @@ const HomePageComponent = () => {
   }
 
   const ProfileImageTagSmallCard = (post) => {
-    console.log('THIS POST----------------', post);
     if (post?.User?.profile_image) {
       return (
         <div className="profile-button-large-2" onClick={e => {
@@ -281,7 +280,8 @@ const HomePageComponent = () => {
                       {/* not yet working */}
                       <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />
                     </div>
-                    <TotalLikesComponent post={post} />
+                    <TotalLikesComponent post={post} setCurrPostState={setCurrPostState}/>
+                    {/* {post?.num_likes} */}
                     <span className='feed-caption'>{post?.User?.username}
                       <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                     </span>
