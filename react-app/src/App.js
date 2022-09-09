@@ -14,6 +14,7 @@ import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
 import SignUpUserForm from "./components/SignUpComponent";
+import Login from "./components/LoginComponent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,38 +35,40 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-
-        <Route path="/sign-up" exact={true}>
+        <Route path="/sign-up">
           <SignUpUserForm />
         </Route>
         <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
-        <Route exact path="/posts">
-          <FollowingPosts />
-        </Route>
-        <Route exact path="/">
-          <HomePageComponent />
+        <Route path="/posts/:postId/comments">
+          <PostsComments />
         </Route>
         <Route exact path="/posts/:postId">
           <PostComponent />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <Route path="/posts/:postId/comments" exact={true}>
-          <PostsComments />
+        <Route exact path="/posts">
+          <FollowingPosts />
         </Route>
-        <Route path="/comments/:commentId" exact={true}>
-          <CommentDetails />
-        </Route>
-
-        <Route path="/comments/:commentId/edit" exact={true}>
+        <Route path="/comments/:commentId/edit">
           <EditComment />
         </Route>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <Route path="/comments/:commentId">
+          <CommentDetails />
+        </Route>
+        <ProtectedRoute path="/users/:userId">
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path="/users">
+          <UsersList />
+        </ProtectedRoute>
+        <Route exact path="/">
+          <HomePageComponent />
+        </Route>
+
+        <Route exact path="/skimby">
+          <Login />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

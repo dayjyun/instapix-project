@@ -1,4 +1,5 @@
-import PostComponent from "../components/PostsComponent"
+// import PostComponent from "../components/PostsComponent"
+
 
 //TYPES
 const GET_LOGGED_USER_FOLLOWING = 'user/GET_LOGGED_USER_FOLLOWING'
@@ -35,16 +36,20 @@ export const getFollowers = (follows) => {
     }
 }
 
-export const postFollow = (follow) => {
+export const postFollow = (follow, userId, blueBtnFollow) => {
     return {
         type: FOLLOW,
-        payload: follow
+        payload: follow,
+        userId,
+        blueBtnFollow
     }
 }
-export const deleteFollow = (follow) => {
+export const deleteFollow = (follow, loggedUserId, blueBtnUnfollow) => {
     return {
         type: UNFOLLOW,
-        payload: follow
+        payload: follow,
+        loggedUserId,
+        blueBtnUnfollow
     }
 }
 //THUNKS
@@ -85,7 +90,7 @@ export const getFollowersBackend = (userId) => async (dispatch) => {
 }
 
 //POST: a follow
-export const postFollowBackend = (input) => async (dispatch) => {
+export const postFollowBackend = (input, userId, blueBtnFollow) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${input.follows_id}/post`, {
         method: "POST",
         headers: {
@@ -96,24 +101,22 @@ export const postFollowBackend = (input) => async (dispatch) => {
             follows_id: input.follows_id
         }
     })
-
-    const parsedRes = await response.json();
-    dispatch(postFollow(parsedRes));
-    return parsedRes;
-
+    if (response.ok) {
+        const parsedRes = await response.json();
+        dispatch(postFollow(parsedRes, userId, blueBtnFollow));
+        return parsedRes;
+    }
 }
 //DELETE: a follow (unfollow)
-export const deleteFollowBackend = (userId) => async (dispatch) => {
-    console.log(userId)
+export const deleteFollowBackend = (userId, loggedUser, blueBtnUnfollow) => async (dispatch) => {
     const response = await fetch(`/api/follows/users/${userId}/delete`, {
         method: 'DELETE'
     });
     if (response.ok) {
         const parsedRes = await response.json();
-        dispatch(deleteFollow(parsedRes))
+        dispatch(deleteFollow(parsedRes, loggedUser, blueBtnUnfollow))
     }
 }
-
 
 
 //INITIAL STATE
@@ -130,12 +133,22 @@ const followReducer = (state = initialState, action) => {
             const followState = { ...state };
             const copy = followState.follows;
             const copy2 = followState.loggedUser;
+            const copy3 = followState.followers;
 
-            copy[action.payload.follow.id] = action.payload;
+            if (action.userId === action.payload.follow.user_id) {
+                copy[action.payload.follow.id] = action.payload;
+            }
+
+            if (action.blueBtnFollow) {
+                copy3[action.payload.follow.id] = action.payload;
+            }
+
+
             copy2[action.payload.follow.id] = action.payload;
 
+            followState.followers = copy3
             followState.follows = copy;
-            followState.loggedUser = copy2
+            followState.loggedUser = copy2;
             return followState;
 
         case GET_LOGGED_USER_FOLLOWING:
@@ -174,26 +187,19 @@ const followReducer = (state = initialState, action) => {
             getFollowersState['followers'] = follower
             return getFollowersState;
 
-        // case FOLLOW:
-        //     const followStateCopy = {};
-        //     followStateCopy[action.payload.id] = action.payload;
-
-        //     // console.log(followState)
-        //     return followStateCopy
-
 
         case UNFOLLOW:
             const unfollowState = { ...state }
-            // console.log(action.payload)
 
-            delete unfollowState['follows'][action.payload.follow.id]
+            // if the user is on their own page
+            if (action.payload.follow.user_id === action.loggedUserId) {
+                delete unfollowState['follows'][action.payload.follow.id]
+            }
+            if (action.blueBtnUnfollow) {
+                delete unfollowState['followers'][action.payload.follow.id]
+            }
             delete unfollowState['loggedUser'][action.payload.follow.id]
-            // delete unfollowState['loggedUser']['Followers']['follow'][action.payload.follow.follows_id]
-            // console.log(unfollowState.follows)
-
-            // console.log(unfollowState)
             return unfollowState;
-
 
         default:
             return state;

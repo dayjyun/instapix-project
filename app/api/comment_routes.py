@@ -15,7 +15,7 @@ def get_comment(comment_id):
     comment = Comment.query.get(comment_id)
     if comment:
         return comment.to_dict()
-    return jsonify(message="Comment couldn't be found", statusCode=404)
+    return jsonify(message="Comment couldn't be found", statusCode=404), 404
 
 
 #edit a comment using comment_id, by providing a body and updating update_at
@@ -31,11 +31,11 @@ def edit_comment(comment_id):
 
     #check if comment exists
     if not comment:
-        return jsonify(message="Comment couldn't be found", statusCode=404)
+        return jsonify(message="Comment couldn't be found", statusCode=404), 404
 
     #check if user is authorized
     if current_user.id != comment.user_id:
-        return jsonify(message='Not authorized', statusCode=401)
+        return jsonify(message='Not authorized', statusCode=401), 401
 
     #edit comment
     if form.validate_on_submit():
@@ -58,16 +58,16 @@ def delete_comment(comment_id):
 
     #check if comment exists
     if not comment:
-        return jsonify(message="Comment couldn't be found", statusCode=404)
+        return jsonify(message="Comment couldn't be found", statusCode=404), 404
 
-    #check if user is authenticated
+    #check if user is owner of comment
     if current_user.id != comment.user_id:
-        return jsonify(message='Authentication required', statusCode=401)
+        return jsonify(message='Forbidden', statusCode=403), 403
 
     db.session.delete(comment)
     db.session.commit()
 
-    return jsonify(message="Successfully deleted", statusCode=200)
+    return jsonify(message="Successfully deleted", statusCode=200), 200
 
 
 
