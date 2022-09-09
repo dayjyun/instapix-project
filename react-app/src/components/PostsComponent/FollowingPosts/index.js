@@ -6,7 +6,7 @@ function FollowingPosts() {
   const dispatch = useDispatch();
   let posts = Object.values(useSelector((state) => state.posts));
   let follows = Object.values(useSelector((state) => state.follow));
-  console.log(follows)
+  // console.log(follows)
 
   posts = posts.map((post) => post.Post);
 

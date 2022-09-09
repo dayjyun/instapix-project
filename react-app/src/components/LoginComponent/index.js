@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
-    console.log(errors)
+    // console.log(errors)
 
     useEffect(() => {
         if (email && password) {
@@ -24,13 +24,13 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
-        console.log(data)
+        // console.log(data)
 
         if (data && data.errors) {
             setErrors(Object.values(data.errors));
         }
 
-        console.log(errors)
+        // console.log(errors)
         // .catch(async (res) => {
         //     const data = await res.json()
 
@@ -71,7 +71,7 @@ const Login = () => {
             });
     };
 
-// 
+//
     return (
         <div className="logged-out-container">
             <div className="logged-out-content-container">
