@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as userActions from '../../store/users'
-import * as followingActions from '../../store/follow'
+// import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
-import { getFollowingPosts } from "../../store/posts"
+// import { getFollowingPosts } from "../../store/posts"
 import Login from "../LoginComponent"
 import SuggestionsComponent from "./SuggestionsComponent"
 import TrendingUsers from "./TrendingUsersComponent"
@@ -49,7 +49,7 @@ const HomePageComponent = () => {
             <TrendingUsers i={i} />
             <FeedPostsComponent />
           </div>
-          <SuggestionsComponent i2={i2} />
+          <SuggestionsComponent i2={i2} a={allUsers} />
         </div >
       </div >
     )

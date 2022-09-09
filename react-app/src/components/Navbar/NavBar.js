@@ -1,17 +1,17 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
 import PostFormModal from '../PostModal';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session'
+import SearchBar from '../SearchBar/SearchBar';
 
 const NavBar = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [profileToggle, setProfileToggle] = useState(false)
-  const [profileImage, setProfileImage] = useState('')
   const sessionUser = useSelector(state => state.session.user)
 
   const profileImageTag = () => {
@@ -62,6 +62,7 @@ const NavBar = () => {
         <div className='nav-buttons-left'>
           <button className='instapix-button' onClick={handleHome}>Instapix</button>
         </div>
+        <SearchBar />
         <div className='nav-buttons-right'>
           <button className='fa-solid fa-house house' onClick={handleHome}></button>
           <PostFormModal />

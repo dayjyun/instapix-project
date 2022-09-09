@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { getFollowingPosts } from "../../../store/posts"
@@ -56,7 +56,7 @@ const FeedPostsComponent = () => {
                             </div>
                         </div>
                         <div className="feed-post-image">
-                            <img className="feed-image" src={post?.post_url} alt="Post has no image"></img>
+                            <img className="feed-image" src={post?.post_url} alt="previewImage"></img>
                         </div>
                         <div className="feed-like-container">
                             <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />

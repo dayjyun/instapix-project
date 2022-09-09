@@ -12,7 +12,7 @@ const LikeComponent = ({ post }) => {
 
 
 
-    useEffect(async () => {
+    useEffect(() => {
         if (post) {
             dispatch(likeActions.fetchLike(post.id))
             dispatch(getPost(post.id))

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import * as postActions from "../../store/posts";
 
 function PostForm({ closeModal }) {
@@ -9,8 +9,8 @@ function PostForm({ closeModal }) {
     const [errors, setErrors] = useState([]);
     const [caption, setCaption] = useState("");
     const [postUrl, setPostUrl] = useState("");
-    const history = useHistory();
-    const posts = Object.values(useSelector((state) => state.posts));
+    // const history = useHistory();
+    // const posts = Object.values(useSelector((state) => state.posts));
     const currUser = useSelector(state => state.session.user)
 
     const handleSubmit = (e) => {
@@ -22,7 +22,7 @@ function PostForm({ closeModal }) {
             })
         setPostUrl('')
         setCaption('')
-        const postId = posts[posts.length - 1]?.id
+        // const postId = posts[posts.length - 1]?.id
         // history.push(`/posts/${postId}`)
     }
 
@@ -39,7 +39,7 @@ function PostForm({ closeModal }) {
             <div className="form-container">
                 <div className="form-image">
                     {postUrl && (
-                        <img src={postUrl}></img>
+                        <img src={postUrl} alt='previewImage'></img>
                     )}
                 </div>
                 <div className="post-caption-form-container">

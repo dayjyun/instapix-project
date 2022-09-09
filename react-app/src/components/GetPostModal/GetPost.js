@@ -5,6 +5,7 @@ import * as userActions from "../../store/users";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
+import { getCreatedDate } from '../CommentComponents/PostsComments';
 
 function GetPost({ post }) {
   const history = useHistory();
@@ -25,9 +26,11 @@ function GetPost({ post }) {
   };
 
   useEffect(() => {
-      dispatch(postActions.getPost(post?.id));
+    if (post) {
+      dispatch(postActions.getPost(post.id));
       dispatch(userActions.getAllUsers());
-    }, [dispatch, currPost]);
+    }
+  }, [dispatch, currPost, post.id, post]);
 
   const getUser = (id) => {
     let user = allUsers.find((user) => user.id === id);
@@ -41,7 +44,7 @@ function GetPost({ post }) {
 
   let editPostBtn;
 
-  if (currUser?.id == post.user_id) {
+  if (currUser?.id === post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
   } else {
     editPostBtn = (
@@ -54,7 +57,7 @@ function GetPost({ post }) {
   return (
     <div className="post-modal-container">
       <div className="image-content-container">
-        <img className="image-content" src={post?.post_url}></img>
+        <img className="image-content" src={post?.post_url} alt='users pic'></img>
       </div>
       <div className="caption-comment-container">
         <div className="user-info-container">
@@ -86,13 +89,14 @@ function GetPost({ post }) {
             onClick={() => userProfile(post?.user_id)}
           >
             {getUser(post?.user_id)?.username}
+            <div className="posted-date">{getCreatedDate(post?.created_at)}</div>
           </div>
-          <div className="caption-text">
-            <div className="caption-container">{post?.caption}</div>
-          </div>
+          {/* <div className="caption-text"> */}
+          <div className="caption-container">{post?.caption}</div>
+          {/* </div> */}
         </div>
         <div className="post-modal-comments">
-          <PostsComments  post={post} setCurrPost={setCurrPost} />
+          <PostsComments post={post} setCurrPost={setCurrPost} />
         </div>
       </div>
     </div>

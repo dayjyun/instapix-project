@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getFollowingBackendHome } from "../../../store/follow"
 import { getAllUsers } from "../../../store/users"
@@ -10,7 +10,6 @@ const SuggestionsComponent = ({ i2 }) => {
     // let following = useSelector(state => state.follow)
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-    const [nonFollowers, setNonFollowers] = useState([])
 
     // following && console.log(Object.values(following))
     // let following2 = following?.follows
@@ -28,9 +27,11 @@ const SuggestionsComponent = ({ i2 }) => {
     // }, [allUsers, following])
 
     useEffect(() => {
-        dispatch(getAllUsers())
-        dispatch(getFollowingBackendHome())
-    }, [dispatch])
+        if (sessionUser) {
+            dispatch(getAllUsers())
+            dispatch(getFollowingBackendHome())
+        }
+    }, [dispatch, sessionUser])
 
     const ProfileImageTagLarge = () => {
         if (sessionUser?.profile_image) {

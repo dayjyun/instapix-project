@@ -29,14 +29,21 @@ const PostsComments = ({ post, setCurrPost }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        currUserLiked()
-        dispatch(commentActions.loadPostComments(post?.id))
-        dispatch(likeActions.fetchLike(post?.id))
-    }, [dispatch, post?.id, currUserLiked])
+        dispatch(likeActions.fetchAllLikes())
+    }, [dispatch])
 
-    const currUserLiked = () => {
-        setLiked(likesUserIds?.includes(user?.id))
-    }
+
+    useEffect(() => {
+        if (post && user) {
+            const currUserLiked = () => {
+                setLiked(likesUserIds?.includes(user.id))
+            }
+            currUserLiked()
+            dispatch(commentActions.loadPostComments(post.id))
+            dispatch(likeActions.fetchLike(post.id))
+        }
+    }, [dispatch, post, user, likesUserIds,])
+
 
     const userProfile = (userId) => {
         history.push(`/users/${userId}`)

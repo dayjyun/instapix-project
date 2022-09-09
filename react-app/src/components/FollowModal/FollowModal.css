@@ -60,3 +60,15 @@
     color: rgb(145, 145, 145);
     font-size: 13.8px;
 }
+
+.p-bolded:hover {
+    cursor: pointer;
+}
+
+.p-styling:hover {
+    cursor: pointer;
+}
+
+.profile-img-circle-container:hover {
+    cursor: pointer;
+}

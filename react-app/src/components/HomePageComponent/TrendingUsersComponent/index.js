@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom"
 
 const TrendingUsers = ({ i }) => {
     const history = useHistory()
-
     const allUsers = Object.values(useSelector(state => state.users))
 
     return (
@@ -20,7 +19,11 @@ const TrendingUsers = ({ i }) => {
                                 history.push(`/users/${allUsers[i]?.id}`)
                             }
                         }>
-                            <img className="users-img-circle-container" src={allUsers[i]?.profile_image}>
+                            <img
+                                className="users-img-circle-container"
+                                src={allUsers[i]?.profile_image}
+                                alt='previewImage'
+                            >
                             </img>
                         </button>
                     </div>
