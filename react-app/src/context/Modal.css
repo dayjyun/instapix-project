@@ -152,7 +152,7 @@
   background-color: white;
   border-radius: 0.5em;
   overflow: auto;
-  height: 3.5em;
+  height: 200px;
   width: 300px;
   display: flex;
   justify-content: center;

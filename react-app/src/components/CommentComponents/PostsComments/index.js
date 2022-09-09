@@ -17,118 +17,110 @@ export const getCreatedDate = (datestr) => {
     return date
 }
 
-const PostsComments = ({ post, setCurrPost }) => {
-  const user = useSelector((state) => state.session.user);
-  const comments = useSelector((state) => Object.values(state.comments));
-  const likes = useSelector((state) => Object.values(state.likes));
-  const likesUserIds = post?.real_likes?.map((like) => like?.user_id);
-  const [liked, setLiked] = useState(false);
-  const inputEl = useRef(null);
+const PostsComments = ({ post }) => {
+    const user = useSelector(state => state.session.user)
+    const comments = useSelector((state) => Object.values(state.comments));
+    const likes = useSelector(state => Object.values(state.likes))
+    const likesUserIds = post?.real_likes?.map(like => like?.user_id);
+    const [liked, setLiked] = useState(false);
+    const inputEl = useRef(null);
+    const [currPost, setCurrPost] = useState(post)
 
-  const history = useHistory();
-  const dispatch = useDispatch();
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(likeActions.fetchAllLikes());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(likeActions.fetchAllLikes())
+    }, [dispatch])
 
-  useEffect(() => {
-    if (post && user) {
-      const currUserLiked = () => {
-        setLiked(likesUserIds?.includes(user.id));
-      };
-      currUserLiked();
-      dispatch(commentActions.loadPostComments(post.id));
-      dispatch(likeActions.fetchLike(post.id));
+
+    useEffect(() => {
+
+        const currUserLiked = () => {
+            setLiked(likesUserIds?.includes(user.id))
+        }
+        currUserLiked()
+        dispatch(commentActions.loadPostComments(post.id))
+        dispatch(likeActions.fetchLike(post.id))
+
+    }, [dispatch, likesUserIds])
+
+
+    const userProfile = (userId) => {
+        history.push(`/users/${userId}`)
+        history.go(0)
     }
-  }, [dispatch, post, user, likesUserIds]);
 
-  const userProfile = (userId) => {
-    history.push(`/users/${userId}`);
-    history.go(0);
-  };
 
-  const likePost = async () => {
-    if (likesUserIds?.includes(user?.id)) {
-      await dispatch(likeActions.unlike(post?.id));
-    } else {
-      await dispatch(likeActions.like(post?.id));
-    }
-  };
+    const likePost = async () => {
+        if (likesUserIds?.includes(user?.id)) {
+            await dispatch(likeActions.unlike(post?.id))
 
-  let postLiked = (
-    <i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>
-  );
-  let postNotLiked = <i className="fa-regular fa-heart heart-likes-hollow"></i>;
+        } else {
+            await dispatch(likeActions.like(post?.id))
+        }
+    };
 
-  comments?.sort((a, b) => {
-    return b.id - a.id;
-  });
+    let postLiked = (<i className="fa-regular fa-solid fa-heart heart-likes-solid"></i>)
+    let postNotLiked = (<i className="fa-regular fa-heart heart-likes-hollow"></i>)
 
-  return (
-    <>
-      <div className="post-comments-container">
-        <ul className="comment-card-list">
-          {comments?.map((comment) => (
-            <li className="comment-card-container" key={comment?.id}>
-              {/* <div className="comment-profile-pic"> */}
-              {/* {comment?.user?.profile_image} */}
-              {/* </div> */}
-              <div className="comment-content">
-                <img
-                  className="comment-profile-pic"
-                  onClick={() => userProfile(comment?.user?.id)}
-                  src={comment?.user?.profile_image}
-                  alt="preview"
-                ></img>
-                <div
-                  className="comment-username"
-                  onClick={() => userProfile(comment?.user?.id)}
-                >
-                  {comment?.user?.username}
-                  <div className="comment-date">
-                    {getCreatedDate(comment?.createdAt)}
-                  </div>
-                </div>
-                <div className="comment-body">
-                  {comment?.body}
-                  {comment?.user_id === user?.id && (
-                    <div className="edit-comment-container">
-                      <EditCommentModal comment={comment} />
+    comments?.sort((a, b) => {
+        return b.id - a.id;
+    })
+
+    return (
+        <>
+            <div className="post-comments-container">
+                <ul className="comment-card-list">
+                    {comments?.map((comment, i) => (
+                        <li className='comment-card-container' key={i}>
+                            {/* <div className="comment-profile-pic"> */}
+                            {/* {comment?.user?.profile_image} */}
+                            {/* </div> */}
+                            <div className="comment-content">
+                                <img className="comment-profile-pic" onClick={() => userProfile(comment?.user?.id)} src={comment?.user?.profile_image} alt='preview'></img>
+                                <div className="comment-username" onClick={() => userProfile(comment?.user?.id)}>
+                                    {comment?.user?.username}
+                                    <div className="comment-date">
+                                        {getCreatedDate(comment?.createdAt)}
+                                    </div>
+                                </div>
+                                <div className="comment-body">
+                                    {comment?.body}
+                                    {comment?.user_id === user?.id &&
+                                        <div className="edit-comment-container">
+                                            <EditCommentModal comment={comment} />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                <div>
+                    <div className="likes-comment-container">
+                        <div className="heart-comment-bubble">
+                            <div onClick={async () => await likePost()
+                                .then(async () => setLiked(!liked))
+                                .then(async () => await setCurrPost(post))}>
+                                {liked ? postLiked : postNotLiked}
+                            </div>
+                            <div
+                                onClick={() => inputEl.current.focus()}>
+                                <i className="fa-regular fa-comment comment-bubble"></i>
+                            </div>
+                        </div>
+                        <div className="post-likes">
+                            {/* {likes?.length} likes */}
+                            <LikesModal likes={likes} />
+                        </div>
+                        <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
-                  )}
+                    <CreateComment inputEl={inputEl} post={post} />
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <div>
-          <div className="likes-comment-container">
-            <div className="heart-comment-bubble">
-              <div
-                onClick={async () =>
-                  await likePost()
-                    .then(async () => setLiked(!liked))
-                    .then(async () => await setCurrPost(post))
-                }
-              >
-                {liked ? postLiked : postNotLiked}
-              </div>
-              <div onClick={() => inputEl.current.focus()}>
-                <i className="fa-regular fa-comment comment-bubble"></i>
-              </div>
             </div>
-            <div className="post-likes">
-              {/* {likes?.length} likes */}
-              <LikesModal likes={likes} />
-            </div>
-            <div className="post-date">{getCreatedDate(post?.created_at)}</div>
-          </div>
-          <CreateComment inputEl={inputEl} post={post} />
-        </div>
-      </div>
-    </>
-  );
-};
+        </>
+    )
+}
 
-export default PostsComments;
+export default PostsComments

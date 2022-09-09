@@ -106,9 +106,9 @@ const Login = () => {
 
                                 <button className="login-button" type='submit' style={style}>Log In</button>
                                 {errors && (
-                                    errors.map(error => {
+                                    errors.map((error, i) => {
                                         return (
-                                            <p className="validation-error-styling">{error}</p>
+                                            <p key={i} className="validation-error-styling">{error}</p>
                                         )
                                     })
                                 )
