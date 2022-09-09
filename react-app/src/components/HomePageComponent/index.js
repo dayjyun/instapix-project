@@ -24,24 +24,8 @@ let i2;
 
 const HomePageComponent = () => {
   const dispatch = useDispatch()
-
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = Object.values(useSelector(state => state.users))
-
-  // let following = useSelector(state => state.follow)
-  // following && console.log(Object.values(following))
-  // let following2 = following?.follows
-  // following && console.log(following)
-  // following && (following = Object.values(following)?.map(following => following?.follower_info?.id))
-  // let usersNotFollowing;
-  // useEffect(() => {
-  //   if (allUsers && following && nonFollowers.length === 0) {
-  //     console.log("users", allUsers, "FOLLOWING", following)
-  //     usersNotFollowing = allUsers.filter(user => !following?.includes(user.id))
-  //     setNonFollowers(usersNotFollowing)
-  //   }
-  // }, [allUsers, following])
-  // console.log(nonFollowers)
 
   useEffect(() => {
     i = uniqueIndex()
@@ -51,9 +35,9 @@ const HomePageComponent = () => {
   useEffect(() => {
     if (sessionUser) {
       dispatch(userActions.getAllUsers())
-      dispatch(getFollowingPosts())
-      dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser.id))
-      dispatch(followingActions.getFollowingBackendHome(sessionUser.id))
+      // dispatch(getFollowingPosts())
+      // dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser.id))
+      // dispatch(followingActions.getFollowingBackendHome(sessionUser.id))
     }
   }, [dispatch, sessionUser])
 

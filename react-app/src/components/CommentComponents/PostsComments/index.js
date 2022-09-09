@@ -32,16 +32,17 @@ const PostsComments = ({ post, setCurrPost }) => {
         currUserLiked()
         dispatch(commentActions.loadPostComments(post?.id))
         dispatch(likeActions.fetchLike(post?.id))
-    }, [dispatch, post])
+    }, [dispatch, post?.id, currUserLiked])
 
+    const currUserLiked = () => {
+        setLiked(likesUserIds?.includes(user?.id))
+    }
+    
     const userProfile = (userId) => {
         history.push(`/users/${userId}`)
         history.go(0)
     }
 
-    const currUserLiked = () => {
-        setLiked(likesUserIds?.includes(user?.id))
-    }
 
     const likePost = async () => {
         if (likesUserIds?.includes(user?.id)) {
@@ -103,8 +104,8 @@ const PostsComments = ({ post, setCurrPost }) => {
                         </div>
                         <div className="post-likes">
                             {/* {likes?.length} likes */}
-                            <LikesModal likes={likes}/>
-                            </div>
+                            <LikesModal likes={likes} />
+                        </div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
                     <CreateComment inputEl={inputEl} post={post} />
