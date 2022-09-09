@@ -1,5 +1,7 @@
 const LOAD_USERS = 'users/loadUsers';
 const GET_USER = 'users/getUser';
+const GET_USER_POSTS = 'users/getUserPosts'
+
 
 const loadUsers = (users) => {
     return {
@@ -12,6 +14,13 @@ const getUser = (user) => {
     return {
         type: GET_USER,
         payload: user
+    }
+}
+
+const getUserPost = (posts) => {
+    return {
+        type: GET_USER_POSTS,
+        payload: posts
     }
 }
 
@@ -32,7 +41,15 @@ export const getOneUser = (userId) => async (dispatch) => {
         const user = await res.json();
         dispatch(getUser(user));
     }
+}
 
+// !!!
+export const getUserPostsBackend = (userId) = async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/posts`)
+    if (res.ok) {
+        const posts = await res.json();
+        dispatch(getUserPosts(posts));
+    }
 }
 
 const newState = {};
