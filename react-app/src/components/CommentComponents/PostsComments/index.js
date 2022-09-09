@@ -21,7 +21,7 @@ const PostsComments = ({ post }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments));
     const likes = useSelector(state => Object.values(state.likes))
-    const likesUserIds = post?.real_likes?.map(like => like?.user_id);
+    const likesUserIds = likes?.map(like => like?.user_id);
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
     const [currPost, setCurrPost] = useState(post)
@@ -29,9 +29,13 @@ const PostsComments = ({ post }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(likeActions.fetchAllLikes())
-    }, [dispatch])
+    console.log(likes)
+    console.log(likesUserIds)
+
+
+    // useEffect(() => {
+    //     dispatch(likeActions.fetchAllLikes())
+    // }, [dispatch])
 
     useEffect(() => {
         const currUserLiked = () => {
@@ -72,11 +76,13 @@ const PostsComments = ({ post }) => {
                             {/* </div> */}
                             <div className="comment-content">
                                 <img className="comment-profile-pic" onClick={(e) => {
-                                                                        e.preventDefault()
-                                                                        history.push(`/users/${comment?.user?.id}`)}} src={comment?.user?.profile_image} alt='preview'></img>
+                                    e.preventDefault()
+                                    history.push(`/users/${comment?.user?.id}`)
+                                }} src={comment?.user?.profile_image} alt='preview'></img>
                                 <div className="comment-username" onClick={(e) => {
-                                                                    e.preventDefault()
-                                                                    history.push(`/users/${comment?.user?.id}`)}}>
+                                    e.preventDefault()
+                                    history.push(`/users/${comment?.user?.id}`)
+                                }}>
                                     {comment?.user?.username}
                                     <div className="comment-date">
                                         {getCreatedDate(comment?.createdAt)}

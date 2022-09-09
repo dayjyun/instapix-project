@@ -65,7 +65,12 @@ def delete_a_like(post_id):
         if exist:
             like.delete()
             db.session.commit()
-            return jsonify({"message": "Successfully deleted", "status_code": "200"}), 200
+
+            print('---')
+            print(exist[0])
+            print('---')
+            return jsonify(exist[0]), 200
+
         else:
             return jsonify({'message': "Like doesn't exist", 'status_code': '404'}), 404
     else:
