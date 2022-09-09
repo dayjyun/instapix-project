@@ -26,7 +26,13 @@ const PostCardButtons = ({ post, closeModal, randomPost }) => {
                 <button onClick={async (e) => await handleUnfollow(e)} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>Unfollow</button>
             </div>
             <div className='postcard-button-container'>
-                <button onClick={handleGoToPost} style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
+                <button onClick={async () => await setShowModal(true)}
+                    style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
+                {showModal && (
+                    <PostModal onClose={() => setShowModal(false)}>
+                        <GetPost post={post} />
+                    </PostModal>
+                )}
             </div>
             <div className='postcard-button-container' onClick={closeModal}>
                 <button>Cancel</button>
