@@ -26,7 +26,7 @@ def seed_follows():
     follow11 = Follow(
         user_id=4, follows_id=2)
     follow12 = Follow(
-        user_id=1, follows_id=3)
+        user_id=1, follows_id=9)
     follow13 = Follow(
         user_id=1, follows_id=5)
     follow14 = Follow(

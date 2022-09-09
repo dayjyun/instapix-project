@@ -6,6 +6,7 @@ import { useState } from 'react';
 import PostFormModal from '../PostModal';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session'
+import SearchBar from '../SearchBar/SearchBar';
 
 const NavBar = () => {
   const history = useHistory()
@@ -62,6 +63,7 @@ const NavBar = () => {
         <div className='nav-buttons-left'>
           <button className='instapix-button' onClick={handleHome}>Instapix</button>
         </div>
+        <SearchBar />
         <div className='nav-buttons-right'>
           <button className='fa-solid fa-house house' onClick={handleHome}></button>
           <PostFormModal />

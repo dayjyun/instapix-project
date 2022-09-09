@@ -65,10 +65,9 @@ class Post(db.Model):
             "post_url": self.post_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            'likes': self.num_likes(),
+            'num_likes': self.num_likes(),
             "Comments": [comments.comment_content() for comments in self.comments],
             "real_likes": [like.to_dict() for like in self.likes]
-            # "user": self.users.follow_info()
         }
 
     def feed_to_dict(self):
@@ -82,6 +81,7 @@ class Post(db.Model):
             'num_likes': self.num_likes(),
             "num_comments": self.num_comments(),
             "Comments": [comments.comment_content() for comments in self.comments],
+            "real_likes": [like.to_dict() for like in self.likes]
 
             # 'user_id': [user.user_content() for user in self.user]
 

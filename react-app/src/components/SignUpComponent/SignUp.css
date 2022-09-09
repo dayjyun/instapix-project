@@ -150,5 +150,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: chartreuse;
+}
+
+.logo {
+  font-family: billabong;
+}
+
+@font-face {
+  font-family: "billabong";
+  src: url(FontsFree-Net-Billabong.ttf);
 }

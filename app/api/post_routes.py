@@ -26,13 +26,13 @@ def get_posts():
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())
-    all_my_posts = Post.query.filter(
-        Post.user_id == current_user.id).order_by(Post.created_at.desc())
+    # all_my_posts = Post.query.filter(
+    #     Post.user_id == current_user.id).order_by(Post.created_at.desc())
 
     followed_posts = [post.feed_to_dict() for post in all_followed_posts]
-    my_posts = [post.feed_to_dict() for post in all_my_posts]
+    # my_posts = [post.feed_to_dict() for post in all_my_posts]
 
-    all_post = followed_posts + my_posts
+    all_post = followed_posts
 
     for post in all_post:
         user = User.query.get(post['user_id'])
@@ -52,6 +52,8 @@ def get_posts():
 def post_details(post_id):
     all_posts = Post.query.filter(Post.id == post_id)
     post = [post.post_details() for post in all_posts]
+    user = User.query.get(post[0]['user_id'])
+    post[0]['User'] = user.user_content()
     if post:
         return post[0]
     else:

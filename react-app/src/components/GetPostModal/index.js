@@ -15,7 +15,7 @@ function GetPostModal({ post }) {
         style={{ backgroundColor: "transparent", border: "none" }}
         onClick={() => setShowModal(true)}
       >
-        <img className="explore-post-image" src={post?.post_url}></img>
+        <img className="explore-post-image" src={post?.post_url} alt='users post'></img>
 
         <div className="explore-post-text">
           <div className="explore-post-text-likes">

@@ -14,7 +14,7 @@ function PostFormModal() {
         <>
             <button onClick={() => setShowModal(true)} className='fa-regular fa-square-plus'></button>
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <Modal  className='post-modal' onClose={() => setShowModal(false)}>
                     <PostForm closeModal={closeModal} />
                 </Modal>
             )}
