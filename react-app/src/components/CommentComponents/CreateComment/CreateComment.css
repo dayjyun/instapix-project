@@ -31,3 +31,39 @@
 .comment-body-input:focus {
     outline: none !important;
 }
+
+/* .comment-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px;
+    padding: 4px;
+    border-top: 1px solid lightgray;
+    width: auto;
+}
+
+.comment-submit-btn {
+    padding: 0;
+    margin-right: 8px;
+    border: none;
+    background: none;
+    color: rgb(0,149,246);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.comment-body-input {
+    border: none;
+    width: 21.5rem;
+    height: 1rem;
+    font-family: 'Arimo', sans-serif;
+    resize: none;
+}
+
+.comment-body-input:focus {
+    outline: none !important;
+}
+
+.create-comment-div {
+    height: 3.5rem;
+} */
