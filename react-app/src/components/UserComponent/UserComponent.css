@@ -45,9 +45,25 @@
 }
 
 .h2-style-username {
-    display: flex;
+    display: inline-block;
     width: auto;
     margin-bottom: 15px;
+    width: 40%;
+}
+
+.follow-btn {
+    display: inline-block;
+    padding: 0;
+    margin-bottom: 15px;
+    position: relative;
+    bottom: 3px;
+}
+
+.follow-btn-styling {
+    background-color: rgb(0, 149, 246);
+    padding: 8px 30px;
+    color: white;
+    border: none;
 }
 
 .user-stat-box {

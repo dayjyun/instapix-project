@@ -24,7 +24,7 @@ const SignUpUserForm = () => {
 
   const handleGuestLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login("demo@aa.io", "password"))
+    await dispatch(login("demo@aa.io", "password"))
       .then(() => {
         reset();
       })
@@ -77,7 +77,8 @@ const SignUpUserForm = () => {
             <h1 className="logo">Instapix</h1>
             <p>Sign up to see photos and videos from your friends.</p>
             <button onClick={handleGuestLogin} className="signup-demo-user">
-              <i className="fa-sharp fa-solid fa-user"></i> Log in as a demo user
+              <i className="fa-sharp fa-solid fa-user"></i> Log in as a demo
+              user
             </button>
           </div>
           <div className="auth-separator">
@@ -166,7 +167,7 @@ const SignUpUserForm = () => {
           <div className="login-link-container">
             <p>
               Have an account?{" "}
-              <Link className="login-link" to="/login">
+              <Link className="login-link" to="/">
                 Log in
               </Link>
             </p>
