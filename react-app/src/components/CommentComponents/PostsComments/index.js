@@ -45,13 +45,6 @@ const PostsComments = ({ post }) => {
         dispatch(likeActions.fetchLike(post.id))
     }, [dispatch, post.id])
 
-
-    const userProfile = (userId) => {
-        history.push(`/users/${userId}`)
-        history.go(0)
-    }
-
-
     const likePost = async () => {
         if (likesUserIds?.includes(user?.id)) {
             await dispatch(likeActions.unlike(post?.id))
@@ -78,8 +71,12 @@ const PostsComments = ({ post }) => {
                             {/* {comment?.user?.profile_image} */}
                             {/* </div> */}
                             <div className="comment-content">
-                                <img className="comment-profile-pic" onClick={() => userProfile(comment?.user?.id)} src={comment?.user?.profile_image} alt='preview'></img>
-                                <div className="comment-username" onClick={() => userProfile(comment?.user?.id)}>
+                                <img className="comment-profile-pic" onClick={(e) => {
+                                                                        e.preventDefault()
+                                                                        history.push(`/users/${comment?.user?.id}`)}} src={comment?.user?.profile_image} alt='preview'></img>
+                                <div className="comment-username" onClick={(e) => {
+                                                                    e.preventDefault()
+                                                                    history.push(`/users/${comment?.user?.id}`)}}>
                                     {comment?.user?.username}
                                     <div className="comment-date">
                                         {getCreatedDate(comment?.createdAt)}
