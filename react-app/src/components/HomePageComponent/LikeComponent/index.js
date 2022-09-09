@@ -1,6 +1,7 @@
 import * as likeActions from '../../../store/likes'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { getPost } from '../../../store/posts'
 
 
 const LikeComponent = ({ post }) => {
@@ -17,6 +18,7 @@ const LikeComponent = ({ post }) => {
     useEffect(async () => {
         await currUserLiked()
         dispatch(likeActions.fetchLike(post?.id))
+        dispatch(getPost(post?.id))
         // dispatch()
     }, [dispatch])
 
