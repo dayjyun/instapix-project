@@ -112,6 +112,7 @@ import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
 import { getCreatedDate } from '../CommentComponents/PostsComments';
 
+
 function GetPost({ post, user }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -167,11 +168,11 @@ function GetPost({ post, user }) {
           >
             <img
               className="comment-profile-pic"
-              src={user?.profile_image}
+              src={post?.User?.profile_image}
               alt="preview"
             ></img>
             <div className="post-username-text">
-              {user?.username}
+              {post?.User?.username}
             </div>
           </div>
           {editPostBtn}
@@ -180,7 +181,7 @@ function GetPost({ post, user }) {
           <img
             onClick={() => userProfile(post?.user_id)}
             className="comment-profile-pic"
-            src={user?.profile_image}
+            src={post?.User?.profile_image}
             // value={copyText}
             alt="preview"
           ></img>

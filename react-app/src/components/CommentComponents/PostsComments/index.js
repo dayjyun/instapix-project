@@ -39,7 +39,7 @@ const PostsComments = ({ post }) => {
             setLiked(likesUserIds?.includes(user.id))
         }
         currUserLiked()
-    }, [likesUserIds])
+    }, [likesUserIds, user.id])
 
     useEffect(() => {
         dispatch(commentActions.loadPostComments(post.id))
@@ -90,7 +90,7 @@ const PostsComments = ({ post }) => {
                                     {comment?.body}
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
-                                            <EditCommentModal comment={comment} />
+                                            <EditCommentModal post={currPost} comment={comment} />
                                         </div>
                                     }
                                 </div>

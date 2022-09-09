@@ -10,11 +10,12 @@ const LikeComponent = ({ post }) => {
   const liked = likesUserIds?.includes(sessionUser?.id);
 
   useEffect(() => {
-    if (post) {
-      dispatch(likeActions.fetchLike(post.id));
-      dispatch(getPost(post.id));
-    }
-  }, [dispatch]);
+    dispatch(likeActions.fetchLike(post.id));
+    dispatch(getPost(post.id));
+
+  }, [dispatch, post.id]);
+
+  // useEffect(() => {}, [dispatch])
 
   const likePost = async () => {
     if (liked) {
