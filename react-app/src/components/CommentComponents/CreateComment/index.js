@@ -20,8 +20,8 @@ const CreateComment = ({inputEl, post}) => {
 
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit}>
+            <div className="create-comment-div">
+                <form className="create-comment-form" onSubmit={handleSubmit}>
                     {/* <ul>
                         {Object.values(errors).map((error, index) => (
                             <li className='error-li' key={index}>{error}</li>
@@ -38,6 +38,16 @@ const CreateComment = ({inputEl, post}) => {
                 </form>
             </div>
         </>
+    //     <div className="create-comment-div">
+    //     <form onSubmit={handleSubmit}>
+    //         <div className='comment-input-container'>
+    //             <textarea ref={inputEl} className='comment-body-input' type='text' name='body' value={body} placeholder='Add a comment...' onChange={(e) => setBody(e.target.value)} />
+    //             <div>
+    //             <button className="comment-submit-btn">Post</button>
+    //             </div>
+    //         </div>
+    //     </form>
+    // </div>
     );
 };
 

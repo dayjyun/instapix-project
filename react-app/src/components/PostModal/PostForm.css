@@ -53,7 +53,7 @@ ul {
   display: grid;
   grid-template-columns: 60% 40%;
   width: 59.2vw;
-  height: 40vh;
+  height: 100%;
 }
 
 
@@ -65,7 +65,7 @@ ul {
 .post-caption-form-container {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  height: 38em;
+  height: 64.3vh;
   width: 100%;
   border-left: 1px solid lightgray;
 }
@@ -104,7 +104,7 @@ ul {
 .image-url {
   outline: none;
   margin-left: 1em;
-  width: 16vw;
+  width: 12vw;
   border: none;
 }
 
