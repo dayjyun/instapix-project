@@ -12,11 +12,11 @@ function SearchBar() {
     return user?.username?.toLowerCase().includes(search.toLowerCase());
   });
 
-  const returnResults = userResults.map((user) => {
+  const returnResults = userResults.map((user, i) => {
     return (
       <Link
         to={`/users/${user?.id}`}
-        key={user.id}
+        key={i}
         onClick={() => setSearch("")}
         className="search-result-link"
       >
@@ -25,7 +25,7 @@ function SearchBar() {
             src={user?.profile_image}
             className="search-bar-profile-pic"
             alt='preview'
-           />
+          />
           <div className="search-bar-profile-username">{user?.username}</div>
         </div>
       </Link>

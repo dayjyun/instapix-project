@@ -11,8 +11,8 @@ const TrendingUsers = ({ i }) => {
                 <p>Trending 🔥🔥🔥</p>
             </div>
             <div className="user-pics-container">
-                {i?.map(i => (
-                    <div key={i} className="user-pics">
+                {i?.map((i, index) => (
+                    <div key={index} className="user-pics">
                         <button onClick={
                             e => {
                                 e.preventDefault()
@@ -30,8 +30,8 @@ const TrendingUsers = ({ i }) => {
                 ))}
             </div>
             <div className="user-pics-container">
-                {i?.map(i => (
-                    <div key={i} className="username">
+                {i?.map((i, index) => (
+                    <div key={index} className="username">
                         <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
                     </div>
                 ))}

@@ -15,8 +15,8 @@ function ExplorerPosts() {
   return (
     <div className="explore-page">
       <div className="explore-post">
-        {posts.map((post) => (
-          <li key={post?.id} className="explore-post-wrap">
+        {posts.map((post, i) => (
+          <li key={i} className="explore-post-wrap">
             <div className="explore-post-card">
               <GetPostModal post={post} />
             </div>

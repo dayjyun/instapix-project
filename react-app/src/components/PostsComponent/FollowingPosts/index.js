@@ -18,8 +18,8 @@ function FollowingPosts() {
     <div>
       <div>
         <ul>
-          {posts?.map((post) => (
-            <li key={post?.id}>
+          {posts?.map((post, i) => (
+            <li key={i}>
               <div>{post?.post_url}</div>
               <div>{post?.caption}</div>
               <div>{post?.likes} Likes</div>

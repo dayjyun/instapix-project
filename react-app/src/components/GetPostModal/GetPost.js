@@ -13,7 +13,7 @@ function GetPost({ post }) {
   const allUsers = Object.values(useSelector((state) => state.users));
   const currUser = useSelector((state) => state.session.user);
   const [copyText, setCopyText] = useState("google.com");
-  const [currPost, setCurrPost] = useState(post);
+  // const [currPost, setCurrPost] = useState(post);
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -26,11 +26,10 @@ function GetPost({ post }) {
   };
 
   useEffect(() => {
-    if (post) {
-      dispatch(postActions.getPost(post.id));
-      dispatch(userActions.getAllUsers());
-    }
-  }, [dispatch, currPost, post.id, post]);
+    dispatch(postActions.getPost(post?.id));
+    dispatch(userActions.getAllUsers());
+
+  }, [dispatch, post.id]);
 
   const getUser = (id) => {
     let user = allUsers.find((user) => user.id === id);
@@ -96,7 +95,7 @@ function GetPost({ post }) {
           {/* </div> */}
         </div>
         <div className="post-modal-comments">
-          <PostsComments post={post} setCurrPost={setCurrPost} />
+          <PostsComments post={post} />
         </div>
       </div>
     </div>

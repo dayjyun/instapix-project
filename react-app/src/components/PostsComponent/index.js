@@ -26,8 +26,8 @@ function PostComponent() {
 
   return (
     <div className="post-page">
-      {posts?.map((post) => (
-        <li key={post?.id} className="post-page-id-card">
+      {posts?.map((post, i) => (
+        <li key={i} className="post-page-id-card">
           <img
             style={{ width: "500px", height: "500px" }}
             src={post?.post_url}

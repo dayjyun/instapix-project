@@ -17,13 +17,14 @@ export const getCreatedDate = (datestr) => {
     return date
 }
 
-const PostsComments = ({ post, setCurrPost }) => {
+const PostsComments = ({ post }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments));
     const likes = useSelector(state => Object.values(state.likes))
     const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
+    const [currPost, setCurrPost] = useState(post)
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -34,15 +35,15 @@ const PostsComments = ({ post, setCurrPost }) => {
 
 
     useEffect(() => {
-        if (post && user) {
-            const currUserLiked = () => {
-                setLiked(likesUserIds?.includes(user.id))
-            }
-            currUserLiked()
-            dispatch(commentActions.loadPostComments(post.id))
-            dispatch(likeActions.fetchLike(post.id))
+
+        const currUserLiked = () => {
+            setLiked(likesUserIds?.includes(user.id))
         }
-    }, [dispatch, post, user, likesUserIds,])
+        currUserLiked()
+        dispatch(commentActions.loadPostComments(post.id))
+        dispatch(likeActions.fetchLike(post.id))
+
+    }, [dispatch, likesUserIds])
 
 
     const userProfile = (userId) => {
@@ -71,8 +72,8 @@ const PostsComments = ({ post, setCurrPost }) => {
         <>
             <div className="post-comments-container">
                 <ul className="comment-card-list">
-                    {comments?.map((comment) => (
-                        <li className='comment-card-container' key={comment?.id}>
+                    {comments?.map((comment, i) => (
+                        <li className='comment-card-container' key={i}>
                             {/* <div className="comment-profile-pic"> */}
                             {/* {comment?.user?.profile_image} */}
                             {/* </div> */}

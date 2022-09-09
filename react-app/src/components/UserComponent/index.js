@@ -141,9 +141,9 @@ function User() {
 
           <hr className="solid"></hr>
           <div className='user-posts-collection'>
-            {usersPosts?.map(post => {
+            {usersPosts?.map((post, i) => {
               return (
-                <UserGetPostModal post={post} />
+                <UserGetPostModal post={post} i={i} />
               )
             })}
           </div>
