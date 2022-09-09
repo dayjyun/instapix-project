@@ -36,7 +36,7 @@ const loadPosts = (data) => {
 };
 
 export const loadAllPosts = () => async (dispatch) => {
-  const res = await fetch(`/api/posts/explore`);
+  const res = await fetch(`/api/posts/`);
 
   if (res.ok) {
     const posts = await res.json();
@@ -172,6 +172,7 @@ export default function postsReducer(state = initialState, action) {
       action.data.Posts.forEach((post) => {
         newAllPostsState[post.id] = post;
       });
+      console.log(newAllPostsState)
       return newAllPostsState;
     case POSTS_BY_USERID:
       const postByUserIdState = { ...state }
