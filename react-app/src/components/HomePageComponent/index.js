@@ -257,7 +257,7 @@ const HomePageComponent = () => {
               </div>
               <div className="user-pics-container">
                 {i?.map(i => (
-                  <div className="username">
+                  <div key={i} className="username">
                     <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
                   </div>
                 ))}
