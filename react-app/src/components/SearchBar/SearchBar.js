@@ -12,11 +12,11 @@ function SearchBar() {
     return user?.username?.toLowerCase().includes(search.toLowerCase());
   });
 
-  const returnResults = userResults.map((user, i) => {
+  const returnResults = userResults.map((user) => {
     return (
       <Link
         to={`/users/${user?.id}`}
-        key={i}
+        key={user.id}
         onClick={() => setSearch("")}
         className="search-result-link"
       >
