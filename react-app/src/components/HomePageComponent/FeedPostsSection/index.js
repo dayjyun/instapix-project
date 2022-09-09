@@ -17,6 +17,8 @@ const FeedPostsComponent = () => {
     const dispatch = useDispatch()
     const posts = Object.values(useSelector(state => state.posts))
 
+    console.log(posts)
+
     useEffect(() => {
         dispatch(getFollowingPosts())
     }, [dispatch])
@@ -59,13 +61,13 @@ const FeedPostsComponent = () => {
                             <img className="feed-image" src={post?.post_url} alt="previewImage"></img>
                         </div>
                         <div className="feed-like-container">
-                            <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} />
+                            <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} user={post?.User} />
                         </div>
                         <TotalLikesComponent post={post} />
                         <span className='feed-caption'>{post?.User?.username}
                             <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                         </span>
-                        <div className="load-comments-button"><FeedPostModalViewStr post={post} /></div>
+                        <div className="load-comments-button"><FeedPostModalViewStr user={post?.User} post={post} /></div>
                         <div className="feed-post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
                 )

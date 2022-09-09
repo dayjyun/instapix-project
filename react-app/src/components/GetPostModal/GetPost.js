@@ -123,7 +123,7 @@ function GetPost({ post, user }) {
   const [currPost, setCurrPost] = useState(post);
 
 
-  console.log(user)
+  // console.log(user)
   // useEffect(() => {
   //   dispatch(postActions.getPost(post?.id));
   // }, [dispatch, currPost, post.id]);
