@@ -4,9 +4,18 @@ from flask_login import current_user, login_required
 
 follow_routes = Blueprint('follows', __name__)
 
-
-
 # Get all accounts that follow the user
+
+# Get all follow id
+
+
+@follow_routes.route('/users/<int:user_id>/followId')
+@login_required
+def getFollowIds(user_id):
+    follows = Follow.query.filter(Follow.user_id == user_id)
+    return jsonify({'id': [follow.to_dict_id() for follow in follows]})
+
+
 @follow_routes.route('/users/<int:user_id>/followers')
 @login_required
 def get_follows_for_user(user_id):
@@ -16,15 +25,14 @@ def get_follows_for_user(user_id):
     formatted_data = []
     for follow in follows:
         user_info = User.query.filter(follow.user_id == User.id).first()
-        data ={"follow": follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+        data = {"follow": follow.to_dict_follows(
+        ), "follower_info": user_info.follow_info()}
         formatted_data.append(data)
 
     if user:
         return jsonify({'Followers': [follow for follow in formatted_data]}), 200
     else:
         return jsonify(message='User could not be found.', status_code=404)
-
-
 
 
 # Get all accounts that the user follows
@@ -38,7 +46,8 @@ def get_users_follows(user_id):
     formatted_data = []
     for follow in follows:
         user_info = User.query.filter(follow.follows_id == User.id).first()
-        data ={"follow": follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+        data = {"follow": follow.to_dict_follows(
+        ), "follower_info": user_info.follow_info()}
         formatted_data.append(data)
 
     if user:
@@ -47,16 +56,15 @@ def get_users_follows(user_id):
         return jsonify(message='User could not be found.', status_code=404)
 
 
-
-
-#Follow a user (post)
+# Follow a user (post)
 @follow_routes.route('/users/<int:user_id>/post', methods=['POST'])
 @login_required
 def follow_user(user_id):
-    user_id= int(user_id)
+    user_id = int(user_id)
     print('gets here')
     user = User.query.get(user_id)
-    is_already_following = Follow.query.filter(Follow.user_id == current_user.id).all()
+    is_already_following = Follow.query.filter(
+        Follow.user_id == current_user.id).all()
 
     for follow in is_already_following:
         if follow.follows_id == user_id:
@@ -64,14 +72,15 @@ def follow_user(user_id):
 
     if user:
         new_follow = Follow(
-            user_id = current_user.id,
-            follows_id = user_id
+            user_id=current_user.id,
+            follows_id=user_id
         )
         db.session.add(new_follow)
         db.session.commit()
 
         user_info = User.query.filter(new_follow.follows_id == User.id).first()
-        data = {"follow": new_follow.to_dict_follows(), "follower_info": user_info.follow_info()}
+        data = {"follow": new_follow.to_dict_follows(
+        ), "follower_info": user_info.follow_info()}
         print(data)
         return jsonify(data), 200
 
@@ -79,29 +88,28 @@ def follow_user(user_id):
         return jsonify(message='User could not be found.', status_code=404), 404
 
 
-
-#Unfollow a user (delete)
+# Unfollow a user (delete)
 @follow_routes.route('/users/<int:user_id>/delete', methods=['DELETE'])
 @login_required
 def unfollow_user(user_id):
     user = User.query.get(user_id)
-    #get all follows for the user whose page we're on
-    all_my_follows = Follow.query.filter(current_user.id == Follow.user_id).all()
+    # get all follows for the user whose page we're on
+    all_my_follows = Follow.query.filter(
+        current_user.id == Follow.user_id).all()
 
     if user:
         for follow in all_my_follows:
             if follow.follows_id == user_id:
                 my_follow = Follow.query.get(follow.id)
 
-                user_info = User.query.filter(my_follow.follows_id == User.id).first()
-                data = {"follow": my_follow.to_dict_follows(), "follower_info": user_info.follow_info()}
-
-
+                user_info = User.query.filter(
+                    my_follow.follows_id == User.id).first()
+                data = {"follow": my_follow.to_dict_follows(
+                ), "follower_info": user_info.follow_info()}
 
                 db.session.delete(my_follow)
                 db.session.commit()
                 return jsonify(data), 200
-
 
         return jsonify(message='You cannot unfollow someone you do not follow.', status_code=404), 404
 
