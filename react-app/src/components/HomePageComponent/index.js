@@ -305,9 +305,39 @@ const HomePageComponent = () => {
               <h1>add as much as needed</h1>
             </div>
           </div>
-        </div>
-      </div>
-    );
+          <div className="suggestions-container">
+            <div className="suggestions-username-container">
+              {ProfileImageTagLarge()}
+              <div className="suggestions-username-name">
+                <a className="suggestions-username" href={`/users/${sessionUser?.id}`}>{sessionUser?.username}</a>
+                <span>{sessionUser.first_name}</span>
+              </div>
+            </div>
+            <p className="suggestions-for-u">Suggestions For You</p>
+            <div className="suggestions-users-containers">
+              {usersNotFollowing?.map(user => {
+                let followText = 'Follow'
+                return (
+                  <div key={i} className="suggestions-user-card">
+                    {ProfileImageTagSmall(user)}
+                    <div className="suggestions-username-name">
+                      <a className="suggestions-username" href={`/users/${user?.id}`}>{user?.username}</a>
+                      <span style={{ fontSize: '14px' }}>Popular</span>
+                    </div>
+                    <div className="user-card-follow-btn">
+                      <span>Follow</span>
+                    </div>
+                  </div>
+                )
+              })}
+              <div style={{ marginLeft: '.8em' }}>
+                <p className="copyright">© 2022 INSTAPIX FROM FELIPE SALLY JAN KEVIN HUYDU</p>
+              </div>
+            </div>
+          </div>
+        </div >
+      </div >
+    )
   } else {
     return (
       <Login />
