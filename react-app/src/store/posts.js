@@ -5,6 +5,8 @@ const POSTS_BY_USERID = 'posts/getPostsByUser'
 const CREATE_POST = "posts/createPost";
 const EDIT_POST = "posts/editPost";
 const DELETE_POST = "posts/deletePost";
+const GET_USER_POSTS = 'users/getUserPosts'
+
 
 //Get all post by userId
 const getPostsByUser = posts => {
@@ -144,6 +146,23 @@ export const deletePost = (postId) => async (dispatch) => {
   dispatch(removePost(parsedPost));
 };
 
+const getUserPost = (posts) => {
+  return {
+    type: GET_USER_POSTS,
+    payload: posts
+  }
+}
+
+// !!!
+export const getUserPostsBackend = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/users/${userId}/posts`)
+  if (res.ok) {
+    const posts = await res.json();
+    dispatch(getUserPost(posts));
+  }
+}
+
+
 let initialState = {};
 
 export default function postsReducer(state = initialState, action) {
@@ -188,6 +207,15 @@ export default function postsReducer(state = initialState, action) {
       const removedPostState = { ...state }
       delete removedPostState[action.id]
       return removedPostState;
+
+    case GET_USER_POSTS: {
+      const getUserPostsState = {};
+
+      action.payload.Posts.forEach(post => {
+        getUserPostsState[post.id] = post
+      })
+      return getUserPostsState;
+    }
 
     default:
       return state;
