@@ -11,7 +11,7 @@ function SearchBar() {
   const [searchResults, setSearchResults] = useState("");
 
   useEffect(() => {
-    dispatch(getAllUsers(users))
+    // dispatch(getAllUsers(users))
   }, [dispatch, users])
 
   const userResults = users.filter((user) => {
