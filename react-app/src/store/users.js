@@ -1,7 +1,6 @@
 const LOAD_USERS = 'users/loadUsers';
 const GET_USER = 'users/getUser';
 
-
 const loadUsers = (users) => {
     return {
         type: LOAD_USERS,
@@ -15,7 +14,6 @@ const getUser = (user) => {
         payload: user
     }
 }
-
 
 
 export const getAllUsers = () => async (dispatch) => {
@@ -55,7 +53,6 @@ export default function userReducer(state = newState, action) {
                 allUserState[user.id] = user
             })
             return allUserState
-
 
         default:
             return state;
