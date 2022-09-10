@@ -36,7 +36,7 @@ const loadPosts = (data) => {
 };
 
 export const loadAllPosts = () => async (dispatch) => {
-  const res = await fetch(`/api/posts/`);
+  const res = await fetch(`/api/posts/explore`);
 
   if (res.ok) {
     const posts = await res.json();

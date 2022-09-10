@@ -54,7 +54,7 @@ class Post(db.Model):
             "post_url": self.post_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            'likes': self.num_likes(),
+            'num_likes': self.num_likes(),
             "num_comments": self.num_comments()
         }
 
