@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
 import { useHistory } from "react-router-dom";
 import * as postActions from "../../store/posts";
-import validator from 'validator'
+// import validator from 'validator'
 
 function PostForm({ closeModal }) {
     const dispatch = useDispatch();
