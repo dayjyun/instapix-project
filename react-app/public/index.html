@@ -10,6 +10,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600&display=swap" rel="stylesheet" />
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  </script>
+  <link href="https://rawgit.com/shaneapen/Image-Preview-for-Links/master/image_preview_for_links.css"
+    rel="stylesheet" />
+  <script type="text/javascript">
+    $(function () {
+      $('#p1 a').miniPreview({ prefetch: 'pageload' });
+      $('#p2 a').miniPreview({ prefetch: 'parenthover' });
+      $('#p3 a').miniPreview({ prefetch: 'none' });
+    });
+  </script>
+  <script src="https://rawgit.com/shaneapen/Image-Preview-for-Links/master/image_preview_for_links.js"></script>
 
 </head>
 
@@ -18,4 +30,3 @@
 </body>
 
 </html>
-

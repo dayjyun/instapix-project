@@ -9,9 +9,6 @@ import TotalLikesComponent from "../LikeComponent/TotalLikesComponent"
 import { FeedPostModalViewStr } from "../FeedPostModal"
 import { getCreatedDate } from "../../CommentComponents/PostsComments"
 
-
-
-
 const FeedPostsComponent = () => {
     const history = useHistory()
     const dispatch = useDispatch()
