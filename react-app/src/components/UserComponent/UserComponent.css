@@ -134,6 +134,9 @@ hr.solid {
     margin: 8% 0;
 }
 
+.temp-profile-pic {
+    font-size: 150px;
+}
 
 
 @media only screen and (max-width: 1500px) {

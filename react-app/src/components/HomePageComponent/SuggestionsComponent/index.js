@@ -27,10 +27,10 @@ const SuggestionsComponent = ({ i2 }) => {
             )
         } else {
             return (
-                <div style={{ marginTop: '-.1em' }} onClick={e => {
+                <div onClick={e => {
                     e.preventDefault()
                     history.push(`/users/${sessionUser?.id}`)
-                }} className='fa-regular fa-user-circle fa-xl'></div>
+                }} className='fa-regular fa-user-circle profile-pic-medium pointer'></div>
             )
         }
     }

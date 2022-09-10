@@ -57,3 +57,8 @@ body {
 a {
     text-decoration: none;
 }
+
+.profile-pic-medium {
+    font-size: 50px;
+    padding: 17px 10px 0 13px
+}
