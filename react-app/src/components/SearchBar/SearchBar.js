@@ -25,7 +25,7 @@ function SearchBar() {
             src={user?.profile_image}
             className="search-bar-profile-pic"
             alt='preview'
-           />
+          />
           <div className="search-bar-profile-username">{user?.username}</div>
         </div>
       </Link>

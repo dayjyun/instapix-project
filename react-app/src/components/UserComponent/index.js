@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
 import { getOneUser } from '../../store/users'
 import { getFollowersBackend, getLoggedUserFollowingBackend, getFollowingBackend, postFollowBackend, deleteFollowBackend } from '../../store/follow'
 import UserGetPostModal from '../GetPostModal/usersGetPost';
-import './UserComponent.css'
-import { loadAllPosts } from '../../store/posts';
+import { getUserPostsBackend } from '../../store/posts';
 
+import './UserComponent.css'
 
 function User() {
-  const { userId } = useParams();
+  let { userId } = useParams();
+  userId = parseInt(userId)
   const dispatch = useDispatch()
-  //GET LOGGED USER ID
+
   const loggedUser = useSelector(state => state.session.user)
   let user = Object.values(useSelector(state => state.users))
   user = user[0]
+  const posts = Object.values(useSelector(state => state.posts))
   const follows = useSelector(state => state?.follow)
-  const posts = useSelector(state => Object.values(state.posts))
-  const usersPosts = posts.filter(post => post?.user_id === user?.id)
+  const likes = useSelector(state => state.likes)
+  const comments = useSelector(state => state.comments)
 
   const [onMyPage, setOnMyPage] = useState('');
   const [alreadyFollowing, setAlreadyFollowing] = useState(false)
@@ -29,13 +32,12 @@ function User() {
   useEffect(() => {
     if (follows.loggedUser) {
       Object.values(follows.loggedUser).forEach((follow) => {
-        if (follow?.follower_info?.id === user?.id) {
+        if (follow.follower_info.id === user?.id) {
           setAlreadyFollowing(true)
         }
       })
     }
   }, [user, follows])
-
 
   useEffect(() => {
     if (user?.id === loggedUser?.id) {
@@ -43,9 +45,14 @@ function User() {
     }
   }, [user, loggedUser])
 
+  useEffect(() => {
+    if (userId) {
+      dispatch(getUserPostsBackend(userId))
+    }
+  }, [dispatch, userId, likes, comments])
 
   useEffect(() => {
-    dispatch(getOneUser(parseInt(userId)))
+    dispatch(getOneUser(userId))
   }, [dispatch, userId])
 
   useEffect(() => {
@@ -53,15 +60,11 @@ function User() {
   }, [dispatch, loggedUser])
 
   useEffect(() => {
-    if (user) {
-      dispatch(getFollowersBackend(user?.id))
-      dispatch(getFollowingBackend(user?.id))
+    if (userId) {
+      dispatch(getFollowersBackend(userId))
+      dispatch(getFollowingBackend(userId))
     }
-  }, [dispatch, user])
-
-  useEffect(() => {
-    dispatch(loadAllPosts())
-  }, [dispatch])
+  }, [dispatch, userId])
 
 
   const handleClickFollow = async (e) => {
@@ -69,11 +72,11 @@ function User() {
 
     const input = {
       user_id: loggedUser?.id,
-      follows_id: user?.id
+      follows_id: userId
     }
 
     const blueBtnFollow = true
-    await dispatch(postFollowBackend(input, user?.id, blueBtnFollow))
+    await dispatch(postFollowBackend(input, userId, blueBtnFollow))
       .then(() => {
         setAlreadyFollowing(true)
       });
@@ -83,7 +86,7 @@ function User() {
     e.preventDefault();
     const blueBtnUnfollow = true
 
-    await dispatch(deleteFollowBackend(user?.id, loggedUser?.id, blueBtnUnfollow))
+    await dispatch(deleteFollowBackend(userId, loggedUser?.id, blueBtnUnfollow))
       .then(() => {
         setAlreadyFollowing(false)
       });
@@ -95,7 +98,7 @@ function User() {
         <div className='user-container-background'>
           <div className='user-information-container'>
             <div className='user-info-profile'>
-              <img src={user?.profile_image} className='user-profile-pic' />
+              <img src={user?.profile_image} className='user-profile-pic' alt='previewImage' />
             </div>
 
             <div className='user-info-info'>
@@ -111,7 +114,6 @@ function User() {
                   <div className='follow-btn'>
                     <button onClick={handleClickUnfollow} className='follow-btn-styling'>Unfollow</button></div>
                 )}
-
               </div>
 
               <div className='user-stat-box'>
@@ -141,9 +143,9 @@ function User() {
 
           <hr className="solid"></hr>
           <div className='user-posts-collection'>
-            {usersPosts?.map(post => {
+            {posts?.map(post => {
               return (
-                <UserGetPostModal post={post} />
+                <UserGetPostModal post={post} user={user} key={post?.id} />
               )
             })}
           </div>
