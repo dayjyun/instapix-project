@@ -18,7 +18,7 @@ def seed_users():
     jan = User(
         username='wickedjan', email='b@aa.io', password='password', first_name='Jan', last_name='Wicked', bio='This is about me', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
     felipe = User(
-        username='thorfelipe', email='c@aa.io', password='password', first_name='Felipe', last_name='Thor', bio='This is about me', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
+        username='Felipe', email='felipe@aa.io', password='password', first_name='Felipe', last_name='Silva', bio='This is about me', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
     kev = User(
         username='kevsawesome', email='d@aa.io', password='password', first_name='Kev', last_name='Awesome', bio='This is about me', profile_image='https://m.media-amazon.com/images/I/81Y+P59yklL._SS500_.jpg')
     hotgirl = User(
