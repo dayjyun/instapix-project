@@ -61,7 +61,6 @@ def get_users_follows(user_id):
 @login_required
 def follow_user(user_id):
     user_id = int(user_id)
-    print('gets here')
     user = User.query.get(user_id)
     is_already_following = Follow.query.filter(
         Follow.user_id == current_user.id).all()
@@ -81,7 +80,6 @@ def follow_user(user_id):
         user_info = User.query.filter(new_follow.follows_id == User.id).first()
         data = {"follow": new_follow.to_dict_follows(
         ), "follower_info": user_info.follow_info()}
-        print(data)
         return jsonify(data), 200
 
     else:

@@ -27,10 +27,12 @@ function User() {
   const [onMyPage, setOnMyPage] = useState('');
   const [alreadyFollowing, setAlreadyFollowing] = useState(false)
 
-
+  useEffect(() => {
+    dispatch(getOneUser(userId))
+  }, [dispatch, userId])
 
   useEffect(() => {
-    if (follows.loggedUser) {
+    if (follows?.loggedUser) {
       Object.values(follows.loggedUser).forEach((follow) => {
         if (follow.follower_info.id === user?.id) {
           setAlreadyFollowing(true)
@@ -42,6 +44,8 @@ function User() {
   useEffect(() => {
     if (user?.id === loggedUser?.id) {
       setOnMyPage(true)
+    } else {
+      setOnMyPage(false)
     }
   }, [user, loggedUser])
 
@@ -50,10 +54,6 @@ function User() {
       dispatch(getUserPostsBackend(userId))
     }
   }, [dispatch, userId, likes, comments])
-
-  useEffect(() => {
-    dispatch(getOneUser(userId))
-  }, [dispatch, userId])
 
   useEffect(() => {
     dispatch(getLoggedUserFollowingBackend(loggedUser?.id))

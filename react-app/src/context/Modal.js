@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
+import "../components/PostsComponent/EditPost/EditPostForm.css";
 
 const ModalContext = React.createContext();
 
@@ -66,7 +67,7 @@ export function EditModal({ onClose, children }) {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="edit-modal-background" onClick={onClose} />
-      <div id="modal-content">{children}</div>
+      <div id="edit-modal-content">{children}</div>
     </div>,
     modalNode
   );

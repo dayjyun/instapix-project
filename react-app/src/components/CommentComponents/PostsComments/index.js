@@ -7,7 +7,6 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 import LikesModal from "../../LikesModal";
-// import { getUserPostsBackend } from "../../../store/posts";
 
 export const getCreatedDate = (datestr) => {
     const fullDate = new Date(datestr).toDateString()
@@ -29,15 +28,6 @@ const PostsComments = ({ post }) => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-
-
-
-    // useEffect(() => {
-    //     if (user) {
-    //         dispatch(getUserPostsBackend(user.id))
-    //     }
-    // }, [dispatch, user])
-
 
     useEffect(() => {
         const currUserLiked = () => {
@@ -73,9 +63,6 @@ const PostsComments = ({ post }) => {
                 <ul className="comment-card-list">
                     {comments?.map((comment, i) => (
                         <li className='comment-card-container' key={i}>
-                            {/* <div className="comment-profile-pic"> */}
-                            {/* {comment?.user?.profile_image} */}
-                            {/* </div> */}
                             <div className="comment-content">
                                 <img className="comment-profile-pic" onClick={(e) => {
                                     e.preventDefault()
@@ -116,7 +103,6 @@ const PostsComments = ({ post }) => {
                             </div>
                         </div>
                         <div className="post-likes">
-                            {/* {likes?.length} likes */}
                             <LikesModal likes={likes} />
                         </div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>

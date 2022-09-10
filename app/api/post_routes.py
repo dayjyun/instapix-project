@@ -13,11 +13,20 @@ post_routes = Blueprint('posts', __name__)
 @post_routes.route('/explore')
 @login_required
 def get_all_posts():
+    posts = []
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict_num_comments() for post in all_posts_query]
-    return {'Posts': all_posts}
-    # TODO return random order of all posts
 
+    for post in all_posts:
+        user = User.query.get(post['user_id'])
+        posts.append(user)
+
+    users = [post.user_content() for post in posts]
+
+    for i in range(len(users)):
+        all_posts[i]['User'] = users[i]
+
+    return {'Posts': all_posts}
 
 #** Get all posts from the following feed **#
 @post_routes.route('/')
@@ -26,11 +35,8 @@ def get_posts():
     posts = []
     all_followed_posts = Post.query.join(Follow, Follow.follows_id == Post.user_id).filter(
         Follow.user_id == current_user.id).order_by(Post.created_at.desc())
-    # all_my_posts = Post.query.filter(
-    #     Post.user_id == current_user.id).order_by(Post.created_at.desc())
 
     followed_posts = [post.feed_to_dict() for post in all_followed_posts]
-    # my_posts = [post.feed_to_dict() for post in all_my_posts]
 
     all_post = followed_posts
 
@@ -75,12 +81,9 @@ def create_post():
     return new_post.to_dict(), 201
 
 
-# --------------------------- COMMENT ROUTES ------------------------------->
-
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
-    # added post query for 404 return
     post = Post.query.get(post_id)
 
     if post:
@@ -89,8 +92,6 @@ def get_post_comments(post_id):
             return jsonify(Comments=[comment.to_dict() for comment in comments])
 
     return jsonify(message='Post not found'), 404
-    # TODO should return user_name, profile_picture, user.id
-    # remove bio, first_name, last_name, nums, email, posts
 
 
 # create a comment providing user_id, post_id, and body
@@ -116,11 +117,7 @@ def create_comment(post_id):
 
         db.session.add(comment)
         db.session.commit()
-        print(comment)
         return comment.to_dict()
-    # return render_template('create_comment_form.html', form=form)
-
-# --------------------------- COMMENT ROUTES ------------------------------->
 
 #** Edit a post **#
 @post_routes.route('/<int:post_id>', methods=["PUT"])

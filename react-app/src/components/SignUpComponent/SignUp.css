@@ -7,10 +7,21 @@
   margin-top: 3rem;
 }
 
-.logo-container {
-  margin-top: 15px;
+.signup-form-div {
+  width: auto;
+  height: 460px;
+}
+
+.logo-container2 {
   text-align: center;
   padding: 20px;
+  /* height: 100px; */
+}
+
+.logo2 {
+  margin: 0;
+  font-family: billabong;
+  font-size: 50px;
 }
 
 .logo-container p {
@@ -28,7 +39,6 @@
 
 .signup-form-container {
   box-sizing: border-box;
-
   margin-top: 1rem;
   width: 100%;
   max-width: 400px;
@@ -37,6 +47,7 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border: 1px solid #dbdbdb;
+
 }
 
 .signup-form {
@@ -44,7 +55,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -91,7 +102,7 @@
   color: #ffffff;
   width: 100%;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .login-link-container {

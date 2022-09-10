@@ -1,9 +1,7 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as userActions from '../../store/users'
-// import * as followingActions from '../../store/follow'
 import './HomePageComponent.css'
-// import { getFollowingPosts } from "../../store/posts"
 import Login from "../LoginComponent"
 import SuggestionsComponent from "./SuggestionsComponent"
 import TrendingUsers from "./TrendingUsersComponent"
@@ -35,9 +33,6 @@ const HomePageComponent = () => {
   useEffect(() => {
     if (sessionUser) {
       dispatch(userActions.getAllUsers())
-      // dispatch(getFollowingPosts())
-      // dispatch(followingActions.getLoggedUserFollowingBackend(sessionUser.id))
-      // dispatch(followingActions.getFollowingBackendHome(sessionUser.id))
     }
   }, [dispatch, sessionUser])
 

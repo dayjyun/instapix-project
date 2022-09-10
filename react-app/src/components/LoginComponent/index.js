@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-// import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { login } from "../../store/session"
 import "../HomePageComponent/HomePageComponent.css";
@@ -12,7 +11,6 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
-    // console.log(errors)
 
     useEffect(() => {
         if (email && password) {
@@ -24,30 +22,9 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
-        // console.log(data)
-
         if (data && data.errors) {
             setErrors(Object.values(data.errors));
         }
-
-        // console.log(errors)
-        // .catch(async (res) => {
-        //     const data = await res.json()
-
-        //     console.log(data)
-        // })
-
-        // console.log(data)
-        // await dispatch(login(email, password))
-        //     .catch(async (res) => {
-        //         console.log(res)
-        //         const data = await res.json();
-        //         console.log('gets here')
-
-        //         console.log(data)
-        //         setErrors(Object.values(data.errors));
-
-        //     });
     };
 
 
@@ -71,7 +48,6 @@ const Login = () => {
             });
     };
 
-//
     return (
         <div className="logged-out-container">
             <div className="logged-out-content-container">
@@ -118,8 +94,6 @@ const Login = () => {
                                     <p className="or">OR</p>
                                     <p className="or2">______________</p>
                                 </div>
-
-                                {/* <div className="login-input-container"> */}
                                 <button
                                     type="submit"
                                     style={style}
@@ -130,11 +104,8 @@ const Login = () => {
                                 </button>
                             </div>
                         </form>
-
-                        {/* </div> */}
                     </div>
                     <div className="sign-up-link">
-                        {/* sign up modal goes here */}
                         <p>
                             Don't have an account?
                             <a href="/sign-up"> Sign up</a>

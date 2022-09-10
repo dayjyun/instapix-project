@@ -5,8 +5,6 @@ import { getFollowingPosts } from "../../../store/posts";
 function FollowingPosts() {
   const dispatch = useDispatch();
   let posts = Object.values(useSelector((state) => state.posts));
-  // let follows = Object.values(useSelector((state) => state.follow));
-  // console.log(follows)
 
   posts = posts.map((post) => post.Post);
 
@@ -32,5 +30,3 @@ function FollowingPosts() {
 }
 
 export default FollowingPosts;
-
-// Get posts of users I follow

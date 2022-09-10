@@ -1,35 +1,17 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-// import { getFollowingBackendHome } from "../../../store/follow"
 import { getAllUsers } from "../../../store/users"
 import { useHistory } from "react-router-dom"
 
 const SuggestionsComponent = ({ i2 }) => {
     const dispatch = useDispatch()
     const history = useHistory()
-    // let following = useSelector(state => state.follow)
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-
-    // following && console.log(Object.values(following))
-    // let following2 = following?.follows
-    // following && console.log(following)
-    // following && (following = Object.values(following)?.map(following => following?.follower_info?.id))
-    // let usersNotFollowing;
-    // console.log("NON FOLLOWERS", nonFollowers)
-
-    // useEffect(() => {
-    //     if (allUsers && following && nonFollowers.length === 0) {
-    //         // console.log("users", allUsers, "FOLLOWING", following)
-    //         usersNotFollowing = allUsers.filter(user => !following?.includes(user.id))
-    //         setNonFollowers(usersNotFollowing)
-    //     }
-    // }, [allUsers, following])
 
     useEffect(() => {
         if (sessionUser) {
             dispatch(getAllUsers())
-            // dispatch(getFollowingBackendHome())
         }
     }, [dispatch, sessionUser])
 
@@ -45,10 +27,14 @@ const SuggestionsComponent = ({ i2 }) => {
             )
         } else {
             return (
-                <div style={{ marginTop: '-.1em' }} onClick={e => {
-                    e.preventDefault()
-                    history.push(`/users/${sessionUser?.id}`)
-                }} className='fa-regular fa-user-circle fa-xl'></div>
+                <div
+                    style={{ marginLeft: '.8em', marginTop: '1.4em' }}
+                    onClick={e => {
+                        e.preventDefault()
+                        history.push(`/users/${sessionUser?.id}`)
+                    }}
+                    className='fa-regular fa-user-circle fa-2xl'
+                ></div>
             )
         }
     }

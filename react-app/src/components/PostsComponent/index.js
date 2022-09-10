@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
-// import { getOneUser } from "../../store/users";
-// import User from "../UserComponent";
 import EditPostBtn from "./EditPost/EditPostBtn";
 import "./Posts.css";
 

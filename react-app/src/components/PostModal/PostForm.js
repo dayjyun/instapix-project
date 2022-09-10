@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
 import { useHistory } from "react-router-dom";
 import * as postActions from "../../store/posts";
+import validator from 'validator'
 
 function PostForm({ closeModal }) {
     const dispatch = useDispatch();
@@ -10,7 +11,6 @@ function PostForm({ closeModal }) {
     const [caption, setCaption] = useState("");
     const [postUrl, setPostUrl] = useState("");
     const history = useHistory();
-    // const posts = Object.values(useSelector((state) => state.posts));
     const currUser = useSelector(state => state.session.user)
 
     const handleSubmit = (e) => {
@@ -38,7 +38,7 @@ function PostForm({ closeModal }) {
             </div>
             <div className="form-container">
                 <div className="form-image">
-                    {postUrl && (
+                    {postUrl && validator.isURL(postUrl) && (
                         <img src={postUrl} alt='previewImage'></img>
                     )}
                 </div>
@@ -71,14 +71,13 @@ function PostForm({ closeModal }) {
                             <div className="char-count-area">
                                 <input
                                     className="image-url"
-                                    type="text"
+                                    type="url"
                                     value={postUrl}
                                     placeholder='Image Url'
                                     onChange={(e) => setPostUrl(e.target.value)}
                                 />
                                 <p style={{ color: 'lightgray' }}>{caption.length}/2000</p>
                             </div>
-                            {/* <button type="submit">Post</button> */}
                         </form>
                     </div>
                 </div>

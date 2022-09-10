@@ -1,6 +1,3 @@
-// import PostComponent from "../components/PostsComponent"
-
-
 //TYPES
 const GET_LOGGED_USER_FOLLOWING = 'user/GET_LOGGED_USER_FOLLOWING'
 const GET_FOLLOWING = 'users/GET_FOLLOWS'
@@ -55,46 +52,38 @@ export const deleteFollow = (follow, loggedUserId, blueBtnUnfollow) => {
 //THUNKS
 //GET: logged user's following
 export const getLoggedUserFollowingBackend = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getLoggedUserFollowing(parsedRes))
     }
-    // }
 }
 
 //GET: all user's following
 export const getFollowingBackend = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getFollowing(parsedRes))
     }
-    // }
 }
 
 // GET: all users following for home //different state
 export const getFollowingBackendHome = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getFollowingHome(parsedRes))
     }
-    // }
 }
 
 //GET: all user's followers
 export const getFollowersBackend = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/followers`)
     if (response.ok) {
         const parsedRes = await response.json()
         dispatch(getFollowers(parsedRes))
     }
-    // }
 }
 
 //POST: a follow
@@ -129,9 +118,6 @@ export const deleteFollowBackend = (userId, loggedUser, blueBtnUnfollow) => asyn
 
 //INITIAL STATE
 const initialState = { loggedUser: null, follows: null, followers: null }
-// loggedUser = currently logged in users follows
-// follows = the user page youre on, their following users
-// followers = the user page youre on, their followers
 
 ///REDUCERS
 const followReducer = (state = initialState, action) => {
@@ -179,11 +165,9 @@ const followReducer = (state = initialState, action) => {
             return getFollowingState;
         case GET_FOLLOWING_HOME:
             const getFollowingStateHome = {}
-            // let followsHome = {}
             action.payload.Followers.forEach(follow => {
                 getFollowingStateHome[follow.follow.id] = follow
             })
-            // getFollowingStateHome.follows = followsHome
             return getFollowingStateHome;
         case GET_FOLLOWERS:
             const getFollowersState = { ...state }
@@ -198,8 +182,6 @@ const followReducer = (state = initialState, action) => {
 
         case UNFOLLOW:
             const unfollowState = { ...state }
-
-            // if the user is on their own page
             if (action.payload.follow.user_id === action.loggedUserId) {
                 delete unfollowState['follows'][action.payload.follow.id]
             }

@@ -14,7 +14,7 @@
 
 .users-container {
     display: grid;
-    grid-template-rows: auto;
+    grid-template-rows: 9em auto;
     /* border: 1px solid black; */
     /* border: 1px solid red; */
 }
@@ -293,7 +293,7 @@ form {
     padding: 4%;
     height: 50%;
     border-radius: 5px;
-    background-color: rgb(42, 126, 187);
+    background-color: rgb(0, 149, 246);
     border: transparent;
     color: white;
     font-size: 16px;
@@ -306,6 +306,7 @@ form {
     justify-content: center;
     align-items: center;
     border: 1px solid lightgray;
+    background-color: white;
     height: 50%;
     margin-top: -1em;
 }

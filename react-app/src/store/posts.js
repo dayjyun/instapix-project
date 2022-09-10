@@ -36,7 +36,7 @@ const loadPosts = (data) => {
 };
 
 export const loadAllPosts = () => async (dispatch) => {
-  const res = await fetch(`/api/posts/`);
+  const res = await fetch(`/api/posts/explore`);
 
   if (res.ok) {
     const posts = await res.json();
@@ -153,7 +153,7 @@ const getUserPost = (posts) => {
   }
 }
 
-// !!!
+
 export const getUserPostsBackend = (userId) => async (dispatch) => {
   const res = await fetch(`/api/users/${userId}/posts`)
   if (res.ok) {

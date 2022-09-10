@@ -1,23 +1,35 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { allUsers } from "../../store/allUsers";
 import "./SearchBar.css";
 
 function SearchBar() {
-  const users = Object.values(useSelector((state) => state.users));
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const users = Object.values(useSelector((state) => state.allUsers));
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState("");
+
+  useEffect(() => {
+    dispatch(allUsers())
+  }, [dispatch])
 
   const userResults = users.filter((user) => {
     return user?.username?.toLowerCase().includes(search.toLowerCase());
   });
 
+  const clickEvent = (() => {
+    setSearch('')
+    history.push(`/users/${users?.user?.id}`)
+  })
+
   const returnResults = userResults.map((user) => {
     return (
       <Link
         to={`/users/${user?.id}`}
-        key={user.id}
-        onClick={() => setSearch("")}
+        key={user?.id}
+        onClick={clickEvent}
         className="search-result-link"
       >
         <div className="search-result-text">
