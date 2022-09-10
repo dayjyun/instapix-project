@@ -13,8 +13,19 @@ post_routes = Blueprint('posts', __name__)
 @post_routes.route('/explore')
 @login_required
 def get_all_posts():
+    posts = []
     all_posts_query = Post.query.order_by(Post.created_at.desc())
     all_posts = [post.to_dict_num_comments() for post in all_posts_query]
+
+    for post in all_posts:
+        user = User.query.get(post['user_id'])
+        posts.append(user)
+
+    users = [post.user_content() for post in posts]
+
+    for i in range(len(users)):
+        all_posts[i]['User'] = users[i]
+
     return {'Posts': all_posts}
     # TODO return random order of all posts
 
