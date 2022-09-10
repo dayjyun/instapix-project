@@ -1,7 +1,7 @@
 .edit-post-container {
   grid-template-rows: 8% 92%;
   border-radius: 1em;
-  /* padding: 0 1em; */
+  height: 45%;
 }
 
 .edit-post-container-top {
@@ -10,6 +10,8 @@
   align-items: center;
   padding: 0 1em;
   border-bottom: 1px solid lightgray;
+  background-color: #f5f5f5;
+  border-radius: 1em 1em 0 0;
 }
 
 .edit-post-form-button {
@@ -59,19 +61,6 @@
   padding: 0.5em 1em;
 }
 
-.edit-post-image-caption {
-  object-fit: contain;
-  resize: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0.5em;
-  outline: none;
-  border: none;
-  font-size: 16px;
-}
-
 .edit-post-text-area {
   object-fit: contain;
   resize: none;
@@ -82,5 +71,13 @@
   border: none;
   outline: none;
   box-sizing: border-box;
-  font-family: 'Arimo', sans-serif;;
+  font-family: "Arimo", sans-serif;
+}
+
+#edit-modal-content {
+  position: absolute;
+  background-color: white;
+  border-radius: 1em;
+  box-sizing: border-box;
+  height: 45%;
 }
