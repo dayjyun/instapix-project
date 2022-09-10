@@ -12,7 +12,7 @@
 .nav-buttons-right {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* padding-left: 8em; */
+    padding-left: 8em;
     width: 10%;
     padding-top: .8em;
     max-height: 60px;

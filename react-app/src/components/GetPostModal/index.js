@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { PostModal } from "../../context/Modal";
 import GetPost from "./GetPost";
@@ -6,7 +5,7 @@ import "./index.css";
 import "./GetPost.css";
 
 
-function GetPostModal({ post, user }) {
+function GetPostModal({ post }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -21,7 +20,7 @@ function GetPostModal({ post, user }) {
         <div className="explore-post-text">
           <div className="explore-post-text-likes">
             <i className="fa-sharp fa-solid fa-heart"></i>
-            <p className="ep-likes">{post?.num_likes}</p>
+            <p className="ep-likes">{post?.likes}</p>
           </div>
           <div className="explore-post-text-comments">
             <i className="fa-sharp fa-solid fa-comment fa-flip-horizontal"></i>
@@ -31,7 +30,7 @@ function GetPostModal({ post, user }) {
       </button>
       {showModal && (
         <PostModal onClose={() => setShowModal(false)}>
-          <GetPost post={post} user={user} />
+          <GetPost post={post} />
         </PostModal>
       )}
     </>

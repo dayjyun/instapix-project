@@ -41,8 +41,6 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            "num_comments": self.num_comments()
-
         }
 
     # Returns number of comments on a post
@@ -55,7 +53,7 @@ class Post(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             'likes': self.num_likes(),
-            "num_comments": self.num_comments()
+            "num_comments": self.num_comments(),
         }
 
     # returns the contents of a post, the number of likes and comment details

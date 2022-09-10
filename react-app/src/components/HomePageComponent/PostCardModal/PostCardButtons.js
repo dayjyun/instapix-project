@@ -1,18 +1,16 @@
-import { useDispatch } from 'react-redux'
-import { deleteFollowBackend } from '../../../store/follow'
-import { useState } from 'react'
-import { PostModal } from '../../../context/Modal'
-import GetPost from '../../GetPostModal/GetPost'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { postFollowBackend, deleteFollowBackend } from '../../../store/follow'
+import { useState, useEffect } from 'react'
 // import * as sessionActions from '../../../store/session'
 
 
 const PostCardButtons = ({ post, closeModal, randomPost }) => {
-    // const history = useHistory()
+    const history = useHistory()
     const dispatch = useDispatch()
-    // const [follow, setFollow] = useState('Unfollow')
-    const [showModal, setShowModal] = useState(false);
-    // const currUser = useSelector(state => state.session.user)
+    const [follow, setFollow] = useState('Unfollow')
+    const currUser = useSelector(state => state.session.user)
+    console.log(randomPost)
 
     const handleUnfollow = async (e) => {
         e.preventDefault()
@@ -20,24 +18,18 @@ const PostCardButtons = ({ post, closeModal, randomPost }) => {
         closeModal()
     }
 
-    // const handleGoToPost = e => {
-    //     e.preventDefault()
-    //     history.push(`/posts/${randomPost?.id}`)
-    // }
+    const handleGoToPost = e => {
+        e.preventDefault()
+        history.push(`/posts/${randomPost?.id}`)
+    }
 
     return (
         <>
             <div className='postcard-button-container'>
-                <button onClick={async (e) => await handleUnfollow(e)} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>Unfollow</button>
+                <button onClick={async (e) => await handleUnfollow(e)} style={{ borderBottom: '1px solid lightgray', color: 'red' }}>{follow}</button>
             </div>
             <div className='postcard-button-container'>
-                <button onClick={async () => await setShowModal(true)}
-                    style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
-                {showModal && (
-                    <PostModal onClose={() => setShowModal(false)}>
-                        <GetPost post={post} />
-                    </PostModal>
-                )}
+                <button onClick={handleGoToPost} style={{ borderBottom: '1px solid lightgray' }}>Go to post</button>
             </div>
             <div className='postcard-button-container' onClick={closeModal}>
                 <button>Cancel</button>

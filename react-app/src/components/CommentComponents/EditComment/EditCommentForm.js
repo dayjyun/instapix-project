@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import * as commentActions from '../../../store/comments';
 import './EditComment.css'
 
-const EditCommentForm = ({ setShowEditComment, setShowMenuButtons, comment }) => {
+const EditCommentForm = ({setShowEditComment, setShowMenuButtons, comment}) => {
     const [body, setBody] = useState(comment?.body);
 
     const dispatch = useDispatch();
@@ -14,21 +14,19 @@ const EditCommentForm = ({ setShowEditComment, setShowMenuButtons, comment }) =>
         dispatch(commentActions.editComment({
             body
         }, comment?.id))
-            .then(() => {
-                setShowEditComment(false);
-                setShowMenuButtons(false);
-            });
-    };
+        .then(() => {
+          setShowEditComment(false);
+          setShowMenuButtons(false);
+        });
+      };
 
     return (
-        <>
             <form onSubmit={handleSubmit} className='edit-comment-form'>
                 <div className='input-container'>
                     <textarea className='comment-body-input' type='text' name='body' value={body} onChange={(e) => setBody(e.target.value)} />
                     <button>Done</button>
                 </div>
             </form>
-        </>
     );
 };
 
