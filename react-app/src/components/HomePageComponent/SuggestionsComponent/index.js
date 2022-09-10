@@ -79,7 +79,7 @@ const SuggestionsComponent = ({ i2 }) => {
                 {ProfileImageTagLarge()}
                 <div className="suggestions-username-name">
                     <a className="suggestions-username" href={`/users/${sessionUser?.id}`}>{sessionUser?.username}</a>
-                    <span>{sessionUser?.first_name}</span>
+                    <span className="username-styling2">{sessionUser?.first_name}</span>
                 </div>
             </div>
             <p className="suggestions-for-u">Suggestions For You</p>
@@ -90,7 +90,7 @@ const SuggestionsComponent = ({ i2 }) => {
                             {ProfileImageTagSmall(i)}
                             <div className="suggestions-username-name">
                                 <a className="suggestions-username" href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
-                                <span style={{ fontSize: '14px' }}>Popular</span>
+                                <span className="username-styling2" style={{ fontSize: '14px' }}>Popular</span>
                             </div>
                             <div className="user-card-follow-btn">
                             </div>
