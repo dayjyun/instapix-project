@@ -6,7 +6,7 @@ import "../../GetPostModal/GetPost.css";
 // import { useSelector } from "react-redux";
 
 
-function FeedPostModalViewStr({ post }) {
+function FeedPostModalViewStr({ post, user }) {
   const [showModal, setShowModal] = useState(false);
 
   // const posts = useSelector(state => Object.values(state.posts));
@@ -29,14 +29,14 @@ function FeedPostModalViewStr({ post }) {
       </button>
       {showModal && (
         <PostModal onClose={() => setShowModal(false)}>
-          <GetPost post={post} />
+          <GetPost post={post} user={user} />
         </PostModal>
       )}
     </>
   );
 }
 
-function FeedPostModalCommentBtn({ post }) {
+function FeedPostModalCommentBtn({ post, user }) {
   const [showModal, setShowModal] = useState(false);
   // const posts = useSelector(state => Object.values(state.posts));
 
@@ -51,7 +51,7 @@ function FeedPostModalCommentBtn({ post }) {
       </button>
       {showModal && (
         <PostModal onClose={() => setShowModal(false)}>
-          <GetPost post={post} />
+          <GetPost post={post} user={user} />
         </PostModal>
       )}
     </>
