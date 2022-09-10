@@ -99,6 +99,7 @@
     border-radius: 10px;
     width: 100%;
     height: 100%;
+    background-color: white;
 }
 
 .suggestions-container {
@@ -324,18 +325,19 @@ form {
 .feed-post-container {
     display: grid;
     /* grid-template-rows: 10% 40% 10% 10% 10% 10%; */
-    grid-template-rows: 3.5em 28em 2.5em 1.5em 1.5em 1.5em 1em;
+    grid-template-rows: 3.7em 28em 2.5em 1.5em 1.5em 1.5em 1em;
     /* height: 50em; */
     height: 40em;
     border: 1px solid lightgray;
     margin-bottom: 1em;
     border-radius: 5px;
     font-family: 'Arimo', sans-serif;
+    background-color: white;
 }
 
 .feed-username-container {
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: 12% 78% 10%;
     height: 2.5em;
     width: 100%;
 }
@@ -354,8 +356,8 @@ form {
     border-radius: 50px;
     border: none;
     background-color: transparent;
-    margin-left: .5em;
-    margin-top: .3em;
+    margin-left: .9em;
+    margin-top: .7em;
     width: 4.5em;
     height: 4.5em;
 }
@@ -426,6 +428,7 @@ form {
     font-family: sans-serif;
     font-weight: 600;
     color: black;
+
 }
 
 .feed-post-image {
