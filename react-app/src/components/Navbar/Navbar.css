@@ -114,7 +114,6 @@
     align-items: center;
     flex-direction: column;
     background-color: white;
-    grid-template-rows: repeat(2, 1fr);
     box-shadow: 0px 0px 10px 3px lightgray;
     border-radius: 10%;
     width: 6em;
@@ -122,6 +121,7 @@
     margin-left: -1.4em;
     z-index: 10;
     /* display: grid; */
+    /* grid-template-rows: repeat(2, 1fr); */
     /* padding-top: 5%; */
     /* margin-top: 0.2em; */
 }
@@ -134,7 +134,7 @@
 .dropdown-shadow button {
   height: 100%;
   width: 100%;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .dropdown-shadow button:hover {
