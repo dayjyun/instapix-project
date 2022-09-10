@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: 52% 48%;
     width: 55em;
-    height: 40em;
+    height: 100%;
     border-radius: 1em;
 }
 

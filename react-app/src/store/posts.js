@@ -172,7 +172,6 @@ export default function postsReducer(state = initialState, action) {
       action.data.Posts.forEach((post) => {
         newAllPostsState[post.id] = post;
       });
-      console.log(newAllPostsState)
       return newAllPostsState;
     case POSTS_BY_USERID:
       const postByUserIdState = { ...state }
