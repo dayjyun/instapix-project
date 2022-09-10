@@ -104,9 +104,9 @@
 
 // export default GetPost;
 
-import React, { useEffect, useState } from "react";
-import * as postActions from "../../store/posts";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+// import * as postActions from "../../store/posts";
+import { useSelector } from "react-redux";
 import PostsComments from "../CommentComponents/PostsComments";
 import EditPostBtn from "../PostsComponent/EditPost/EditPostBtn";
 import { useHistory } from "react-router-dom";
@@ -115,11 +115,11 @@ import { getCreatedDate } from '../CommentComponents/PostsComments';
 
 function GetPost({ post, user }) {
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const currUser = useSelector((state) => state.session.user);
 
-  const [copyText, setCopyText] = useState("google.com");
+  // const [copyText, setCopyText] = useState("google.com");
   const [currPost, setCurrPost] = useState(post);
 
 
@@ -129,22 +129,22 @@ function GetPost({ post, user }) {
   // }, [dispatch, currPost, post.id]);
 
 
-  const inputHandler = (e) => {
-    e.preventDefault();
-    setCopyText(e.target.value);
-  };
+  // const inputHandler = (e) => {
+  //   e.preventDefault();
+  //   setCopyText(e.target.value);
+  // };
 
-  const copy = async () => {
-    await navigator.clipboard.writeText(copyText);
-    alert("Text copied");
-  };
+  // const copy = async () => {
+  //   await navigator.clipboard.writeText(copyText);
+  //   alert("Text copied");
+  // };
 
   let editPostBtn;
 
   if (currUser?.id === post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
   }
-  
+
   return (
     <div className="post-modal-container">
       <div className="image-content-container">
@@ -194,7 +194,7 @@ function GetPost({ post, user }) {
           {/* </div> */}
         </div>
         <div className="post-modal-comments">
-          <PostsComments post={post} setCurrPost={setCurrPost} />
+          <PostsComments post={post} currPost={currPost} setCurrPost={setCurrPost} />
         </div>
       </div>
     </div>
