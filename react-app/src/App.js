@@ -9,7 +9,6 @@ import { authenticate } from "./store/session";
 import PostsComments from "./components/CommentComponents/PostsComments";
 import EditComment from "./components/CommentComponents/EditComment";
 import CommentDetails from "./components/CommentComponents/CommentDetails";
-import PostComponent from "./components/PostsComponent";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
@@ -43,9 +42,6 @@ function App() {
         </Route>
         <Route path="/posts/:postId/comments">
           <PostsComments />
-        </Route>
-        <Route exact path="/posts/:postId">
-          <PostComponent />
         </Route>
         <Route exact path="/posts">
           <FollowingPosts />

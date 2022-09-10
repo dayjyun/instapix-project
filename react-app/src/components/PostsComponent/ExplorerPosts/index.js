@@ -33,8 +33,8 @@ function ExplorerPosts() {
   return (
     <div className="explore-page">
       <div className="explore-post">
-        {i?.map((i) => (
-          <li key={posts[i].id} className="explore-post-wrap">
+        {i?.map((i, index) => (
+          <li key={index} className="explore-post-wrap">
             <div className="explore-post-card">
               <GetPostModal post={posts[i]} user={posts[i]?.User} />
             </div>
