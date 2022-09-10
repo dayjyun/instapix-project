@@ -5,9 +5,9 @@ faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_comments():
-    for i in range(100):
+    for i in range(200):
         comment = Comment(
-            post_id=faker.random_int(min=1, max=20),
+            post_id=faker.random_int(min=1, max=33),
             user_id=faker.random_int(min=1, max=12),
             body=faker.sentence(),
 

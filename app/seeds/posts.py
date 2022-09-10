@@ -87,7 +87,7 @@ def seed_posts():
         user_id=11, caption=faker.sentence(), post_url='https://i.kym-cdn.com/photos/images/original/001/606/325/823.jpeg'
     )
     post33 = Post(
-        user_id=0, caption=faker.sentence(), post_url='https://thefunnybeavercomd030b.zapwp.com/q:i/r:0/wp:1/w:1/u:https://thefunnybeaver.com/wp-content/uploads/2019/07/funny-dog-intelligent.jpg'
+        user_id=12, caption=faker.sentence(), post_url='https://thefunnybeavercomd030b.zapwp.com/q:i/r:0/wp:1/w:1/u:https://thefunnybeaver.com/wp-content/uploads/2019/07/funny-dog-intelligent.jpg'
     )
 
     db.session.add(post1)
@@ -123,6 +123,7 @@ def seed_posts():
     db.session.add(post30)
     db.session.add(post31)
     db.session.add(post32)
+    db.session.add(post33)
 
     db.session.commit()
 
