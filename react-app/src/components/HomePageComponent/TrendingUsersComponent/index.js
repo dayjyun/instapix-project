@@ -32,7 +32,7 @@ const TrendingUsers = ({ i }) => {
             <div className="user-pics-container">
                 {i?.map((i, index) => (
                     <div key={index} className="username">
-                        <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
+                        <a className='username-styling-3' href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
                     </div>
                 ))}
             </div>

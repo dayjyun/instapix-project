@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
@@ -15,6 +15,7 @@ function User() {
   let { userId } = useParams();
   userId = parseInt(userId)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const loggedUser = useSelector(state => state.session.user)
   let user = Object.values(useSelector(state => state.users))
@@ -26,6 +27,19 @@ function User() {
 
   const [onMyPage, setOnMyPage] = useState('');
   const [alreadyFollowing, setAlreadyFollowing] = useState(false)
+
+
+  const ProfileImageTagLarge = () => {
+    if (user?.profile_image) {
+      return (
+        <img src={user?.profile_image} className='user-profile-pic' alt='previewImage' />
+      )
+    } else {
+      return (
+        <div className='fa-regular fa-user-circle temp-profile-pic'></div>
+      )
+    }
+  }
 
   useEffect(() => {
     dispatch(getOneUser(userId))
@@ -98,7 +112,8 @@ function User() {
         <div className='user-container-background'>
           <div className='user-information-container'>
             <div className='user-info-profile'>
-              <img src={user?.profile_image} className='user-profile-pic' alt='previewImage' />
+              {ProfileImageTagLarge()}
+
             </div>
 
             <div className='user-info-info'>

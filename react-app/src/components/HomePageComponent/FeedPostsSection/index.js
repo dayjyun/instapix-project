@@ -27,7 +27,7 @@ const FeedPostsComponent = () => {
     const ProfileImageTagSmallCard = (post) => {
         if (post?.User?.profile_image) {
             return (
-                <div className="profile-button-large-2" onClick={e => {
+                <div className="" onClick={e => {
                     e.preventDefault()
                     history.push(`/users/${post?.User?.id}`)
                 }}>
@@ -51,7 +51,7 @@ const FeedPostsComponent = () => {
                     <div key={post?.id} className="feed-post-container">
                         <div className="feed-username-container">
                             {ProfileImageTagSmallCard(post)}
-                            <a href={`/users/${post?.User?.id}`}>{post?.User?.username}</a>
+                            <a className="username-styling-4" href={`/users/${post?.User?.id}`}>{post?.User?.username}</a>
                             <div>
                                 <PostCardModal
                                     post={post} randomPost={post} />
@@ -65,12 +65,13 @@ const FeedPostsComponent = () => {
                         </div>
                         <TotalLikesComponent post={post} onClick={(e) => {
                             e.preventDefault()
-                            history.push(`/users/${post?.user_id}`)}}/>
+                            history.push(`/users/${post?.user_id}`)
+                        }} />
                         <span className='feed-caption'
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    history.push(`/users/${post?.user_id}`)
-                                  }}>{post?.User?.username}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                history.push(`/users/${post?.user_id}`)
+                            }}>{post?.User?.username}
                             <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                         </span>
                         <div className="load-comments-button"><FeedPostModalViewStr user={post?.User} post={post} /></div>
