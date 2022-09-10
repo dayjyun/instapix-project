@@ -35,13 +35,11 @@ function EditComment({ setShowMenuButtons, comment }) {
       </button>
       {showEditComment && (
           <EditCommentModal onClose={handleOnClose}>
-            {/* <EditModal onClose={handleOnClose}> */}
             <EditCommentForm
               setShowMenuButtons={setShowMenuButtons}
               setShowEditComment={setShowEditComment}
               comment={comment}
             />
-            {/* </EditModal> */}
           </EditCommentModal>
       )}
       <button className="pmb cancel" onClick={handleCancelBtn}>
