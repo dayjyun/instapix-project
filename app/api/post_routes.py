@@ -27,8 +27,6 @@ def get_all_posts():
         all_posts[i]['User'] = users[i]
 
     return {'Posts': all_posts}
-    # TODO return random order of all posts
-
 
 #** Get all posts from the following feed **#
 @post_routes.route('/')
@@ -86,7 +84,6 @@ def create_post():
 @post_routes.route('/<int:post_id>/comments')
 @login_required
 def get_post_comments(post_id):
-    # added post query for 404 return
     post = Post.query.get(post_id)
 
     if post:

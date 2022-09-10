@@ -1,22 +1,6 @@
 from .db import db
 from datetime import datetime
 
-
-# post_hashtag = db.Table(
-#     "post_hashtags",
-#     db.Model.metadata,
-#     db.Column('hashtag_id', db.ForeignKey('hashtags.id'), primary_key = True),
-#     db.Column('post_id', db.ForeignKey('posts.id'), primary_key = True)
-# )
-
-# post_hashtag = db.Table(
-#     "post_hashtags",
-#     db.metadata,
-#     db.Column('hashtag_id', db.ForeignKey('hashtags.id'), primary_key=True),
-#     db.Column('post_id', db.ForeignKey('posts.id'), primary_key=True)
-# )
-
-
 class Post_Hashtag(db.Model):
     __tablename__ = 'post_hashtags'
 
@@ -49,6 +33,3 @@ class Hashtag(db.Model):
 
     def __repr__(self):
         return f"<id:{self.id} hashtag_value:{self.hashtag_value}>"
-    # posts = db.relationship('Post', secondary=post_hashtag, back_populates='hashtags')
-
-# <object 01x3981543151>
