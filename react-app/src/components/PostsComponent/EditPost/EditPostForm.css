@@ -83,7 +83,9 @@
   background-color: white;
   border-radius: 1em;
   box-sizing: border-box;
-  height: 45%;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
 }
 
 .edit-post-user-content {
