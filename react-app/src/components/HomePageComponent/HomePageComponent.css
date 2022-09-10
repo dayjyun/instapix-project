@@ -453,6 +453,7 @@ form {
     padding-left: .7em;
     font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .feed-post-date {

@@ -64,8 +64,14 @@ const FeedPostsComponent = () => {
                         <div className="feed-like-container">
                             <LikeComponent post={post} /> <FeedPostModalCommentBtn post={post} user={post?.User} />
                         </div>
-                        <TotalLikesComponent post={post} />
-                        <span className='feed-caption'>{post?.User?.username}
+                        <TotalLikesComponent post={post} onClick={(e) => {
+                            e.preventDefault()
+                            history.push(`/users/${post?.user_id}`)}}/>
+                        <span className='feed-caption'
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    history.push(`/users/${post?.user_id}`)
+                                  }}>{post?.User?.username}
                             <span style={{ fontWeight: '400' }}> {post?.caption}</span>
                         </span>
                         <div className="load-comments-button"><FeedPostModalViewStr user={post?.User} post={post} /></div>
