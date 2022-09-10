@@ -143,14 +143,8 @@ function GetPost({ post, user }) {
 
   if (currUser?.id === post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
-  } else {
-    editPostBtn = (
-      <button onClick={copy} onChange={inputHandler}>
-        Post
-      </button>
-    );
   }
-
+  
   return (
     <div className="post-modal-container">
       <div className="image-content-container">
