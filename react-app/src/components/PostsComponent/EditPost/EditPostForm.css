@@ -1,7 +1,7 @@
 .edit-post-container {
   grid-template-rows: 8% 92%;
   border-radius: 1em;
-  /* padding: 0 1em; */
+  background-color: white;
 }
 
 .edit-post-container-top {
@@ -10,6 +10,8 @@
   align-items: center;
   padding: 0 1em;
   border-bottom: 1px solid lightgray;
+  background-color: #f5f5f5;
+  border-radius: 1em 1em 0 0;
 }
 
 .edit-post-form-button {
@@ -82,5 +84,5 @@
   border: none;
   outline: none;
   box-sizing: border-box;
-  font-family: 'Arimo', sans-serif;;
+  font-family: "Arimo", sans-serif;
 }
