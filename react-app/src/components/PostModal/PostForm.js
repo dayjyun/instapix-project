@@ -11,7 +11,6 @@ function PostForm({ closeModal }) {
     const [caption, setCaption] = useState("");
     const [postUrl, setPostUrl] = useState("");
     const history = useHistory();
-    // const posts = Object.values(useSelector((state) => state.posts));
     const currUser = useSelector(state => state.session.user)
 
     const handleSubmit = (e) => {
@@ -40,7 +39,6 @@ function PostForm({ closeModal }) {
             <div className="form-container">
                 <div className="form-image">
                     {postUrl && validator.isURL(postUrl) && (
-                        // <div style={{ backgroundImage: `${postUrl}` }}></div>
                         <img src={postUrl} alt='previewImage'></img>
                     )}
                 </div>
@@ -80,7 +78,6 @@ function PostForm({ closeModal }) {
                                 />
                                 <p style={{ color: 'lightgray' }}>{caption.length}/2000</p>
                             </div>
-                            {/* <button type="submit">Post</button> */}
                         </form>
                     </div>
                 </div>

@@ -47,7 +47,6 @@ def edit_comment(comment_id):
         db.session.commit()
 
         return comment.to_dict()
-    # return render_template('edit_comment_form.html', form=form)
 
 
 #delete a comment using comment_id
@@ -68,28 +67,3 @@ def delete_comment(comment_id):
     db.session.commit()
 
     return jsonify(message="Successfully deleted", statusCode=200), 200
-
-
-
-
-
-
-
-
-
-
-
-
-# FETCH TEMPLATE
-# fetch('/api/users', {
-#   method: 'POST',
-#   headers: {
-#     "Content-Type": "application/json",
-#     "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
-#   },
-#   body: JSON.stringify({
-#     email: 'spidey@spider.man',
-#     username: 'Spidey',
-#     password: 'password'
-#   })
-# }).then(res => res.json()).then(data => console.log(data));

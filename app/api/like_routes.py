@@ -65,10 +65,6 @@ def delete_a_like(post_id):
         if exist:
             like.delete()
             db.session.commit()
-
-            print('---')
-            print(exist[0])
-            print('---')
             return jsonify(exist[0]), 200
 
         else:

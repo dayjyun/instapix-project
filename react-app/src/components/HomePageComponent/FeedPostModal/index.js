@@ -3,13 +3,10 @@ import { PostModal } from "../../../context/Modal";
 import GetPost from "../../GetPostModal/GetPost";
 import "../../GetPostModal/index.css";
 import "../../GetPostModal/GetPost.css";
-// import { useSelector } from "react-redux";
 
 
 function FeedPostModalViewStr({ post, user }) {
   const [showModal, setShowModal] = useState(false);
-
-  // const posts = useSelector(state => Object.values(state.posts));
 
   let viewStr;
 
@@ -38,8 +35,6 @@ function FeedPostModalViewStr({ post, user }) {
 
 function FeedPostModalCommentBtn({ post, user }) {
   const [showModal, setShowModal] = useState(false);
-  // const posts = useSelector(state => Object.values(state.posts));
-
 
   return (
     <>
