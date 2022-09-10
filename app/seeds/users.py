@@ -13,24 +13,35 @@ def seed_users():
         username='ricky', email='ricky@aa.io', password='password', first_name='Ricky', last_name='Ro', bio='This is about me', profile_image='https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=11e949fc5d06576bc8b80ec192896753')
     rick = User(
         username='rickjames', email='rick@aa.io', password='password', first_name='Rick', last_name='James', bio='This is about me', profile_image='https://allthatsinteresting.com/wordpress/wp-content/uploads/2021/08/portrait-of-rick-james.jpg')
+    huy = User(
+        username='huy', email='huy@aa.io', password='password', first_name='Huy', last_name='TA', bio='Software Engineer. Contributor to this project!', profile_image='https://images.pexels.com/photos/1237119/pexels-photo-1237119.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
     skimby = User(
-        username='skimbysally', email='a@aa.io', password='password', first_name='Sally', last_name='Skimby', bio='This is about me', profile_image='https://images.goodsmile.info/cgm/images/product/20201202/10469/78051/medium/124b42aafad17eb1c88eef135ee878ad.jpg')
+        username='skimby', email='a@aa.io', password='password', first_name='Sally', last_name='Kimby', bio='Software Engineer. Contributor to this project!', profile_image='https://images.goodsmile.info/cgm/images/product/20201202/10469/78051/medium/124b42aafad17eb1c88eef135ee878ad.jpg')
     jan = User(
-        username='wickedjan', email='b@aa.io', password='password', first_name='Jan', last_name='Wicked', bio='This is about me', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
+        username='wickedjan', email='b@aa.io', password='password', first_name='Jan', last_name='Wicked', bio='Software Engineer. Contributor to this project!', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
     felipe = User(
-        username='thorfelipe', email='c@aa.io', password='password', first_name='Felipe', last_name='Thor', bio='This is about me', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
+
+        username='thorfelipe', email='c@aa.io', password='password', first_name='Felipe', last_name='Thor', bio='Software Engineer. Contributor to this project!', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
+
     kev = User(
-        username='kevsawesome', email='d@aa.io', password='password', first_name='Kev', last_name='Awesome', bio='This is about me', profile_image='https://m.media-amazon.com/images/I/81Y+P59yklL._SS500_.jpg')
-    hotgirl = User(
-        username='hotgirl916', email='e@aa.io', password='password', first_name='Hot', last_name='Girl', bio='This is about me', profile_image='https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Megan_Thee_Stallion_-_Hot_Girl_Summer.png/220px-Megan_Thee_Stallion_-_Hot_Girl_Summer.png')
-    hotboy = User(
-        username='hotboy408', email='f@aa.io', password='password', first_name='Hot', last_name='Boy', bio='This is about me', profile_image='https://previews.123rf.com/images/paleka/paleka1410/paleka141000203/33042361-cool-boy.jpg')
+        username='kevsawesome', email='d@aa.io', password='password', first_name='Kev', last_name='Awesome', bio='Software Engineer. Contributor to this project!', profile_image='https://m.media-amazon.com/images/I/81Y+P59yklL._SS500_.jpg')
+    tom = User(
+        username='tomthecat', email='e@aa.io', password='password', first_name='Tom', last_name='Cat', bio='I enjoy long walks on the beach and a warm bowl of milk.', profile_image='https://i.pinimg.com/736x/aa/2e/f0/aa2ef0ac37db19de28da92aa1b297ca6.jpg')
+    Jerry = User(
+        username='jerrythemouse', email='f@aa.io', password='password', first_name='Jerry', last_name='Mouse', bio='I love cheese!', profile_image='https://img.favpng.com/4/0/6/tom-and-jerry-jerry-mouse-tom-cat-cocktail-rum-png-favpng-riT4hgBx3q0i410nxK67NWBq9.jpg')
     very = User(
-        username='very_thoughtful', email='g@aa.io', password='password', first_name='Very', last_name='Thoughtful', bio='This is about me', profile_image='https://thumbor.bigedition.com/cute-small-rat-wrapped-in-knitted-plaid/mvSiWoCH-3skivKqJ6yFj1iNJ2Y=/69x0:1184x836/480x360/filters:format(webp):quality(80)/granite-web-prod/74/18/74189ff23b0b466eb22cf82ee4bf1140.jpeg')
+        username='finnthehuman', email='g@aa.io', password='password', first_name='Finn', last_name='Human', bio='A full time human hero!', profile_image='https://i.etsystatic.com/14675880/r/il/7a1178/1314818595/il_fullxfull.1314818595_r231.jpg')
     much = User(
-        username='thoughtful_very_much', email='h@aa.io', password='password', first_name='Much', last_name='Thoughtful', bio='This is about me', profile_image='https://external-preview.redd.it/KCPDpreDy0nsZ5wBLj5z64-hWpkKknN9xNY4emKxYE8.jpg?auto=webp&s=1650851b7ad79cf978183be5290022a99e6a4b9d')
+        username='jakeman', email='h@aa.io', password='password', first_name='Jake', last_name='Dog', bio='Loves to cook and beat up the bad guys', profile_image='https://external-preview.redd.it/1vvk5GSaP8Dd5i6OYa0BDJ9bP8SdE7U4lKhEj2IsH-0.jpg?auto=webp&s=e8017f84d806c2591b0674072945a115bc29798d')
     brian = User(
         username='Brian_Moore', email='i@aa.io', password='password', first_name='Brian', last_name='Moore', bio='This is about me', profile_image='https://media.comicbook.com/wp-content/uploads/2013/12/brian-griffin-family-guy.jpg')
+    eric = User(
+        username='cartman', email='eric@aa.io', password='password', first_name='Eric', last_name='Cartman', bio='Most popular 4th grader and not someone you wannna to mess with!', profile_image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTItaeq9DWXYC6K4P4R-uctWoZ2r48Hy-zfIQ&usqp=CAU')
+    awesomo = User(
+        username='awesomo4000', email='awesomo@aa.io', password='password', first_name='Awesom', last_name='O', bio='Made in Japan', profile_image='https://m.media-amazon.com/images/M/MV5BNjc2OWNiZTktYTJmZS00ZTNkLWEzMjUtODEwMzc1MDFlZDZmXkEyXkFqcGdeQXVyNTM3MDMyMDQ@._V1_.jpg')
+    squid = User(
+        username='squidman', email='squid@aa.io', password='password', first_name='Squidward', last_name='Tentacles', bio='Clarinet expert and lover of fine dining', profile_image='https://dzevsq2emy08i.cloudfront.net/paperclip/project_image_uploaded_images/16875/carousel/1536182232_open-uri20180905-5748-1y9e30p?1536182232')
+
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
@@ -43,6 +54,13 @@ def seed_users():
     db.session.add(much)
     db.session.add(very)
     db.session.add(brian)
+    db.session.add(eric)
+    db.session.add(awesomo)
+    db.session.add(tom)
+    db.session.add(Jerry)
+    db.session.add(huy)
+    db.session.add(squid)
+
     db.session.commit()
 
 
