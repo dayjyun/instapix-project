@@ -104,13 +104,13 @@
     margin-bottom: .5em;
     border-radius: 10px;
     width: 100%;
-    height: 160px;
+    height: 100%;
     background-color: white;
 }
 
 .suggestions-container {
     display: grid;
-    grid-template-rows: 15% 15% 60% 10%;
+    grid-template-rows: 15% 10% 75%;
     /* border: 1px solid blue; */
     margin-left: 1em;
     height: 35em;

@@ -84,7 +84,13 @@ const SuggestionsComponent = ({ i2 }) => {
                     )
                 })}
                 <div style={{ marginLeft: '.8em' }}>
-                    <p className="copyright">© 2022 INSTAPIX FROM FELIPE SALLY JAN KEVIN HUYDU</p>
+                    <p className="copyright">© 2022 INSTAPIX FROM
+                        <a href="https://github.com/FelipeSilva916"> FELIPE</a>
+                        <a href="https://github.com/skimby"> SALLY</a>
+                        <a href="https://github.com/janjovellanos"> JAN</a>
+                        <a href="https://github.com/dayjyun"> KEVIN</a>
+                        <a href="https://github.com/htran106"> HUYDU</a>
+                    </p>
                 </div>
             </div>
         </div>
