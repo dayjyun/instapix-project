@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { Link, useHistory, useParams } from "react-router-dom";
-// import { EditModal } from "../../../context/Modal";
 import { EditModal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
@@ -10,16 +8,13 @@ import { createBrowserHistory } from "history";
 
 function PostMenu({ setShowMenuButtons, post }) {
   const dispatch = useDispatch();
-  // const history = useHistory();
   const history = createBrowserHistory();
-  // const currUser = useSelector((state) => state.session.user);
   const [showEditPost, setShowEditPost] = useState(false);
 
   const handleDeletePostBtn = async (e) => {
     e.preventDefault();
     await dispatch(deletePost(+post?.id));
     alert("Post successfully deleted");
-    // history.push(`/users/${currUser?.id}`);
     history.go(0)
   };
 

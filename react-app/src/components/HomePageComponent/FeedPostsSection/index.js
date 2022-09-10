@@ -47,7 +47,6 @@ const FeedPostsComponent = () => {
     return (
         <div className="feed-section">
             {posts && (Object.values(posts)?.map(post => {
-                // const randomPost = posts[Math.floor(Math.random() * posts?.length)]
                 return (
                     <div key={post?.id} className="feed-post-container">
                         <div className="feed-username-container">

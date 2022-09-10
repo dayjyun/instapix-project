@@ -153,7 +153,7 @@ const getUserPost = (posts) => {
   }
 }
 
-// !!!
+
 export const getUserPostsBackend = (userId) => async (dispatch) => {
   const res = await fetch(`/api/users/${userId}/posts`)
   if (res.ok) {

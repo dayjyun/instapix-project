@@ -4,7 +4,6 @@ import EditComment from "./EditComment";
 import './EditComment.css'
 
 function EditCommentModal({comment}) {
-//   const [showModal, setShowModal] = useState(false);
   const [showMenuButtons, setShowMenuButtons] = useState(false);
 
 
