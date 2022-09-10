@@ -382,6 +382,14 @@ form {
     padding-bottom: -2em;
 }
 
+.suggestions-username1 {
+    padding-top: 1.7em;
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Arimo', sans-serif;
+}
+
 .suggestions-username {
     padding-top: 1.3em;
     color: black;
