@@ -84,7 +84,6 @@ export const unlike = postId => async dispatch => {
     if (res.ok) {
         const parsedRes = await res.json()
         dispatch(deleteLike(parsedRes))
-        console.log(parsedRes)
         return res
     }
 }

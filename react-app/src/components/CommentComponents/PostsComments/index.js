@@ -7,7 +7,7 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 import LikesModal from "../../LikesModal";
-import { getUserPostsBackend } from "../../../store/posts";
+// import { getUserPostsBackend } from "../../../store/posts";
 
 export const getCreatedDate = (datestr) => {
     const fullDate = new Date(datestr).toDateString()
