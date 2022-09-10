@@ -6,7 +6,7 @@ from app.models import db, Follow, Post, Comment, User
 from datetime import datetime
 
 
-post_routes = Blueprint('posts', __name__, url_prefix='/posts')
+post_routes = Blueprint('posts', __name__)
 
 
 #** get all posts on database **#
