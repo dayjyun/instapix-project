@@ -1,6 +1,4 @@
 from app.models.post import db, Post
-from faker import Faker
-faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 
@@ -42,53 +40,8 @@ def seed_posts():
         user_id=3, caption="I know looks aren't everything, but I have them just in case.", post_url='https://getwallpapers.com/wallpaper/full/4/6/5/733314-random-funny-wallpapers-2048x1536-smartphone.jpg')
     post18 = Post(
         user_id=4, caption="Doing nothing is hard, you never know when you're done.", post_url='https://1.bp.blogspot.com/_EAViqbzwc_s/TJ3wMeIOSZI/AAAAAAAABNM/0U9mcf2AYeA/s1600/Random%2Bwallpapers%2B(6).jpg')
-
     post19 = Post(
         user_id=5, caption='This is the most magical pic of your life.', post_url='https://1.bp.blogspot.com/-Xso1CCZ-iGI/Vs34mYqxnVI/AAAAAAAEVm4/xIhgP5vUbW4/s1600/Random%2Bhumor%2B00409.jpg')
-
-    post20 = Post(
-        user_id=7, caption=faker.sentence(), post_url='https://www.rd.com/wp-content/uploads/2021/08/vacation-memes-ft.jpg')
-    post21 = Post(
-        user_id=8, caption=faker.sentence(), post_url="https://viatravelers.com/wp-content/uploads/2020/11/account-k.jpeg")
-    post21 = Post(
-        user_id=9, caption=faker.sentence(), post_url='https://brobible.com/wp-content/uploads/2018/03/2018-funniest-travel-memes-best-of.jpg?quality=90&w=650'
-    )
-    post22 = Post(
-        user_id=9, caption=faker.sentence(), post_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJu05_BpWSWVEB8EhcEpwaJRi56XRBnk_xlQ&usqp=CAU'
-    )
-    post23 = Post(
-        user_id=11, caption=faker.sentence(), post_url='https://dontgetserious.com/wp-content/uploads/2021/04/funny-travel-meme.jpeg'
-    )
-    post24 = Post(
-        user_id=12, caption=faker.sentence(), post_url='https://imgix.ranker.com/list_img_v2/19409/2739409/original/memes-only-fans-of-the-office-will-understand-u1'
-    )
-    post25 = Post(
-        user_id=9, caption=faker.sentence(), post_url='https://www.liveabout.com/thmb/4aucImVLkDoXEjXSRQMlQQrKJrk=/690x486/filters:no_upscale():max_bytes(150000):strip_icc()/TheOfficememes4-8daeb64ac1d74870bda1ed0bf35115cc.jpg'
-    )
-    post26 = Post(
-        user_id=9, caption=faker.sentence(), post_url='https://static1.srcdn.com/wordpress/wp-content/uploads/2020/05/Kevin-Malone-2020-Meme-.jpg'
-    )
-    post27 = Post(
-        user_id=9, caption=faker.sentence(), post_url='https://pizzabottle.com/wp-content/uploads/2017/05/2-1.jpg'
-    )
-    post28 = Post(
-        user_id=10, caption=faker.sentence(), post_url='https://www.rd.com/wp-content/uploads/2020/01/when-your-human-doesn-t-like-the-dead-bird.jpg?w=1414'
-    )
-    post29 = Post(
-        user_id=10, caption=faker.sentence(), post_url='https://www.rd.com/wp-content/uploads/2020/07/12_Only-packing-the-essentials-Final.jpg?w=1414'
-    )
-    post30 = Post(
-        user_id=10, caption=faker.sentence(), post_url='https://www.rd.com/wp-content/uploads/2020/07/14_Relaxing-now-Final.jpg?w=1414'
-    )
-    post31 = Post(
-        user_id=11, caption=faker.sentence(), post_url='https://i.kym-cdn.com/photos/images/newsfeed/000/435/394/dc7.png'
-    )
-    post32 = Post(
-        user_id=11, caption=faker.sentence(), post_url='https://i.kym-cdn.com/photos/images/original/001/606/325/823.jpeg'
-    )
-    post33 = Post(
-        user_id=12, caption=faker.sentence(), post_url='https://thefunnybeavercomd030b.zapwp.com/q:i/r:0/wp:1/w:1/u:https://thefunnybeaver.com/wp-content/uploads/2019/07/funny-dog-intelligent.jpg'
-    )
 
     db.session.add(post1)
     db.session.add(post2)
@@ -109,21 +62,6 @@ def seed_posts():
     db.session.add(post17)
     db.session.add(post18)
     db.session.add(post19)
-    db.session.add(post20)
-    db.session.add(post21)
-    db.session.add(post22)
-    db.session.add(post23)
-    db.session.add(post24)
-    db.session.add(post25)
-    db.session.add(post26)
-    db.session.add(post27)
-    db.session.add(post28)
-    db.session.add(post25)
-    db.session.add(post29)
-    db.session.add(post30)
-    db.session.add(post31)
-    db.session.add(post32)
-    db.session.add(post33)
 
     db.session.commit()
 
