@@ -101,25 +101,29 @@
 .profile-dropdown {
   display: grid;
   grid-template-rows: 38% 62%;
+  width: 5.5vw;
+  padding-top: 0.2em;
   /* margin-top: 5.4em; */
   /* padding-bottom: .5em; */
-  width: 5.5vw;
-  height: 14vh;
-  padding-top: 0.2em;
+  /* height: 14vh; */
 }
 
 .dropdown-shadow {
-  display: grid;
-  background-color: white;
-  grid-template-rows: repeat(2, 1fr);
-  box-shadow: 0px 0px 10px 3px lightgray;
-  /* padding-top: 5%; */
-  border-radius: 10%;
-  width: 6em;
-  height: 100%;
-  margin-left: -1.4em;
-  margin-top: 0.2em;
-  z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    grid-template-rows: repeat(2, 1fr);
+    box-shadow: 0px 0px 10px 3px lightgray;
+    border-radius: 10%;
+    width: 6em;
+    height: 100%;
+    margin-left: -1.4em;
+    z-index: 10;
+    /* display: grid; */
+    /* padding-top: 5%; */
+    /* margin-top: 0.2em; */
 }
 
 /* .profile-button {
