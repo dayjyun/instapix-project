@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllPosts } from "../../../store/posts";
@@ -10,8 +9,6 @@ function ExplorerPosts() {
   const posts = Object.values(useSelector((state) => state.posts));
   const likes = useSelector(state => state.likes)
   const comments = useSelector(state => state.comments)
-
-  console.log(posts)
 
   useEffect(() => {
     dispatch(loadAllPosts());
