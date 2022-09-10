@@ -46,15 +46,15 @@ const SuggestionsComponent = ({ i2 }) => {
                     e.preventDefault()
                     history.push(`/users/${allUsers[i]?.id}`)
                 }}>
-                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={allUsers[i]?.profile_image} alt='preview'></img>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '.1em', marginTop: '.3em' }} className='profile-img-circle-container' src={allUsers[i]?.profile_image} alt='preview'></img>
                 </div>
             )
         } else {
             return (
-                <div style={{ marginTop: '-.1em' }} onClick={e => {
+                <div style={{ marginTop: '1.2em', marginLeft: '.7em' }} onClick={e => {
                     e.preventDefault()
                     history.push(`/users/${allUsers[i]?.id}`)
-                }} className='fa-regular fa-user-circle fa-xl'></div>
+                }} className='fa-regular fa-user-circle fa-2xl'></div>
             )
         }
     }
