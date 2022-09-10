@@ -160,11 +160,11 @@ function GetPost({ post, user }) {
             }}>
             <img
               className="comment-profile-pic"
-              src={user?.profile_image}
+              src={post?.User?.profile_image}
               alt="preview"
             ></img>
             <div className="post-username-text">
-              {user?.username}
+              {post?.User?.username}
             </div>
           </div>
           {editPostBtn}
@@ -176,7 +176,7 @@ function GetPost({ post, user }) {
               history.push(`/users/${post?.user_id}`)
             }}
             className="comment-profile-pic"
-            src={user?.profile_image}
+            src={post?.User?.profile_image}
             // value={copyText}
             alt="preview"
           ></img>
@@ -186,7 +186,7 @@ function GetPost({ post, user }) {
               e.preventDefault()
               history.push(`/users/${post?.user_id}`)
             }}>
-            {user?.username}
+            {post?.User?.username}
             <div className="posted-date">{getCreatedDate(post?.created_at)}</div>
           </div>
           {/* <div className="caption-text"> */}
