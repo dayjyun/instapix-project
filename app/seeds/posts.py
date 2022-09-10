@@ -1,8 +1,20 @@
 from app.models.post import db, Post
+from faker import Faker
+faker = Faker()
 
 
 # Adds a demo user, you can add other users here if you want
+
+
 def seed_posts():
+    for i in range(100):
+        post = Post(
+            user_id=faker.random_int(min=1, max=12),
+            caption=faker.sentence(),
+            post_url=faker.image_url()
+        )
+        db.session.add(post)
+        db.session.commit()
 
     db.session.commit()
 
