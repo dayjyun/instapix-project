@@ -14,7 +14,6 @@ function ExplorerPosts() {
     dispatch(loadAllPosts());
   }, [dispatch, likes, comments]);
 
-
   return (
     <div className="explore-page">
       <div className="explore-post">
