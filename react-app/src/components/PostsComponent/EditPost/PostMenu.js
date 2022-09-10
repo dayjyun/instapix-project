@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+// import { Link, useHistory, useParams } from "react-router-dom";
+// import { EditModal } from "../../../context/Modal";
 import { EditModal } from "../../../context/Modal";
-import { Modal } from "../../../context/Modal";
 import { deletePost } from "../../../store/posts";
 import EditPostForm from "./EditPostForm";
 import "./PostMenu.css";
@@ -12,7 +12,7 @@ function PostMenu({ setShowMenuButtons, post }) {
   const dispatch = useDispatch();
   // const history = useHistory();
   const history = createBrowserHistory();
-  const currUser = useSelector((state) => state.session.user);
+  // const currUser = useSelector((state) => state.session.user);
   const [showEditPost, setShowEditPost] = useState(false);
 
   const handleDeletePostBtn = async (e) => {
@@ -44,13 +44,13 @@ function PostMenu({ setShowMenuButtons, post }) {
         </button>
 
         {showEditPost && (
-          <Modal onClose={handleOnClose}>
+          <EditModal onClose={handleOnClose}>
             <EditPostForm
               post={post}
               setShowMenuButtons={setShowMenuButtons}
               setShowEditPost={setShowEditPost}
             />
-          </Modal>
+          </EditModal>
         )}
         <button className="pmb cancel" onClick={handleCancelBtn}>
           Cancel

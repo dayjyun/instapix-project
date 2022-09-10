@@ -3,13 +3,13 @@ import { PostModal } from "../../../context/Modal";
 import GetPost from "../../GetPostModal/GetPost";
 import "../../GetPostModal/index.css";
 import "../../GetPostModal/GetPost.css";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 
-function FeedPostModalViewStr({ post }) {
+function FeedPostModalViewStr({ post, user }) {
   const [showModal, setShowModal] = useState(false);
 
-  const posts = useSelector(state => Object.values(state.posts));
+  // const posts = useSelector(state => Object.values(state.posts));
 
   let viewStr;
 
@@ -29,33 +29,33 @@ function FeedPostModalViewStr({ post }) {
       </button>
       {showModal && (
         <PostModal onClose={() => setShowModal(false)}>
-          <GetPost post={post} />
+          <GetPost post={post} user={user} />
         </PostModal>
       )}
     </>
   );
 }
 
-function FeedPostModalCommentBtn({ post }) {
-    const [showModal, setShowModal] = useState(false);
-    const posts = useSelector(state => Object.values(state.posts));
+function FeedPostModalCommentBtn({ post, user }) {
+  const [showModal, setShowModal] = useState(false);
+  // const posts = useSelector(state => Object.values(state.posts));
 
 
-    return (
-      <>
-        <button
-          className="view-all-comments-btn"
-          style={{ backgroundColor: "transparent", border: "none" }}
-          onClick={() => setShowModal(true)}>
-            <i className="fa-regular fa-comment comment-bubble"></i>
-        </button>
-        {showModal && (
-          <PostModal onClose={() => setShowModal(false)}>
-            <GetPost post={post} />
-          </PostModal>
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      <button
+        className="view-all-comments-btn"
+        style={{ backgroundColor: "transparent", border: "none" }}
+        onClick={() => setShowModal(true)}>
+        <i className="fa-regular fa-comment comment-bubble"></i>
+      </button>
+      {showModal && (
+        <PostModal onClose={() => setShowModal(false)}>
+          <GetPost post={post} user={user} />
+        </PostModal>
+      )}
+    </>
+  );
+}
 
-export {FeedPostModalViewStr, FeedPostModalCommentBtn}
+export { FeedPostModalViewStr, FeedPostModalCommentBtn }

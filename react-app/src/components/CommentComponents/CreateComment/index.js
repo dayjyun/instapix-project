@@ -20,8 +20,8 @@ const CreateComment = ({inputEl, post}) => {
 
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit}>
+            <div className="create-comment-div">
+                <form className="create-comment-form" onSubmit={handleSubmit}>
                     {/* <ul>
                         {Object.values(errors).map((error, index) => (
                             <li className='error-li' key={index}>{error}</li>
