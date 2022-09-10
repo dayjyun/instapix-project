@@ -27,8 +27,6 @@ function User() {
   const [onMyPage, setOnMyPage] = useState('');
   const [alreadyFollowing, setAlreadyFollowing] = useState(false)
 
-  console.log(user)
-
   useEffect(() => {
     dispatch(getOneUser(userId))
   }, [dispatch, userId])
@@ -36,7 +34,6 @@ function User() {
   useEffect(() => {
     if (follows?.loggedUser) {
       Object.values(follows.loggedUser).forEach((follow) => {
-        // console.log(follow.follower_info.id, user?.id)
         if (follow.follower_info.id === user?.id) {
           setAlreadyFollowing(true)
         }
