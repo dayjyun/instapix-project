@@ -24,10 +24,12 @@
     height: 1rem;
     font-family: 'Arimo', sans-serif;
     resize: none;
-    /* line-break: normal;
-    overflow: scroll; */
 }
 
 .comment-body-input:focus {
     outline: none !important;
+}
+
+.create-comment-div {
+    height: 3.5rem;
 }

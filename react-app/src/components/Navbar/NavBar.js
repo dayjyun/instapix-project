@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 import { useState } from 'react';
@@ -12,7 +12,6 @@ const NavBar = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [profileToggle, setProfileToggle] = useState(false)
-  const [profileImage, setProfileImage] = useState('')
   const sessionUser = useSelector(state => state.session.user)
 
   const profileImageTag = () => {

@@ -4,7 +4,7 @@ import { getFollowersBackend } from '../../../store/follow';
 import FollowButton from './FollowButton';
 import '../FollowModal.css'
 import { useHistory } from 'react-router-dom';
-import User from '../../UserComponent';
+// import User from '../../UserComponent';
 
 const Followers = ({ user }) => {
     const dispatch = useDispatch()
@@ -18,9 +18,9 @@ const Followers = ({ user }) => {
         }
     }, [dispatch, user])
 
-    const goToUserPage = (follow) => {
-        history.push(`/users/${follow?.follower_info?.id}`)
-    }
+    // const goToUserPage = (follow) => {
+    //     history.push(`/users/${follow?.follower_info?.id}`)
+    // }
 
     return (
         <>
@@ -40,7 +40,7 @@ const Followers = ({ user }) => {
                                         }
                                     } >
 
-                                        <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' />
+                                        <img src={follow?.follower_info?.profile_image} className='profile-img-circle-container' alt='previewImage' />
                                     </div>
                                     <div className='follower-user-info pointer' onClick={
                                         e => {

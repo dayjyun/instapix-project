@@ -51,13 +51,14 @@ function EditPostForm({ setShowMenuButtons, setShowEditPost, post }) {
           </div>
           <div className="edit-post-content">
             <div className="edit-post-image-content">
-              <img className="edit-post-image" src={curr_img} />
+              <img className="edit-post-image" src={curr_img} alt='previewImage' />
             </div>
             <div className="edit-post-user-content">
               <div className="edit-post-user-info">
                 <img
                   className="profile-img-circle-container form-profile-img"
                   src={userInfo?.profile_image}
+                  alt='previewImage'
                 />
                 <h3>{userInfo?.username}</h3>
               </div>
