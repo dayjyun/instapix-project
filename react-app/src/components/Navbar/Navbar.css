@@ -1,55 +1,55 @@
 .nav-bar-container {
-    display: flex;
-    width: 100vw;
-    height: 60px;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 1px solid lightgray;
-    z-index: -1;
-    background-color: white;
+  display: flex;
+  width: 100vw;
+  height: 60px;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  z-index: -1;
+  background-color: white;
 }
 
 .nav-buttons-right {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* padding-left: 8em; */
-    width: 10%;
-    padding-top: .8em;
-    max-height: 60px;
-    /* justify-content: center; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* padding-left: 8em; */
+  width: 10%;
+  padding-top: 0.8em;
+  max-height: 60px;
+  /* justify-content: center; */
 }
 
 .nav-buttons-left {
-    display: flex;
-    align-items: center;
-    height: 60px;
-    /* padding-left: 10em; */
-    padding-top: 1%;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  /* padding-left: 10em; */
+  padding-top: 1%;
+  justify-content: center;
 }
 
 .nav-buttons-right button {
-    background-color: transparent;
-    border: none;
-    height: 60px;
-    padding: .8em;
+  background-color: transparent;
+  border: none;
+  height: 60px;
+  padding: 0.8em;
 }
 
 .fa-house {
-    font-size: 1.3em;
+  font-size: 1.3em;
 }
 
 .fa-square-plus {
-    font-size: 1.5em;
-    padding: .8em
+  font-size: 1.5em;
+  padding: 0.8em;
 }
 
 .fa-compass {
-    font-size: 1.5em
+  font-size: 1.5em;
 }
 
 .fa-circle-user {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 /* .fa-angle-down {
@@ -60,18 +60,17 @@
     border: none;
 } */
 
-
 @font-face {
-    font-family: billabong;
-    src: url(FontsFree-Net-Billabong.ttf);
+  font-family: billabong;
+  src: url(FontsFree-Net-Billabong.ttf);
 }
 
 .instapix-button {
-    font-family: 'billabong';
-    background-color: transparent;
-    border: none;
-    font-size: 2.3em;
-    /* font-weight: 100; */
+  font-family: "billabong";
+  background-color: transparent;
+  border: none;
+  font-size: 2.3em;
+  /* font-weight: 100; */
 }
 
 /* .arrow-dropdown {
@@ -100,27 +99,31 @@
 } */
 
 .profile-dropdown {
-    display: grid;
-    grid-template-rows: 38% 62%;
-    /* margin-top: 5.4em; */
-    /* padding-bottom: .5em; */
-    width: 5.5vw;
-    height: 14vh;
-    padding-top: .2em;
+  display: grid;
+  grid-template-rows: 38% 62%;
+  width: 5.5vw;
+  padding-top: 0.2em;
+  /* margin-top: 5.4em; */
+  /* padding-bottom: .5em; */
+  /* height: 14vh; */
 }
 
 .dropdown-shadow {
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: white;
-    grid-template-rows: repeat(2, 1fr);
     box-shadow: 0px 0px 10px 3px lightgray;
-    /* padding-top: 5%; */
     border-radius: 10%;
     width: 6em;
     height: 100%;
     margin-left: -1.4em;
-    margin-top: .2em;
     z-index: 10;
+    /* display: grid; */
+    /* grid-template-rows: repeat(2, 1fr); */
+    /* padding-top: 5%; */
+    /* margin-top: 0.2em; */
 }
 
 /* .profile-button {
@@ -129,12 +132,14 @@
 } */
 
 .dropdown-shadow button {
-    height: 100%;
-    width: 100%;
-    /* background-color: gray; */
+  height: 100%;
+  width: 100%;
+  /* background-color: white; */
 }
 
-
+.dropdown-shadow button:hover {
+  background-color: #f1f0f0;
+}
 
 /* .profile-button {
     display: flex;

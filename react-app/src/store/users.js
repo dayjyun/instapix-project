@@ -1,6 +1,5 @@
 const LOAD_USERS = 'users/loadUsers';
 const GET_USER = 'users/getUser';
-// const GET_USER_POSTS = 'users/getUserPosts'
 
 
 const loadUsers = (users) => {
@@ -17,12 +16,7 @@ const getUser = (user) => {
     }
 }
 
-// const getUserPost = (posts) => {
-//     return {
-//         type: GET_USER_POSTS,
-//         payload: posts
-//     }
-// }
+
 
 export const getAllUsers = () => async (dispatch) => {
     const res = await fetch('/api/users/')
@@ -43,14 +37,6 @@ export const getOneUser = (userId) => async (dispatch) => {
     }
 }
 
-// !!!
-// export const getUserPostsBackend = (userId) = async (dispatch) => {
-//     const res = await fetch(`/api/users/${userId}/posts`)
-//     if (res.ok) {
-//         const posts = await res.json();
-//         dispatch(getUserPosts(posts));
-//     }
-// }
 
 const newState = {};
 
@@ -69,6 +55,8 @@ export default function userReducer(state = newState, action) {
                 allUserState[user.id] = user
             })
             return allUserState
+
+
         default:
             return state;
     }

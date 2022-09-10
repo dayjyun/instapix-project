@@ -123,9 +123,10 @@ function GetPost({ post, user }) {
   const [currPost, setCurrPost] = useState(post);
 
 
-  useEffect(() => {
-    dispatch(postActions.getPost(post?.id));
-  }, [dispatch, currPost, post.id]);
+  // console.log(user)
+  // useEffect(() => {
+  //   dispatch(postActions.getPost(post?.id));
+  // }, [dispatch, currPost, post.id]);
 
 
   const inputHandler = (e) => {
@@ -142,14 +143,8 @@ function GetPost({ post, user }) {
 
   if (currUser?.id === post.user_id) {
     editPostBtn = <EditPostBtn post={post} />;
-  } else {
-    editPostBtn = (
-      <button onClick={copy} onChange={inputHandler}>
-        Post
-      </button>
-    );
   }
-
+  
   return (
     <div className="post-modal-container">
       <div className="image-content-container">
@@ -161,14 +156,15 @@ function GetPost({ post, user }) {
             className="profile-pic-username"
             onClick={(e) => {
               e.preventDefault()
-              history.push(`/users/${post?.user_id}`)}}>
+              history.push(`/users/${post?.user_id}`)
+            }}>
             <img
               className="comment-profile-pic"
-              src={post?.User?.profile_image}
+              src={user?.profile_image}
               alt="preview"
             ></img>
             <div className="post-username-text">
-              {post?.User?.username}
+              {user?.username}
             </div>
           </div>
           {editPostBtn}
@@ -177,9 +173,10 @@ function GetPost({ post, user }) {
           <img
             onClick={(e) => {
               e.preventDefault()
-              history.push(`/users/${post?.user_id}`)}}
+              history.push(`/users/${post?.user_id}`)
+            }}
             className="comment-profile-pic"
-            src={post?.User?.profile_image}
+            src={user?.profile_image}
             // value={copyText}
             alt="preview"
           ></img>
@@ -187,7 +184,8 @@ function GetPost({ post, user }) {
             className="post-username-text"
             onClick={(e) => {
               e.preventDefault()
-              history.push(`/users/${post?.user_id}`)}}>
+              history.push(`/users/${post?.user_id}`)
+            }}>
             {user?.username}
             <div className="posted-date">{getCreatedDate(post?.created_at)}</div>
           </div>
