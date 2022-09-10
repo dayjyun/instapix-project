@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-// import { useHistory } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
 import { login } from "../../store/session"
 import "../HomePageComponent/HomePageComponent.css";
 
@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [style, setStyle] = useState({})
     const [errors, setErrors] = useState([])
-    // console.log(errors)
+    console.log(errors)
 
     useEffect(() => {
         if (email && password) {
@@ -24,13 +24,13 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
-        // console.log(data)
+        console.log(data)
 
         if (data && data.errors) {
             setErrors(Object.values(data.errors));
         }
 
-        // console.log(errors)
+        console.log(errors)
         // .catch(async (res) => {
         //     const data = await res.json()
 
@@ -59,7 +59,7 @@ const Login = () => {
 
     const handleGuestLogin = async (e) => {
         e.preventDefault();
-        await dispatch(login("demo@aa.io", "password"))
+        const data = await dispatch(login("demo@aa.io", "password"))
             .then(() => {
                 reset();
             })
@@ -71,7 +71,7 @@ const Login = () => {
             });
     };
 
-//
+
     return (
         <div className="logged-out-container">
             <div className="logged-out-content-container">
@@ -106,9 +106,9 @@ const Login = () => {
 
                                 <button className="login-button" type='submit' style={style}>Log In</button>
                                 {errors && (
-                                    errors.map((error, i) => {
+                                    errors.map(error => {
                                         return (
-                                            <p key={i} className="validation-error-styling">{error}</p>
+                                            <p className="validation-error-styling">{error}</p>
                                         )
                                     })
                                 )

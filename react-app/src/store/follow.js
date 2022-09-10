@@ -55,46 +55,38 @@ export const deleteFollow = (follow, loggedUserId, blueBtnUnfollow) => {
 //THUNKS
 //GET: logged user's following
 export const getLoggedUserFollowingBackend = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getLoggedUserFollowing(parsedRes))
     }
-    // }
 }
 
 //GET: all user's following
 export const getFollowingBackend = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getFollowing(parsedRes))
     }
-    // }
 }
 
 // GET: all users following for home //different state
 export const getFollowingBackendHome = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/follows`);
     if (response.ok) {
         const parsedRes = await response.json();
         dispatch(getFollowingHome(parsedRes))
     }
-    // }
 }
 
 //GET: all user's followers
 export const getFollowersBackend = (userId) => async (dispatch) => {
-    // if (userId) {
     const response = await fetch(`/api/follows/users/${userId}/followers`)
     if (response.ok) {
         const parsedRes = await response.json()
         dispatch(getFollowers(parsedRes))
     }
-    // }
 }
 
 //POST: a follow

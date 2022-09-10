@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../store/posts";
-// import { getOneUser } from "../../store/users";
-// import User from "../UserComponent";
+import { getOneUser } from "../../store/users";
+import User from "../UserComponent";
 import EditPostBtn from "./EditPost/EditPostBtn";
 import "./Posts.css";
 
@@ -16,18 +16,18 @@ function PostComponent() {
 
   useEffect(() => {
     dispatch(getPost(+postId));
-  }, [dispatch, postId]);
+  }, [dispatch]);
 
   let editPostBtn;
 
-  if (currUser?.id === +userId) {
+  if (currUser?.id == +userId) {
     editPostBtn = <EditPostBtn />;
   }
 
   return (
     <div className="post-page">
-      {posts?.map((post, i) => (
-        <li key={i} className="post-page-id-card">
+      {posts?.map((post) => (
+        <li key={post?.id} className="post-page-id-card">
           <img
             style={{ width: "500px", height: "500px" }}
             src={post?.post_url}

@@ -10,7 +10,7 @@ function PostForm({ closeModal }) {
     const [caption, setCaption] = useState("");
     const [postUrl, setPostUrl] = useState("");
     const history = useHistory();
-    // const posts = Object.values(useSelector((state) => state.posts));
+    const posts = Object.values(useSelector((state) => state.posts));
     const currUser = useSelector(state => state.session.user)
 
     const handleSubmit = (e) => {
@@ -22,8 +22,8 @@ function PostForm({ closeModal }) {
             })
         setPostUrl('')
         setCaption('')
-        history.push(`/users/${currUser?.id}`)
-        history.go()
+        const postId = posts[posts.length - 1]?.id
+        // history.push(`/posts/${postId}`)
     }
 
     return (
@@ -39,7 +39,7 @@ function PostForm({ closeModal }) {
             <div className="form-container">
                 <div className="form-image">
                     {postUrl && (
-                        <img src={postUrl} alt='previewImage'></img>
+                        <img src={postUrl}></img>
                     )}
                 </div>
                 <div className="post-caption-form-container">

@@ -7,7 +7,6 @@ import CreateComment from "../CreateComment";
 import EditCommentModal from "../EditComment";
 import './PostComments.css'
 import LikesModal from "../../LikesModal";
-import { getUserPostsBackend } from "../../../store/posts";
 
 export const getCreatedDate = (datestr) => {
     const fullDate = new Date(datestr).toDateString()
@@ -18,38 +17,31 @@ export const getCreatedDate = (datestr) => {
     return date
 }
 
-const PostsComments = ({ post }) => {
+const PostsComments = ({ post, setCurrPost }) => {
     const user = useSelector(state => state.session.user)
     const comments = useSelector((state) => Object.values(state.comments));
     const likes = useSelector(state => Object.values(state.likes))
-    const likesUserIds = likes?.map(like => like?.user_id);
+    const likesUserIds = post?.real_likes?.map(like => like?.user_id);
     const [liked, setLiked] = useState(false);
     const inputEl = useRef(null);
-    const [currPost, setCurrPost] = useState(post)
 
     const history = useHistory();
     const dispatch = useDispatch();
 
-
-
-    // useEffect(() => {
-    //     if (user) {
-    //         dispatch(getUserPostsBackend(user.id))
-    //     }
-    // }, [dispatch, user])
-
-
     useEffect(() => {
-        const currUserLiked = () => {
-            setLiked(likesUserIds?.includes(user.id))
-        }
         currUserLiked()
-    }, [likesUserIds, user.id])
+        dispatch(commentActions.loadPostComments(post?.id))
+        dispatch(likeActions.fetchLike(post?.id))
+    }, [dispatch, post])
 
-    useEffect(() => {
-        dispatch(commentActions.loadPostComments(post.id))
-        dispatch(likeActions.fetchLike(post.id))
-    }, [dispatch, post.id])
+    const userProfile = (userId) => {
+        history.push(`/users/${userId}`)
+        history.go(0)
+    }
+
+    const currUserLiked = () => {
+        setLiked(likesUserIds?.includes(user?.id))
+    }
 
     const likePost = async () => {
         if (likesUserIds?.includes(user?.id)) {
@@ -71,20 +63,14 @@ const PostsComments = ({ post }) => {
         <>
             <div className="post-comments-container">
                 <ul className="comment-card-list">
-                    {comments?.map((comment, i) => (
-                        <li className='comment-card-container' key={i}>
+                    {comments?.map((comment) => (
+                        <li className='comment-card-container' key={comment?.id}>
                             {/* <div className="comment-profile-pic"> */}
                             {/* {comment?.user?.profile_image} */}
                             {/* </div> */}
                             <div className="comment-content">
-                                <img className="comment-profile-pic" onClick={(e) => {
-                                    e.preventDefault()
-                                    history.push(`/users/${comment?.user?.id}`)
-                                }} src={comment?.user?.profile_image} alt='preview'></img>
-                                <div className="comment-username" onClick={(e) => {
-                                    e.preventDefault()
-                                    history.push(`/users/${comment?.user?.id}`)
-                                }}>
+                                <img className="comment-profile-pic" onClick={() => userProfile(comment?.user?.id)} src={comment?.user?.profile_image} alt='preview'></img>
+                                <div className="comment-username" onClick={() => userProfile(comment?.user?.id)}>
                                     {comment?.user?.username}
                                     <div className="comment-date">
                                         {getCreatedDate(comment?.createdAt)}
@@ -94,7 +80,7 @@ const PostsComments = ({ post }) => {
                                     {comment?.body}
                                     {comment?.user_id === user?.id &&
                                         <div className="edit-comment-container">
-                                            <EditCommentModal post={currPost} comment={comment} />
+                                            <EditCommentModal comment={comment} />
                                         </div>
                                     }
                                 </div>
@@ -117,8 +103,8 @@ const PostsComments = ({ post }) => {
                         </div>
                         <div className="post-likes">
                             {/* {likes?.length} likes */}
-                            <LikesModal likes={likes} />
-                        </div>
+                            <LikesModal likes={likes}/>
+                            </div>
                         <div className="post-date">{getCreatedDate(post?.created_at)}</div>
                     </div>
                     <CreateComment inputEl={inputEl} post={post} />
