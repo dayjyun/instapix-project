@@ -5,6 +5,7 @@ const TrendingUsers = ({ i }) => {
     const history = useHistory()
     const allUsers = Object.values(useSelector(state => state.users))
 
+    console.log(allUsers)
     return (
         <div className="users-section">
             <div className="trending">
