@@ -1,12 +1,18 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAllUsers } from "../../store/users";
 import "./SearchBar.css";
 
 function SearchBar() {
+  const dispatch = useDispatch()
   const users = Object.values(useSelector((state) => state.users));
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState("");
+
+  useEffect(() => {
+    dispatch(getAllUsers(users))
+  }, [dispatch, users])
 
   const userResults = users.filter((user) => {
     return user?.username?.toLowerCase().includes(search.toLowerCase());
