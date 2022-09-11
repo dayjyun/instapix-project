@@ -123,7 +123,7 @@ Great achievements take time and a strong foundation to construct an operating w
 <img alt="login" src="./images/instapix-login.gif">
 
 ## Feed
-<!-- <img alt="feed" src="./images/instapix-feed.gif"> -->
+<img alt="feed" src="./images/instapix-feed.gif">
 
 ## Explore
 <!-- <img alt="explore" src="./images/instapix-explore.gif"> -->
