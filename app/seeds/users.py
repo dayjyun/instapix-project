@@ -14,15 +14,15 @@ def seed_users():
     rick = User(
         username='rickjames', email='rick@aa.io', password='password', first_name='Rick', last_name='James', bio='This is about me', profile_image='https://allthatsinteresting.com/wordpress/wp-content/uploads/2021/08/portrait-of-rick-james.jpg')
     huy = User(
-        username='huy', email='huy@aa.io', password='password', first_name='Huy', last_name='TA', bio='Software Engineer. Contributor to this project!', profile_image='https://images.pexels.com/photos/1237119/pexels-photo-1237119.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
+        username='Huy', email='huy@aa.io', password='password', first_name='Huy', last_name='Tran', bio='Software Engineer. Contributor to this project!', profile_image='https://images.pexels.com/photos/1237119/pexels-photo-1237119.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
     skimby = User(
         username='skimby', email='a@aa.io', password='password', first_name='Sally', last_name='Kimby', bio='Software Engineer. Contributor to this project!', profile_image='https://images.goodsmile.info/cgm/images/product/20201202/10469/78051/medium/124b42aafad17eb1c88eef135ee878ad.jpg')
     jan = User(
-        username='wickedjan', email='b@aa.io', password='password', first_name='Jan', last_name='Wicked', bio='Software Engineer. Contributor to this project!', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
+        username='Jan', email='b@aa.io', password='password', first_name='Jan', last_name='Jovellanos', bio='Software Engineer. Contributor to this project!', profile_image='https://pbs.twimg.com/profile_images/764810617601527808/CurnOlxK_400x400.jpg')
     felipe = User(
         username='Felipe', email='c@aa.io', password='password', first_name='Felipe', last_name='Silva', bio='Software Engineer. Contributor to this project!', profile_image='https://www.thesprucepets.com/thmb/nZpYXJxDYAHa4vMjCQjlTWNRMaA=/938x938/smart/filters:no_upscale()/33351631_260594934684461_1144904437047754752_n-5b17d77604d1cf0037f3ea5a.jpg')
     kev = User(
-        username='kevsawesome', email='d@aa.io', password='password', first_name='Kev', last_name='Awesome', bio='Software Engineer. Contributor to this project!', profile_image='https://m.media-amazon.com/images/I/81Y+P59yklL._SS500_.jpg')
+        username='Kevin', email='d@aa.io', password='password', first_name='Kevin', last_name='Barrios', bio='Software Engineer. Contributor to this project!', profile_image='https://m.media-amazon.com/images/I/81Y+P59yklL._SS500_.jpg')
     tom = User(
         username='tomthecat', email='e@aa.io', password='password', first_name='Tom', last_name='Cat', bio='I enjoy long walks on the beach and a warm bowl of milk.', profile_image='https://i.pinimg.com/736x/aa/2e/f0/aa2ef0ac37db19de28da92aa1b297ca6.jpg')
     Jerry = User(
@@ -62,7 +62,7 @@ def seed_users():
     db.session.commit()
 
 
-# Uses a raw SQL query to TRUNCATE the users table..
+# Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any
