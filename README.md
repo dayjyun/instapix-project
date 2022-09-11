@@ -120,10 +120,10 @@ Great achievements take time and a strong foundation to construct an operating w
 ## **Snapshots**
 ## Landing Page
 <!-- ![Landing Page](./images/landing_page.png) -->
-<img alt="login" src="./images/instapix-login.gif">
+<img width="800" alt="login" src="./images/instapix-login.gif">
 
 ## Feed
-<img alt="feed" src="./images/instapix-feed.gif">
+<img width="800" alt="feed" src="./images/instapix-feed.gif">
 
 ## Explore
 <!-- <img alt="explore" src="./images/instapix-explore.gif"> -->
