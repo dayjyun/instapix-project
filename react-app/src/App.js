@@ -8,6 +8,7 @@ import { authenticate } from "./store/session";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import HomePageComponent from "./components/HomePageComponent";
 import SignUpUserForm from "./components/SignUpComponent";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +40,9 @@ function App() {
         </ProtectedRoute>
         <Route exact path="/">
           <HomePageComponent />
+        </Route>
+        <Route>
+          <PageNotFound />
         </Route>
       </Switch>
     </BrowserRouter>
