@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import FollowModal from '../FollowModal/FollowModal';
 import FollowerModal from '../FollowModal/FollowerModal';
@@ -15,7 +15,6 @@ function User() {
   let { userId } = useParams();
   userId = parseInt(userId)
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const loggedUser = useSelector(state => state.session.user)
   let user = Object.values(useSelector(state => state.users))

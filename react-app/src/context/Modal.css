@@ -33,8 +33,6 @@
   overflow: auto;
   width: 300px;
   z-index: 2;
-  /* padding: 1%; */
-  /* overflow: auto; */
 }
 
 #post-modal {
@@ -62,8 +60,6 @@
   background-color: white;
   border-radius: 1em;
   overflow: hidden;
-  /* width: 60%; */
-  /* padding: 1%; */
 }
 
 #edit-post-modal {
@@ -101,14 +97,6 @@
   height: 10em;
   position: absolute;
   border-radius: 10px;
-  /* display: flexbox;
-  width: 12em;
-  height: 10em;
-  padding: 16px;
-  border: 1px solid lightgrey;
-  border-radius: 10px;
-  position: absolute;
-  background-color: white; */
 }
 
 .postcard-button-container {
@@ -134,7 +122,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 300px; */
 }
 
 #edit-comment-modal-background {

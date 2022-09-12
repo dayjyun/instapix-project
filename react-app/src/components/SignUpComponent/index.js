@@ -161,6 +161,7 @@ const SignUpUserForm = () => {
                   onChange={updateProfileImage}
                   value={profileImage}
                   placeholder="Upload Profile Image"
+                  required
                 ></input>
               </div>
               <button className="signup-button" type="submit">

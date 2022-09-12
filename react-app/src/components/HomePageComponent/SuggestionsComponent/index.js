@@ -27,10 +27,14 @@ const SuggestionsComponent = ({ i2 }) => {
             )
         } else {
             return (
-                <div onClick={e => {
-                    e.preventDefault()
-                    history.push(`/users/${sessionUser?.id}`)
-                }} className='fa-regular fa-user-circle profile-pic-medium pointer'></div>
+                <div
+                    style={{ marginLeft: '.8em', marginTop: '1.4em' }}
+                    onClick={e => {
+                        e.preventDefault()
+                        history.push(`/users/${sessionUser?.id}`)
+                    }}
+                    className='fa-regular fa-user-circle fa-2xl'
+                ></div>
             )
         }
     }
@@ -42,15 +46,15 @@ const SuggestionsComponent = ({ i2 }) => {
                     e.preventDefault()
                     history.push(`/users/${allUsers[i]?.id}`)
                 }}>
-                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '-.2em' }} className='profile-img-circle-container' src={allUsers[i]?.profile_image} alt='preview'></img>
+                    <img style={{ width: '2.5em', height: '2.5em', marginLeft: '.1em', marginTop: '.3em' }} className='profile-img-circle-container' src={allUsers[i]?.profile_image} alt='preview'></img>
                 </div>
             )
         } else {
             return (
-                <div style={{ marginTop: '-.1em' }} onClick={e => {
+                <div style={{ marginTop: '1.2em', marginLeft: '.7em' }} onClick={e => {
                     e.preventDefault()
                     history.push(`/users/${allUsers[i]?.id}`)
-                }} className='fa-regular fa-user-circle fa-xl'></div>
+                }} className='fa-regular fa-user-circle fa-2xl'></div>
             )
         }
     }
@@ -80,7 +84,13 @@ const SuggestionsComponent = ({ i2 }) => {
                     )
                 })}
                 <div style={{ marginLeft: '.8em' }}>
-                    <p className="copyright">© 2022 INSTAPIX FROM FELIPE SALLY JAN KEVIN HUYDU</p>
+                    <p className="copyright">© 2022 INSTAPIX FROM
+                        <a href="https://github.com/FelipeSilva916"> FELIPE</a>
+                        <a href="https://github.com/skimby"> SALLY</a>
+                        <a href="https://github.com/janjovellanos"> JAN</a>
+                        <a href="https://github.com/dayjyun"> KEVIN</a>
+                        <a href="https://github.com/htran106"> HUYDU</a>
+                    </p>
                 </div>
             </div>
         </div>

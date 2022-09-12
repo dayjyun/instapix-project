@@ -3,8 +3,6 @@
   justify-content: center;
   align-items: center;
   margin-top: 115px;
-  /* padding: 0 5px; */
-  /* margin-top: 7em; */
 }
 
 .search-bar {
@@ -53,7 +51,7 @@
   width: 100%;
   color: black;
   font-weight: bold;
-  font-family: 'Arimo', sans-serif;
+  font-family: "Arimo", sans-serif;
 }
 
 .search-bar-profile-pic {
@@ -65,7 +63,7 @@
 }
 
 .search-bar-profile-username {
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 .results-active {
