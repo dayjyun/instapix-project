@@ -15,7 +15,6 @@
   display: grid;
   grid-template-columns: 58% 42%;
   border-bottom: 1px solid lightgray;
-  /* width: 98.8%; */
 }
 
 .create-new-post p {
@@ -30,7 +29,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /* padding-right: .6em; */
 }
 
 .share-button-container button {
@@ -55,7 +53,6 @@ ul {
   width: 59.2vw;
   height: 100%;
 }
-
 
 .form-image img {
   width: 100%;
@@ -86,14 +83,13 @@ ul {
   margin-right: 1em;
 }
 
-
 .text-area {
   object-fit: contain;
   resize: none;
   width: 85%;
   height: 15.2vh;
   margin-top: -1.1em;
-  padding-top: .5em;
+  padding-top: 0.5em;
   padding-left: 1em;
   outline: none;
   border: none;
