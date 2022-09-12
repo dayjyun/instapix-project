@@ -8,12 +8,6 @@ import { authenticate } from "./store/session";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
 import HomePageComponent from "./components/HomePageComponent";
 import SignUpUserForm from "./components/SignUpComponent";
-// import PostsComments from "./components/CommentComponents/PostsComments";
-// import EditComment from "./components/CommentComponents/EditComment";
-// import CommentDetails from "./components/CommentComponents/CommentDetails";
-// import FollowingPosts from "./components/PostsComponent/FollowingPosts";
-// import UsersList from "./components/UsersList";
-// import Login from "./components/LoginComponent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,31 +34,12 @@ function App() {
         <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
-        {/* <Route path="/posts/:postId/comments">
-          <PostsComments />
-        </Route> */}
-        {/* <Route exact path="/posts">
-          <FollowingPosts />
-        </Route> */}
-        {/* <Route path="/comments/:commentId/edit">
-          <EditComment />
-        </Route> */}
-        {/* <Route path="/comments/:commentId">
-          <CommentDetails />
-        </Route> */}
         <ProtectedRoute path="/users/:userId">
           <User />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/users">
-          <UsersList />
-        </ProtectedRoute> */}
         <Route exact path="/">
           <HomePageComponent />
         </Route>
-
-        {/* <Route exact path="/skimby">
-          <Login />
-        </Route> */}
       </Switch>
     </BrowserRouter>
   );
