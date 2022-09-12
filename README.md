@@ -87,10 +87,10 @@ each of the following variables:
 
 # instagram-project -->
 
-## Users
+<!-- ## Users
 * GET `/login` - Displays the user login form.
 * POST `/login` - Logs in the user.
-* GET `/logout` - Logs out the currently signed-in user.
+* GET `/logout` - Logs out the currently signed-in user. -->
 
 
 <!-- ## Posts
@@ -109,10 +109,12 @@ each of the following variables:
 * PUT `/comments/<comment_id>` - Update a comment.
 * DELETE `/comments/<comment_id>` - Delete a comment. -->
 
+
 <!-- ## Likes
 * GET `/posts/<post_id>/likes` - Get all likes of a post.
 * POST `/posts/<post_id>/likes` - Like a post.
 * DELETE `/posts/<post_id>/likes/<like_id>` - Unlike a post. -->
+
 
 <!-- ## Follow
 * GET `/users/<user_id>/followers` - Get all followers of a users
