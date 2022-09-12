@@ -87,20 +87,15 @@ each of the following variables:
 
 # instagram-project -->
 
-# Instapix Project
+# Instapix
 
-The Instapix Project is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
+The Instapix is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
 
-With Instapix, you can sign-up, login, or sign in as a guest to try out all the features. The repo is your adventure!
-Once inside, you'll be able to upload images and interact with posts submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world.
+With Instapix, you can sign-up, login, or sign in as a guest to try out all the features. Once inside, you'll be able to upload images and interact with posts submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world. The repo is your adventure!
 
-To run the file
+Checkout the website!
 
-1.
-
-Or simply checkout the website!
-
-## [Instapix Project](https://instapix-project.herokuapp.com/)
+## [Instapix](https://instapix-project.herokuapp.com/)
 
 
 # Tech
@@ -114,7 +109,7 @@ Great achievements take time and a strong foundation to construct an operating w
 - Alembic
 - JavaScript
 - React-Redux
-- Postgress
+- Postgres
 
 
 ## **Snapshots**
@@ -147,9 +142,18 @@ Here are the things you can do:
    - Like and comment on other people's posts
 
 - Explore
-   - Browse through the wide collection stored in the website
+   - Browse through the wide collection of posts uploaded to the website
+
+- Search
+   - Look up usernames to interact with other users and their posts
 
 
 # Future Features
 
 But wait, it gets even better!
+- Hashtags
+- Edit profile
+- Videos
+- Stories
+- Messaging
+- Mobile Interface
