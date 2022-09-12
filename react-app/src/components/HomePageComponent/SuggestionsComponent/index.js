@@ -1,35 +1,17 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-// import { getFollowingBackendHome } from "../../../store/follow"
 import { getAllUsers } from "../../../store/users"
 import { useHistory } from "react-router-dom"
 
 const SuggestionsComponent = ({ i2 }) => {
     const dispatch = useDispatch()
     const history = useHistory()
-    // let following = useSelector(state => state.follow)
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = Object.values(useSelector(state => state.users))
-
-    // following && console.log(Object.values(following))
-    // let following2 = following?.follows
-    // following && console.log(following)
-    // following && (following = Object.values(following)?.map(following => following?.follower_info?.id))
-    // let usersNotFollowing;
-    // console.log("NON FOLLOWERS", nonFollowers)
-
-    // useEffect(() => {
-    //     if (allUsers && following && nonFollowers.length === 0) {
-    //         // console.log("users", allUsers, "FOLLOWING", following)
-    //         usersNotFollowing = allUsers.filter(user => !following?.includes(user.id))
-    //         setNonFollowers(usersNotFollowing)
-    //     }
-    // }, [allUsers, following])
 
     useEffect(() => {
         if (sessionUser) {
             dispatch(getAllUsers())
-            // dispatch(getFollowingBackendHome())
         }
     }, [dispatch, sessionUser])
 
@@ -45,10 +27,10 @@ const SuggestionsComponent = ({ i2 }) => {
             )
         } else {
             return (
-                <div style={{ marginTop: '-.1em' }} onClick={e => {
+                <div onClick={e => {
                     e.preventDefault()
                     history.push(`/users/${sessionUser?.id}`)
-                }} className='fa-regular fa-user-circle fa-xl'></div>
+                }} className='fa-regular fa-user-circle profile-pic-medium pointer'></div>
             )
         }
     }
@@ -78,8 +60,8 @@ const SuggestionsComponent = ({ i2 }) => {
             <div className="suggestions-username-container">
                 {ProfileImageTagLarge()}
                 <div className="suggestions-username-name">
-                    <a className="suggestions-username" href={`/users/${sessionUser?.id}`}>{sessionUser?.username}</a>
-                    <span>{sessionUser?.first_name}</span>
+                    <a className="suggestions-username1" href={`/users/${sessionUser?.id}`}>{sessionUser?.username}</a>
+                    <span className="username-styling2">{sessionUser?.first_name}</span>
                 </div>
             </div>
             <p className="suggestions-for-u">Suggestions For You</p>
@@ -90,7 +72,7 @@ const SuggestionsComponent = ({ i2 }) => {
                             {ProfileImageTagSmall(i)}
                             <div className="suggestions-username-name">
                                 <a className="suggestions-username" href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
-                                <span style={{ fontSize: '14px' }}>Popular</span>
+                                <span className="username-styling2" style={{ fontSize: '14px' }}>Popular</span>
                             </div>
                             <div className="user-card-follow-btn">
                             </div>

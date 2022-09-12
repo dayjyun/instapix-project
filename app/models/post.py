@@ -20,9 +20,6 @@ class Post(db.Model):
     post_hashtags = db.relationship(
         "Post_Hashtag", back_populates="post", cascade="all, delete-orphan", lazy="joined")
 
-    # users = db.relationship('User', back_populates='posts')
-    # hashtags = db.relationship('Hashtag', secondary=post_hashtag, back_populates='posts')
-
     def num_comments(self):
         return len(self.comments)
 
@@ -84,7 +81,5 @@ class Post(db.Model):
             "num_comments": self.num_comments(),
             "Comments": [comments.comment_content() for comments in self.comments],
             "real_likes": [like.to_dict() for like in self.likes]
-
-            # 'user_id': [user.user_content() for user in self.user]
 
         }

@@ -15,6 +15,7 @@ import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
 import SignUpUserForm from "./components/SignUpComponent";
 import Login from "./components/LoginComponent";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,9 +59,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/users/:userId">
           <User />
-        </ProtectedRoute>
+          {/* </ProtectedRoute>
         <ProtectedRoute path="/users">
-          <UsersList />
+          <UsersList /> */}
         </ProtectedRoute>
         <Route exact path="/">
           <HomePageComponent />
@@ -68,6 +69,9 @@ function App() {
 
         <Route exact path="/skimby">
           <Login />
+        </Route>
+        <Route>
+          <PageNotFound />
         </Route>
       </Switch>
     </BrowserRouter>

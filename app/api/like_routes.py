@@ -29,7 +29,6 @@ def get_likes_by_post(post_id):
         return jsonify({'message': 'There are no likes', 'status_code': 200}), 200
 
 # LIKE A POST
-# add if exists
 
 
 @like_routes.route('/posts/<int:post_id>/likes', methods=['POST'])
@@ -65,10 +64,6 @@ def delete_a_like(post_id):
         if exist:
             like.delete()
             db.session.commit()
-
-            print('---')
-            print(exist[0])
-            print('---')
             return jsonify(exist[0]), 200
 
         else:

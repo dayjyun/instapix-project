@@ -15,8 +15,6 @@ const LikeComponent = ({ post }) => {
 
   }, [dispatch, post.id]);
 
-  // useEffect(() => {}, [dispatch])
-
   const likePost = async () => {
     if (liked) {
       await dispatch(likeActions.unlike(post.id));

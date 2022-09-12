@@ -4,15 +4,10 @@ import { useState } from 'react'
 import { PostModal } from '../../../context/Modal'
 import GetPost from '../../GetPostModal/GetPost'
 
-// import * as sessionActions from '../../../store/session'
 
-
-const PostCardButtons = ({ post, closeModal, randomPost }) => {
-    // const history = useHistory()
+const PostCardButtons = ({ post, closeModal }) => {
     const dispatch = useDispatch()
-    // const [follow, setFollow] = useState('Unfollow')
     const [showModal, setShowModal] = useState(false);
-    // const currUser = useSelector(state => state.session.user)
 
     const handleUnfollow = async (e) => {
         e.preventDefault()
@@ -20,10 +15,6 @@ const PostCardButtons = ({ post, closeModal, randomPost }) => {
         closeModal()
     }
 
-    // const handleGoToPost = e => {
-    //     e.preventDefault()
-    //     history.push(`/posts/${randomPost?.id}`)
-    // }
 
     return (
         <>

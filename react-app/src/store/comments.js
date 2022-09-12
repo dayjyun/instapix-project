@@ -127,7 +127,6 @@ export default function reducer(state = newState, action) {
                 [action.comment.id]: action.comment
             }
         case UPDATE_COMMENT:
-            // console.log(action.data);
             return {
                 ...state,
                 [action.data.id]: action.data

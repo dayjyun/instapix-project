@@ -4,7 +4,6 @@ import { getFollowersBackend } from '../../../store/follow';
 import FollowButton from './FollowButton';
 import '../FollowModal.css'
 import { useHistory } from 'react-router-dom';
-// import User from '../../UserComponent';
 
 const Followers = ({ user }) => {
     const dispatch = useDispatch()
@@ -17,10 +16,6 @@ const Followers = ({ user }) => {
             dispatch(getFollowersBackend(user?.id))
         }
     }, [dispatch, user])
-
-    // const goToUserPage = (follow) => {
-    //     history.push(`/users/${follow?.follower_info?.id}`)
-    // }
 
     return (
         <>

@@ -69,6 +69,12 @@
     /* padding-top: 1em; */
 }
 
+.username-styling-3 {
+    font-size: 10;
+    font-family: 'Arimo', sans-serif;
+    color: gray
+}
+
 .user-pics {
     display: flex;
     justify-content: center;
@@ -98,15 +104,16 @@
     margin-bottom: .5em;
     border-radius: 10px;
     width: 100%;
-    height: 100%;
+    height: 160px;
+    background-color: white;
 }
 
 .suggestions-container {
     display: grid;
-    grid-template-rows: 15% 12.5% 60% 12.5%;
+    grid-template-rows: 15% 15% 60% 10%;
     /* border: 1px solid blue; */
     margin-left: 1em;
-    height: 30em;
+    height: 35em;
 }
 
 .suggestions-username-container {
@@ -324,20 +331,22 @@ form {
 .feed-post-container {
     display: grid;
     /* grid-template-rows: 10% 40% 10% 10% 10% 10%; */
-    grid-template-rows: 3.5em 28em 2.5em 1.5em 1.5em 1.5em 1em;
+    grid-template-rows: 3.7em 28em 2.5em 1.5em 1.5em 1.5em 1em;
     /* height: 50em; */
-    height: 40em;
+    height: 41em;
     border: 1px solid lightgray;
     margin-bottom: 1em;
     border-radius: 5px;
     font-family: 'Arimo', sans-serif;
+    background-color: white;
 }
 
 .feed-username-container {
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: 10% 75% 10%;
     height: 2.5em;
     width: 100%;
+    padding: 8px 0 8px 14px;
 }
 
 .profile-button-large {
@@ -350,12 +359,17 @@ form {
     margin-top: 1em;
 }
 
+.username-styling-4 {
+    font-size: 15px;
+    padding-top: 0;
+}
+
 .profile-button-large-2 {
     border-radius: 50px;
     border: none;
     background-color: transparent;
-    margin-left: .5em;
-    margin-top: .3em;
+    margin-left: .9em;
+    margin-top: .7em;
     width: 4.5em;
     height: 4.5em;
 }
@@ -368,11 +382,26 @@ form {
     padding-bottom: -2em;
 }
 
+.suggestions-username1 {
+    padding-top: 1.7em;
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Arimo', sans-serif;
+}
+
 .suggestions-username {
     padding-top: 1.3em;
     color: black;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
+    font-family: 'Arimo', sans-serif;
+}
+
+.username-styling2 {
+    font-family: 'Arimo', sans-serif;
+    padding-top: 2px;
+    font-size: 14px;
 }
 
 .suggestions-username-name {
@@ -382,10 +411,11 @@ form {
 .suggestions-for-u {
     display: flex;
     align-items: flex-end;
-    font-size: 14px;
+    font-size: 16px;
     color: gray;
     font-weight: 900;
     margin-left: .8em;
+    /* margin-top: 10px; */
 }
 
 .suggestions-users-container {
@@ -416,16 +446,18 @@ form {
 
 .copyright {
     color: rgb(188, 186, 186);
+    padding-top: 15px;
     /* margin-left: 1em; */
 }
 
 .feed-username-container a {
-    padding-top: 1.4em;
+    padding-top: .8em;
     padding-left: .7em;
-    font-size: 14px;
+    font-size: 15px;
     font-family: sans-serif;
     font-weight: 600;
     color: black;
+
 }
 
 .feed-post-image {

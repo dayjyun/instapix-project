@@ -1,11 +1,18 @@
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import * as userActions from '../../../store/allUsers'
 
 const TrendingUsers = ({ i }) => {
     const history = useHistory()
-    const allUsers = Object.values(useSelector(state => state.users))
+    const dispatch = useDispatch()
+    const allUsers = Object.values(useSelector(state => state.allUsers))
 
-    console.log(allUsers)
+    useEffect(() => {
+        dispatch(userActions.allUsers())
+    }, [dispatch])
+
     return (
         <div className="users-section">
             <div className="trending">
@@ -33,7 +40,7 @@ const TrendingUsers = ({ i }) => {
             <div className="user-pics-container">
                 {i?.map((i, index) => (
                     <div key={index} className="username">
-                        <a href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
+                        <a className='username-styling-3' href={`/users/${allUsers[i]?.id}`}>{allUsers[i]?.username}</a>
                     </div>
                 ))}
             </div>

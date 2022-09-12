@@ -1,7 +1,7 @@
 .nav-bar-container {
   display: flex;
   width: 100vw;
-  height: 60px;
+  height: 70px;
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid lightgray;
@@ -109,21 +109,21 @@
 }
 
 .dropdown-shadow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0px 0px 10px 3px lightgray;
-    border-radius: 10%;
-    width: 6em;
-    height: 100%;
-    margin-left: -1.4em;
-    z-index: 10;
-    /* display: grid; */
-    /* grid-template-rows: repeat(2, 1fr); */
-    /* padding-top: 5%; */
-    /* margin-top: 0.2em; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0px 0px 10px 3px lightgray;
+  border-radius: 10%;
+  width: 6em;
+  height: 100%;
+  margin-left: -1.4em;
+  z-index: 10;
+  /* display: grid; */
+  /* grid-template-rows: repeat(2, 1fr); */
+  /* padding-top: 5%; */
+  /* margin-top: 0.2em; */
 }
 
 /* .profile-button {
