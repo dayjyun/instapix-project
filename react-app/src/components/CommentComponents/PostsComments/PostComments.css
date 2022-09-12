@@ -4,7 +4,6 @@
     justify-content: space-between;
     height: 100%;
     width: 100%;
-    /* overflow: hidden; */
 }
 
 .comment-card-list {
@@ -20,7 +19,7 @@
 }
 
 .comment-card-list::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
+    display: none;
 }
 
 .comment-card-container {
@@ -87,7 +86,6 @@
     margin-right: 5px;
     border: none;
     background: none;
-    /* color: rgb(0,149,246); */
     font-weight: bold;
     font-size: 15px;
 
