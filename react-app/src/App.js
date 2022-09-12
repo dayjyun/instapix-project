@@ -3,17 +3,17 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/Navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
 import User from "./components/UserComponent";
 import { authenticate } from "./store/session";
-import PostsComments from "./components/CommentComponents/PostsComments";
-import EditComment from "./components/CommentComponents/EditComment";
-import CommentDetails from "./components/CommentComponents/CommentDetails";
 import ExplorerPosts from "./components/PostsComponent/ExplorerPosts";
-import FollowingPosts from "./components/PostsComponent/FollowingPosts";
 import HomePageComponent from "./components/HomePageComponent";
 import SignUpUserForm from "./components/SignUpComponent";
-import Login from "./components/LoginComponent";
+// import PostsComments from "./components/CommentComponents/PostsComments";
+// import EditComment from "./components/CommentComponents/EditComment";
+// import CommentDetails from "./components/CommentComponents/CommentDetails";
+// import FollowingPosts from "./components/PostsComponent/FollowingPosts";
+// import UsersList from "./components/UsersList";
+// import Login from "./components/LoginComponent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,31 +40,31 @@ function App() {
         <Route exact path="/explore">
           <ExplorerPosts />
         </Route>
-        <Route path="/posts/:postId/comments">
+        {/* <Route path="/posts/:postId/comments">
           <PostsComments />
-        </Route>
-        <Route exact path="/posts">
+        </Route> */}
+        {/* <Route exact path="/posts">
           <FollowingPosts />
-        </Route>
-        <Route path="/comments/:commentId/edit">
+        </Route> */}
+        {/* <Route path="/comments/:commentId/edit">
           <EditComment />
-        </Route>
-        <Route path="/comments/:commentId">
+        </Route> */}
+        {/* <Route path="/comments/:commentId">
           <CommentDetails />
-        </Route>
+        </Route> */}
         <ProtectedRoute path="/users/:userId">
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/users">
+        {/* <ProtectedRoute path="/users">
           <UsersList />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route exact path="/">
           <HomePageComponent />
         </Route>
 
-        <Route exact path="/skimby">
+        {/* <Route exact path="/skimby">
           <Login />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );
