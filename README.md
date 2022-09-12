@@ -87,20 +87,50 @@ each of the following variables:
 
 # instagram-project -->
 
-# Instapix Project
+<!-- ## Users
+* GET `/login` - Displays the user login form.
+* POST `/login` - Logs in the user.
+* GET `/logout` - Logs out the currently signed-in user. -->
 
-The Instapix Project is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
 
-With Instapix, you can sign-up, login, or sign in as a guest to try out all the features. The repo is your adventure!
-Once inside, you'll be able to upload images and interact with posts submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world.
+<!-- ## Posts
+* GET `/explore` - Displays the explore page, all posts in random order.
+* GET `/posts/<post_id>` - Get post detail for a user's post.
+* GET `/posts/<post_id>/edit` - Get the post edit-form.
+* PUT `/posts/<post_id>` - Update a post.
+* POST `/posts` - Create a post.
+* DELETE `/posts/<post_id>` - Delete a post. -->
 
-To run the file
 
-1.
+<!-- ## Comments
+* GET `/posts/<post_id>/comments` - Get all the comments of a post by post_id.
+* GET `/comments/<comment_id>/edit` - Get the edit comment form.
+* POST `/comments` - Create a comment.
+* PUT `/comments/<comment_id>` - Update a comment.
+* DELETE `/comments/<comment_id>` - Delete a comment. -->
 
-Or simply checkout the website!
 
-## [Instapix Project](https://instapix-project.herokuapp.com/)
+<!-- ## Likes
+* GET `/posts/<post_id>/likes` - Get all likes of a post.
+* POST `/posts/<post_id>/likes` - Like a post.
+* DELETE `/posts/<post_id>/likes/<like_id>` - Unlike a post. -->
+
+
+<!-- ## Follow
+* GET `/users/<user_id>/followers` - Get all followers of a users
+* GET `/users/<user_id>/following` - Get all following of a user
+* POST `/users/<user_id>/followers` - Follow a user
+* DELETE `/users/<user_id>/followers` - Unfollow a user -->
+
+# Instapix
+
+The Instapix is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
+
+With Instapix, you can sign-up, login, or sign in as a guest to try out all the features. Once inside, you'll be able to upload images and interact with posts submitted by other users in the website. Express your creativity, share with your connections, and discover more ways to be connected around the world. The repo is your adventure!
+
+Checkout the website!
+
+## [Instapix](https://instapix-project.herokuapp.com/)
 
 
 # Tech
@@ -114,7 +144,7 @@ Great achievements take time and a strong foundation to construct an operating w
 - Alembic
 - JavaScript
 - React-Redux
-- Postgress
+- Postgres
 
 
 ## **Snapshots**
@@ -147,9 +177,18 @@ Here are the things you can do:
    - Like and comment on other people's posts
 
 - Explore
-   - Browse through the wide collection stored in the website
+   - Browse through the wide collection of posts uploaded to the website
+
+- Search
+   - Look up usernames to interact with other users and their posts
 
 
 # Future Features
 
 But wait, it gets even better!
+- Hashtags
+- Edit profile
+- Videos
+- Stories
+- Messaging
+- Mobile Interface
