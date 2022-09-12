@@ -149,13 +149,16 @@ Great achievements take time and a strong foundation to construct an operating w
 
 ## **Snapshots**
 ## Landing Page
-![Landing Page](./images/landing_page.png)
+<img width="800" alt="login" src="./images/instapix-login.gif">
 
 ## Feed
+<img width="800" alt="feed" src="./images/instapix-feed.gif">
 
 ## Explore
+<img width="800" alt="explore" src="./images/instapix-explore.gif">
 
 ## Profile
+<img width="800" alt="profile" src="./images/instapix-profile.gif">
 
 # Features
 
