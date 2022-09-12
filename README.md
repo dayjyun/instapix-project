@@ -87,6 +87,39 @@ each of the following variables:
 
 # instagram-project -->
 
+## Users
+* GET `/login` - Displays the user login form.
+* POST `/login` - Logs in the user.
+* GET `/logout` - Logs out the currently signed-in user.
+
+
+<!-- ## Posts
+* GET `/explore` - Displays the explore page, all posts in random order.
+* GET `/posts/<post_id>` - Get post detail for a user's post.
+* GET `/posts/<post_id>/edit` - Get the post edit-form.
+* PUT `/posts/<post_id>` - Update a post.
+* POST `/posts` - Create a post.
+* DELETE `/posts/<post_id>` - Delete a post. -->
+
+
+<!-- ## Comments
+* GET `/posts/<post_id>/comments` - Get all the comments of a post by post_id.
+* GET `/comments/<comment_id>/edit` - Get the edit comment form.
+* POST `/comments` - Create a comment.
+* PUT `/comments/<comment_id>` - Update a comment.
+* DELETE `/comments/<comment_id>` - Delete a comment. -->
+
+<!-- ## Likes
+* GET `/posts/<post_id>/likes` - Get all likes of a post.
+* POST `/posts/<post_id>/likes` - Like a post.
+* DELETE `/posts/<post_id>/likes/<like_id>` - Unlike a post. -->
+
+<!-- ## Follow
+* GET `/users/<user_id>/followers` - Get all followers of a users
+* GET `/users/<user_id>/following` - Get all following of a user
+* POST `/users/<user_id>/followers` - Follow a user
+* DELETE `/users/<user_id>/followers` - Unfollow a user -->
+
 # Instapix
 
 The Instapix is a web application designed to replicate some functionalities found in [Instagram](https://instagram.com/).
