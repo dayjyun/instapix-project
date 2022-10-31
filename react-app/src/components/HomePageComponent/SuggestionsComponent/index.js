@@ -85,11 +85,11 @@ const SuggestionsComponent = ({ i2 }) => {
                 })}
                 <div style={{ marginLeft: '.8em' }}>
                     <p className="copyright">© 2022 INSTAPIX FROM
-                        <a href="https://github.com/FelipeSilva916"> FELIPE</a>
-                        <a href="https://github.com/skimby"> SALLY</a>
-                        <a href="https://github.com/janjovellanos"> JAN</a>
-                        <a href="https://github.com/dayjyun"> KEVIN</a>
-                        <a href="https://github.com/htran106"> HUYDU</a>
+                        <a href="https://www.linkedin.com/in/felipesilva916/"> FELIPE</a>
+                        <a href="https://www.linkedin.com/in/sallyjkim13/"> SALLY</a>
+                        <a href="https://www.linkedin.com/in/jan-michael-jovellanos-b30322242/"> JAN</a>
+                        <a href="https://www.linkedin.com/in/kevinbarrios12/"> KEVIN</a>
+                        <a href="https://www.linkedin.com/in/huydu-tran/"> HUYDU</a>
                     </p>
                 </div>
             </div>
