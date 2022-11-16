@@ -4,6 +4,8 @@ from datetime import datetime
 
 class Follow(db.Model):
     __tablename__ = 'follows'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

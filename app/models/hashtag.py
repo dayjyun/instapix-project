@@ -1,8 +1,11 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
+
 class Post_Hashtag(db.Model):
     __tablename__ = 'post_hashtags'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     hashtag_id = db.Column(db.Integer, db.ForeignKey(
@@ -11,7 +14,6 @@ class Post_Hashtag(db.Model):
 
     hashtag = db.relationship('Hashtag', back_populates='post_hashtags')
     post = db.relationship('Post', back_populates='post_hashtags')
-
 
 
 class Hashtag(db.Model):
