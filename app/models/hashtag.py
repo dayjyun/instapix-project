@@ -9,8 +9,8 @@ class Post_Hashtag(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     hashtag_id = db.Column(db.Integer, db.ForeignKey(
-        'hashtags.id'), nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+        add_prefix_for_prod('hashtags.id')), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), nullable=False)
 
     hashtag = db.relationship('Hashtag', back_populates='post_hashtags')
     post = db.relationship('Post', back_populates='post_hashtags')
