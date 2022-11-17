@@ -2,7 +2,7 @@
 FROM python:3.9
 # Set the following enviroment variables
 # ENV REACT_APP_BASE_URL=https://instapix-python.herokuapp.com/
-ENV REACT_APP_BASE_URL=https://instapix-project.herokuapp.com/
+ENV REACT_APP_BASE_URL=https://instapix.onrender.com/
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True

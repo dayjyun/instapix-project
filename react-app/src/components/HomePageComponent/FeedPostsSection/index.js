@@ -52,7 +52,7 @@ const FeedPostsComponent = () => {
                     <div key={post?.id} className="feed-post-container">
                         <div className="feed-username-container">
                             {ProfileImageTagSmallCard(post)}
-                            <Link href={`/users/${post?.User?.id}`}>{post?.User?.username}</Link>
+                            <Link to={`/users/${post?.User?.id}`}>{post?.User?.username}</Link>
                             {/* <a className="username-styling-4" href={`/users/${post?.User?.id}`}>{post?.User?.username}</a> */}
                             <div>
                                 <PostCardModal
