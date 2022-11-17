@@ -124,6 +124,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE post_hashtags SET SCHEMA {SCHEMA};")
 
+
     # ### end Alembic commands ###
 
 
