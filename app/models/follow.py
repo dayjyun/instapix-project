@@ -12,7 +12,7 @@ class Follow(db.Model):
     follows_id = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.today())
 
-    users = db.relationship('User', back_populates='follows')
+    users = db.relationship('User', back_populates=add_prefix_for_prod('follows'))
 
     def to_dict(self):
         return {

@@ -18,11 +18,11 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
     comments = db.relationship(
-        'Comment', back_populates='posts', cascade='all, delete-orphan')
-    likes = db.relationship("Like", back_populates='posts',
+        'Comment', back_populates=add_prefix_for_prod('posts'), cascade='all, delete-orphan')
+    likes = db.relationship("Like", back_populates=add_prefix_for_prod('posts'),
                             cascade='all, delete-orphan')
     post_hashtags = db.relationship(
-        "Post_Hashtag", back_populates="post", cascade="all, delete-orphan", lazy="joined")
+        "Post_Hashtag", back_populates=add_prefix_for_prod("post"), cascade="all, delete-orphan", lazy="joined")
 
     def num_comments(self):
         return len(self.comments)
