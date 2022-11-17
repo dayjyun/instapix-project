@@ -15,8 +15,8 @@ class Like(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
-    users = db.relationship('User', back_populates=add_prefix_for_prod('likes'))
-    posts = db.relationship('Post', back_populates=add_prefix_for_prod('likes'))
+    users = db.relationship('User', back_populates='likes')
+    posts = db.relationship('Post', back_populates='likes')
 
     def to_dict(self):
         return {
