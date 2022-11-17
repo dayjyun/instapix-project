@@ -19,6 +19,8 @@ class Post_Hashtag(db.Model):
 
 class Hashtag(db.Model):
     __tablename__ = 'hashtags'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     hashtag_value = db.Column(db.String, nullable=False)
