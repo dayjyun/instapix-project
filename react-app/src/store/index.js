@@ -28,7 +28,6 @@ if (process.env.NODE_ENV === "production") {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-} else {
 }
 
 const configureStore = (preloadedState) => {
