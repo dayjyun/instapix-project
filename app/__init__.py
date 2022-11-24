@@ -52,6 +52,11 @@ CORS(app)
 # Therefore, we need to make sure that in production any
 # request made over http is redirected to https.
 # Well.........
+
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
+    
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
