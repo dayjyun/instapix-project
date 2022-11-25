@@ -52,8 +52,8 @@ const FeedPostsComponent = () => {
                     <div key={post?.id} className="feed-post-container">
                         <div className="feed-username-container">
                             {ProfileImageTagSmallCard(post)}
-                            <Link to={`/users/${post?.User?.id}`}>{post?.User?.username}</Link>
-                            {/* <a className="username-styling-4" href={`/users/${post?.User?.id}`}>{post?.User?.username}</a> */}
+                            {/* <Link to={`/users/${post?.User?.id}`}>{post?.User?.username}</Link> */}
+                            <a className="username-styling-4" href={`/users/${post?.User?.id}`}>{post?.User?.username}</a>
                             <div>
                                 <PostCardModal
                                     post={post} randomPost={post} />
