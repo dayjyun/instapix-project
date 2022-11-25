@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <NavBar />
       <Switch>
         <Route path="/sign-up">
@@ -45,7 +45,7 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
