@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, HashRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/Navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
